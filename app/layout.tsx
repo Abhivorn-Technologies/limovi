@@ -9,6 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://limovi.in"),
   title: "LIMOVI - India's First 360° Gold Asset Ecosystem",
   description: "Convert your gold into liquidity, luxury experiences, wealth generation, gifting, and instant loans — all from one intelligent platform.",
   openGraph: {

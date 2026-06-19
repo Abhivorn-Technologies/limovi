@@ -54,13 +54,25 @@ export function Comparison() {
                     className={`col-span-1 p-4 flex justify-center items-center border-b ${comp.isMain ? 'bg-brand-secondary/5 border-brand-secondary/20 border-x' : 'border-slate-100'}`}
                   >
                     {comp.checks[rowIdx] ? (
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${comp.isMain ? 'bg-brand-secondary text-white shadow-md' : 'bg-slate-100 text-slate-400'}`}>
+                      <motion.div 
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: false }}
+                        transition={{ type: "spring", stiffness: 300, damping: 15, delay: colIdx * 0.1 + rowIdx * 0.05 }}
+                        className={`w-8 h-8 rounded-full flex items-center justify-center ${comp.isMain ? 'bg-brand-secondary text-white shadow-[0_4px_10px_rgba(0,102,255,0.3)]' : 'bg-slate-100 text-slate-400'}`}
+                      >
                         <Check size={16} strokeWidth={3} />
-                      </div>
+                      </motion.div>
                     ) : (
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center text-slate-300">
+                      <motion.div 
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: false }}
+                        transition={{ type: "spring", stiffness: 200, damping: 20, delay: colIdx * 0.1 + rowIdx * 0.05 }}
+                        className="w-8 h-8 rounded-full flex items-center justify-center text-slate-300"
+                      >
                         <Minus size={16} />
-                      </div>
+                      </motion.div>
                     )}
                   </div>
                 ))}

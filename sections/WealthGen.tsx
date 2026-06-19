@@ -26,7 +26,7 @@ export function WealthGen() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="w-full md:w-[28%] bg-slate-50 border border-slate-200 rounded-2xl p-6 relative z-10 text-center shadow-sm"
           >
             <div className="w-16 h-16 rounded-full bg-brand-gold/10 flex items-center justify-center mx-auto mb-4 border border-brand-gold/20">
@@ -39,7 +39,7 @@ export function WealthGen() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.2 }}
             className="relative z-10"
           >
@@ -51,7 +51,7 @@ export function WealthGen() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.3 }}
             className="w-full md:w-[28%] bg-slate-50 border border-slate-200 rounded-2xl p-6 relative z-10 text-center shadow-sm"
           >
@@ -65,7 +65,7 @@ export function WealthGen() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.4 }}
             className="relative z-10"
           >
@@ -77,7 +77,7 @@ export function WealthGen() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.5 }}
             className="w-full md:w-[28%] bg-gradient-to-br from-white to-brand-secondary/5 border border-brand-secondary/30 rounded-2xl p-6 relative z-10 text-center shadow-[0_20px_40px_rgba(0,102,255,0.1)]"
           >

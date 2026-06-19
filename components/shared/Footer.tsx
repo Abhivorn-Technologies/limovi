@@ -98,7 +98,17 @@ export function Footer() {
 
         <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-sm font-medium text-slate-500">
           <p>© {new Date().getFullYear()} LIMOVI FinTech Pvt Ltd. All rights reserved.</p>
-          <p>Made with ❤️ in India.</p>
+          <p>
+            Developed by{" "}
+            <a
+              href="https://www.abhivorn.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold transition-colors text-[#0A2540] hover:text-brand-secondary"
+            >
+              Abhivorn Technologies Pvt Ltd
+            </a>
+          </p>
         </div>
       </div>
     </footer>

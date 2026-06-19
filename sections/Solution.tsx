@@ -11,7 +11,7 @@ export function Solution() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full border border-slate-200 bg-slate-50"
           >
             <RefreshCw className="w-4 h-4 text-brand-secondary animate-spin-slow" />
@@ -20,7 +20,7 @@ export function Solution() {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-bold text-brand-primary mb-6"
           >
@@ -29,7 +29,7 @@ export function Solution() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.2 }}
             className="text-xl text-slate-600 max-w-2xl mx-auto font-medium"
           >
@@ -49,7 +49,7 @@ export function Solution() {
               strokeDasharray="8 8"
               initial={{ pathLength: 0, opacity: 0 }}
               whileInView={{ pathLength: 1, opacity: 0.6 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: false, margin: "-100px" }}
               transition={{ duration: 2, ease: "easeInOut" }}
             />
             <defs>
@@ -65,7 +65,7 @@ export function Solution() {
           <motion.div 
             initial={{ scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ type: "spring", bounce: 0.4, duration: 1 }}
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
           >
@@ -87,7 +87,7 @@ export function Solution() {
               key={index}
               initial={{ scale: 0, opacity: 0, x: "-50%", y: "-50%" }}
               whileInView={{ scale: 1, opacity: 1, x: "-50%", y: "-50%" }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ type: "spring", bounce: 0.4, duration: 1, delay: node.delay }}
               className="absolute z-10 flex flex-col items-center"
               style={{ top: node.top, left: node.left }}

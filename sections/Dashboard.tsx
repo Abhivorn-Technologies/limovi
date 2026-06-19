@@ -13,7 +13,7 @@ export function Dashboard() {
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="w-full lg:w-1/2"
           >
             <div className="flex items-center gap-2 mb-4">
@@ -53,7 +53,7 @@ export function Dashboard() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
             whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
             className="w-full lg:w-1/2 perspective-1000"
           >

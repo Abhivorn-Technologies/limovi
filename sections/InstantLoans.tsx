@@ -2,13 +2,31 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2, IndianRupee, ShieldCheck, Clock } from "lucide-react";
-import { MagneticButton } from "@/components/ui/magnetic-button";
 
 const steps = [
   { id: 1, title: "Gold Balance", desc: "Select from your digital vault", icon: <ShieldCheck className="w-6 h-6 text-brand-secondary" /> },
   { id: 2, title: "Instant Verify", desc: "No physical checks needed", icon: <CheckCircle2 className="w-6 h-6 text-brand-primary" /> },
   { id: 3, title: "NBFC Partner", desc: "Best rates secured instantly", icon: <Clock className="w-6 h-6 text-brand-accent" /> },
   { id: 4, title: "Money In Bank", desc: "Disbursed in minutes", icon: <IndianRupee className="w-6 h-6 text-green-500" /> },
+];
+
+// Pre-computed stable values — no Math.random() at render time (prevents hydration mismatch)
+const NOTES = [
+  { left: 8,  r0: 12,  r1: 180, dur: 5.2, delay: 0.0 },
+  { left: 18, r0: 55,  r1: 270, dur: 4.8, delay: 0.8 },
+  { left: 28, r0: 30,  r1: 90,  dur: 6.1, delay: 1.5 },
+  { left: 38, r0: 70,  r1: 320, dur: 5.5, delay: 0.3 },
+  { left: 48, r0: 5,   r1: 200, dur: 4.3, delay: 2.1 },
+  { left: 57, r0: 45,  r1: 140, dur: 6.4, delay: 0.6 },
+  { left: 65, r0: 80,  r1: 260, dur: 5.0, delay: 1.9 },
+  { left: 73, r0: 20,  r1: 330, dur: 4.6, delay: 1.2 },
+  { left: 82, r0: 60,  r1: 100, dur: 5.8, delay: 2.7 },
+  { left: 91, r0: 35,  r1: 215, dur: 6.0, delay: 0.4 },
+  { left: 14, r0: 15,  r1: 75,  dur: 4.9, delay: 1.7 },
+  { left: 33, r0: 50,  r1: 295, dur: 5.3, delay: 2.3 },
+  { left: 52, r0: 25,  r1: 160, dur: 6.2, delay: 0.9 },
+  { left: 70, r0: 65,  r1: 240, dur: 4.7, delay: 1.4 },
+  { left: 88, r0: 40,  r1: 310, dur: 5.6, delay: 2.6 },
 ];
 
 export function InstantLoans() {
@@ -20,7 +38,7 @@ export function InstantLoans() {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center gap-2 mb-4">
@@ -42,7 +60,7 @@ export function InstantLoans() {
                     key={step.id}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ delay: i * 0.15 }}
                     className="flex items-center gap-6"
                   >
@@ -58,41 +76,27 @@ export function InstantLoans() {
               </div>
             </div>
 
-            <MagneticButton>
-              <button className="bg-brand-primary text-white hover:bg-slate-800 px-8 py-4 rounded-full font-bold transition-all shadow-[0_10px_30px_rgba(10,37,64,0.2)]">
+            <button className="cursor-pointer bg-brand-primary text-white hover:bg-slate-800 px-8 py-4 rounded-full font-bold transition-all shadow-[0_10px_30px_rgba(10,37,64,0.2)]">
                 Check Loan Eligibility
               </button>
-            </MagneticButton>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8 }}
             className="relative h-[600px] rounded-3xl border border-slate-200 bg-gradient-to-b from-brand-secondary/5 to-transparent overflow-hidden flex items-center justify-center p-8 shadow-[0_20px_40px_rgba(0,102,255,0.05)]"
           >
             {/* Animated Money Flying Effect Simulation */}
             <div className="absolute inset-0 z-0">
-              {[...Array(15)].map((_, i) => (
+            {NOTES.map((n, i) => (
                 <motion.div
                   key={i}
                   className="absolute w-12 h-6 bg-green-50 rounded shadow-[0_4px_10px_rgba(74,222,128,0.1)] border border-green-200 flex items-center justify-center"
-                  initial={{ 
-                    top: "110%", 
-                    left: `${Math.random() * 100}%`,
-                    rotate: Math.random() * 90 
-                  }}
-                  animate={{ 
-                    top: "-10%",
-                    rotate: Math.random() * 360 
-                  }}
-                  transition={{ 
-                    duration: 4 + Math.random() * 3, 
-                    repeat: Infinity, 
-                    delay: Math.random() * 3,
-                    ease: "linear"
-                  }}
+                  initial={{ top: "110%", left: `${n.left}%`, rotate: n.r0 }}
+                  animate={{ top: "-10%", rotate: n.r1 }}
+                  transition={{ duration: n.dur, repeat: Infinity, delay: n.delay, ease: "linear" }}
                 >
                   <span className="text-[10px] text-green-600 font-bold">₹₹</span>
                 </motion.div>

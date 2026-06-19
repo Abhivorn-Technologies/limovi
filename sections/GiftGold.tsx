@@ -13,32 +13,50 @@ export function GiftGold() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
             className="relative order-2 lg:order-1"
           >
-            {/* Interactive Gift Card */}
-            <div className="relative w-full max-w-md mx-auto aspect-[1.6/1] rounded-2xl bg-gradient-to-br from-brand-gold to-brand-gold-luxury p-8 shadow-[0_30px_60px_rgba(255,215,0,0.3)] border border-yellow-200 overflow-hidden group cursor-pointer">
+            {/* Interactive Premium Gift Card */}
+            <div className="relative w-full max-w-md mx-auto aspect-[1.6/1] rounded-2xl bg-gradient-to-br from-[#0B1A2C] via-[#0A2540] to-[#051120] p-8 shadow-[0_30px_60px_rgba(10,37,64,0.4)] border border-[#D4AF37]/30 overflow-hidden group cursor-pointer">
               
-              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay" />
+              {/* Subtle metallic texture/noise */}
+              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-overlay" />
               
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/40 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
+              {/* Animated luxury glow */}
+              <div className="absolute -top-20 -right-20 w-64 h-64 bg-brand-gold/20 rounded-full blur-[60px] group-hover:bg-brand-gold/30 transition-colors duration-700" />
+              <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-[#00D4FF]/10 rounded-full blur-[50px] group-hover:scale-150 transition-transform duration-1000" />
+
+              {/* Glassmorphism inner sheen */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
               <div className="relative z-10 flex flex-col h-full justify-between">
+                {/* Header */}
                 <div className="flex justify-between items-start">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center shadow-sm">
-                      <Gift className="w-4 h-4 text-brand-primary" />
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-gold to-[#B8860B] flex items-center justify-center shadow-[0_4px_15px_rgba(212,175,55,0.4)] border border-yellow-200/50">
+                      <Gift className="w-5 h-5 text-[#0A2540]" />
                     </div>
-                    <span className="text-brand-primary font-bold tracking-wider">LIMOVI GIFT</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-[#FFF2CD] to-brand-gold font-bold tracking-[0.2em] text-sm">
+                      LIMOVI GOLD
+                    </span>
                   </div>
-                  <Sparkles className="text-brand-primary/80 w-6 h-6" />
+                  <Sparkles className="text-brand-gold w-6 h-6 animate-pulse" />
                 </div>
                 
+                {/* Body / Value */}
                 <div>
-                  <p className="text-brand-primary/70 text-sm mb-1 uppercase tracking-widest font-bold">Value</p>
-                  <div className="text-4xl font-black text-brand-primary mb-2">10.00g <span className="text-lg font-bold">24K Gold</span></div>
-                  <p className="text-brand-primary/90 text-sm font-medium">To: Priya Sharma</p>
+                  <p className="text-slate-400 text-xs mb-1 uppercase tracking-[0.3em] font-medium">Gift Value</p>
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-300">
+                      10.00g
+                    </span>
+                    <span className="text-brand-gold font-bold text-lg tracking-wide">24K</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-[1px] bg-brand-gold/50" />
+                    <p className="text-slate-300 text-sm font-medium tracking-wide">To: Priya Sharma</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -54,7 +72,7 @@ export function GiftGold() {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.8 }}
             className="order-1 lg:order-2"
           >
