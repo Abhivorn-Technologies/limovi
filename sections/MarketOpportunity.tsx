@@ -31,7 +31,7 @@ export function MarketOpportunity() {
                     className={`h-full rounded-full ${market.color}`}
                     initial={{ width: 0 }}
                     whileInView={{ width: `${market.value}%` }}
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: false, margin: "-50px" }}
                     transition={{ duration: 1.5, delay: i * 0.2, ease: "easeOut" }}
                   />
                 </div>

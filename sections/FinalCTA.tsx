@@ -20,7 +20,7 @@ export function FinalCTA() {
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, type: "spring" }}
           className="max-w-4xl mx-auto bg-white/10 border border-white/20 p-12 md:p-20 rounded-3xl backdrop-blur-md shadow-2xl relative overflow-hidden"
         >

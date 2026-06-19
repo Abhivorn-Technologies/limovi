@@ -131,7 +131,7 @@ export function EcosystemJourney() {
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-primary mb-6 tracking-tight"
         >
           The 360° Gold Journey 🗺️
@@ -139,7 +139,7 @@ export function EcosystemJourney() {
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ delay: 0.1 }}
           className="text-xl text-slate-600 max-w-2xl mx-auto font-medium"
         >
@@ -213,7 +213,7 @@ export function EcosystemJourney() {
                   <motion.div
                     initial={{ opacity: 0, x: isEven ? -50 : 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: false, margin: "-100px" }}
                     transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
                   >
                     <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4 ${milestone.color} ${isEven ? 'md:ml-auto md:mr-0' : 'md:mr-auto md:ml-0'}`}>
@@ -232,7 +232,7 @@ export function EcosystemJourney() {
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: false, margin: "-100px" }}
                     transition={{ duration: 0.6, type: "spring", bounce: 0.3, delay: 0.1 }}
                     className="relative w-full aspect-video md:aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_20px_40px_rgba(10,37,64,0.1)] border border-slate-200 group"
                   >

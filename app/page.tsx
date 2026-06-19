@@ -2,7 +2,7 @@ import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
 import { Hero } from "@/sections/Hero";
 import { Problem } from "@/sections/Problem";
-import { EcosystemJourney } from "@/sections/EcosystemJourney";
+import { GoldJourney } from "@/sections/GoldJourney";
 import { JewelleryCloud } from "@/sections/JewelleryCloud";
 import { Dashboard } from "@/sections/Dashboard";
 import { InstantLoans } from "@/sections/InstantLoans";
@@ -24,7 +24,7 @@ export default function Home() {
       <Hero />
       <Problem />
       <HowItWorks />
-      <EcosystemJourney />
+      <GoldJourney />
       <JewelleryCloud />
       <Dashboard />
       <InstantLoans />

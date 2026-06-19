@@ -1,88 +1,211 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { Diamond, Crown, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+import { Crown, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 const collections = [
-  { id: 1, name: "Wedding Collection", category: "Bridal", value: "₹5L - ₹20L", image: "https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&q=80" },
-  { id: 2, name: "Everyday Minimal", category: "Daily Wear", value: "₹50K - ₹2L", image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&q=80" },
-  { id: 3, name: "Royal Heritage", category: "Traditional", value: "₹10L - ₹50L", image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80" },
-  { id: 4, name: "Diamond Solitaires", category: "Luxury", value: "₹2L - ₹15L", image: "https://images.unsplash.com/photo-1605100804763-247f66154ce5?auto=format&fit=crop&q=80" },
-  { id: 5, name: "Temple Jewellery", category: "Antique", value: "₹8L - ₹25L", image: "https://images.unsplash.com/photo-1599643478514-4a46db27f806?auto=format&fit=crop&q=80" },
+  { id: 1, name: "Wedding Collection", category: "Bridal",     value: "₹5L – ₹20L",  image: "/images/jewellery-wedding.png",  accent: "#D4AF37" },
+  { id: 2, name: "Everyday Minimal",   category: "Daily Wear", value: "₹50K – ₹2L",  image: "/images/jewellery-minimal.png",  accent: "#C0C0C0" },
+  { id: 3, name: "Royal Heritage",     category: "Traditional",value: "₹10L – ₹50L", image: "/images/jewellery-royal.png",    accent: "#E8A020" },
+  { id: 4, name: "Diamond Solitaires", category: "Luxury",     value: "₹2L – ₹15L",  image: "/images/jewellery-diamond.png",  accent: "#A8D8EA" },
+  { id: 5, name: "Temple Jewellery",   category: "Antique",    value: "₹8L – ₹25L",  image: "/images/jewellery-temple.png",   accent: "#FF8C42" },
 ];
 
-export function JewelleryCloud() {
-  const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end end"]
-  });
+const N = collections.length;
+const STEP = 300;          // horizontal gap between card centres
+const ACTIVE_W = 370;
+const ACTIVE_H = 510;
+const NORMAL_W = 250;
+const NORMAL_H = 400;
+const AUTO_INTERVAL = 2500; // ms
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-55%"]);
+// Normalize offset to range -(N/2) … +(N/2)
+function normalizeOffset(raw: number): number {
+  let o = ((raw % N) + N) % N;
+  if (o > Math.floor(N / 2)) o -= N;
+  return o;
+}
+
+export function JewelleryCloud() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  // Stable callbacks — functional updates so they don't need `active` in scope
+  const prev = useCallback(() => setActive(a => (a - 1 + N) % N), []);
+  const next = useCallback(() => setActive(a => (a + 1) % N), []);
+
+  // Auto-advance — interval is NOT restarted on every card change.
+  // `next` is stable (useCallback), so deps array only contains [paused, next].
+  // Previously `active` was a dep which cleared+restarted the timer every 2.8s,
+  // causing it to feel like it "waited" before moving.
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(next, AUTO_INTERVAL);
+    return () => clearInterval(id);
+  }, [paused, next]); // ← no `active` here
 
   return (
-    <section ref={targetRef} className="relative h-[300vh] bg-slate-50">
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        
-        <div className="container mx-auto px-6 mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl"
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <Crown className="text-brand-secondary w-6 h-6" />
-              <span className="text-brand-secondary font-bold uppercase tracking-widest text-sm">Netflix for Jewellery 💍</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
-              Wear Luxury.<br />Own The Asset.
-            </h2>
-            <p className="text-xl text-slate-600 font-medium leading-relaxed">
-              Why buy expensive jewellery for one occasion? Use your gold balance to access thousands of premium designs through our Jewellery Cloud.
-            </p>
-          </motion.div>
-        </div>
+    <section className="relative py-20 bg-[#F8F9FC] overflow-hidden">
 
-        <div className="w-full overflow-hidden pl-6">
-          <motion.div style={{ x }} className="flex gap-8 pb-20 w-max pr-32">
-            {collections.map((item, index) => (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                key={item.id} 
-                className="relative w-[300px] md:w-[400px] h-[400px] md:h-[500px] flex-shrink-0 rounded-3xl overflow-hidden group cursor-pointer shadow-[0_20px_40px_rgba(10,37,64,0.08)] border border-slate-200"
+      {/* Ambient blobs */}
+      <div className="pointer-events-none absolute -top-32 left-0 w-[400px] h-[400px] rounded-full opacity-10 blur-3xl"
+        style={{ background: "radial-gradient(circle,#D4AF37 0%,transparent 70%)" }} />
+      <div className="pointer-events-none absolute -bottom-32 right-0 w-[400px] h-[400px] rounded-full opacity-10 blur-3xl"
+        style={{ background: "radial-gradient(circle,#0B1F3A 0%,transparent 70%)" }} />
+
+      {/* ── Text header ── */}
+      <div className="px-10 md:px-20 mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }} transition={{ duration: 0.7 }}
+          className="max-w-2xl"
+        >
+          <div className="flex items-center gap-2 mb-5">
+            <Crown className="w-5 h-5" style={{ color: "#D4AF37" }} />
+            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#D4AF37" }}>
+              Netflix for Jewellery 💍
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-5 leading-tight" style={{ color: "#0B1F3A" }}>
+            Wear Luxury.<br />
+            <span style={{
+              background: "linear-gradient(90deg,#D4AF37,#FFE066,#D4AF37)",
+              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+            }}>
+              Own The Asset.
+            </span>
+          </h2>
+          <p className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed max-w-xl">
+            Why buy expensive jewellery for one occasion? Use your gold balance
+            to access thousands of premium designs through our Jewellery Cloud.
+          </p>
+        </motion.div>
+      </div>
+
+      {/* ── Spotlight carousel ── */}
+      <div
+        className="relative mx-auto"
+        style={{ height: ACTIVE_H + 40, maxWidth: "100vw" }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        {/* Left/right fade masks */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-32 z-20"
+          style={{ background: "linear-gradient(to right,#F8F9FC 30%,transparent)" }} />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-32 z-20"
+          style={{ background: "linear-gradient(to left,#F8F9FC 30%,transparent)" }} />
+
+        {/* Cards */}
+        {collections.map((item, i) => {
+          const offset   = normalizeOffset(i - active);
+          const absOff   = Math.abs(offset);
+          const isActive = offset === 0;
+
+          // Cards beyond ±2 are invisible
+          const opacity  = absOff > 2 ? 0 : isActive ? 1 : 0.5 - absOff * 0.05;
+          const zIndex   = 20 - absOff * 5;
+          const w        = isActive ? ACTIVE_W : NORMAL_W;
+          const h        = isActive ? ACTIVE_H : NORMAL_H;
+          const xOffset  = offset * STEP;           // px from centre
+          const filter   = isActive ? "none" : `brightness(0.65) saturate(0.8)`;
+
+          return (
+            <motion.div
+              key={item.id}
+              onClick={() => setActive(i)}
+              animate={{ opacity, zIndex, filter, x: xOffset, width: w, height: h }}
+              transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
+              className="absolute top-1/2 left-1/2 cursor-pointer rounded-3xl overflow-hidden"
+              style={{
+                translateY: "-50%",
+                translateX: "-50%",
+                // Set initial w/h so SSR gives Image fill a non-zero parent height
+                width: w,
+                height: h,
+                boxShadow: isActive
+                  ? "0 24px 60px rgba(11,31,58,0.22), 0 0 0 2px rgba(212,175,55,0.3)"
+                  : "0 10px 30px rgba(11,31,58,0.10)",
+                willChange: "transform, opacity, width, height",
+              }}
+            >
+              <Image
+                src={item.image} alt={item.name} fill sizes={`${ACTIVE_W}px`}
+                className="object-cover" priority={absOff <= 1}
+              />
+
+              {/* Overlay */}
+              <div className="absolute inset-0" style={{
+                background: "linear-gradient(to top,rgba(11,31,58,0.92) 0%,rgba(11,31,58,0.3) 50%,transparent 100%)",
+              }} />
+
+              {/* Gold accent top border when active */}
+              {isActive && (
+                <div className="absolute top-0 left-0 right-0 h-[3px]"
+                  style={{ background: `linear-gradient(90deg,${item.accent},transparent)` }} />
+              )}
+
+              {/* Card content — only on active */}
+              <motion.div
+                animate={{ opacity: isActive ? 1 : 0 }}
+                transition={{ duration: 0.35 }}
+                className="absolute bottom-0 left-0 w-full p-8"
               >
-                <Image 
-                  src={item.image} 
-                  alt={item.name}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent" />
-                
-                <div className="absolute bottom-0 left-0 w-full p-8">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Sparkles className="w-4 h-4 text-brand-gold" />
-                    <span className="text-white/80 text-sm font-medium tracking-wider uppercase">{item.category}</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{item.name}</h3>
-                  <div className="flex items-center justify-between">
-                    <span className="text-brand-gold font-medium">{item.value}</span>
-                    <button className="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-bold hover:bg-brand-secondary hover:text-white transition-colors shadow-sm">
-                      View Pieces
-                    </button>
-                  </div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles className="w-4 h-4" style={{ color: item.accent }} />
+                  <span className="text-xs font-bold tracking-widest uppercase" style={{ color: item.accent }}>
+                    {item.category}
+                  </span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3 leading-snug">{item.name}</h3>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-base font-semibold" style={{ color: item.accent }}>{item.value}</span>
+                  <button
+                    className="px-5 py-2 rounded-full text-sm font-bold hover:scale-105 active:scale-95 transition-all duration-200"
+                    style={{
+                      background: "rgba(255,255,255,0.15)", color: "#fff",
+                      border: "1px solid rgba(255,255,255,0.28)", backdropFilter: "blur(8px)",
+                    }}
+                  >
+                    View Pieces
+                  </button>
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
-        </div>
+            </motion.div>
+          );
+        })}
 
+        {/* Prev / Next buttons */}
+        <button onClick={prev}
+          className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+          style={{ background: "rgba(255,255,255,0.85)", boxShadow: "0 4px 20px rgba(11,31,58,0.15)", backdropFilter: "blur(8px)" }}
+        >
+          <ChevronLeft className="w-5 h-5" style={{ color: "#0B1F3A" }} />
+        </button>
+        <button onClick={next}
+          className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+          style={{ background: "rgba(255,255,255,0.85)", boxShadow: "0 4px 20px rgba(11,31,58,0.15)", backdropFilter: "blur(8px)" }}
+        >
+          <ChevronRight className="w-5 h-5" style={{ color: "#0B1F3A" }} />
+        </button>
+      </div>
+
+      {/* ── Dot indicators ── */}
+      <div className="flex justify-center gap-2.5 mt-10">
+        {collections.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            className="rounded-full transition-all duration-300"
+            style={{
+              width:  i === active ? 28 : 8,
+              height: 8,
+              background: i === active ? "#D4AF37" : "rgba(212,175,55,0.35)",
+              boxShadow: i === active ? "0 0 8px rgba(212,175,55,0.6)" : "none",
+            }}
+          />
+        ))}
       </div>
     </section>
   );

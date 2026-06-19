@@ -27,7 +27,7 @@ export function HowItWorks() {
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: false, margin: "-100px" }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
               className="bg-white border border-slate-200 rounded-3xl p-8 relative overflow-hidden group hover:shadow-[0_20px_40px_rgba(10,37,64,0.08)] transition-all duration-300"
             >

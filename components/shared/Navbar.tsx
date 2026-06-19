@@ -45,14 +45,13 @@ export function Navbar() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <MagneticButton key={link.name}>
-                <Link 
-                  href={link.href}
-                  className="text-sm font-bold text-slate-600 hover:text-brand-secondary transition-colors"
-                >
-                  {link.name}
-                </Link>
-              </MagneticButton>
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-sm font-bold text-slate-600 hover:text-brand-secondary transition-colors"
+              >
+                {link.name}
+              </Link>
             ))}
           </nav>
 
@@ -60,11 +59,9 @@ export function Navbar() {
             <Link href="/login" className="text-sm font-bold text-slate-600 hover:text-brand-secondary transition-colors">
               Log In
             </Link>
-            <MagneticButton>
-              <button className="bg-brand-primary text-white hover:bg-slate-800 px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-md shadow-brand-primary/20">
+            <button className="cursor-pointer bg-brand-primary text-white hover:bg-slate-800 px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-md shadow-brand-primary/20">
                 Get Early Access
               </button>
-            </MagneticButton>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -106,7 +103,7 @@ export function Navbar() {
                 >
                   Log In
                 </Link>
-                <button className="bg-brand-primary text-white px-8 py-4 rounded-full text-lg font-bold w-full shadow-lg">
+                <button className="cursor-pointer bg-brand-primary text-white px-8 py-4 rounded-full text-lg font-bold w-full shadow-lg">
                   Get Early Access
                 </button>
               </div>
