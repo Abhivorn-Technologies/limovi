@@ -40,24 +40,27 @@ export function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 w-full z-[999] transition-all duration-500 ${
-          isScrolled ? "py-3 backdrop-blur-xl border-b shadow-sm" : "py-5 bg-transparent"
+          isScrolled ? "backdrop-blur-xl border-b shadow-sm" : "bg-transparent"
         }`}
         style={isScrolled
-          ? { background: NAV_BG_SCROLLED, borderColor: NAV_BORDER }
-          : {}}
+          ? { background: NAV_BG_SCROLLED, borderColor: NAV_BORDER, height: "90px" }
+          : { height: "90px" }}
       >
-        <div className="container mx-auto px-6 flex items-center justify-between">
+        <div className="container mx-auto px-6 flex items-center justify-between h-full">
 
           {/* ── Logo ── */}
           <Link href="/" className="relative z-[999] flex items-center group">
-            <div className="transition-opacity duration-300 group-hover:opacity-80">
+            <div
+              className="transition-opacity duration-300 group-hover:opacity-80"
+              style={{ display: "flex", alignItems: "center", height: "90px", overflow: "hidden" }}
+            >
               <Image
-                src="/Limovi-cropped.png"
+                src="/Limovi.png"
                 alt="LIMOVI"
-                width={1198}
-                height={333}
+                width={1153}
+                height={288}
                 priority
-                style={{ objectFit: "contain", height: "48px", width: "auto" }}
+                style={{ objectFit: "contain", width: "240px", height: "auto" }}
               />
             </div>
           </Link>
