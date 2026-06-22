@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { Gem, Briefcase, Gift, Zap } from "lucide-react"; 
 
 const cards = [
-  { icon: <Gem className="w-8 h-8 text-brand-gold" />, title: "Enrol Existing Jewellery", desc: "Bring your gold to our partner branches or request home pickup. We value it using 24K standards.", emoji: "💍" },
-  { icon: <Briefcase className="w-8 h-8 text-brand-secondary" />, title: "Digital Gold Balance", desc: "Your physical gold is vaulted, and equivalent 99.99% pure digital gold is credited to your Limovi account.", emoji: "💳" },
-  { icon: <Zap className="w-8 h-8 text-brand-primary" />, title: "Earn Daily Yield", desc: "Your balance automatically generates up to 11% annual yield, compounding daily.", emoji: "⚡" },
-  { icon: <Gift className="w-8 h-8 text-brand-accent" />, title: "Spend or Liquidate", desc: "Use balance to rent new jewellery, gift to family, or instantly withdraw cash to your bank.", emoji: "🎁" },
+  { icon: <Gem className="w-8 h-8 text-brand-gold" />, title: "Enrol Existing Jewellery", desc: "Bring your gold to our partner branches or request home pickup. We value it using 24K standards." },
+  { icon: <Briefcase className="w-8 h-8 text-brand-secondary" />, title: "Digital Gold Balance", desc: "Your physical gold is vaulted, and equivalent 99.99% pure digital gold is credited to your Limovi account." },
+  { icon: <Zap className="w-8 h-8 text-brand-primary" />, title: "Earn Daily Yield", desc: "Your balance automatically generates up to 11% annual yield, compounding daily." },
+  { icon: <Gift className="w-8 h-8 text-brand-accent" />, title: "Spend or Liquidate", desc: "Use balance to rent new jewellery, gift to family, or instantly withdraw cash to your bank." },
 ];
 
 export function HowItWorks() {
@@ -34,7 +34,6 @@ export function HowItWorks() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-full blur-3xl group-hover:bg-brand-secondary/5 transition-colors" />
               
               <div className="relative z-10">
-                <div className="text-4xl mb-4">{card.emoji}</div>
                 <div className="mb-6 inline-flex p-3 rounded-xl bg-slate-50 border border-slate-100 shadow-sm">
                   {card.icon}
                 </div>

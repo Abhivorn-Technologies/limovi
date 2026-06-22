@@ -11,29 +11,24 @@ const stats = [
     value: 1.3,
     suffix: "T",
     prefix: "$",
-    label: "Gold Locked in Lockers",
-    description: "Sitting idle, depreciating against inflation, and generating zero yield.",
-  },
-  {
-    icon: <AlertTriangle className="w-8 h-8 text-brand-secondary" />,
-    value: 80,
-    suffix: "%",
-    label: "Idle Assets",
-    description: "Most physical gold is never utilized for financial growth.",
+    label: "Idleness",
+    description: "Trillions worth of gold is kept in lockers, providing no utility beyond price appreciation.",
   },
   {
     icon: <TrendingDown className="w-8 h-8 text-red-400" />,
     value: 20,
-    suffix: "%",
-    label: "Making Charges Loss",
-    description: "Traditional jewellery purchases result in immediate capital loss.",
+    suffix: "%+",
+    prefix: "",
+    label: "The Jewellery Paradox",
+    description: "Buying new jewellery is expensive (making charges, wastage, GST) leading to high cost-per-wear.",
   },
   {
     icon: <Hourglass className="w-8 h-8 text-brand-accent" />,
     value: 48,
-    suffix: "hrs+",
-    label: "Slow Loan Processes",
-    description: "Traditional gold loans involve physical verification and massive paperwork.",
+    suffix: "hrs",
+    prefix: ">",
+    label: "Liquidity Friction",
+    description: "Taking a gold loan or selling gold is still a slow, manual, and often stigmatised process.",
   },
 ];
 
@@ -60,7 +55,7 @@ export function Problem() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
