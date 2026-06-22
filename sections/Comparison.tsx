@@ -13,11 +13,11 @@ const features = [
 ];
 
 const competitors = [
-  { name: "LIMOVI", isMain: true, checks: [true, true, true, true, true, true] },
-  { name: "Traditional Banks", isMain: false, checks: [false, false, false, true, false, false] },
-  { name: "Digital Gold", isMain: false, checks: [true, false, true, false, true, false] },
-  { name: "Jewellers", isMain: false, checks: [false, true, false, false, false, false] },
-  { name: "Gold Loan Apps", isMain: false, checks: [false, false, false, true, false, false] },
+  { name: "LIMOVI", subtitle: "360° Ecosystem", isMain: true, checks: [true, true, true, true, true, true] },
+  { name: "Traditional Banks", subtitle: "NBFCs", isMain: false, checks: [false, false, false, true, false, false] },
+  { name: "Digital Gold", subtitle: "(Jar, SafeGold)", isMain: false, checks: [true, false, true, false, true, false] },
+  { name: "Jewellers", subtitle: "(Tanishq, Malabar)", isMain: false, checks: [false, true, false, false, false, false] },
+  { name: "Gold Loan Apps", subtitle: "(Rupeek, Muthoot)", isMain: false, checks: [false, false, false, true, false, false] },
 ];
 
 export function Comparison() {
@@ -38,7 +38,8 @@ export function Comparison() {
             <div className="col-span-1" />
             {competitors.map((comp, i) => (
               <div key={i} className={`text-center font-bold p-4 rounded-t-2xl ${comp.isMain ? 'bg-brand-secondary/10 text-brand-secondary border-t border-x border-brand-secondary/20' : 'text-slate-600'}`}>
-                {comp.name}
+                <div>{comp.name}</div>
+                {comp.subtitle && <div className="text-xs font-normal opacity-70 mt-1">{comp.subtitle}</div>}
               </div>
             ))}
 

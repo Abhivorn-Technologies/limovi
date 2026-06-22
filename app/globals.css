@@ -11,17 +11,14 @@
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
 
-  /* LIMOVI Brand Colors */
-  --color-brand-primary: #0A2540;
-  --color-brand-secondary: #0066FF;
-  --color-brand-accent: #00D4FF;
-  --color-brand-gold: #FFD700;
-  --color-brand-gold-luxury: #F5C542;
-  --color-brand-dark: #020617;
-
-  /* LIMOVI Gradients */
-  --background-limovi-gradient: linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-secondary) 50%, var(--color-brand-accent) 100%);
-  --color-brand-dark: #FFFFFF;
+  /* LIMOVI Brand Colors — Official Fintech Palette */
+  --color-brand-primary:       #005CB9;   /* Primary Blue */
+  --color-brand-secondary:     #2B7FE8;   /* Secondary Blue */
+  --color-brand-accent:        #5BA3F0;   /* Light Blue accent */
+  --color-brand-gold:          #D4AF37;   /* Gold — sphere, wealth, CTA only */
+  --color-brand-gold-luxury:   #F5C542;   /* Gold highlight */
+  --color-brand-dark:          #07111F;   /* Deep Navy background */
+  --color-brand-navy:          #0A1929;   /* Slightly lighter navy */
 }
 
 @layer base {

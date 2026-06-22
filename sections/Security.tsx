@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { Shield, Building2, Fingerprint, Award, Scale, BookOpen } from "lucide-react";
 
 const compliances = [
-  { icon: <Scale className="w-8 h-8 text-brand-primary" />, title: "SEBI Compliance", desc: "Regulated framework" },
-  { icon: <Building2 className="w-8 h-8 text-brand-secondary" />, title: "RBI Partnership Model", desc: "For secure lending" },
-  { icon: <Fingerprint className="w-8 h-8 text-pink-500" />, title: "Aadhaar & PAN", desc: "Bank-grade KYC" },
-  { icon: <Award className="w-8 h-8 text-green-500" />, title: "BIS Hallmark", desc: "Certified purity" },
-  { icon: <Shield className="w-8 h-8 text-brand-accent" />, title: "Trust Deed", desc: "Legal protection" },
-  { icon: <BookOpen className="w-8 h-8 text-purple-500" />, title: "Regulatory Framework", desc: "100% transparent" },
+  { icon: <Scale className="w-8 h-8 text-brand-primary" />, title: "SEBI & Trust Deed", desc: "Vault Managers (2021) regulated by SEBI Trustee." },
+  { icon: <Award className="w-8 h-8 text-green-500" />, title: "BIS & BUDS Act", desc: "Hallmarked purity and secure vaulting agencies." },
+  { icon: <Shield className="w-8 h-8 text-brand-accent" />, title: "Bailment & Insurance", desc: "Indian Contract Act (1872) & Block Insurance Policies." },
+  { icon: <Fingerprint className="w-8 h-8 text-pink-500" />, title: "PMLA (2002) KYC", desc: "Strict Aadhaar & PAN verification via India Stack." },
+  { icon: <Building2 className="w-8 h-8 text-brand-secondary" />, title: "RBI & Settlement Act", desc: "Digital Lending Guidelines & secure banking APIs." },
+  { icon: <BookOpen className="w-8 h-8 text-purple-500" />, title: "Succession Act (1925)", desc: "Zero-cost generational transfers via strict Nomination." },
 ];
 
 export function Security() {

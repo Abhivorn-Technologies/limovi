@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
-import { Hero } from "@/sections/Hero";
+import { HeroGold } from "@/sections/HeroGold";
 import { Problem } from "@/sections/Problem";
 import { GoldJourney } from "@/sections/GoldJourney";
 import { JewelleryCloud } from "@/sections/JewelleryCloud";
@@ -21,7 +21,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col bg-brand-dark overflow-x-clip">
       <Navbar />
       
-      <Hero />
+      <HeroGold />
       <Problem />
       <HowItWorks />
       <GoldJourney />
