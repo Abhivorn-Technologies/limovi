@@ -47,12 +47,13 @@ function buildPath(): string {
 const SNAKE_PATH = buildPath();
 
 // ─── Mobile path ──────────────────────────────────────────────────────────────
-const MOB_SPACING = 240;
-const MOBILE_VBOX_H = 60 + (milestones.length - 1) * MOB_SPACING + 60;
+const MOB_SPACING = 222; // 190 (img) + 32 (space-y-8)
+const MOB_START_Y = 111; // 16 (py-4 top) + 190 / 2
+const MOBILE_VBOX_H = 1776; // total container height
 function buildMobilePath(): string {
-  let d = `M 60 60`;
+  let d = `M 60 ${MOB_START_Y}`;
   for (let i = 1; i < milestones.length; i++) {
-    d += ` L 60 ${60 + i * MOB_SPACING}`;
+    d += ` L 60 ${MOB_START_Y + i * MOB_SPACING}`;
   }
   return d;
 }
@@ -255,8 +256,8 @@ export function GoldJourney() {
 
       {/* ════════════════════ MOBILE (< md) ════════════════════ */}
       <div ref={mobWrapRef} className="relative md:hidden px-2">
-        <svg viewBox={`0 0 120 ${MOBILE_VBOX_H}`} className="w-12 absolute left-4 top-0 h-full"
-          style={{ overflow: "visible" }} preserveAspectRatio="none">
+        <svg viewBox={`0 0 120 ${MOBILE_VBOX_H}`} className="absolute left-0 top-0"
+          style={{ width: "120px", height: `${MOBILE_VBOX_H}px`, overflow: "visible" }}>
           <defs>
             <radialGradient id="coinFillMob" cx="38%" cy="32%" r="65%">
               <stop offset="0%"   stopColor="#FFE066" />
@@ -271,9 +272,9 @@ export function GoldJourney() {
 
           {milestones.map((_, i) => (
             <g key={i}>
-              <circle cx={60} cy={60 + i * MOB_SPACING} r={13}
+              <circle cx={60} cy={MOB_START_Y + i * MOB_SPACING} r={13}
                 fill="#D4AF37" stroke="#FFE066" strokeWidth="2" />
-              <text x={60} y={60 + i * MOB_SPACING + 5} textAnchor="middle"
+              <text x={60} y={MOB_START_Y + i * MOB_SPACING + 4} textAnchor="middle"
                 fontSize="10" fontWeight="bold" fill="#0B1F3A" fontFamily="sans-serif">{i + 1}</text>
             </g>
           ))}
@@ -290,7 +291,7 @@ export function GoldJourney() {
           </motion.g>
         </svg>
 
-        <div className="ml-20 space-y-8 py-4">
+        <div className="ml-[110px] space-y-8 py-4 pr-2">
           {milestones.map((m, i) => (
             <motion.div key={i}
               initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }}

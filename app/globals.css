@@ -105,3 +105,13 @@
     @apply font-sans;
   }
 }
+
+@layer utilities {
+  @keyframes scroll-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee-infinite {
+    animation: scroll-marquee 25s linear infinite;
+  }
+}

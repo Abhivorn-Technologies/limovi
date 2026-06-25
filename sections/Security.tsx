@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { Shield, Building2, Fingerprint, Award, Scale, BookOpen } from "lucide-react";
 
 const compliances = [
-  { icon: <Scale className="w-8 h-8 text-brand-primary" />, title: "SEBI & Trust Deed", desc: "Vault Managers (2021) regulated by SEBI Trustee." },
-  { icon: <Award className="w-8 h-8 text-green-500" />, title: "BIS & BUDS Act", desc: "Hallmarked purity and secure vaulting agencies." },
-  { icon: <Shield className="w-8 h-8 text-brand-accent" />, title: "Bailment & Insurance", desc: "Indian Contract Act (1872) & Block Insurance Policies." },
-  { icon: <Fingerprint className="w-8 h-8 text-pink-500" />, title: "PMLA (2002) KYC", desc: "Strict Aadhaar & PAN verification via India Stack." },
-  { icon: <Building2 className="w-8 h-8 text-brand-secondary" />, title: "RBI & Settlement Act", desc: "Digital Lending Guidelines & secure banking APIs." },
-  { icon: <BookOpen className="w-8 h-8 text-purple-500" />, title: "Succession Act (1925)", desc: "Zero-cost generational transfers via strict Nomination." },
+  { icon: <Scale className="w-8 h-8 text-brand-primary" />, title: "SEBI & Digital Gold", desc: "Vault Managers (2021) regulated by SEBI Trustee. Partnered with SafeGold & MMTC-PAMP." },
+  { icon: <Award className="w-8 h-8 text-green-500" />, title: "BIS & Secure Vaults", desc: "Hallmarked purity via AHCs. Assets stored in Sequel Logistics & Brink's secure vaults." },
+  { icon: <Shield className="w-8 h-8 text-brand-accent" />, title: "Bailment & Insurance", desc: "Indian Contract Act (1872) & Block Insurance Policies for safe, insured jewellery transit." },
+  { icon: <Fingerprint className="w-8 h-8 text-pink-500" />, title: "PMLA (2002) KYC", desc: "Strict Aadhaar & PAN verification via India Stack for every enrolment." },
+  { icon: <Building2 className="w-8 h-8 text-brand-secondary" />, title: "RBI & NBFC Partners", desc: "Digital Lending Guidelines. Partnered with RBI-regulated NBFCs like Rupeek." },
+  { icon: <BookOpen className="w-8 h-8 text-purple-500" />, title: "Succession Act (1925)", desc: "Zero-cost generational transfers via strict Nomination framework." },
 ];
 
 export function Security() {
@@ -57,6 +57,55 @@ export function Security() {
           </div>
 
         </div>
+
+        {/* Partners Marquee / List */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-24 pt-12 border-t border-slate-200 overflow-hidden relative"
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Backed by India&apos;s most trusted ecosystem partners</h3>
+          </div>
+          
+          <div className="relative flex overflow-hidden group">
+            {/* Left and right gradient masks for smooth fade */}
+            <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-slate-50 to-transparent z-10"></div>
+            <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-slate-50 to-transparent z-10"></div>
+
+            <div 
+              className="flex w-max animate-marquee-infinite opacity-60 hover:opacity-100 transition-opacity duration-500"
+            >
+              {[1, 2].map((set) => (
+                <div key={set} className="flex items-center pr-16 gap-16">
+                  {[
+                    { name: "SafeGold", domain: "safegold.com" },
+                    { name: "MMTC-PAMP", domain: "mmtcpamp.com" },
+                    { name: "Rupeek", domain: "rupeek.com" },
+                    { name: "Sequel Logistics", domain: "sequelglobal.com" },
+                    { name: "Brink's", domain: "us.brinks.com" },
+                    { name: "Razorpay", domain: "razorpay.com" },
+                    { name: "Cashfree", domain: "cashfree.com" }
+                  ].map((partner, i) => (
+                    <div key={i} className="flex items-center justify-center gap-3 relative whitespace-nowrap">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img 
+                        src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${partner.domain}&size=128`}
+                        alt={partner.name}
+                        className="h-8 w-8 object-contain rounded-md"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                      <span className="text-xl font-bold text-slate-800">{partner.name}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

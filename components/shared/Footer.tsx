@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 const footerLinks = {
@@ -33,10 +34,13 @@ export function Footer() {
           
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
-              <div className="text-3xl font-black tracking-tighter flex items-center gap-1 text-brand-primary">
-                LIMOVI
-                <div className="w-2 h-2 rounded-full bg-brand-secondary" />
-              </div>
+              <Image
+                src="/Limovi.png"
+                alt="LIMOVI"
+                width={1153}
+                height={288}
+                style={{ width: "200px", height: "auto", objectFit: "contain" }}
+              />
             </Link>
             <p className="text-slate-600 mb-8 max-w-sm font-medium">
               India&apos;s first 360° Gold Asset Ecosystem. Convert your gold into liquidity, luxury experiences, and wealth.
@@ -97,7 +101,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-sm font-medium text-slate-500">
-          <p>© {new Date().getFullYear()} LIMOVI FinTech Pvt Ltd. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} LIMOVI. All rights reserved.</p>
           <p>
             Developed by{" "}
             <a

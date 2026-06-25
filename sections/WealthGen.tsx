@@ -89,6 +89,48 @@ export function WealthGen() {
           </motion.div>
 
         </div>
+
+        {/* Detailed Information Blocks */}
+        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <h4 className="text-xl font-bold text-slate-800 mb-3">1. The Jewellery Cloud</h4>
+            <p className="text-slate-600 leading-relaxed">
+              Instead of your gold sitting idle, you enrol it into our Jewellery Cloud. Other users pay an experience charge to stream and wear your jewellery on demand, turning your passive asset into an active one.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <h4 className="text-xl font-bold text-slate-800 mb-3">2. 35% Rental Dividend</h4>
+            <p className="text-slate-600 leading-relaxed">
+              We pay you a <strong className="text-brand-secondary">35% commercial rental dividend</strong> (or platform royalty fee) every time your piece is experienced. Payouts are directly mapped to your specific, serialised asset ledger.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <h4 className="text-xl font-bold text-slate-800 mb-3">3. 100% Compliant & Transparent</h4>
+            <p className="text-slate-600 leading-relaxed">
+              To bypass Collective Investment Scheme (CIS) violations, payouts are unpooled and fully transparent. They are legally subjected to standard Tax Deducted at Source (TDS) as 'Income from Other Sources'.
+            </p>
+          </motion.div>
+        </div>
+
       </div>
     </section>
   );

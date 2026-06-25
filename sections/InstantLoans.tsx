@@ -31,116 +31,171 @@ const NOTES = [
 
 export function InstantLoans() {
   return (
-    <section id="loans" className="py-32 bg-slate-50 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <IndianRupee className="text-brand-secondary w-6 h-6" />
-              <span className="text-brand-secondary font-bold uppercase tracking-widest text-sm">Instant Liquidity 💸</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
-              One Click Gold Loans ⚡
-            </h2>
-            <p className="text-xl text-slate-600 mb-10 font-medium leading-relaxed">
-              Skip the branch visits and paperwork. Convert your digital gold balance into cash instantly, directly to your bank account at the lowest market rates.
-            </p>
-
-            <div className="relative mb-12 ml-2">
-              <div className="absolute top-6 bottom-6 left-[23px] w-[2px] bg-slate-200" />
-              <div className="space-y-8 relative">
-                {steps.map((step, i) => (
-                  <motion.div 
-                    key={step.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false }}
-                    transition={{ delay: i * 0.15 }}
-                    className="flex items-center gap-6"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center relative z-10 shadow-sm shrink-0">
-                      {step.icon}
-                    </div>
-                    <div>
-                      <h4 className="text-slate-800 font-bold text-lg">{step.title}</h4>
-                      <p className="text-slate-500 font-medium">{step.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
+    <>
+      {/* ── Instant Loans Section ── */}
+      <section id="loans" className="py-32 bg-slate-50 relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <ShieldCheck className="text-brand-secondary w-6 h-6" />
+                <span className="text-brand-secondary font-bold uppercase tracking-widest text-sm">RBI Regulated 🏦</span>
               </div>
-            </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 tracking-tight">
+                Gold Balance-Backed Loans
+              </h2>
+              <p className="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
+                Take a loan against your gold balance instantly without physical visits. We partner with RBI-regulated NBFCs like <strong className="text-brand-secondary">Rupeek</strong> as our primary lending rail.
+              </p>
 
-            <button className="cursor-pointer bg-brand-primary text-white hover:bg-slate-800 px-8 py-4 rounded-full font-bold transition-all shadow-[0_10px_30px_rgba(10,37,64,0.2)]">
+              {/* HOW GOLD CONVERTS TO LOAN */}
+              <div className="bg-white border border-slate-200 rounded-xl p-6 mb-8 shadow-sm">
+                <h4 className="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">How your Gold converts to a Loan:</h4>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-brand-primary/10 text-brand-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
+                    <p className="text-sm text-slate-600">Your <strong className="text-slate-800">24K Digital Gold Balance</strong> (stored in Brink's/Sequel) is digitally pledged.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-brand-primary/10 text-brand-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
+                    <p className="text-sm text-slate-600">Our NBFC partner calculates eligibility based on strict <strong className="text-slate-800">RBI LTV (Loan-to-Value) limits</strong>.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</div>
+                    <p className="text-sm text-slate-600">Funds move <strong className="text-slate-800">directly from the regulated bank</strong> to your account. Your gold balance remains yours.</p>
+                  </div>
+                </div>
+              </div>
+
+              <button className="cursor-pointer bg-brand-primary text-white hover:bg-slate-800 px-8 py-4 rounded-full font-bold transition-all shadow-[0_10px_30px_rgba(10,37,64,0.2)]">
                 Check Loan Eligibility
               </button>
-          </motion.div>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.8 }}
-            className="relative h-[600px] rounded-3xl border border-slate-200 bg-gradient-to-b from-brand-secondary/5 to-transparent overflow-hidden flex items-center justify-center p-8 shadow-[0_20px_40px_rgba(0,102,255,0.05)]"
-          >
-            {/* Animated Money Flying Effect Simulation */}
-            <div className="absolute inset-0 z-0">
-            {NOTES.map((n, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-12 h-6 bg-green-50 rounded shadow-[0_4px_10px_rgba(74,222,128,0.1)] border border-green-200 flex items-center justify-center"
-                  initial={{ top: "110%", left: `${n.left}%`, rotate: n.r0 }}
-                  animate={{ top: "-10%", rotate: n.r1 }}
-                  transition={{ duration: n.dur, repeat: Infinity, delay: n.delay, ease: "linear" }}
-                >
-                  <span className="text-[10px] text-green-600 font-bold">₹₹</span>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="relative z-10 w-full max-w-sm bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200 p-8 shadow-2xl">
-              <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-green-50 rounded-full mx-auto flex items-center justify-center mb-4 border border-green-100 shadow-inner">
-                  <CheckCircle2 className="w-8 h-8 text-green-500" />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative h-[500px] rounded-3xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center p-8 shadow-xl"
+            >
+              <div className="relative z-10 w-full max-w-sm bg-slate-50 border border-slate-100 rounded-2xl p-8">
+                <div className="text-center mb-6">
+                  <div className="w-14 h-14 bg-green-100 rounded-full mx-auto flex items-center justify-center mb-4">
+                    <CheckCircle2 className="w-7 h-7 text-green-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-800">Loan Approved</h3>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800 mb-2">Loan Approved</h3>
-                <p className="text-slate-500 font-medium">Funds are being transferred</p>
-              </div>
-
-              <div className="space-y-5">
-                <div className="flex justify-between pb-4 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Amount</span>
-                  <span className="text-brand-primary font-bold text-lg">₹ 5,00,000</span>
-                </div>
-                <div className="flex justify-between pb-4 border-b border-slate-100">
-                  <span className="text-slate-500 font-medium">Interest Rate</span>
-                  <span className="text-brand-primary font-bold text-lg">0.89% p.m.</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500 font-medium">To Account</span>
-                  <span className="text-brand-primary font-bold">HDFC **** 4567</span>
+                <div className="space-y-4">
+                  <div className="flex justify-between pb-3 border-b border-slate-200">
+                    <span className="text-slate-500">Gold Pledged</span>
+                    <span className="font-bold text-brand-gold-luxury">50.00g</span>
+                  </div>
+                  <div className="flex justify-between pb-3 border-b border-slate-200">
+                    <span className="text-slate-500">Loan Amount</span>
+                    <span className="font-bold">₹ 2,50,000</span>
+                  </div>
+                  <div className="flex justify-between pb-3 border-b border-slate-200">
+                    <span className="text-slate-500">Lending Partner</span>
+                    <span className="font-bold text-brand-secondary">Rupeek (NBFC)</span>
+                  </div>
                 </div>
               </div>
+            </motion.div>
 
-              <div className="mt-8 overflow-hidden rounded-full h-2 bg-slate-100">
-                <motion.div 
-                  className="h-full bg-green-500"
-                  initial={{ width: "0%" }}
-                  whileInView={{ width: "100%" }}
-                  transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
-                />
-              </div>
-            </div>
-
-          </motion.div>
-
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* ── Instant Liquidity Section ── */}
+      <section id="liquidity" className="py-32 bg-white relative overflow-hidden border-t border-slate-100">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center flex-row-reverse">
+            
+            {/* Swapped order for visual balance */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-2 lg:order-1 relative h-[500px] rounded-3xl border border-brand-secondary/20 bg-gradient-to-br from-slate-50 to-brand-secondary/5 overflow-hidden flex items-center justify-center p-8 shadow-xl"
+            >
+              <div className="relative z-10 w-full max-w-sm bg-white border border-slate-100 rounded-2xl p-8">
+                <div className="text-center mb-6">
+                  <div className="w-14 h-14 bg-brand-secondary/10 rounded-full mx-auto flex items-center justify-center mb-4">
+                    <IndianRupee className="w-7 h-7 text-brand-secondary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-800">Instant Cash Out</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex justify-between pb-3 border-b border-slate-200">
+                    <span className="text-slate-500">Gold Liquidated</span>
+                    <span className="font-bold text-brand-gold-luxury">-10.00g</span>
+                  </div>
+                  <div className="flex justify-between pb-3 border-b border-slate-200">
+                    <span className="text-slate-500">Liquidation Value</span>
+                    <span className="font-bold text-green-600">₹ 85,000</span>
+                  </div>
+                  <div className="flex justify-between pb-3 border-b border-slate-200">
+                    <span className="text-slate-500">Settlement Rail</span>
+                    <span className="font-bold">IMPS / UPI</span>
+                  </div>
+                  <div className="flex justify-between pb-3">
+                    <span className="text-slate-500">Gateway</span>
+                    <span className="font-bold text-slate-700">Razorpay / Cashfree</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-1 lg:order-2"
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <Clock className="text-brand-accent w-6 h-6" />
+                <span className="text-brand-accent font-bold uppercase tracking-widest text-sm">NPCI & RBI ⏱️</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 tracking-tight">
+                Instant Liquidity on Gold Balances
+              </h2>
+              <p className="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
+                Liquidate your digital gold into transparent cash value instantly. Connected via secure IMPS/UPI banking APIs through certified payment gateways.
+              </p>
+
+              {/* HOW GOLD CONVERTS TO CASH */}
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 mb-8 shadow-sm">
+                <h4 className="font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">How your Gold converts to Cash:</h4>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
+                    <p className="text-sm text-slate-600">Select the exact <strong className="text-slate-800">grams of Digital Gold</strong> you wish to liquidate from your balance.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
+                    <p className="text-sm text-slate-600">The equivalent cash value is locked in using <strong className="text-slate-800">transparent wholesale spot prices (MCX)</strong>.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</div>
+                    <p className="text-sm text-slate-600">Cash is settled immediately via <strong className="text-slate-800">Razorpay/Cashfree IMPS rails</strong> directly to your bank.</p>
+                  </div>
+                </div>
+              </div>
+
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

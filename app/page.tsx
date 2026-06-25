@@ -18,12 +18,12 @@ import { FinalCTA } from "@/sections/FinalCTA";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-brand-dark overflow-x-clip">
+    <main className="flex min-h-screen flex-col overflow-x-clip">
       <Navbar />
       
       <HeroGold />
-      <Problem />
       <HowItWorks />
+      <Problem />
       <GoldJourney />
       <JewelleryCloud />
       <Dashboard />
