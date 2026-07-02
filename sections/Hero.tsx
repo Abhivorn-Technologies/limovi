@@ -8,10 +8,10 @@ import { useEffect, useState } from "react";
 import { HeroParticles } from "@/components/3d/HeroParticles";
 
 const cycleWords = [
-  "Liquidity 💸",
-  "Jewellery 💍",
-  "Yield 📈",
-  "Legacy 🏆"
+  "Liquidity ",
+  "Jewellery ",
+  "Yield ",
+  "Legacy "
 ];
 
 export function Hero() {
@@ -44,13 +44,13 @@ export function Hero() {
         >
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-slate-200 bg-white/50 backdrop-blur-md shadow-sm">
             <span className="w-2 h-2 rounded-full bg-brand-secondary animate-pulse" />
-            <span className="text-brand-primary font-medium text-sm">India&apos;s 1st Living Gold Ecosystem 🚀</span>
+            <span className="text-brand-primary font-medium text-sm">India&apos;s 1st Living Gold Ecosystem </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-slate-900 mb-6 leading-[1.1]">
             Turn Your Gold Into <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent drop-shadow-sm">
-              Income & Luxury 💎
+              Income & Luxury 
             </span>
           </h1>
 
@@ -67,7 +67,7 @@ export function Hero() {
             
             <MagneticButton>
               <Button size="lg" variant="outline" className="border-slate-300 hover:bg-slate-100 text-slate-900 px-8 py-6 rounded-full text-lg bg-white shadow-sm">
-                <Calculator className="mr-2 h-5 w-5 text-brand-secondary" /> Calculate Yield 📈
+                <Calculator className="mr-2 h-5 w-5 text-brand-secondary" /> Calculate Yield 
               </Button>
             </MagneticButton>
           </div>

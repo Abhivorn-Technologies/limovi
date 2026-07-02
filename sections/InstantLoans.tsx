@@ -45,7 +45,7 @@ export function InstantLoans() {
             >
               <div className="flex items-center gap-2 mb-4">
                 <ShieldCheck className="text-brand-secondary w-6 h-6" />
-                <span className="text-brand-secondary font-bold uppercase tracking-widest text-sm">RBI Regulated 🏦</span>
+                <span className="text-brand-secondary font-bold uppercase tracking-widest text-sm">RBI Regulated </span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 tracking-tight">
                 Gold Balance-Backed Loans
@@ -163,7 +163,7 @@ export function InstantLoans() {
             >
               <div className="flex items-center gap-2 mb-4">
                 <Clock className="text-brand-accent w-6 h-6" />
-                <span className="text-brand-accent font-bold uppercase tracking-widest text-sm">NPCI & RBI ⏱️</span>
+                <span className="text-brand-accent font-bold uppercase tracking-widest text-sm">NPCI & RBI ️</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 tracking-tight">
                 Instant Liquidity on Gold Balances

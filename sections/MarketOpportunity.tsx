@@ -13,7 +13,7 @@ export function MarketOpportunity() {
     <section className="py-32 bg-white relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6">Massive Addressable Market 🌍</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6">Massive Addressable Market </h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto font-medium">
             Targeting the rapidly growing middle class, millennials, and Gen Z who demand liquid, transparent, and experiential assets.
           </p>

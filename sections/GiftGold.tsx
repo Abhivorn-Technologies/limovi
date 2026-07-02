@@ -78,10 +78,10 @@ export function GiftGold() {
           >
             <div className="flex items-center gap-2 mb-4">
               <Gift className="text-pink-500 w-6 h-6" />
-              <span className="text-pink-500 font-bold uppercase tracking-widest text-sm">Future of Gifting 🎁</span>
+              <span className="text-pink-500 font-bold uppercase tracking-widest text-sm">Future of Gifting </span>
             </div>
             <h2 className="text-4xl md:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
-              Gift Wealth, Not Objects 💝
+              Gift Wealth, Not Objects 
             </h2>
             <p className="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
               Send digital gold instantly to your loved ones on weddings, birthdays, or festivals. They receive a beautiful digital gift card that appreciates in value over time.
@@ -104,7 +104,7 @@ export function GiftGold() {
 
             <MagneticButton>
               <button className="bg-gradient-to-r from-brand-gold to-brand-gold-luxury text-brand-primary px-8 py-4 rounded-full font-bold shadow-[0_10px_30px_rgba(255,215,0,0.3)] hover:scale-105 transition-transform">
-                Send a Gold Gift ✨
+                Send a Gold Gift 
               </button>
             </MagneticButton>
           </motion.div>

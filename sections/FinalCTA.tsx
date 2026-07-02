@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/magnetic-button";
-import { PhoneCall } from "lucide-react";
+import { PhoneCall, Crown, Rocket } from "lucide-react";
 import { HeroParticles } from "@/components/3d/HeroParticles";
 
 export function FinalCTA() {
@@ -26,9 +26,14 @@ export function FinalCTA() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/20 to-brand-accent/20 opacity-50 pointer-events-none" />
           
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 relative z-10">
-            💰 Your Gold Is More Powerful Than You Think
-          </h2>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8 relative z-10">
+            <div className="hidden md:flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-600 shadow-[0_0_40px_rgba(234,179,8,0.4)] border-2 border-yellow-200/50 flex-shrink-0">
+              <Crown size={40} className="text-white drop-shadow-md" />
+            </div>
+            <h2 className="text-5xl md:text-7xl font-bold text-white text-center md:text-left leading-tight">
+              Your Gold Is More<br className="hidden md:block" /> Powerful Than You Think
+            </h2>
+          </div>
           <p className="text-2xl text-white/80 mb-12 relative z-10 font-medium">
             Join India&apos;s First Living Gold Ecosystem today.
           </p>
@@ -36,7 +41,7 @@ export function FinalCTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative z-10">
             <MagneticButton>
               <button className="bg-white hover:bg-slate-100 text-brand-primary px-10 py-5 rounded-full text-lg font-bold shadow-[0_10px_30px_rgba(255,255,255,0.2)] transition-all flex items-center justify-center w-full sm:w-auto">
-                🚀 Get Started
+                <Rocket className="mr-2" size={20} /> Get Started
               </button>
             </MagneticButton>
             

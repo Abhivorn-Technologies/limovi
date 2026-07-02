@@ -56,7 +56,7 @@ export function WealthGen() {
             className="w-full md:w-[28%] bg-slate-50 border border-slate-200 rounded-2xl p-6 relative z-10 text-center shadow-sm"
           >
             <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mx-auto mb-4 border border-slate-200 shadow-sm">
-              <span className="text-3xl">💎</span>
+              <span className="text-3xl"></span>
             </div>
             <h4 className="text-slate-800 font-bold mb-2">Jewellery Experience</h4>
             <p className="text-sm text-slate-500 font-medium">Wear on demand</p>

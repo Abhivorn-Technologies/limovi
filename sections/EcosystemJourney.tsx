@@ -134,7 +134,7 @@ export function EcosystemJourney() {
           viewport={{ once: false }}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-primary mb-6 tracking-tight"
         >
-          The 360° Gold Journey 🗺️
+          The 360° Gold Journey ️
         </motion.h2>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
@@ -187,7 +187,7 @@ export function EcosystemJourney() {
               marginTop: "-24px" // offset to center
             }}
           >
-            <span className="text-xl">🚶</span>
+            <span className="text-xl"></span>
           </motion.div>
         </div>
 

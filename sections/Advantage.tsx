@@ -10,7 +10,7 @@ export function Advantage() {
 
       <div className="text-center mb-24 relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6">
-          Investment + Experience + Liquidity 🏆
+          Investment + Experience + Liquidity 
         </h2>
         <p className="text-xl text-slate-600 max-w-2xl mx-auto font-medium">
           The only platform where these three elements intersect perfectly.

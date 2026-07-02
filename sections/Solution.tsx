@@ -15,7 +15,7 @@ export function Solution() {
             className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full border border-slate-200 bg-slate-50"
           >
             <RefreshCw className="w-4 h-4 text-brand-secondary animate-spin-slow" />
-            <span className="text-sm font-medium text-slate-800">The Living Ecosystem ⚡️</span>
+            <span className="text-sm font-medium text-slate-800">The Living Ecosystem ️</span>
           </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ export function Solution() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-bold text-brand-primary mb-6"
           >
-            A 360° Gold Asset Platform 🌐
+            A 360° Gold Asset Platform 
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}

@@ -65,7 +65,7 @@ export function JewelleryCloud() {
           <div className="flex items-center gap-2 mb-5">
             <Crown className="w-5 h-5" style={{ color: "#D4AF37" }} />
             <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#D4AF37" }}>
-              Netflix for Jewellery 💍
+              Netflix for Jewellery 
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-5 leading-tight" style={{ color: "#0B1F3A" }}>

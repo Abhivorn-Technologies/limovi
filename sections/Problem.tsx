@@ -48,7 +48,7 @@ export function Problem() {
         
         <motion.div style={{ y, opacity }} className="text-center mb-24">
           <h2 className="text-4xl md:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
-            The Dead Asset Problem 📉
+            The Dead Asset Problem 
           </h2>
           <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
             Whether you hold digital gold that offers zero tangible experience, or physical jewellery that costs money to store and restricts you to a single style—both are dead assets generating zero wealth.
