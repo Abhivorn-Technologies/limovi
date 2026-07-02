@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Counter } from "@/components/ui/counter";
-import { Lock, TrendingDown, Hourglass, ArrowRight, ArrowDown, Smartphone, Gem } from "lucide-react";
+import { Lock, TrendingDown, Hourglass, ArrowRight, ArrowDown, Smartphone, Gem, X } from "lucide-react";
 
 const stats = [
   {
@@ -48,91 +48,89 @@ export function Problem() {
         
         <motion.div style={{ y, opacity }} className="text-center mb-24">
           <h2 className="text-4xl md:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
-            The Digital & Physical Gold Problem 📉
+            The Dead Asset Problem 📉
           </h2>
           <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
-            India holds the world&apos;s largest private gold reserves. Yet, it sits idle in lockers, generating zero wealth and costing money to store safely.
+            Whether you hold digital gold that offers zero tangible experience, or physical jewellery that costs money to store and restricts you to a single style—both are dead assets generating zero wealth.
           </p>
         </motion.div>
 
-        {/* ── Flowchart ── */}
+        {/* ── Clean Comparison UI ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-24 flex flex-col items-center"
+          className="mb-24 w-full max-w-5xl mx-auto"
         >
-          <div className="w-full max-w-4xl mx-auto flex flex-col items-center px-2 lg:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
             
-            {/* Start Node */}
-            <div className="px-6 py-3 rounded-xl bg-brand-primary text-white font-bold text-sm lg:text-base shadow-lg border border-brand-primary/20 z-10">
-              High Value Investment
-            </div>
-            
-            {/* Stem */}
-            <div className="h-8 w-px border-l-2 border-dashed border-slate-300" />
-
-            <div className="flex flex-row items-start justify-center w-full relative">
-              
-              {/* Left Branch: Digi Gold */}
-              <div className="flex flex-col items-center flex-1 relative px-2 lg:px-6">
-                {/* Horizontal connector line (spanning right to center) */}
-                <div className="absolute top-0 right-0 w-[50%] border-t-2 border-dashed border-slate-300" />
-                {/* Vertical line down */}
-                <div className="h-8 w-px border-l-2 border-dashed border-slate-300 relative">
-                   <ArrowDown size={14} className="absolute -bottom-3 -left-[8px] text-slate-400" />
+            {/* Digital Gold Card */}
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 hover:shadow-[0_10px_30px_rgba(10,37,64,0.08)] transition-all relative">
+              <div className="flex items-center gap-4 mb-6 pb-6 border-b border-slate-100">
+                <div className="p-3 bg-brand-primary/10 rounded-2xl">
+                  <Smartphone size={28} className="text-brand-accent" />
                 </div>
-                
-                <div className="mt-4 px-4 py-2 rounded-lg bg-white text-slate-700 font-semibold text-sm border border-slate-200 shadow-sm flex items-center gap-2">
-                  <Smartphone size={16} className="text-brand-accent" />
-                  Digi Gold
-                </div>
-                <div className="h-8 w-px border-l-2 border-dashed border-slate-300 relative my-1">
-                   <ArrowDown size={14} className="absolute -bottom-3 -left-[8px] text-slate-400" />
-                </div>
-                <div className="mt-3 px-4 py-2 rounded-lg bg-red-50 text-red-700 font-bold text-sm border border-red-200 shadow-sm text-center">
-                  Zero Experience
+                <div>
+                  <h3 className="text-xl font-bold text-slate-800">Digital Gold</h3>
+                  <p className="text-sm text-slate-500">Modern but intangible</p>
                 </div>
               </div>
-
-              {/* Right Branch: Physical Gold */}
-              <div className="flex flex-col items-center flex-1 relative px-2 lg:px-6">
-                {/* Horizontal connector line (spanning left to center) */}
-                <div className="absolute top-0 left-0 w-[50%] border-t-2 border-dashed border-slate-300" />
-                {/* Vertical line down */}
-                <div className="h-8 w-px border-l-2 border-dashed border-slate-300 relative">
-                   <ArrowDown size={14} className="absolute -bottom-3 -left-[8px] text-slate-400" />
-                </div>
-                
-                <span className="text-[10px] lg:text-xs font-bold text-slate-400 uppercase tracking-widest mt-4 mb-4 text-center">
-                  OR Physical Gold
-                </span>
-
+              <ul className="space-y-4">
                 {[
-                  { text: "High Wastage", end: false },
-                  { text: "One jewellery style for lifetime", end: false },
-                  { text: "Idle in locker", end: false },
-                  { text: "High security issue", end: false },
-                  { text: "Zero wealth generation", end: true },
-                ].map((step, i) => (
-                  <div key={i} className="flex flex-col items-center">
-                    <div className={`px-3 lg:px-4 py-2 rounded-lg text-xs lg:text-sm shadow-sm border text-center ${
-                      step.end ? "bg-red-50 text-red-700 font-bold border-red-200" : "bg-white text-slate-700 font-medium border-slate-200"
-                    }`}>
-                      {step.text}
-                    </div>
-                    {!step.end && (
-                      <div className="h-6 lg:h-8 w-px border-l-2 border-dashed border-slate-300 relative my-1">
-                         <ArrowDown size={14} className="absolute -bottom-3 -left-[8px] text-slate-400" />
-                      </div>
-                    )}
-                  </div>
+                  "No physical utility or tangible value",
+                  "Cannot wear, display, or enjoy it",
+                  "Offers zero lifestyle experience",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-1 bg-red-50 p-1 rounded-full text-red-500 flex-shrink-0">
+                      <X size={14} strokeWidth={3} />
+                    </span>
+                    <span className="text-slate-600 font-medium">{item}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
+
+            {/* Physical Gold Card */}
+            <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 hover:shadow-[0_10px_30px_rgba(10,37,64,0.08)] transition-all relative">
+              <div className="flex items-center gap-4 mb-6 pb-6 border-b border-slate-100">
+                <div className="p-3 bg-yellow-500/10 rounded-2xl">
+                  <Gem size={28} className="text-yellow-600" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-800">Physical Gold</h3>
+                  <p className="text-sm text-slate-500">Traditional but restricted</p>
+                </div>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  "High wastage & making charges",
+                  "Stuck with one jewellery style for a lifetime",
+                  "Sits idle in lockers with high security risks",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-1 bg-red-50 p-1 rounded-full text-red-500 flex-shrink-0">
+                      <X size={14} strokeWidth={3} />
+                    </span>
+                    <span className="text-slate-600 font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
           </div>
 
+          {/* Combined Conclusion */}
+          <div className="mt-8 relative flex flex-col items-center">
+            <div className="w-px h-8 border-l-2 border-dashed border-slate-300 relative mb-2">
+              <ArrowDown size={14} className="absolute -bottom-3 -left-[8px] text-slate-400" />
+            </div>
+            <div className="mt-4 px-8 py-5 bg-red-50 border border-red-100 rounded-2xl shadow-sm text-center">
+              <h4 className="text-red-700 font-black text-xl mb-1">Both lead to Zero Wealth Generation</h4>
+              <p className="text-red-600/80 text-sm font-medium">A dead asset with no compound growth.</p>
+            </div>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">

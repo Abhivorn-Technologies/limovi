@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 
 // LIMOVI official palette — light hero theme
 const NAV_BG_SCROLLED  = "rgba(255, 255, 255, 0.98)"; // solid/frosted white when scrolled
@@ -25,6 +25,8 @@ const navLinks = [
       { name: "Instant Liquidity", href: "#liquidity" }
     ]
   },
+  { name: "Jewellery Experience", href: "#jewellery-experience" },
+  { name: "Gift Happiness", href: "#gift-gold" },
   { name: "Wealth", href: "#wealth" },
   { name: "Platform", href: "#platform" },
 ];
@@ -172,11 +174,23 @@ export function Navbar() {
 
           {/* ── Mobile Toggle ── */}
           <button
-            className="md:hidden p-2 rounded-md hover:bg-slate-100 transition-colors relative z-[999]"
-            style={{ color: currentHoverColor }}
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all relative z-[999]"
+            style={{ 
+              background: isMobileMenuOpen ? PRIMARY : "white",
+              border: isMobileMenuOpen ? "none" : "1px solid rgba(0,0,0,0.08)",
+              color: isMobileMenuOpen ? "white" : PRIMARY,
+              boxShadow: isMobileMenuOpen ? `0 4px 12px ${PRIMARY}50` : "0 2px 8px rgba(0,0,0,0.04)"
+            }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            <motion.div
+              initial={false}
+              animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+              transition={{ duration: 0.2 }}
+              className="flex items-center justify-center"
+            >
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </motion.div>
           </button>
         </div>
       </header>
@@ -189,39 +203,66 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ type: "spring", damping: 26, stiffness: 220 }}
-            className="fixed inset-0 z-40 pt-24 px-8 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col pt-24 px-8 pb-4 md:hidden"
             style={{ background: "#07111F", borderBottom: `1px solid ${NAV_BORDER}` }}
           >
             {/* Subtle blue glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-48 pointer-events-none"
               style={{ background: "radial-gradient(ellipse, rgba(43,127,232,0.12) 0%, transparent 70%)" }} />
 
-            <nav className="relative flex flex-col gap-5 text-center">
-              {navLinks.map((link, i) => (
-                <motion.div key={link.name}
-                  initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href as string)}
-                    className="text-2xl font-black transition-colors cursor-pointer block"
-                    style={{ color: "#EEF4FF" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = SECONDARY)}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "#EEF4FF")}
+            <nav 
+              className="relative flex flex-col flex-1 min-h-0 px-2 pb-10 overflow-y-auto"
+              style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}
+            >
+              <div className="flex flex-col divide-y divide-white/5 border-t border-white/5 mt-4">
+                {navLinks.map((link, i) => (
+                  <motion.div key={link.name}
+                    initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full"
                   >
-                    {link.name}
-                  </a>
-                </motion.div>
-              ))}
+                    {link.isDropdown ? (
+                      <div className="flex flex-col py-2">
+                        <span className="text-[10px] font-black text-white/30 uppercase tracking-widest pt-3 pb-1 px-2">{link.name}</span>
+                        <div className="flex flex-col">
+                          {link.subLinks?.map((sub) => (
+                            <a
+                              key={sub.name}
+                              href={sub.href}
+                              onClick={(e) => handleNavClick(e, sub.href)}
+                              className="flex items-center justify-between py-3.5 px-2 group transition-colors"
+                            >
+                              <span className="text-lg font-bold text-[#EEF4FF] group-hover:text-blue-400 transition-colors pl-3 border-l-2 border-blue-500/0 group-hover:border-blue-500">
+                                {sub.name}
+                              </span>
+                              <ChevronRight size={16} className="text-white/20 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" />
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <a
+                        href={link.href}
+                        onClick={(e) => handleNavClick(e, link.href as string)}
+                        className="flex items-center justify-between py-4 px-2 group transition-colors"
+                      >
+                        <span className="text-xl font-bold text-[#EEF4FF] group-hover:text-blue-400 transition-colors">
+                          {link.name}
+                        </span>
+                        <ChevronRight size={18} className="text-white/20 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" />
+                      </a>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
 
-              <motion.div className="mt-6 flex flex-col gap-3"
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.28 }}>
-
+              <motion.div className="mt-8 px-2"
+                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
                 <button
-                  className="cursor-pointer text-white px-8 py-4 rounded-full text-lg font-bold w-full relative z-[999]"
+                  className="cursor-pointer text-white px-8 py-4 rounded-full text-base font-bold w-full relative z-[999]"
                   style={{
                     background: `linear-gradient(135deg, ${PRIMARY}, ${SECONDARY})`,
-                    boxShadow: `0 6px 24px rgba(0,92,185,0.4)`,
+                    boxShadow: `0 6px 24px ${PRIMARY}40`,
                   }}
                   onClick={() => setIsMobileMenuOpen(false)}>
                   Get Early Access

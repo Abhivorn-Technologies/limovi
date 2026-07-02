@@ -519,7 +519,7 @@ export function HeroGold() {
                 }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                Wealth &<br />Experiences
+                Wealth,<br />Experiences
               </motion.span>
               <br />
               & Instant Liquidity

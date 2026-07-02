@@ -6,11 +6,11 @@ import { Crown, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 const collections = [
-  { id: 1, name: "Wedding Collection", category: "Bridal",     value: "₹5L – ₹20L",  image: "/images/jewellery-wedding.png",  accent: "#D4AF37" },
-  { id: 2, name: "Everyday Minimal",   category: "Daily Wear", value: "₹50K – ₹2L",  image: "/images/jewellery-minimal.png",  accent: "#C0C0C0" },
-  { id: 3, name: "Royal Heritage",     category: "Traditional",value: "₹10L – ₹50L", image: "/images/jewellery-royal.png",    accent: "#E8A020" },
-  { id: 4, name: "Diamond Solitaires", category: "Luxury",     value: "₹2L – ₹15L",  image: "/images/jewellery-diamond.png",  accent: "#A8D8EA" },
-  { id: 5, name: "Temple Jewellery",   category: "Antique",    value: "₹8L – ₹25L",  image: "/images/jewellery-temple.png",   accent: "#FF8C42" },
+  { id: 1, name: "Necklace",      category: "Signature",    value: "₹2L – ₹10L", image: "/images/necklace.png",       accent: "#D4AF37" },
+  { id: 2, name: "Long Haram",    category: "Traditional",  value: "₹5L – ₹25L", image: "/images/long_haram.png",     accent: "#E8A020" },
+  { id: 3, name: "Ear Piercing",  category: "Everyday Wear",value: "₹10K – ₹2L", image: "/images/ear_piercing.png",   accent: "#C0C0C0" },
+  { id: 4, name: "Nose Piercing", category: "Minimal",      value: "₹5K – ₹50K", image: "/images/nose_piercing.png",  accent: "#FF8C42" },
+  { id: 5, name: "Bangles",       category: "Classic",      value: "₹1L – ₹15L", image: "/images/bangles.png",        accent: "#10B981" },
 ];
 
 const N = collections.length;
@@ -78,8 +78,7 @@ export function JewelleryCloud() {
             </span>
           </h2>
           <p className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed max-w-xl">
-            Why buy expensive jewellery for one occasion? Use your gold balance
-            to access thousands of premium designs through our Jewellery Cloud.
+            Your <strong className="text-slate-700">Gold Balance</strong> is the key to the LIMOVI Jewellery Cloud. The more Gold Balance you build, the greater the value and variety of jewellery you can experience. From everyday elegance to grand celebrations, unlock premium collections whenever you need them—without buying a new piece every time.
           </p>
         </motion.div>
       </div>

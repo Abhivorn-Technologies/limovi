@@ -10,29 +10,32 @@ import {
   Banknote,
   Gift,
   Coins,
-  ShieldCheck
+  ShieldCheck,
+  Landmark,
+  Zap,
+  Infinity as InfinityIcon
 } from "lucide-react";
 
 const STRATEGIES = [
   { icon: <TrendingUp className="text-brand-gold w-6 h-6" />, title: "Investment Only", desc: "Pure capital appreciation" },
-  { icon: <ArrowRightLeft className="text-brand-gold w-6 h-6" />, title: "Enrol & Experience", desc: "Bring your existing jewellery" },
-  { icon: <Crown className="text-brand-gold w-6 h-6" />, title: "Investment & Experience", desc: "Buy new gold & access luxury" },
-  { icon: <Sparkles className="text-brand-gold w-6 h-6" />, title: "Experience Only", desc: "Access without ownership" },
+  { icon: <InfinityIcon className="text-brand-gold w-6 h-6" />, title: "Enrol & Experience", desc: "Bring your existing jewellery" },
+  { icon: <Sparkles className="text-brand-gold w-6 h-6" />, title: "Investment & Experience", desc: "Buy new gold & access luxury" },
+  { icon: <Gem className="text-brand-gold w-6 h-6" />, title: "Experience Only", desc: "Access without ownership" },
 ];
 
 const SERVICES = [
   { 
-    icon: <Gem className="text-brand-secondary w-7 h-7" />, 
+    icon: <Sparkles className="text-brand-secondary w-7 h-7" />, 
     title: "Jewellery Experience", 
     desc: "Free for 'Investment & Experience'. Chargeable otherwise."
   },
   { 
-    icon: <Banknote className="text-brand-secondary w-7 h-7" />, 
+    icon: <Landmark className="text-brand-secondary w-7 h-7" />, 
     title: "Instant Loans", 
     desc: "Backed instantly by your Gold Balance."
   },
   { 
-    icon: <Coins className="text-brand-secondary w-7 h-7" />, 
+    icon: <Zap className="text-brand-secondary w-7 h-7" />, 
     title: "Instant Liquidity", 
     desc: "Convert your gold balance to cash in 5 minutes."
   },
@@ -45,7 +48,7 @@ const SERVICES = [
     icon: <TrendingUp className="text-brand-secondary w-7 h-7" />, 
     title: "Wealth Generation", 
     desc: "Jewellery as an asset. Owners get 35% of experience fees."
-  },
+  }
 ];
 
 export function Dashboard() {

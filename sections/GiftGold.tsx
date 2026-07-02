@@ -6,7 +6,7 @@ import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export function GiftGold() {
   return (
-    <section className="py-32 bg-slate-50 relative overflow-hidden">
+    <section id="gift-gold" className="py-32 bg-slate-50 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           

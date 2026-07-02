@@ -1,10 +1,11 @@
 import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
-import { HeroGold } from "@/sections/HeroGold";
+import { CinematicHero } from "@/sections/CinematicHero";
 import { Problem } from "@/sections/Problem";
 import { GoldJourney } from "@/sections/GoldJourney";
 import { JewelleryCloud } from "@/sections/JewelleryCloud";
 import { Dashboard } from "@/sections/Dashboard";
+import { JewelleryExperience } from "@/sections/JewelleryExperience";
 import { InstantLoans } from "@/sections/InstantLoans";
 import { WealthGen } from "@/sections/WealthGen";
 import { GiftGold } from "@/sections/GiftGold";
@@ -21,18 +22,18 @@ export default function Home() {
     <main className="flex min-h-screen flex-col overflow-x-clip">
       <Navbar />
       
-      <HeroGold />
+      <CinematicHero />
       <HowItWorks />
       <Problem />
       <GoldJourney />
       <JewelleryCloud />
       <Dashboard />
+      <JewelleryExperience />
       <InstantLoans />
       <WealthGen />
       <GiftGold />
       <Advantage />
       <Comparison />
-      <MarketOpportunity />
       <Security />
       <FAQ />
       <FinalCTA />

@@ -1,93 +1,170 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Check, Minus } from "lucide-react";
-
-const features = [
-  "Investment",
-  "Experience",
-  "Liquidity",
-  "Loans",
-  "Gifting",
-  "Yield Generation",
-];
-
-const competitors = [
-  { name: "LIMOVI", subtitle: "360° Ecosystem", isMain: true, checks: [true, true, true, true, true, true] },
-  { name: "Traditional Banks", subtitle: "NBFCs", isMain: false, checks: [false, false, false, true, false, false] },
-  { name: "Digital Gold", subtitle: "(Jar, SafeGold)", isMain: false, checks: [true, false, true, false, true, false] },
-  { name: "Jewellers", subtitle: "(Tanishq, Malabar)", isMain: false, checks: [false, true, false, false, false, false] },
-  { name: "Gold Loan Apps", subtitle: "(Rupeek, Muthoot)", isMain: false, checks: [false, false, false, true, false, false] },
-];
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { Crown, Zap, Sparkles, TrendingUp, Infinity as InfinityIcon } from "lucide-react";
 
 export function Comparison() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Track scroll progress through this section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Calculate Opacity for each graphic based on scroll progress
+  // Item 1: 0 to 25% (fade out at 30%)
+  const op1 = useTransform(scrollYProgress, [0, 0.2, 0.3], [1, 1, 0]);
+  const scale1 = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
+
+  // Item 2: 20% to 50%
+  const op2 = useTransform(scrollYProgress, [0.2, 0.3, 0.45, 0.55], [0, 1, 1, 0]);
+  const scale2 = useTransform(scrollYProgress, [0.2, 0.3, 0.45, 0.55], [0.8, 1, 1, 0.8]);
+
+  // Item 3: 45% to 75%
+  const op3 = useTransform(scrollYProgress, [0.45, 0.55, 0.7, 0.8], [0, 1, 1, 0]);
+  const scale3 = useTransform(scrollYProgress, [0.45, 0.55, 0.7, 0.8], [0.8, 1, 1, 0.8]);
+
+  // Item 4: 70% to 100%
+  const op4 = useTransform(scrollYProgress, [0.7, 0.8, 1], [0, 1, 1]);
+  const scale4 = useTransform(scrollYProgress, [0.7, 0.8, 1], [0.8, 1, 1]);
+
+  // Translate the text container upwards
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+
   return (
-    <section className="py-32 bg-slate-50 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6">Why LIMOVI Wins 🥇</h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto font-medium">
-            The only platform providing a complete 360° ecosystem for your gold assets.
-          </p>
-        </div>
-
-        <div className="max-w-6xl mx-auto overflow-x-auto pb-8">
-          <div className="min-w-[800px] grid grid-cols-6 gap-4 bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
-            
-            {/* Headers */}
-            <div className="col-span-1" />
-            {competitors.map((comp, i) => (
-              <div key={i} className={`text-center font-bold p-4 rounded-t-2xl ${comp.isMain ? 'bg-brand-secondary/10 text-brand-secondary border-t border-x border-brand-secondary/20' : 'text-slate-600'}`}>
-                <div>{comp.name}</div>
-                {comp.subtitle && <div className="text-xs font-normal opacity-70 mt-1">{comp.subtitle}</div>}
-              </div>
-            ))}
-
-            {/* Rows */}
-            {features.map((feature, rowIdx) => (
-              <div key={rowIdx} className="col-span-6 grid grid-cols-6 gap-4 items-center">
-                <div className="col-span-1 p-4 text-slate-700 font-bold border-b border-slate-100">
-                  {feature}
-                </div>
-                {competitors.map((comp, colIdx) => (
-                  <div 
-                    key={colIdx} 
-                    className={`col-span-1 p-4 flex justify-center items-center border-b ${comp.isMain ? 'bg-brand-secondary/5 border-brand-secondary/20 border-x' : 'border-slate-100'}`}
-                  >
-                    {comp.checks[rowIdx] ? (
-                      <motion.div 
-                        initial={{ scale: 0, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        viewport={{ once: false }}
-                        transition={{ type: "spring", stiffness: 300, damping: 15, delay: colIdx * 0.1 + rowIdx * 0.05 }}
-                        className={`w-8 h-8 rounded-full flex items-center justify-center ${comp.isMain ? 'bg-brand-secondary text-white shadow-[0_4px_10px_rgba(0,102,255,0.3)]' : 'bg-slate-100 text-slate-400'}`}
-                      >
-                        <Check size={16} strokeWidth={3} />
-                      </motion.div>
-                    ) : (
-                      <motion.div 
-                        initial={{ scale: 0, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        viewport={{ once: false }}
-                        transition={{ type: "spring", stiffness: 200, damping: 20, delay: colIdx * 0.1 + rowIdx * 0.05 }}
-                        className="w-8 h-8 rounded-full flex items-center justify-center text-slate-300"
-                      >
-                        <Minus size={16} />
-                      </motion.div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            ))}
-            
-            {/* Footer Bottom Border for Main Column */}
-            <div className="col-span-1" />
-            {competitors.map((comp, i) => (
-              <div key={i} className={`col-span-1 ${comp.isMain ? 'h-4 bg-brand-secondary/5 border-b border-x border-brand-secondary/20 rounded-b-2xl' : ''}`} />
-            ))}
-
+    <section ref={containerRef} className="relative h-[400vh] bg-[#040F1D]">
+      <div className="sticky top-0 h-screen w-full flex flex-col md:flex-row overflow-hidden">
+        
+        {/* Ambient Effects */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#D4AF37]/5 blur-[120px] rounded-full pointer-events-none" />
+        
+        {/* LEFT PANEL: Sticky Graphics */}
+        <div className="w-full h-[40vh] md:h-screen md:w-1/2 relative flex items-center justify-center border-b md:border-b-0 md:border-r border-white/5 bg-gradient-to-br from-[#0A1F3D]/20 to-transparent">
+          
+          {/* Header Title (Absolute top left) */}
+          <div className="absolute top-6 md:top-12 left-6 md:left-12 z-20">
+            <div className="flex items-center gap-2 mb-2">
+              <Crown className="text-[#D4AF37]" size={16} />
+              <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#D4AF37]">The LIMOVI Advantage</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+              Redefining{" "}
+              <span style={{ background: "linear-gradient(90deg, #D4AF37, #F4C430)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                Gold
+              </span>
+            </h2>
           </div>
+
+          {/* Graphic 1: 360 Ecosystem */}
+          <motion.div style={{ opacity: op1, scale: scale1 }} className="absolute inset-0 flex items-center justify-center">
+            <div className="relative w-64 h-64 flex items-center justify-center">
+              <div className="absolute w-full h-full border border-[#D4AF37]/30 rounded-full animate-[spin_20s_linear_infinite]" />
+              <div className="absolute w-48 h-48 border border-[#D4AF37]/40 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
+              <div className="w-24 h-24 bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/5 rounded-full border border-[#D4AF37]/50 flex items-center justify-center shadow-[0_0_40px_rgba(212,175,55,0.2)]">
+                <InfinityIcon className="text-[#D4AF37]" size={40} />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Graphic 2: Liquidity */}
+          <motion.div style={{ opacity: op2, scale: scale2 }} className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="relative w-64 h-64 flex items-center justify-center">
+              <div className="absolute w-full h-full border border-[#005CB9]/30 rounded-full animate-pulse" />
+              <div className="absolute w-48 h-48 border border-[#005CB9]/40 rounded-full rotate-45" />
+              <div className="w-24 h-24 bg-gradient-to-br from-[#005CB9]/20 to-[#005CB9]/5 rounded-xl rotate-12 border border-[#005CB9]/50 flex items-center justify-center shadow-[0_0_40px_rgba(0,92,185,0.3)]">
+                <Zap className="text-[#4DA3FF] -rotate-12" size={40} />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Graphic 3: Experience */}
+          <motion.div style={{ opacity: op3, scale: scale3 }} className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="relative w-64 h-64 flex items-center justify-center">
+              <div className="absolute w-full h-full border border-purple-500/30 rounded-full border-dashed animate-[spin_30s_linear_infinite]" />
+              <div className="w-24 h-24 bg-gradient-to-br from-purple-500/20 to-purple-500/5 rounded-full border border-purple-500/50 flex items-center justify-center shadow-[0_0_40px_rgba(168,85,247,0.3)]">
+                <Sparkles className="text-purple-400" size={40} />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Graphic 4: Yield */}
+          <motion.div style={{ opacity: op4, scale: scale4 }} className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="relative w-64 h-64 flex items-center justify-center">
+              <div className="absolute w-full h-full flex items-end justify-center pb-8 gap-3">
+                 <div className="w-3 bg-emerald-500/20 rounded-t-full animate-[bounce_2s_infinite]" style={{ height: '40%' }} />
+                 <div className="w-3 bg-emerald-500/40 rounded-t-full animate-[bounce_2s_infinite_200ms]" style={{ height: '60%' }} />
+                 <div className="w-3 bg-emerald-500/60 rounded-t-full animate-[bounce_2s_infinite_400ms]" style={{ height: '80%' }} />
+                 <div className="w-3 bg-emerald-500/80 rounded-t-full animate-[bounce_2s_infinite_600ms]" style={{ height: '100%' }} />
+              </div>
+              <div className="w-24 h-24 bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 rounded-full border border-emerald-500/50 flex items-center justify-center shadow-[0_0_40px_rgba(16,185,129,0.3)] z-10 mb-8">
+                <TrendingUp className="text-emerald-400" size={40} />
+              </div>
+            </div>
+          </motion.div>
+
         </div>
+
+        {/* RIGHT PANEL: Scrolling Text */}
+        <div className="w-full h-[60vh] md:h-screen md:w-1/2 overflow-hidden relative">
+          <motion.div style={{ y: textY }} className="absolute top-0 left-0 w-full h-[400%]">
+            
+            {/* Section 1 */}
+            <div className="h-[25%] flex flex-col justify-center px-8 md:px-16 lg:px-24">
+              <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mb-6 border border-[#D4AF37]/20 md:hidden">
+                <InfinityIcon className="text-[#D4AF37]" size={24} />
+              </div>
+              <h3 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+                The Unified <br/><span className="text-[#D4AF37]">360° Ecosystem</span>
+              </h3>
+              <p className="text-lg md:text-xl text-slate-400 leading-relaxed font-medium">
+                The only platform where you don't need five different apps. Invest, wear, and leverage your gold seamlessly in one place. Stop settling for fragmented financial services.
+              </p>
+            </div>
+
+            {/* Section 2 */}
+            <div className="h-[25%] flex flex-col justify-center px-8 md:px-16 lg:px-24">
+              <div className="w-12 h-12 rounded-xl bg-[#005CB9]/10 flex items-center justify-center mb-6 border border-[#005CB9]/20 md:hidden">
+                <Zap className="text-[#4DA3FF]" size={24} />
+              </div>
+              <h3 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+                True Instant <br/><span className="text-[#4DA3FF]">Liquidity</span>
+              </h3>
+              <p className="text-lg md:text-xl text-slate-400 leading-relaxed font-medium">
+                Unlike traditional jewellers, unlock instant cash or loans against your digital balance in seconds, completely hassle-free. Your wealth is never locked away when you need it most.
+              </p>
+            </div>
+
+            {/* Section 3 */}
+            <div className="h-[25%] flex flex-col justify-center px-8 md:px-16 lg:px-24">
+              <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-6 border border-purple-500/20 md:hidden">
+                <Sparkles className="text-purple-400" size={24} />
+              </div>
+              <h3 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+                Experience & <br/><span className="text-purple-400">Wear Your Wealth</span>
+              </h3>
+              <p className="text-lg md:text-xl text-slate-400 leading-relaxed font-medium">
+                Digital gold shouldn't be invisible. LIMOVI is the first platform to let you physically experience your digital assets through our Jewellery Cloud. Wear luxury without buying it twice.
+              </p>
+            </div>
+
+            {/* Section 4 */}
+            <div className="h-[25%] flex flex-col justify-center px-8 md:px-16 lg:px-24">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 border border-emerald-500/20 md:hidden">
+                <TrendingUp className="text-emerald-400" size={24} />
+              </div>
+              <h3 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+                Unmatched <br/><span className="text-emerald-400">Yield Growth</span>
+              </h3>
+              <p className="text-lg md:text-xl text-slate-400 leading-relaxed font-medium">
+                Your gold doesn't just sit in a locker. It actively works and grows for you, outperforming standard digital gold platforms with passive income generation.
+              </p>
+            </div>
+
+          </motion.div>
+        </div>
+
       </div>
     </section>
   );
