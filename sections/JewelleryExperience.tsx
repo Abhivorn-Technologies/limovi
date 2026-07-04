@@ -65,8 +65,8 @@ const PLANS = [
     accent: "#D4AF37",
     entryLabel: "Invest",
     entryDetail: "Min. 50g of 24K gold equivalent",
-    fee: "0.9% + ₹1,099",
-    feeLabel: "per jewellery experience",
+    fee: "0.9%",
+    feeLabel: "of jewellery value + ₹1,099 service fee per occasion",
     highlight: false,
     benefits: [
       { label: "Jewellery Experience", desc: "0.9% of selected jewellery value + ₹1,099 service fee per occasion", eligible: true },
@@ -86,14 +86,14 @@ const PLANS = [
     entryLabel: "Invest",
     entryDetail: "Min. 50g of 24K · 20% experience charge + 14% making charges at onboarding",
     fee: "₹1,499",
-    feeLabel: "per experience · zero % charges",
+    feeLabel: "service fee per occasion · 0% experience charge on jewellery",
     highlight: true,
     benefits: [
       { label: "Jewellery Experience", desc: "No experience percentage charges — only ₹1,499 per occasion, unlimited rotations", eligible: true },
       { label: "Instant Loans", desc: "Gold Balance-backed loans deposited to your bank within minutes", eligible: true },
       { label: "Instant Liquidity", desc: "Sell your Gold Balance instantly, credited to your bank account", eligible: true },
       { label: "Gift Gold Balance", desc: "Transfer your Gold Balance to family or loved ones for all 5 benefits", eligible: true },
-      { label: "Jewellery as an Asset", desc: "Earn 35% of experience charges whenever another customer selects your jewellery", eligible: true },
+      { label: "Jewellery as an Asset", desc: "Earn 25% of experience charges whenever another customer selects your jewellery", eligible: true },
     ] as Benefit[],
   },
   {
@@ -105,15 +105,15 @@ const PLANS = [
     accent: "#A78BFA",
     entryLabel: "Enrol",
     entryDetail: "Existing jewellery worth ≥ 50g of 24K gold",
-    fee: "0.9% + ₹1,099",
-    feeLabel: "per experience · earn 35% back",
+    fee: "0.9%",
+    feeLabel: "of jewellery value + ₹1,099 service fee · earn 25% back",
     highlight: false,
     benefits: [
       { label: "Jewellery Experience", desc: "0.9% of selected jewellery value + ₹1,099 service fee per occasion", eligible: true },
       { label: "Instant Loans", desc: "Gold Balance-backed loans deposited to your bank within minutes", eligible: true },
       { label: "Instant Liquidity", desc: "Sell your Gold Balance instantly, credited to your bank account", eligible: true },
       { label: "Gift Gold Balance", desc: "Transfer your Gold Balance to family or loved ones for all 5 benefits", eligible: true },
-      { label: "Jewellery as an Asset", desc: "Earn 35% of experience charges whenever another customer selects your enrolled jewellery", eligible: true },
+      { label: "Jewellery as an Asset", desc: "Earn 25% of experience charges whenever another customer selects your enrolled jewellery", eligible: true },
     ] as Benefit[],
   },
   {
@@ -125,8 +125,8 @@ const PLANS = [
     accent: "#4DA3FF",
     entryLabel: "Invest",
     entryDetail: "Min. 50g of 24K · 24–30 hour experience window",
-    fee: "0.9% + ₹1,099",
-    feeLabel: "per experience · short duration",
+    fee: "0.9%",
+    feeLabel: "of jewellery value + ₹1,099 service fee · short duration",
     highlight: false,
     benefits: [
       { label: "Jewellery Experience", desc: "0.9% of selected jewellery value + ₹1,099 service fee for a 24–30 hour experience", eligible: true },
@@ -386,7 +386,7 @@ export function JewelleryExperience() {
                   <div className="text-xs text-slate-500 mb-5 pb-5 border-b border-white/5">{p.entryDetail}</div>
 
                   {/* Quick benefit badges */}
-                  <div className="flex items-center gap-1 flex-wrap mb-5">
+                  <div className="flex items-center gap-1 flex-wrap mt-auto">
                     {p.benefits.map((b, bi) => (
                       <span key={bi} className={`w-5 h-5 rounded-full flex items-center justify-center ${b.eligible ? "bg-emerald-500/20" : "bg-white/5"}`}>
                         {b.eligible
@@ -396,13 +396,6 @@ export function JewelleryExperience() {
                       </span>
                     ))}
                     <span className="text-[10px] text-slate-500 ml-1">{eligibleCount}/5 benefits</span>
-                  </div>
-
-                  {/* Fee */}
-                  <div className="mt-auto">
-                    <div className="text-[10px] uppercase tracking-widest text-slate-600 mb-0.5">Experience fee</div>
-                    <div className="font-black text-xl text-white mb-0.5">{p.fee}</div>
-                    <div className="text-[10px] text-slate-600">{p.feeLabel}</div>
                   </div>
                 </div>
 

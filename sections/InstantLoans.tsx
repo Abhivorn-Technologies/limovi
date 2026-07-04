@@ -33,7 +33,7 @@ export function InstantLoans() {
   return (
     <>
       {/* ── Instant Loans Section ── */}
-      <section id="loans" className="py-32 bg-slate-50 relative overflow-hidden">
+      <section id="loans" className="py-16 md:py-32 bg-slate-50 relative overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
@@ -83,9 +83,9 @@ export function InstantLoans() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative h-[500px] rounded-3xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center p-8 shadow-xl"
+              className="relative h-[400px] sm:h-[500px] rounded-3xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center p-4 sm:p-8 shadow-xl"
             >
-              <div className="relative z-10 w-full max-w-sm bg-slate-50 border border-slate-100 rounded-2xl p-8">
+              <div className="relative z-10 w-full max-w-sm bg-slate-50 border border-slate-100 rounded-2xl p-5 sm:p-8">
                 <div className="text-center mb-6">
                   <div className="w-14 h-14 bg-green-100 rounded-full mx-auto flex items-center justify-center mb-4">
                     <CheckCircle2 className="w-7 h-7 text-green-600" />
@@ -93,17 +93,17 @@ export function InstantLoans() {
                   <h3 className="text-xl font-bold text-slate-800">Loan Approved</h3>
                 </div>
                 <div className="space-y-4">
-                  <div className="flex justify-between pb-3 border-b border-slate-200">
-                    <span className="text-slate-500">Gold Pledged</span>
-                    <span className="font-bold text-brand-gold-luxury">50.00g</span>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Gold Pledged</span>
+                    <span className="font-bold text-brand-gold-luxury text-right">50.00g</span>
                   </div>
-                  <div className="flex justify-between pb-3 border-b border-slate-200">
-                    <span className="text-slate-500">Loan Amount</span>
-                    <span className="font-bold">₹ 2,50,000</span>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Loan Amount</span>
+                    <span className="font-bold text-right">₹ 2,50,000</span>
                   </div>
-                  <div className="flex justify-between pb-3 border-b border-slate-200">
-                    <span className="text-slate-500">Lending Partner</span>
-                    <span className="font-bold text-brand-secondary">Rupeek (NBFC)</span>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Lending Partner</span>
+                    <span className="font-bold text-brand-secondary text-right">Rupeek (NBFC)</span>
                   </div>
                 </div>
               </div>
@@ -114,7 +114,7 @@ export function InstantLoans() {
       </section>
 
       {/* ── Instant Liquidity Section ── */}
-      <section id="liquidity" className="py-32 bg-white relative overflow-hidden border-t border-slate-100">
+      <section id="liquidity" className="py-16 md:py-32 bg-white relative overflow-hidden border-t border-slate-100">
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center flex-row-reverse">
             
@@ -124,9 +124,9 @@ export function InstantLoans() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="order-2 lg:order-1 relative h-[500px] rounded-3xl border border-brand-secondary/20 bg-gradient-to-br from-slate-50 to-brand-secondary/5 overflow-hidden flex items-center justify-center p-8 shadow-xl"
+              className="order-2 lg:order-1 relative h-[400px] sm:h-[500px] rounded-3xl border border-brand-secondary/20 bg-gradient-to-br from-slate-50 to-brand-secondary/5 overflow-hidden flex items-center justify-center p-4 sm:p-8 shadow-xl"
             >
-              <div className="relative z-10 w-full max-w-sm bg-white border border-slate-100 rounded-2xl p-8">
+              <div className="relative z-10 w-full max-w-sm bg-white border border-slate-100 rounded-2xl p-5 sm:p-8">
                 <div className="text-center mb-6">
                   <div className="w-14 h-14 bg-brand-secondary/10 rounded-full mx-auto flex items-center justify-center mb-4">
                     <IndianRupee className="w-7 h-7 text-brand-secondary" />
@@ -134,21 +134,21 @@ export function InstantLoans() {
                   <h3 className="text-xl font-bold text-slate-800">Instant Cash Out</h3>
                 </div>
                 <div className="space-y-4">
-                  <div className="flex justify-between pb-3 border-b border-slate-200">
-                    <span className="text-slate-500">Gold Liquidated</span>
-                    <span className="font-bold text-brand-gold-luxury">-10.00g</span>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Gold Liquidated</span>
+                    <span className="font-bold text-brand-gold-luxury text-right">-10.00g</span>
                   </div>
-                  <div className="flex justify-between pb-3 border-b border-slate-200">
-                    <span className="text-slate-500">Liquidation Value</span>
-                    <span className="font-bold text-green-600">₹ 85,000</span>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Liquidation Value</span>
+                    <span className="font-bold text-green-600 text-right">₹ 85,000</span>
                   </div>
-                  <div className="flex justify-between pb-3 border-b border-slate-200">
-                    <span className="text-slate-500">Settlement Rail</span>
-                    <span className="font-bold">IMPS / UPI</span>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Settlement Rail</span>
+                    <span className="font-bold text-right">IMPS / UPI</span>
                   </div>
-                  <div className="flex justify-between pb-3">
-                    <span className="text-slate-500">Gateway</span>
-                    <span className="font-bold text-slate-700">Razorpay / Cashfree</span>
+                  <div className="flex items-center justify-between pb-3 gap-4">
+                    <span className="text-slate-500 leading-tight">Gateway</span>
+                    <span className="font-bold text-slate-700 text-right">Razorpay / Cashfree</span>
                   </div>
                 </div>
               </div>

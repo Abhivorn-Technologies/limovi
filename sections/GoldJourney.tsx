@@ -13,7 +13,23 @@ import Image from "next/image";
 // ─── Journey Milestones ───────────────────────────────────────────────────────
 const milestones = [
   { image: "/images/journey-1.png", alt: "Physical Gold" },
-  { image: "/images/journey-2.png", alt: "Gold Verification" },
+  { 
+    image: "/images/journey-2.png", 
+    alt: "Gold Verification",
+    contentOverlay: (
+      <div className="absolute inset-y-0 left-0 w-[65%] bg-gradient-to-r from-white via-white to-transparent/10 p-5 flex flex-col justify-center rounded-l-[20px]">
+        <h3 className="font-bold text-[#1a237e] text-[16px] leading-tight mb-3">Enrol Your Gold</h3>
+        <ul className="text-[10px] text-[#1a237e]/80 font-semibold space-y-1.5 z-10 relative">
+          <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] flex-shrink-0" />Investment Only</li>
+          <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] flex-shrink-0" />Enrol & Experience</li>
+          <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] flex-shrink-0" />Investment & Experience</li>
+          <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] flex-shrink-0" />Experience Only</li>
+        </ul>
+        {/* Extra solid block to guarantee text cover on the far left */}
+        <div className="absolute inset-y-0 left-0 w-[80%] bg-white -z-10" />
+      </div>
+    )
+  },
   { image: "/images/journey-3.png", alt: "Digital Gold Wallet" },
   { image: "/images/journey-4.png", alt: "Gold Loan" },
   { image: "/images/journey-5.png", alt: "Gold Investment" },
@@ -167,7 +183,7 @@ export function GoldJourney() {
 
       {/* ════════════════════ DESKTOP (md+) ════════════════════ */}
       <div ref={svgWrapRef} className="relative hidden md:block max-w-5xl mx-auto px-4">
-        <svg viewBox={`0 0 ${VBOX_W} ${VBOX_H}`} className="w-full" style={{ overflow: "visible" }}>
+        <svg viewBox={`-150 0 1200 1800`} className="w-full" style={{ overflow: "visible" }}>
           <defs>
             <filter id="nodeGlow" x="-100%" y="-100%" width="300%" height="300%">
               <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
@@ -229,6 +245,7 @@ export function GoldJourney() {
                   >
                     <Image src={m.image} alt={m.alt} fill sizes="280px"
                       className="object-cover" style={{ borderRadius: 20 }} />
+                    {m.contentOverlay}
                     <div style={{
                       position: "absolute", inset: 0, borderRadius: 20, pointerEvents: "none",
                       background: "linear-gradient(135deg,rgba(212,175,55,0.08) 0%,transparent 50%)",

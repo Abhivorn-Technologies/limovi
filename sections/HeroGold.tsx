@@ -469,11 +469,11 @@ export function HeroGold() {
       {/* ══════════════════════════════════════════
           HERO BODY
       ══════════════════════════════════════════ */}
-      <div className="relative z-10 flex-1 flex flex-col lg:flex-row items-center min-h-screen">
+      <div className="relative z-10 flex-1 flex flex-col lg:flex-row items-start min-h-screen">
 
-        {/* ══ LEFT COLUMN ══ */}
-        <div className="w-full lg:w-[46%] flex flex-col justify-center
-                        pt-36 pb-12 lg:pt-0 lg:pb-0
+        {/* ══ LEFT COLUMN — text always at top ══ */}
+        <div className="w-full lg:w-[46%] flex flex-col justify-start
+                        pt-28 pb-12 lg:pt-[100px] lg:pb-16
                         px-8 md:px-12 lg:pl-16 xl:pl-24 lg:pr-6
                         text-center lg:text-left">
           <motion.div
@@ -522,7 +522,7 @@ export function HeroGold() {
                 Wealth,<br />Experiences
               </motion.span>
               <br />
-              & Instant Liquidity
+              &amp; Instant Liquidity
             </h1>
 
             {/* Description */}
@@ -613,12 +613,31 @@ export function HeroGold() {
               </span>
             </motion.div>
           </motion.div>
+
+          {/* ══ ANIMATED SPHERE — below text (mobile & tablet) ══ */}
+          <motion.div
+            className="relative w-full mt-10 lg:hidden"
+            style={{ height: "420px" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            <SphereSvg parallaxX={parallaxX} parallaxY={parallaxY} />
+            {BENEFITS.map((b, i) => (
+              <BenefitCard
+                key={b.id}
+                benefit={b}
+                pos={CARD_POS[i]}
+                delay={0.75 + i * 0.14}
+              />
+            ))}
+          </motion.div>
         </div>
 
-        {/* ══ RIGHT COLUMN ══ */}
+        {/* ══ RIGHT COLUMN — desktop sphere, top-aligned ══ */}
         <motion.div
-          className="w-full lg:w-[54%] relative"
-          style={{ minHeight: "100vh", x: panelX, y: panelY }}
+          className="hidden lg:block w-full lg:w-[54%] relative self-start"
+          style={{ height: "100vh", x: panelX, y: panelY }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.2 }}

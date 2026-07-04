@@ -2,18 +2,18 @@ import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
 import { CinematicHero } from "@/sections/CinematicHero";
 import { Problem } from "@/sections/Problem";
+import { Dashboard } from "@/sections/Dashboard";
 import { GoldJourney } from "@/sections/GoldJourney";
 import { JewelleryCloud } from "@/sections/JewelleryCloud";
-import { Dashboard } from "@/sections/Dashboard";
 import { JewelleryExperience } from "@/sections/JewelleryExperience";
 import { InstantLoans } from "@/sections/InstantLoans";
 import { WealthGen } from "@/sections/WealthGen";
+
 import { GiftGold } from "@/sections/GiftGold";
 import { MarketOpportunity } from "@/sections/MarketOpportunity";
 import { Security } from "@/sections/Security";
-import { HowItWorks } from "@/sections/HowItWorks";
+
 import { Comparison } from "@/sections/Comparison";
-import { Advantage } from "@/sections/Advantage";
 import { FAQ } from "@/sections/FAQ";
 import { FinalCTA } from "@/sections/FinalCTA";
 
@@ -23,16 +23,16 @@ export default function Home() {
       <Navbar />
       
       <CinematicHero />
-      <HowItWorks />
+
       <Problem />
-      <GoldJourney />
-      <JewelleryCloud />
       <Dashboard />
+      <JewelleryCloud />
       <JewelleryExperience />
       <InstantLoans />
       <WealthGen />
+
       <GiftGold />
-      <Advantage />
+      <GoldJourney />
       <Comparison />
       <Security />
       <FAQ />

@@ -62,7 +62,7 @@ export function Security() {
   const [activeNode, setActiveNode] = useState<number | null>(null);
 
   return (
-    <section className="py-32 bg-slate-50 relative overflow-hidden">
+    <section className="py-16 md:py-32 bg-slate-50 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-secondary/5 to-transparent pointer-events-none" />
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">

@@ -35,7 +35,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-6">
               <Image
-                src="/Limovi.png"
+                src="/Limovi-mainlogo.png"
                 alt="LIMOVI"
                 width={1153}
                 height={288}

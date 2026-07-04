@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import { motion } from "framer-motion";
 import { 
   TrendingUp, 
@@ -17,10 +19,10 @@ import {
 } from "lucide-react";
 
 const STRATEGIES = [
-  { icon: <TrendingUp className="text-brand-gold w-6 h-6" />, title: "Investment Only", desc: "Pure capital appreciation" },
-  { icon: <InfinityIcon className="text-brand-gold w-6 h-6" />, title: "Enrol & Experience", desc: "Bring your existing jewellery" },
-  { icon: <Sparkles className="text-brand-gold w-6 h-6" />, title: "Investment & Experience", desc: "Buy new gold & access luxury" },
-  { icon: <Gem className="text-brand-gold w-6 h-6" />, title: "Experience Only", desc: "Access without ownership" },
+  { icon: <TrendingUp className="text-brand-gold w-6 h-6" />, title: "Investment Only", desc: "Pure capital appreciation", highlights: [1, 2, 3] },
+  { icon: <InfinityIcon className="text-brand-gold w-6 h-6" />, title: "Enrol & Experience", desc: "Bring your existing jewellery", highlights: [0, 1, 2, 3, 4] },
+  { icon: <Sparkles className="text-brand-gold w-6 h-6" />, title: "Investment & Experience", desc: "Buy new gold & access luxury", highlights: [0, 1, 2, 3, 4] },
+  { icon: <Gem className="text-brand-gold w-6 h-6" />, title: "Experience Only", desc: "Access without ownership", highlights: [0] },
 ];
 
 const SERVICES = [
@@ -47,13 +49,15 @@ const SERVICES = [
   { 
     icon: <TrendingUp className="text-brand-secondary w-7 h-7" />, 
     title: "Wealth Generation", 
-    desc: "Jewellery as an asset. Owners get 35% of experience fees."
+    desc: "Jewellery as an asset. Owners get 25% of experience fees."
   }
 ];
 
 export function Dashboard() {
+  const [hoveredStrategy, setHoveredStrategy] = useState<number | null>(null);
+
   return (
-    <section id="platform" className="py-32 bg-slate-50 relative overflow-hidden">
+    <section id="platform" className="py-16 md:py-32 bg-slate-50 relative overflow-hidden">
       {/* Background Dots */}
       <div className="absolute inset-0 pointer-events-none" style={{
         backgroundImage: "radial-gradient(circle, rgba(212,175,55,0.08) 1px, transparent 1px)",
@@ -70,7 +74,7 @@ export function Dashboard() {
             <ShieldCheck className="w-4 h-4 text-brand-gold" />
             <span className="text-xs font-bold uppercase tracking-widest text-slate-600">The Solution</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
             A Full Stack <br className="md:hidden" />Gold Ecosystem
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed">
@@ -83,12 +87,48 @@ export function Dashboard() {
           
           {/* Connector Line Desktop */}
           <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center pointer-events-none">
-             <div className="w-32 h-32 rounded-full bg-white shadow-xl flex flex-col items-center justify-center border-4 border-slate-50 z-20 relative">
+             
+             {/* Left Flow Line (Strategy -> Center) */}
+             <div className="absolute top-1/2 left-[-100px] w-[100px] h-[3px] -translate-y-1/2 -z-10 overflow-hidden">
+               <div className="absolute inset-0 border-t-2 border-dashed border-slate-300" />
+               {hoveredStrategy !== null && (
+                 <motion.div 
+                   key={`left-${hoveredStrategy}`}
+                   initial={{ left: "-100%" }}
+                   animate={{ left: "100%" }}
+                   transition={{ duration: 0.6, ease: "linear" }}
+                   className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-[#F4C430] to-transparent opacity-80"
+                 />
+               )}
+             </div>
+
+             <motion.div 
+               key={hoveredStrategy !== null ? hoveredStrategy : 'default'} 
+               initial={{ scale: 0.95, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+               animate={{ 
+                 scale: hoveredStrategy !== null ? 1.05 : 1, 
+                 boxShadow: hoveredStrategy !== null ? "0 0 40px rgba(212, 175, 55, 0.5)" : "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" 
+               }}
+               transition={{ duration: 0.5, type: "spring", bounce: 0.4, delay: 0.5 }}
+               className={`w-32 h-32 rounded-full bg-white flex flex-col items-center justify-center border-[3px] z-20 relative transition-colors ${hoveredStrategy !== null ? 'border-[#F4C430]/40' : 'border-slate-100'}`}
+             >
                <span className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Central</span>
                <span className="text-sm font-bold text-brand-gold uppercase tracking-wider text-center">Gold<br/>Balance</span>
+             </motion.div>
+
+             {/* Right Flow Line (Center -> Benefits) */}
+             <div className="absolute top-1/2 right-[-100px] w-[100px] h-[3px] -translate-y-1/2 -z-10 overflow-hidden">
+               <div className="absolute inset-0 border-t-2 border-dashed border-slate-300" />
+               {hoveredStrategy !== null && (
+                 <motion.div 
+                   key={`right-${hoveredStrategy}`}
+                   initial={{ left: "-100%" }}
+                   animate={{ left: "100%" }}
+                   transition={{ duration: 0.6, ease: "linear", delay: 0.7 }}
+                   className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-[#005CB9] to-transparent opacity-80"
+                 />
+               )}
              </div>
-             <div className="absolute top-1/2 left-[-80px] w-[80px] border-t-2 border-dashed border-slate-300 -z-10" />
-             <div className="absolute top-1/2 right-[-80px] w-[80px] border-t-2 border-dashed border-slate-300 -z-10" />
           </div>
 
           {/* Left Column: Strategies */}
@@ -105,7 +145,19 @@ export function Dashboard() {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {STRATEGIES.map((s, i) => (
-                <div key={i} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group flex flex-col items-start">
+                <div 
+                  key={i} 
+                  onMouseEnter={() => setHoveredStrategy(i)}
+                  onMouseLeave={() => setHoveredStrategy(null)}
+                  onClick={() => setHoveredStrategy(hoveredStrategy === i ? null : i)}
+                  className={`p-6 rounded-2xl border transition-all cursor-pointer flex flex-col items-start ${
+                    hoveredStrategy === i 
+                      ? 'bg-white border-[#F4C430] shadow-[0_8px_30px_rgba(212,175,55,0.15)]' 
+                      : hoveredStrategy !== null 
+                        ? 'bg-white/50 border-slate-100 opacity-60' 
+                        : 'bg-white border-slate-200 shadow-sm hover:shadow-md hover:border-[#F4C430]/30'
+                  }`}
+                >
                   <div className="mb-4 p-3 rounded-xl bg-slate-50 inline-block group-hover:scale-110 transition-transform">
                     {s.icon}
                   </div>
@@ -117,12 +169,34 @@ export function Dashboard() {
           </motion.div>
 
           {/* Mobile Central Node */}
-          <div className="lg:hidden flex justify-center py-4 relative pointer-events-none">
-             <div className="w-28 h-28 rounded-full bg-white shadow-lg flex flex-col items-center justify-center border-4 border-slate-50 z-20 relative">
+          <div className="lg:hidden flex justify-center py-6 relative pointer-events-none">
+             {/* Vertical Mobile Flow Line */}
+             <div className="absolute top-[-50px] bottom-[-50px] left-1/2 w-[3px] -translate-x-1/2 overflow-hidden -z-10">
+               <div className="absolute inset-0 border-l-2 border-dashed border-slate-300" />
+               {hoveredStrategy !== null && (
+                 <motion.div 
+                   key={`mobile-${hoveredStrategy}`}
+                   initial={{ top: "-10%" }}
+                   animate={{ top: "110%" }}
+                   transition={{ duration: 1.5, ease: "linear" }}
+                   className="absolute w-full h-[80px] bg-gradient-to-b from-transparent via-[#F4C430] to-transparent opacity-80"
+                 />
+               )}
+             </div>
+
+             <motion.div 
+               key={hoveredStrategy !== null ? hoveredStrategy : 'default-mobile'}
+               initial={{ scale: 0.95, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
+               animate={{ 
+                 scale: hoveredStrategy !== null ? 1.05 : 1, 
+                 boxShadow: hoveredStrategy !== null ? "0 0 30px rgba(212, 175, 55, 0.5)" : "0 10px 15px -3px rgba(0, 0, 0, 0.1)" 
+               }}
+               transition={{ duration: 0.5, type: "spring", bounce: 0.4, delay: 0.6 }}
+               className={`w-28 h-28 rounded-full bg-white flex flex-col items-center justify-center border-[3px] z-20 relative transition-colors ${hoveredStrategy !== null ? 'border-[#F4C430]/40' : 'border-slate-100'}`}
+             >
                <span className="text-[9px] font-black uppercase text-slate-400 tracking-widest mb-1">Central</span>
                <span className="text-xs font-bold text-brand-gold uppercase tracking-wider text-center">Gold<br/>Balance</span>
-             </div>
-             <div className="absolute top-0 bottom-0 left-1/2 w-px border-l-2 border-dashed border-slate-300 -z-10" />
+             </motion.div>
           </div>
 
           {/* Right Column: Services */}
@@ -138,8 +212,21 @@ export function Dashboard() {
               Services & Benefits
             </h3>
             <div className="space-y-4">
-              {SERVICES.map((s, i) => (
-                <div key={i} className="flex items-center gap-5 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-brand-secondary/30 hover:shadow-md transition-all group">
+              {SERVICES.map((s, i) => {
+                const isHighlighted = hoveredStrategy !== null ? STRATEGIES[hoveredStrategy].highlights.includes(i) : false;
+                const isDimmed = hoveredStrategy !== null && !isHighlighted;
+
+                return (
+                  <div 
+                    key={i} 
+                    className={`flex items-center gap-5 p-5 rounded-2xl border transition-all duration-300 ${
+                      isHighlighted 
+                        ? 'bg-white border-[#005CB9] shadow-[0_8px_30px_rgba(0,92,185,0.15)]' 
+                        : isDimmed 
+                          ? 'bg-white/50 border-slate-100 opacity-30 grayscale-[50%]' 
+                          : 'bg-white border-slate-200 shadow-sm hover:border-[#005CB9]/30 hover:shadow-md'
+                    }`}
+                  >
                   <div className="flex-shrink-0 p-3 rounded-xl bg-slate-50 group-hover:bg-brand-secondary/5 transition-colors">
                     {s.icon}
                   </div>
@@ -148,7 +235,8 @@ export function Dashboard() {
                     <p className="text-sm text-slate-500 font-medium">{s.desc}</p>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </motion.div>
 

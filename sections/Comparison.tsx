@@ -15,20 +15,20 @@ export function Comparison() {
 
   // Calculate Opacity for each graphic based on scroll progress
   // Item 1: 0 to 25% (fade out at 30%)
-  const op1 = useTransform(scrollYProgress, [0, 0.2, 0.3], [1, 1, 0]);
-  const scale1 = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
+  const op1 = useTransform(scrollYProgress, [0, 0.25, 0.35, 1], [1, 1, 0, 0]);
+  const scale1 = useTransform(scrollYProgress, [0, 0.25, 0.35, 1], [1, 1, 0.8, 0.8]);
 
-  // Item 2: 20% to 50%
-  const op2 = useTransform(scrollYProgress, [0.2, 0.3, 0.45, 0.55], [0, 1, 1, 0]);
-  const scale2 = useTransform(scrollYProgress, [0.2, 0.3, 0.45, 0.55], [0.8, 1, 1, 0.8]);
+  // Item 2: 25% to 50%
+  const op2 = useTransform(scrollYProgress, [0, 0.2, 0.3, 0.5, 0.6, 1], [0, 0, 1, 1, 0, 0]);
+  const scale2 = useTransform(scrollYProgress, [0, 0.2, 0.3, 0.5, 0.6, 1], [0.8, 0.8, 1, 1, 0.8, 0.8]);
 
-  // Item 3: 45% to 75%
-  const op3 = useTransform(scrollYProgress, [0.45, 0.55, 0.7, 0.8], [0, 1, 1, 0]);
-  const scale3 = useTransform(scrollYProgress, [0.45, 0.55, 0.7, 0.8], [0.8, 1, 1, 0.8]);
+  // Item 3: 50% to 75%
+  const op3 = useTransform(scrollYProgress, [0, 0.45, 0.55, 0.75, 0.85, 1], [0, 0, 1, 1, 0, 0]);
+  const scale3 = useTransform(scrollYProgress, [0, 0.45, 0.55, 0.75, 0.85, 1], [0.8, 0.8, 1, 1, 0.8, 0.8]);
 
-  // Item 4: 70% to 100%
-  const op4 = useTransform(scrollYProgress, [0.7, 0.8, 1], [0, 1, 1]);
-  const scale4 = useTransform(scrollYProgress, [0.7, 0.8, 1], [0.8, 1, 1]);
+  // Item 4: 75% to 100%
+  const op4 = useTransform(scrollYProgress, [0, 0.7, 0.8, 1], [0, 0, 1, 1]);
+  const scale4 = useTransform(scrollYProgress, [0, 0.7, 0.8, 1], [0.8, 0.8, 1, 1]);
 
   // Translate the text container upwards
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
@@ -40,11 +40,11 @@ export function Comparison() {
         {/* Ambient Effects */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#D4AF37]/5 blur-[120px] rounded-full pointer-events-none" />
         
-        {/* LEFT PANEL: Sticky Graphics */}
-        <div className="w-full h-[40vh] md:h-screen md:w-1/2 relative flex items-center justify-center border-b md:border-b-0 md:border-r border-white/5 bg-gradient-to-br from-[#0A1F3D]/20 to-transparent">
+        {/* LEFT PANEL: Sticky Header */}
+        <div className="w-full h-[25vh] md:h-screen md:w-1/2 relative flex items-center justify-center border-b md:border-b-0 md:border-r border-white/5 bg-gradient-to-br from-[#0A1F3D]/20 to-transparent">
           
-          {/* Header Title (Absolute top left) */}
-          <div className="absolute top-6 md:top-12 left-6 md:left-12 z-20">
+          {/* Header Title */}
+          <div className="absolute top-1/2 -translate-y-1/2 md:translate-y-0 md:top-32 left-6 md:left-12 z-20">
             <div className="flex items-center gap-2 mb-2">
               <Crown className="text-[#D4AF37]" size={16} />
               <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#D4AF37]">The LIMOVI Advantage</span>
@@ -58,7 +58,7 @@ export function Comparison() {
           </div>
 
           {/* Graphic 1: 360 Ecosystem */}
-          <motion.div style={{ opacity: op1, scale: scale1 }} className="absolute inset-0 flex items-center justify-center">
+          <motion.div style={{ opacity: op1, scale: scale1 }} className="hidden md:flex absolute inset-0 pt-16 items-center justify-center pointer-events-none">
             <div className="relative w-64 h-64 flex items-center justify-center">
               <div className="absolute w-full h-full border border-[#D4AF37]/30 rounded-full animate-[spin_20s_linear_infinite]" />
               <div className="absolute w-48 h-48 border border-[#D4AF37]/40 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
@@ -69,7 +69,7 @@ export function Comparison() {
           </motion.div>
 
           {/* Graphic 2: Liquidity */}
-          <motion.div style={{ opacity: op2, scale: scale2 }} className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <motion.div style={{ opacity: op2, scale: scale2 }} className="hidden md:flex absolute inset-0 pt-16 items-center justify-center pointer-events-none">
             <div className="relative w-64 h-64 flex items-center justify-center">
               <div className="absolute w-full h-full border border-[#005CB9]/30 rounded-full animate-pulse" />
               <div className="absolute w-48 h-48 border border-[#005CB9]/40 rounded-full rotate-45" />
@@ -80,7 +80,7 @@ export function Comparison() {
           </motion.div>
 
           {/* Graphic 3: Experience */}
-          <motion.div style={{ opacity: op3, scale: scale3 }} className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <motion.div style={{ opacity: op3, scale: scale3 }} className="hidden md:flex absolute inset-0 pt-16 items-center justify-center pointer-events-none">
             <div className="relative w-64 h-64 flex items-center justify-center">
               <div className="absolute w-full h-full border border-purple-500/30 rounded-full border-dashed animate-[spin_30s_linear_infinite]" />
               <div className="w-24 h-24 bg-gradient-to-br from-purple-500/20 to-purple-500/5 rounded-full border border-purple-500/50 flex items-center justify-center shadow-[0_0_40px_rgba(168,85,247,0.3)]">
@@ -90,7 +90,7 @@ export function Comparison() {
           </motion.div>
 
           {/* Graphic 4: Yield */}
-          <motion.div style={{ opacity: op4, scale: scale4 }} className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <motion.div style={{ opacity: op4, scale: scale4 }} className="hidden md:flex absolute inset-0 pt-16 items-center justify-center pointer-events-none">
             <div className="relative w-64 h-64 flex items-center justify-center">
               <div className="absolute w-full h-full flex items-end justify-center pb-8 gap-3">
                  <div className="w-3 bg-emerald-500/20 rounded-t-full animate-[bounce_2s_infinite]" style={{ height: '40%' }} />
@@ -107,57 +107,57 @@ export function Comparison() {
         </div>
 
         {/* RIGHT PANEL: Scrolling Text */}
-        <div className="w-full h-[60vh] md:h-screen md:w-1/2 overflow-hidden relative">
+        <div className="w-full h-[75vh] md:h-screen md:w-1/2 overflow-hidden relative">
           <motion.div style={{ y: textY }} className="absolute top-0 left-0 w-full h-[400%]">
             
             {/* Section 1 */}
             <div className="h-[25%] flex flex-col justify-center px-8 md:px-16 lg:px-24">
-              <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mb-6 border border-[#D4AF37]/20 md:hidden">
-                <InfinityIcon className="text-[#D4AF37]" size={24} />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mb-4 md:mb-6 border border-[#D4AF37]/20 md:hidden">
+                <InfinityIcon className="text-[#D4AF37]" size={20} />
               </div>
-              <h3 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+              <h3 className="text-2xl md:text-5xl font-black text-white mb-4 md:mb-6 leading-tight">
                 The Unified <br/><span className="text-[#D4AF37]">360° Ecosystem</span>
               </h3>
-              <p className="text-lg md:text-xl text-slate-400 leading-relaxed font-medium">
+              <p className="text-base md:text-xl text-slate-400 leading-relaxed font-medium">
                 The only platform where you don't need five different apps. Invest, wear, and leverage your gold seamlessly in one place. Stop settling for fragmented financial services.
               </p>
             </div>
 
             {/* Section 2 */}
             <div className="h-[25%] flex flex-col justify-center px-8 md:px-16 lg:px-24">
-              <div className="w-12 h-12 rounded-xl bg-[#005CB9]/10 flex items-center justify-center mb-6 border border-[#005CB9]/20 md:hidden">
-                <Zap className="text-[#4DA3FF]" size={24} />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#005CB9]/10 flex items-center justify-center mb-4 md:mb-6 border border-[#005CB9]/20 md:hidden">
+                <Zap className="text-[#4DA3FF]" size={20} />
               </div>
-              <h3 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+              <h3 className="text-2xl md:text-5xl font-black text-white mb-4 md:mb-6 leading-tight">
                 True Instant <br/><span className="text-[#4DA3FF]">Liquidity</span>
               </h3>
-              <p className="text-lg md:text-xl text-slate-400 leading-relaxed font-medium">
+              <p className="text-base md:text-xl text-slate-400 leading-relaxed font-medium">
                 Unlike traditional jewellers, unlock instant cash or loans against your digital balance in seconds, completely hassle-free. Your wealth is never locked away when you need it most.
               </p>
             </div>
 
             {/* Section 3 */}
             <div className="h-[25%] flex flex-col justify-center px-8 md:px-16 lg:px-24">
-              <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-6 border border-purple-500/20 md:hidden">
-                <Sparkles className="text-purple-400" size={24} />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4 md:mb-6 border border-purple-500/20 md:hidden">
+                <Sparkles className="text-purple-400" size={20} />
               </div>
-              <h3 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+              <h3 className="text-2xl md:text-5xl font-black text-white mb-4 md:mb-6 leading-tight">
                 Experience & <br/><span className="text-purple-400">Wear Your Wealth</span>
               </h3>
-              <p className="text-lg md:text-xl text-slate-400 leading-relaxed font-medium">
+              <p className="text-base md:text-xl text-slate-400 leading-relaxed font-medium">
                 Digital gold shouldn't be invisible. LIMOVI is the first platform to let you physically experience your digital assets through our Jewellery Cloud. Wear luxury without buying it twice.
               </p>
             </div>
 
             {/* Section 4 */}
             <div className="h-[25%] flex flex-col justify-center px-8 md:px-16 lg:px-24">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 border border-emerald-500/20 md:hidden">
-                <TrendingUp className="text-emerald-400" size={24} />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4 md:mb-6 border border-emerald-500/20 md:hidden">
+                <TrendingUp className="text-emerald-400" size={20} />
               </div>
-              <h3 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+              <h3 className="text-2xl md:text-5xl font-black text-white mb-4 md:mb-6 leading-tight">
                 Unmatched <br/><span className="text-emerald-400">Yield Growth</span>
               </h3>
-              <p className="text-lg md:text-xl text-slate-400 leading-relaxed font-medium">
+              <p className="text-base md:text-xl text-slate-400 leading-relaxed font-medium">
                 Your gold doesn't just sit in a locker. It actively works and grows for you, outperforming standard digital gold platforms with passive income generation.
               </p>
             </div>

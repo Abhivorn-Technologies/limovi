@@ -17,6 +17,7 @@ const SECONDARY        = "#2B7FE8";
 
 const navLinks = [
   { name: "Ecosystem", href: "#" },
+  { name: "Jewellery Experience", href: "#jewellery-experience" },
   { 
     name: "Loans & Liquidity", 
     isDropdown: true,
@@ -25,9 +26,8 @@ const navLinks = [
       { name: "Instant Liquidity", href: "#liquidity" }
     ]
   },
-  { name: "Jewellery Experience", href: "#jewellery-experience" },
-  { name: "Gift Happiness", href: "#gift-gold" },
   { name: "Wealth", href: "#wealth" },
+  { name: "Gift Happiness", href: "#gift-gold" },
   { name: "Platform", href: "#platform" },
 ];
 
@@ -85,7 +85,7 @@ export function Navbar() {
               style={{ display: "flex", alignItems: "center", height: "90px", overflow: "hidden" }}
             >
               <Image
-                src="/Limovi.png"
+                src="/Limovi-mainlogo.png"
                 alt="LIMOVI"
                 width={1153}
                 height={288}
@@ -96,7 +96,7 @@ export function Navbar() {
           </Link>
 
           {/* ── Desktop Nav ── */}
-          <nav className="hidden md:flex items-center gap-8 relative z-[999] h-full">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-8 relative z-[999] h-full">
             {navLinks.map((link) => (
               <div 
                 key={link.name} 
@@ -157,13 +157,13 @@ export function Navbar() {
           </nav>
 
           {/* ── Desktop Actions ── */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
 
 
             <motion.button
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.97 }}
-              className="cursor-pointer px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all relative z-[999]"
+              className="cursor-pointer px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all relative z-[999] whitespace-nowrap"
               style={{
                 background: `linear-gradient(135deg, ${PRIMARY}, ${SECONDARY})`,
                 boxShadow: `0 4px 18px rgba(0,92,185,0.45), 0 1px 4px rgba(43,127,232,0.3)`,
@@ -174,7 +174,7 @@ export function Navbar() {
 
           {/* ── Mobile Toggle ── */}
           <button
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all relative z-[999]"
+            className="lg:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all relative z-[999]"
             style={{ 
               background: isMobileMenuOpen ? PRIMARY : "white",
               border: isMobileMenuOpen ? "none" : "1px solid rgba(0,0,0,0.08)",
@@ -203,7 +203,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ type: "spring", damping: 26, stiffness: 220 }}
-            className="fixed inset-0 z-40 flex flex-col pt-24 px-8 pb-4 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col pt-24 px-8 pb-4 lg:hidden"
             style={{ background: "#07111F", borderBottom: `1px solid ${NAV_BORDER}` }}
           >
             {/* Subtle blue glow */}

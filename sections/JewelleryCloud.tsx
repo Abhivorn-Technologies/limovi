@@ -13,15 +13,9 @@ const collections = [
   { id: 5, name: "Bangles",       category: "Classic",      value: "₹1L – ₹15L", image: "/images/bangles.png",        accent: "#10B981" },
 ];
 
-const N = collections.length;
-const STEP = 300;          // horizontal gap between card centres
-const ACTIVE_W = 370;
-const ACTIVE_H = 510;
-const NORMAL_W = 250;
-const NORMAL_H = 400;
 const AUTO_INTERVAL = 2500; // ms
 
-// Normalize offset to range -(N/2) … +(N/2)
+const N = collections.length;
 function normalizeOffset(raw: number): number {
   let o = ((raw % N) + N) % N;
   if (o > Math.floor(N / 2)) o -= N;
@@ -31,6 +25,20 @@ function normalizeOffset(raw: number): number {
 export function JewelleryCloud() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const step = isMobile ? 220 : 300;
+  const activeW = isMobile ? 310 : 370;
+  const activeH = isMobile ? 420 : 510;
+  const normalW = isMobile ? 180 : 250;
+  const normalH = isMobile ? 280 : 400;
 
   // Stable callbacks — functional updates so they don't need `active` in scope
   const prev = useCallback(() => setActive(a => (a - 1 + N) % N), []);
@@ -86,7 +94,7 @@ export function JewelleryCloud() {
       {/* ── Spotlight carousel ── */}
       <div
         className="relative mx-auto"
-        style={{ height: ACTIVE_H + 40, maxWidth: "100vw" }}
+        style={{ height: activeH + 40, maxWidth: "100vw" }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -105,9 +113,9 @@ export function JewelleryCloud() {
           // Cards beyond ±2 are invisible
           const opacity  = absOff > 2 ? 0 : isActive ? 1 : 0.5 - absOff * 0.05;
           const zIndex   = 20 - absOff * 5;
-          const w        = isActive ? ACTIVE_W : NORMAL_W;
-          const h        = isActive ? ACTIVE_H : NORMAL_H;
-          const xOffset  = offset * STEP;           // px from centre
+          const w        = isActive ? activeW : normalW;
+          const h        = isActive ? activeH : normalH;
+          const xOffset  = offset * step;           // px from centre
           const filter   = isActive ? "none" : `brightness(0.65) saturate(0.8)`;
 
           return (
@@ -130,7 +138,7 @@ export function JewelleryCloud() {
               }}
             >
               <Image
-                src={item.image} alt={item.name} fill sizes={`${ACTIVE_W}px`}
+                src={item.image} alt={item.name} fill sizes={`${activeW}px`}
                 className="object-cover" priority={absOff <= 1}
               />
 

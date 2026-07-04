@@ -39,7 +39,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section className="py-32 bg-white relative overflow-hidden">
+    <section className="py-16 md:py-32 bg-white relative overflow-hidden">
       <div className="container mx-auto px-6 max-w-3xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-brand-primary mb-6">Frequently Asked Questions</h2>

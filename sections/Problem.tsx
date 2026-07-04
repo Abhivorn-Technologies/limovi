@@ -43,10 +43,10 @@ export function Problem() {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section ref={containerRef} className="py-32 bg-slate-50 relative overflow-hidden">
+    <section ref={containerRef} className="py-16 md:py-32 bg-slate-50 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         
-        <motion.div style={{ y, opacity }} className="text-center mb-24">
+        <motion.div style={{ y, opacity }} className="text-center mb-16 md:mb-24">
           <h2 className="text-4xl md:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
             The Dead Asset Problem 
           </h2>
@@ -61,7 +61,7 @@ export function Problem() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-24 w-full max-w-5xl mx-auto"
+          className="mb-16 md:mb-24 w-full max-w-5xl mx-auto"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
             
