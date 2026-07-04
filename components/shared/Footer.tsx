@@ -111,6 +111,15 @@ export function Footer() {
               className="font-semibold transition-colors text-[#0A2540] hover:text-brand-secondary"
             >
               Abhivorn Technologies Pvt Ltd
+            </a>{" "}
+            &amp;{" "}
+            <a
+              href="https://www.digilevelup.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold transition-colors text-[#0A2540] hover:text-brand-secondary"
+            >
+              Digilevelup
             </a>
           </p>
         </div>

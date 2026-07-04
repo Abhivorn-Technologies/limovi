@@ -293,7 +293,7 @@ export function JewelleryExperience() {
 
                   {/* Tag pill */}
                   <div
-                    className={`flex-shrink-0 self-start lg:self-center px-5 py-3 rounded-2xl text-xs font-bold uppercase tracking-widest whitespace-nowrap ${j.visual} border`}
+                    className={`flex-shrink-0 self-start lg:self-center px-4 py-2 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl text-[9px] sm:text-xs font-bold uppercase tracking-widest whitespace-normal sm:whitespace-nowrap ${j.visual} border`}
                     style={{ borderColor: j.accent + "33", color: j.accent }}
                   >
                     {j.tag}
