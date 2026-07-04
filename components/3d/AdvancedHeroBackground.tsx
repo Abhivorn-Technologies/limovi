@@ -9,7 +9,7 @@ function WaveMesh() {
   const ref = useRef<THREE.Points>(null);
   
   const [positions, colors] = useMemo(() => {
-    const count = 25000;
+    const count = 4000;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     
@@ -71,7 +71,7 @@ function WaveMesh() {
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial 
-        size={0.12} 
+        size={0.25} 
         vertexColors 
         transparent 
         opacity={0.65} 
