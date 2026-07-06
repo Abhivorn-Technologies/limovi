@@ -21,7 +21,7 @@ export function WealthGen() {
               <span className="text-[#005CB9] font-bold uppercase tracking-widest text-sm">Yield Generation</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#0A2540] mb-6 tracking-tight leading-tight">
-              Unmatched Yield Growth on Your Gold
+              Wealth generation
             </h2>
             <p className="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
               Your gold shouldn't just sit in a locker. Turn a passive ornament into a dividend-paying asset with our Circular Economy, earning up to a <strong className="text-[#005CB9]">25% commercial dividend</strong>.
@@ -32,14 +32,10 @@ export function WealthGen() {
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-[#005CB9]/10 text-[#005CB9] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
-                  <p className="text-sm text-slate-600">Select the <strong className="text-slate-800">exact grams of Digital Gold</strong> you wish to enrol into the ecosystem.</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-[#005CB9]/10 text-[#005CB9] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
                   <p className="text-sm text-slate-600">Your gold powers our <strong className="text-slate-800">Jewellery Experience platform</strong> securely.</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</div>
+                  <div className="w-6 h-6 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
                   <p className="text-sm text-slate-600">Receive a <strong className="text-slate-800">25% commercial dividend</strong> on every experience charge generated.</p>
                 </div>
               </div>
@@ -52,7 +48,7 @@ export function WealthGen() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative h-[400px] sm:h-[550px] rounded-3xl border border-slate-200 bg-slate-50 overflow-hidden flex items-center justify-center p-4 sm:p-8 shadow-xl"
+            className="relative min-h-[460px] sm:h-[550px] py-10 sm:py-0 rounded-3xl border border-slate-200 bg-slate-50 overflow-hidden flex items-center justify-center p-4 sm:p-8 shadow-xl"
           >
             <div className="relative z-10 w-full max-w-sm bg-white border border-slate-100 rounded-2xl p-5 sm:p-8 shadow-lg">
               <div className="text-center mb-6">
@@ -62,6 +58,10 @@ export function WealthGen() {
                 <h3 className="text-xl font-bold text-slate-800">Dividend Payout</h3>
               </div>
               <div className="space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100 gap-4">
+                  <span className="text-slate-500 text-sm leading-tight">Registered Date</span>
+                  <span className="font-bold text-slate-800 text-sm text-right">15 Jan 2026</span>
+                </div>
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100 gap-4">
                   <span className="text-slate-500 text-sm leading-tight">Gold Asset</span>
                   <span className="font-bold text-[#D4AF37] text-sm text-right">100.00g (24K)</span>
@@ -74,12 +74,17 @@ export function WealthGen() {
                   <span className="text-slate-500 text-sm leading-tight">Your Dividend (25%)</span>
                   <span className="font-bold text-green-600 text-sm text-right">+ ₹ 3,000</span>
                 </div>
-                <div className="flex items-center justify-between pt-1 gap-4">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100 gap-4">
                   <span className="text-slate-500 text-sm leading-tight">Status</span>
                   <span className="font-bold text-slate-800 text-sm flex items-center gap-1 justify-end">
                     <CheckCircle2 size={14} className="text-green-500" />
                     Credited
                   </span>
+                </div>
+
+                <div className="flex items-start justify-between gap-4">
+                  <span className="text-slate-500 text-sm leading-tight flex-1">Total Wealth Generated (Till Today)</span>
+                  <span className="font-bold text-green-600 text-sm text-right whitespace-nowrap mt-0.5">₹ 45,000</span>
                 </div>
               </div>
             </div>

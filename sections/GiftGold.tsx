@@ -78,13 +78,13 @@ export function GiftGold() {
           >
             <div className="flex items-center gap-2 mb-4">
               <Gift className="text-pink-500 w-6 h-6" />
-              <span className="text-pink-500 font-bold uppercase tracking-widest text-sm">Future of Gifting </span>
+              <span className="text-pink-500 font-bold uppercase tracking-widest text-sm">Gift Gold Ecosystem</span>
             </div>
             <h2 className="text-4xl md:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
               Gift Wealth, Not Objects 
             </h2>
             <p className="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
-              Send digital gold instantly to your loved ones on weddings, birthdays, or festivals. They receive a beautiful digital gift card that appreciates in value over time.
+              Give a gift that keeps creating possibilities. From memorable jewellery experiences to greater flexibility and lasting value, LIMOVI makes every gift more meaningful.
             </p>
             
             <ul className="space-y-4 mb-10">

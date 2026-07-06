@@ -28,7 +28,7 @@ const STRATEGIES = [
 const SERVICES = [
   { 
     icon: <Sparkles className="text-brand-secondary w-7 h-7" />, 
-    title: "Jewellery Experience", 
+    title: "Luxury Jewellery Cloud", 
     desc: "Free for 'Investment & Experience'. Chargeable otherwise."
   },
   { 
@@ -43,7 +43,7 @@ const SERVICES = [
   },
   { 
     icon: <Gift className="text-brand-secondary w-7 h-7" />, 
-    title: "Gift Gold Balance", 
+    title: "Gift Gold Ecosystem", 
     desc: "Zero ownership transfer charges or hidden fees."
   },
   { 

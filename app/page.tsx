@@ -10,6 +10,7 @@ import { InstantLoans } from "@/sections/InstantLoans";
 import { WealthGen } from "@/sections/WealthGen";
 
 import { GiftGold } from "@/sections/GiftGold";
+import { AccessStrategies } from "@/sections/AccessStrategies";
 import { MarketOpportunity } from "@/sections/MarketOpportunity";
 import { Security } from "@/sections/Security";
 
@@ -32,6 +33,7 @@ export default function Home() {
       <WealthGen />
 
       <GiftGold />
+      <AccessStrategies />
       <GoldJourney />
       <Comparison />
       <Security />

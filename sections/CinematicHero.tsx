@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValue, animate, useSpring } from "framer-motion";
 import { Play, Sparkles, ArrowRight, Zap, TrendingUp, Gift, Infinity as InfinityIcon, Gem, Landmark } from "lucide-react";
 import { useLenis } from "lenis/react";
@@ -20,81 +20,254 @@ const C = {
 
 const CashSVG = ({ size = 32 }) => (
   <svg width={size} height={size} viewBox="0 0 64 64" fill="none" style={{ overflow: "visible" }}>
-    <g transform="translate(6, 16) rotate(-15)">
-      {/* Bottom bills */}
-      <rect x="0" y="10" width="48" height="20" rx="2" fill="#1b5e20" />
-      <rect x="0" y="5" width="48" height="20" rx="2" fill="#2e7d32" />
-      {/* Top bill */}
-      <rect x="0" y="0" width="48" height="20" rx="2" fill="#4caf50" />
-      <rect x="4" y="4" width="40" height="12" rx="1" fill="#81c784" />
-      {/* Band */}
-      <rect x="20" y="-2" width="12" height="26" rx="1" fill="#fbc02d" />
-      <rect x="20" y="-2" width="12" height="4" fill="#f57f17" />
+    <defs>
+      <g id="usdBundle">
+        {/* Right Face (Pages) */}
+        <polygon points="40,10 55,0 55,8 40,18" fill="#D6D6D6" stroke="#9E9E9E" strokeWidth="0.5" />
+        <line x1="40" y1="12" x2="55" y2="2" stroke="#BDBDBD" strokeWidth="0.5" />
+        <line x1="40" y1="14" x2="55" y2="4" stroke="#BDBDBD" strokeWidth="0.5" />
+        <line x1="40" y1="16" x2="55" y2="6" stroke="#BDBDBD" strokeWidth="0.5" />
+
+        {/* Left Face (Pages) */}
+        <polygon points="0,10 40,10 40,18 0,18" fill="#F4F4F4" stroke="#9E9E9E" strokeWidth="0.5" />
+        <line x1="0" y1="12" x2="40" y2="12" stroke="#BDBDBD" strokeWidth="0.5" />
+        <line x1="0" y1="14" x2="40" y2="14" stroke="#BDBDBD" strokeWidth="0.5" />
+        <line x1="0" y1="16" x2="40" y2="16" stroke="#BDBDBD" strokeWidth="0.5" />
+
+        {/* Top Face */}
+        <polygon points="0,10 15,0 55,0 40,10" fill="#E8EBCF" stroke="#8A9A70" strokeWidth="0.5" />
+        
+        {/* Projected Details (Matrix projects 100x45 rect onto 3D top face) */}
+        <g transform="matrix(0.4, 0, -0.3333, 0.2222, 15, 0)">
+          {/* Outer Border */}
+          <rect x="3" y="3" width="94" height="39" fill="none" stroke="#2B462C" strokeWidth="1.5" rx="1" />
+          <rect x="5" y="5" width="90" height="35" fill="none" stroke="#2B462C" strokeWidth="0.5" />
+          
+          {/* Center Portrait Circle */}
+          <circle cx="50" cy="22.5" r="14" fill="#D9DEC0" stroke="#2B462C" strokeWidth="1" />
+          <path d="M42,32 C42,16 58,16 58,32 Z" fill="#4B6349" opacity="0.8" />
+          
+          {/* Left and Right circular seals */}
+          <circle cx="24" cy="22.5" r="7" fill="none" stroke="#2B462C" strokeWidth="1" />
+          <circle cx="76" cy="22.5" r="7" fill="none" stroke="#1B5E20" strokeWidth="1" />
+          
+          {/* 100 Numbers in Corners */}
+          <text x="6" y="13" fontSize="11" fontWeight="900" fontFamily="sans-serif" fill="#2B462C">100</text>
+          <text x="71" y="13" fontSize="11" fontWeight="900" fontFamily="sans-serif" fill="#2B462C">100</text>
+          <text x="6" y="41" fontSize="11" fontWeight="900" fontFamily="sans-serif" fill="#2B462C">100</text>
+          <text x="71" y="41" fontSize="11" fontWeight="900" fontFamily="sans-serif" fill="#2B462C">100</text>
+
+          {/* Random decorative lines */}
+          <line x1="33" y1="14" x2="67" y2="14" stroke="#2B462C" strokeWidth="0.5" />
+          <line x1="33" y1="31" x2="67" y2="31" stroke="#2B462C" strokeWidth="0.5" />
+        </g>
+
+        {/* White Strap with Yellow Edges */}
+        <polygon points="16,10 24,10 24,18 16,18" fill="#FFFFFF" stroke="#9E9E9E" strokeWidth="0.5" />
+        <polygon points="16,10 24,10 39,0 31,0" fill="#F8F9FA" stroke="#9E9E9E" strokeWidth="0.5" />
+        <line x1="16" y1="10" x2="31" y2="0" stroke="#FBC02D" strokeWidth="0.75" />
+        <line x1="24" y1="10" x2="39" y2="0" stroke="#FBC02D" strokeWidth="0.75" />
+        <line x1="16" y1="18" x2="16" y2="10" stroke="#FBC02D" strokeWidth="0.75" />
+        <line x1="24" y1="18" x2="24" y2="10" stroke="#FBC02D" strokeWidth="0.75" />
+      </g>
+    </defs>
+
+    {/* Stack Assembly (Messy Tumbling Pile) */}
+    <g transform="translate(6, 38) rotate(-5) scale(0.9)">
+      <use href="#usdBundle" />
+    </g>
+    <g transform="translate(12, 30) rotate(8) scale(0.9)">
+      <use href="#usdBundle" />
+    </g>
+    <g transform="translate(4, 21) rotate(-12) scale(0.9)">
+      <use href="#usdBundle" />
+    </g>
+    <g transform="translate(10, 12) rotate(4) scale(0.9)">
+      <use href="#usdBundle" />
     </g>
   </svg>
 );
 
 const CoinsSVG = ({ size = 32 }) => (
   <svg width={size} height={size} viewBox="0 0 64 64" fill="none" style={{ overflow: "visible" }}>
-    {/* Bottom coin */}
-    <ellipse cx="32" cy="44" rx="22" ry="10" fill="#fbc02d" />
-    <path d="M10 44 v6 c0 5.5 9.8 10 22 10 s22 -4.5 22 -10 v-6" fill="#f57f17" />
-    <ellipse cx="32" cy="44" rx="22" ry="10" fill="#fbc02d" />
-    <ellipse cx="32" cy="44" rx="17" ry="7" fill="#fff59d" />
+    <defs>
+      <g id="scatteredCoin">
+        {/* Side edge (ribbed) */}
+        <path d="M-14,0 v5 c0,2.5 6,5 14,5 c8,0 14,-2.5 14,-5 v-5" fill="#F4C430" stroke="#0A1929" strokeWidth="1.5" />
+        {/* Ribbing lines */}
+        <line x1="-12" y1="2" x2="-12" y2="7" stroke="#0A1929" strokeWidth="0.5" opacity="0.4" />
+        <line x1="-8" y1="3" x2="-8" y2="8" stroke="#0A1929" strokeWidth="0.5" opacity="0.4" />
+        <line x1="-4" y1="4" x2="-4" y2="9" stroke="#0A1929" strokeWidth="0.5" opacity="0.4" />
+        <line x1="0" y1="4.5" x2="0" y2="9.5" stroke="#0A1929" strokeWidth="0.5" opacity="0.4" />
+        <line x1="4" y1="4" x2="4" y2="9" stroke="#0A1929" strokeWidth="0.5" opacity="0.4" />
+        <line x1="8" y1="3" x2="8" y2="8" stroke="#0A1929" strokeWidth="0.5" opacity="0.4" />
+        <line x1="12" y1="2" x2="12" y2="7" stroke="#0A1929" strokeWidth="0.5" opacity="0.4" />
+        {/* Top face */}
+        <ellipse cx="0" cy="0" rx="14" ry="5" fill="#FFF176" stroke="#0A1929" strokeWidth="1.5" />
+        <ellipse cx="0" cy="0" rx="10" ry="3" fill="none" stroke="#F4C430" strokeWidth="1" />
+      </g>
+    </defs>
     
-    {/* Top coin */}
-    <ellipse cx="28" cy="26" rx="22" ry="10" fill="#fbc02d" />
-    <path d="M6 26 v6 c0 5.5 9.8 10 22 10 s22 -4.5 22 -10 v-6" fill="#f57f17" />
-    <ellipse cx="28" cy="26" rx="22" ry="10" fill="#fbc02d" />
-    <ellipse cx="28" cy="26" rx="17" ry="7" fill="#fff59d" />
-    <text x="28" y="32" fontSize="18" fontWeight="900" fill="#f57f17" textAnchor="middle" fontFamily="sans-serif">$</text>
+    {/* Base Messy Pile */}
+    <g transform="translate(20, 52) rotate(-15)">
+      <use href="#scatteredCoin" />
+    </g>
+    <g transform="translate(44, 48) rotate(10)">
+      <use href="#scatteredCoin" />
+    </g>
+    <g transform="translate(32, 56) rotate(-5)">
+      <use href="#scatteredCoin" />
+    </g>
+    <g transform="translate(34, 44) rotate(5)">
+      <use href="#scatteredCoin" />
+    </g>
+
+    {/* Falling/Tumbling Coins */}
+    <g transform="translate(16, 28) rotate(-40)">
+      <use href="#scatteredCoin" />
+    </g>
+    <g transform="translate(50, 20) rotate(30)">
+      <use href="#scatteredCoin" />
+    </g>
+    <g transform="translate(32, 10) rotate(-15)">
+      <use href="#scatteredCoin" />
+    </g>
   </svg>
 );
 
 const GoldBarsSVG = ({ size = 32 }) => (
   <svg width={size} height={size} viewBox="0 0 64 64" fill="none" style={{ overflow: "visible" }}>
-    {/* Bottom bar */}
-    <g transform="translate(18, 30) rotate(20)">
-      <path d="M0 12 L32 12 L40 0 L8 0 Z" fill="#fbc02d" />
-      <path d="M0 12 L0 20 L32 20 L32 12 Z" fill="#f57f17" />
-      <path d="M32 20 L40 8 L40 0 L32 12 Z" fill="#f9a825" />
-      <circle cx="20" cy="6" r="3" fill="#fff59d" />
+    <defs>
+      <g id="goldBar">
+        {/* Base trapezoid (front face) */}
+        <polygon points="4,12 36,12 40,24 0,24" fill="#F4C430" stroke="#0A1929" strokeWidth="1.5" strokeLinejoin="round" />
+        {/* Top face */}
+        <polygon points="4,12 12,2 44,2 36,12" fill="#FFF176" stroke="#0A1929" strokeWidth="1.5" strokeLinejoin="round" />
+        {/* Side face */}
+        <polygon points="36,12 44,2 48,12 40,24" fill="#D4AF37" stroke="#0A1929" strokeWidth="1.5" strokeLinejoin="round" />
+        {/* Metallic edge highlight */}
+        <line x1="5" y1="13" x2="35" y2="13" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+        <line x1="37" y1="12" x2="43" y2="4" stroke="#FFFFFF" strokeWidth="1" opacity="0.6" />
+      </g>
+      <g id="goldBarEngraved">
+        <use href="#goldBar" />
+        {/* Engravings on Top Face */}
+        {/* Stamp / Logo */}
+        <circle cx="20" cy="7" r="2.5" fill="none" stroke="#D4AF37" strokeWidth="0.75" />
+        <path d="M19,6 L21,8 M21,6 L19,8" stroke="#D4AF37" strokeWidth="0.5" />
+        {/* Weight / Purity text representation */}
+        <line x1="26" y1="6" x2="30" y2="6" stroke="#D4AF37" strokeWidth="1" />
+        <line x1="26" y1="8" x2="34" y2="8" stroke="#D4AF37" strokeWidth="1" />
+      </g>
+    </defs>
+
+    {/* Back Peeking Bar */}
+    <g transform="translate(18, 14) rotate(-5)">
+      <use href="#goldBar" />
     </g>
-    {/* Top bar */}
-    <g transform="translate(8, 16) rotate(-10)">
-      <path d="M0 12 L32 12 L40 0 L8 0 Z" fill="#fbc02d" />
-      <path d="M0 12 L0 20 L32 20 L32 12 Z" fill="#f57f17" />
-      <path d="M32 20 L40 8 L40 0 L32 12 Z" fill="#f9a825" />
-      <circle cx="20" cy="6" r="3" fill="#fff59d" />
+    
+    {/* Front Base Bar */}
+    <g transform="translate(-2, 32) rotate(10)">
+      <use href="#goldBar" />
     </g>
-    {/* Sparkles */}
-    <path d="M46 8 L50 2 M52 10 L58 6 M44 16 L52 16" stroke="#ef5350" strokeWidth="2.5" strokeLinecap="round" />
+    
+    {/* Middle Bar */}
+    <g transform="translate(14, 24) rotate(-15)">
+      <use href="#goldBar" />
+    </g>
+    
+    {/* Top Bar (Engraved) */}
+    <g transform="translate(6, 6) rotate(5)">
+      <use href="#goldBarEngraved" />
+    </g>
   </svg>
 );
 
-const NecklaceBustSVG = ({ size = 32 }) => (
+const JewellerySVG = ({ size = 32 }) => (
   <svg width={size} height={size} viewBox="0 0 64 64" fill="none" style={{ overflow: "visible" }}>
-    {/* Bust Base */}
-    <path d="M32 14 L20 28 C12 38 10 48 16 58 L48 58 C54 48 52 38 44 28 Z" fill="#111" />
-    {/* Neck */}
-    <path d="M24 0 L40 0 L40 18 L24 18 Z" fill="#111" />
-    <path d="M24 16 Q32 24 40 16" fill="#fff" opacity="0.1" />
+    {/* Jhumkas on the left */}
+    <g transform="translate(0, 16) scale(1.6)">
+      {/* Top Earring */}
+      <g transform="translate(0, 0)">
+        <circle cx="6" cy="2" r="1.5" fill="#F4C430" />
+        <path d="M2,8 Q6,4 10,8 Z" fill="#D4AF37" />
+        <circle cx="4" cy="9" r="0.8" fill="#F4C430" />
+        <circle cx="6" cy="10" r="0.8" fill="#F4C430" />
+        <circle cx="8" cy="9" r="0.8" fill="#F4C430" />
+      </g>
+      {/* Bottom Earring */}
+      <g transform="translate(12, 6)">
+        <circle cx="6" cy="2" r="1.5" fill="#F4C430" />
+        <path d="M2,8 Q6,4 10,8 Z" fill="#D4AF37" />
+        <circle cx="4" cy="9" r="0.8" fill="#F4C430" />
+        <circle cx="6" cy="10" r="0.8" fill="#F4C430" />
+        <circle cx="8" cy="9" r="0.8" fill="#F4C430" />
+      </g>
+    </g>
+
+    {/* Necklace on the right */}
+    <g transform="translate(30, 16)">
+      {/* Outer chain */}
+      <path d="M0,0 Q10,40 16,40 Q22,40 32,0" fill="none" stroke="#F4C430" strokeWidth="1.25" strokeLinecap="round" />
+      {/* Middle chain */}
+      <path d="M3,0 Q10,34 16,34 Q22,34 29,0" fill="none" stroke="#D4AF37" strokeWidth="1.25" strokeLinecap="round" />
+      {/* Inner chain */}
+      <path d="M6,0 Q10,28 16,28 Q22,28 26,0" fill="none" stroke="#F4C430" strokeWidth="1.25" strokeLinecap="round" />
+      {/* Diamond Pendant */}
+      <g transform="translate(16, 40)">
+        <polygon points="0,0 4,6 0,12 -4,6" fill="none" stroke="#F4C430" strokeWidth="1.5" strokeLinejoin="round" />
+        <polygon points="0,2 2.5,6 0,10 -2.5,6" fill="#D4AF37" />
+      </g>
+    </g>
+  </svg>
+);
+
+const DigitalGoldSVG = ({ size = 32 }) => (
+  <svg width={size} height={size} viewBox="0 0 64 64" fill="none" style={{ overflow: "visible" }}>
+    {/* Glowing background arrow (from image) */}
+    <path d="M12,48 L32,28 L42,38 L60,10 M50,10 L60,10 L60,20" stroke="#F4C430" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.4" />
     
-    {/* Pearls Outer */}
-    <circle cx="21" cy="30" r="2.5" fill="#fff" />
-    <circle cx="23" cy="35" r="3" fill="#fff" />
-    <circle cx="27" cy="40" r="3.5" fill="#fff" />
-    <circle cx="32" cy="43" r="4.5" fill="#fff" />
-    <circle cx="37" cy="40" r="3.5" fill="#fff" />
-    <circle cx="41" cy="35" r="3" fill="#fff" />
-    <circle cx="43" cy="30" r="2.5" fill="#fff" />
-    
-    {/* Pearls Inner */}
-    <circle cx="25" cy="25" r="2" fill="#fff" />
-    <circle cx="28" cy="30" r="2.5" fill="#fff" />
-    <circle cx="32" cy="33" r="3" fill="#fff" />
-    <circle cx="36" cy="30" r="2.5" fill="#fff" />
-    <circle cx="39" cy="25" r="2" fill="#fff" />
+    {/* Phone Frame */}
+    <g transform="translate(14, 2)">
+      <rect x="0" y="0" width="36" height="60" rx="4" fill="none" stroke="#D4AF37" strokeWidth="2.5" />
+      {/* Notch */}
+      <path d="M12,2.5 L12,4 Q12,6 14,6 L22,6 Q24,6 24,4 L24,2.5" fill="#D4AF37" />
+    </g>
+
+    {/* Floating Coin 1 (Back/Right) */}
+    <g transform="translate(32, 28) rotate(15)">
+      {/* Coin thickness */}
+      <ellipse cx="0" cy="4" rx="16" ry="12" fill="#B8860B" />
+      <path d="M-16,4 L-16,0 A16,12 0 0,0 16,0 L16,4 A16,12 0 0,1 -16,4" fill="#8B6508" />
+      {/* Coin face */}
+      <ellipse cx="0" cy="0" rx="16" ry="12" fill="#F4C430" stroke="#FFF176" strokeWidth="1" />
+      {/* Inner ring */}
+      <ellipse cx="0" cy="0" rx="13" ry="9" fill="none" stroke="#D4AF37" strokeWidth="0.5" strokeDasharray="1,1" />
+      {/* Rupee Symbol */}
+      <text x="0" y="4" fontSize="14" fontWeight="900" fontFamily="sans-serif" fill="#8B6508" textAnchor="middle" transform="scale(1, 0.75)">₹</text>
+    </g>
+
+    {/* Floating Coin 2 (Front/Left) */}
+    <g transform="translate(20, 42) rotate(-10)">
+      {/* Coin thickness */}
+      <ellipse cx="0" cy="5" rx="18" ry="14" fill="#B8860B" />
+      <path d="M-18,5 L-18,0 A18,14 0 0,0 18,0 L18,5 A18,14 0 0,1 -18,5" fill="#8B6508" />
+      {/* Ribbed edge lines */}
+      <line x1="-16" y1="2" x2="-16" y2="7" stroke="#6B4E00" strokeWidth="0.5" />
+      <line x1="-12" y1="4" x2="-12" y2="9" stroke="#6B4E00" strokeWidth="0.5" />
+      <line x1="-8" y1="5" x2="-8" y2="10" stroke="#6B4E00" strokeWidth="0.5" />
+      <line x1="-4" y1="5" x2="-4" y2="10" stroke="#6B4E00" strokeWidth="0.5" />
+      <line x1="0" y1="5" x2="0" y2="10" stroke="#6B4E00" strokeWidth="0.5" />
+      
+      {/* Coin face */}
+      <ellipse cx="0" cy="0" rx="18" ry="14" fill="#FFD700" stroke="#FFF8E7" strokeWidth="1" />
+      {/* Inner ring */}
+      <ellipse cx="0" cy="0" rx="14" ry="10.5" fill="none" stroke="#D4AF37" strokeWidth="1" strokeDasharray="1.5,1.5" />
+      {/* Glowing highlight */}
+      <path d="M-12,-4 Q-6,-8 0,-6 Q-4,-2 -12,-4" fill="#FFFFFF" opacity="0.6" />
+      {/* Rupee Symbol */}
+      <text x="0" y="5" fontSize="18" fontWeight="900" fontFamily="sans-serif" fill="#6B4E00" textAnchor="middle" transform="scale(1, 0.75)">₹</text>
+    </g>
   </svg>
 );
 
@@ -102,8 +275,10 @@ const NecklaceBustSVG = ({ size = 32 }) => (
 
 function Scene1_Item({ item, i, progress }: { item: any, i: number, progress: any }) {
   const itemOp = useTransform(progress, [0.08, 0.12, 0.20, 0.25], [0, 1, 1, 0]);
-  const itemX  = useTransform(progress, [0.12, 0.20], [item.x, "0vw"], { clamp: true });
-  const itemY  = useTransform(progress, [0.12, 0.20], [item.y, "0vh"], { clamp: true });
+  const xUnit = typeof item.x === 'string' ? item.x.replace(/[-0-9.]/g, '') : "px";
+  const yUnit = typeof item.y === 'string' ? item.y.replace(/[-0-9.]/g, '') : "px";
+  const itemX  = useTransform(progress, [0.17, 0.22], [item.x, `0${xUnit}`], { clamp: true });
+  const itemY  = useTransform(progress, [0.17, 0.22], [item.y, `0${yUnit}`], { clamp: true });
   return (
     <motion.div className="absolute z-10" style={{ x: itemX, y: itemY, opacity: itemOp }}>
       <motion.div
@@ -112,8 +287,8 @@ function Scene1_Item({ item, i, progress }: { item: any, i: number, progress: an
         animate={item.animate}
         transition={{ duration: item.duration, repeat: Infinity, ease: "easeInOut", delay: i * 0.25 }}
       >
-        <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(212,175,55,0.18)] border-2" style={{ borderColor: "rgba(212,175,55,0.3)" }}>
-          <item.icon size={44} />
+        <div className="w-16 h-16 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(212,175,55,0.18)] border-2" style={{ borderColor: "rgba(212,175,55,0.3)" }}>
+          <item.icon size={52} />
         </div>
         <span className="text-[10px] lg:text-[11px] font-bold tracking-widest uppercase text-slate-700 bg-white/70 px-3 py-1 rounded-full backdrop-blur-sm border border-slate-200">
           {item.label}
@@ -124,19 +299,29 @@ function Scene1_Item({ item, i, progress }: { item: any, i: number, progress: an
 }
 
 function Scene1_Problem({ progress }: { progress: any }) {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // Check on mount
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const textLayerOp = useTransform(progress, [0, 0.05, 0.10], [1, 1, 0], { clamp: true });
   const textInnerOp = useTransform(progress, [0, 0.04, 0.08], [1, 1, 0], { clamp: true });
   const textScale   = useTransform(progress, [0, 0.10],  [1, 0.90], { clamp: true });
   const textBlur    = useTransform(progress, [0.06, 0.10], ["blur(0px)", "blur(8px)"], { clamp: true });
-  const fragOp      = useTransform(progress, [0.08, 0.12, 0.20, 0.25], [0, 1, 1, 0], { clamp: true });
+  const fragOp      = useTransform(progress, [0.08, 0.12, 0.16, 0.19], [0, 1, 1, 0], { clamp: true });
   const textVisibility = useTransform(progress, [0.10, 0.11], ["visible", "hidden"]);
   const fragVisibility = useTransform(progress, [0.25, 0.26], ["visible", "hidden"]);
 
   const items = [
-    { label: "Cash",       icon: CashSVG,         x: "-35vw", y: "-22vh", animate: { y: [0, -12, 0], rotate: [0, -3, 3, 0] }, duration: 5 },
-    { label: "Gold Coins", icon: CoinsSVG,        x:  "35vw", y: "-22vh", animate: { y: [0, 10, 0],  scale: [1, 1.05, 1]   }, duration: 4 },
-    { label: "Gold Bars",  icon: GoldBarsSVG,     x: "-35vw", y:  "22vh", animate: { x: [0, -8, 8, 0], y: [0, 8, -8, 0]    }, duration: 6 },
-    { label: "Jewellery",  icon: NecklaceBustSVG, x:  "35vw", y:  "22vh", animate: { rotate: [0, 8, -8, 0], scale: [1, 1.05, 1] }, duration: 4.5 },
+    { label: "Digital Gold", icon: DigitalGoldSVG,  x:  "0px", y: isMobile ? "-190px" : "-25vh", animate: { y: [0, -10, 0], scale: [1, 1.06, 1] }, duration: 4.2 },
+    { label: "Cash",         icon: CashSVG,         x: isMobile ? "-125px" : "-28vw", y: isMobile ? "-110px" : "-8vh",  animate: { y: [0, -12, 0], rotate: [0, -3, 3, 0] }, duration: 5 },
+    { label: "Gold Coins",   icon: CoinsSVG,        x: isMobile ? "125px" : "28vw", y: isMobile ? "-110px" : "-8vh",  animate: { y: [0, 10, 0],  scale: [1, 1.05, 1]   }, duration: 4 },
+    { label: "Gold Bars",    icon: GoldBarsSVG,     x: isMobile ? "-115px" : "-18vw", y: isMobile ? "160px" : "20vh", animate: { x: [0, -8, 8, 0], y: [0, 8, -8, 0]    }, duration: 6 },
+    { label: "Jewellery",    icon: JewellerySVG,    x: isMobile ? "115px" : "18vw", y: isMobile ? "160px" : "20vh", animate: { rotate: [0, 8, -8, 0], scale: [1, 1.05, 1] }, duration: 4.5 },
   ];
 
   const metrics = [
@@ -190,16 +375,17 @@ function Scene1_Problem({ progress }: { progress: any }) {
       </motion.div>
 
       {/* Layer 2: Fragmented cinematic */}
-      <motion.div style={{ opacity: fragOp, visibility: fragVisibility }} className="absolute inset-0 flex items-center justify-center">
+      <motion.div style={{ visibility: fragVisibility }} className="absolute inset-0 flex items-center justify-center">
         <div className="relative flex items-center justify-center w-full h-full">
-          <motion.div className="absolute text-center z-20 pointer-events-none">
-            <p className="text-[10px] lg:text-[11px] font-bold tracking-[0.2em] uppercase mb-2 lg:mb-3 text-slate-400">You have wealth.</p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 leading-[1.1]">
-              But it&apos;s <br /><span style={{ color: C.goldDeep }}>fragmented.</span>
+          <motion.div style={{ opacity: fragOp }} className="absolute text-center z-20 pointer-events-none flex flex-col items-center">
+            <p className="text-[11px] lg:text-xs font-bold tracking-[0.2em] uppercase text-slate-400 mb-1">YOU HAVE GOLD ASSETS.</p>
+            <p className="text-[11px] lg:text-xs font-bold tracking-[0.2em] uppercase text-slate-400 mb-3 lg:mb-4">YOU HAVE GOLD INVESTMENTS.</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.1]">
+              But they&apos;re <br /><span style={{ color: C.goldDeep }}>fragmented.</span>
             </h2>
           </motion.div>
           {items.map((item, i) => (
-            <Scene1_Item key={i} item={item} i={i} progress={progress} />
+            <Scene1_Item key={`${i}-${isMobile}`} item={item} i={i} progress={progress} />
           ))}
         </div>
       </motion.div>
@@ -254,10 +440,10 @@ function Scene3_Strategies({ progress }: { progress: any }) {
   const opacity = useTransform(progress, [0.40, 0.45, 0.60, 0.65], [0, 1, 1, 0], { clamp: true });
   const visibility = useTransform(progress, [0.39, 0.40, 0.65, 0.66], ["hidden", "visible", "visible", "hidden"]);
   const strategies = [
-    { title: "Investment",          desc: "Gold bars grow into a mountain.", pos: "-translate-x-[100px] sm:-translate-x-[190px] lg:-translate-x-[280px] -translate-y-[130px] sm:-translate-y-[155px] lg:-translate-y-[190px]", icon: TrendingUp },
+    { title: "Investment Only",     desc: "Gold bars grow into a mountain.", pos: "-translate-x-[100px] sm:-translate-x-[190px] lg:-translate-x-[280px] -translate-y-[130px] sm:-translate-y-[155px] lg:-translate-y-[190px]", icon: TrendingUp },
     { title: "Enroll & Experience", desc: "Join and unlock luxury.",         pos: "translate-x-[100px] sm:translate-x-[190px] lg:translate-x-[280px] -translate-y-[130px] sm:-translate-y-[155px] lg:-translate-y-[190px]",  icon: InfinityIcon },
     { title: "Invest & Experience", desc: "Grow wealth while you wear.",     pos: "-translate-x-[100px] sm:-translate-x-[190px] lg:-translate-x-[280px] translate-y-[130px] sm:translate-y-[155px] lg:translate-y-[190px]",   icon: Sparkles },
-    { title: "Experience",          desc: "Wear and return.",                pos: "translate-x-[100px] sm:translate-x-[190px] lg:translate-x-[280px] translate-y-[130px] sm:translate-y-[155px] lg:translate-y-[190px]",    icon: Gem },
+    { title: "Experience Only",     desc: "Wear and return.",                pos: "translate-x-[100px] sm:translate-x-[190px] lg:translate-x-[280px] translate-y-[130px] sm:translate-y-[155px] lg:translate-y-[190px]",    icon: Gem },
   ];
   return (
     <motion.div style={{ opacity, visibility }} className="absolute inset-0 flex items-center justify-center overflow-hidden">
@@ -287,15 +473,18 @@ function Scene3_Strategies({ progress }: { progress: any }) {
           <span className="text-[7px] sm:text-[9px] font-black text-white tracking-[0.2em] text-center leading-tight">GOLD<br />BALANCE</span>
         </motion.div>
 
-        {/* Animated Connecting Lines */}
+        {/* Animated Connecting Lines with Triggering Dots */}
         {[45, 135, 225, 315].map((angle, idx) => (
-          <div key={angle} className="absolute top-1/2 left-1/2 origin-left overflow-hidden" style={{ width: "clamp(100px, 22vw, 260px)", height: 1.5, background: "linear-gradient(to left, rgba(212,175,55,0.05), rgba(212,175,55,0.3))", transform: `rotate(${angle}deg)`, marginTop: -0.75 }}>
-            <motion.div 
-              className="absolute top-0 h-full rounded-full" 
-              style={{ width: "30%", background: "linear-gradient(to left, transparent, #F4C430, transparent)", boxShadow: "0 0 8px #F4C430" }} 
-              animate={{ left: ["100%", "-30%"] }} 
-              transition={{ duration: 2, repeat: Infinity, ease: "linear", delay: idx * 0.5 }}
-            />
+          <div key={angle} className="absolute top-1/2 left-1/2 origin-left overflow-hidden" style={{ width: "clamp(100px, 22vw, 260px)", height: 2, background: "rgba(212,175,55,0.1)", transform: `rotate(${angle}deg)`, marginTop: -1 }}>
+            {[0, 1, 2].map((dotIdx) => (
+              <motion.div 
+                key={dotIdx}
+                className="absolute top-1/2 -translate-y-1/2 rounded-full" 
+                style={{ width: "6px", height: "6px", background: "#FFFFFF", boxShadow: "0 0 12px 3px #F4C430" }} 
+                animate={{ left: ["100%", "0%"], opacity: [0, 1, 0.2] }} 
+                transition={{ duration: 1.8, repeat: Infinity, ease: "easeIn", delay: dotIdx * 0.6 + idx * 0.15 }}
+              />
+            ))}
           </div>
         ))}
         
@@ -410,7 +599,7 @@ function Scene5_Ending({ progress }: { progress: any }) {
         ))}
 
         <div className="z-10 flex flex-col items-center justify-center bg-white/70 backdrop-blur-xl w-32 h-32 lg:w-40 lg:h-40 rounded-full shadow-[0_10px_40px_rgba(212,175,55,0.2)] border border-white/90">
-          <h1 className="text-xl lg:text-3xl font-black text-slate-900 tracking-widest mb-0.5 mt-2">LIMOVI</h1>
+          <h1 className="text-xl lg:text-3xl font-black text-[#387ed1] tracking-widest mb-0.5 mt-2">LIMOVI</h1>
           <p className="tracking-[0.2em] text-[5.5px] lg:text-[7px] font-bold uppercase text-[#B8860B]">The Gold Ecosystem</p>
         </div>
 

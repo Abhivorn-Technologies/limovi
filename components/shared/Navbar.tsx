@@ -85,7 +85,7 @@ export function Navbar() {
               style={{ display: "flex", alignItems: "center", height: "90px", overflow: "hidden" }}
             >
               <Image
-                src="/Limovi-mainlogo.png"
+                src="/Limovi-1.png"
                 alt="LIMOVI"
                 width={1153}
                 height={288}

@@ -48,7 +48,7 @@ export function InstantLoans() {
                 <span className="text-brand-secondary font-bold uppercase tracking-widest text-sm">RBI Regulated </span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 tracking-tight">
-                Gold Balance-Backed Loans
+                Digital & physical gold backed loans.
               </h2>
               <p className="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
                 Take a loan against your gold balance instantly without physical visits. We partner with RBI-regulated NBFCs like <strong className="text-brand-secondary">Rupeek</strong> as our primary lending rail.
@@ -60,7 +60,7 @@ export function InstantLoans() {
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 rounded-full bg-brand-primary/10 text-brand-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
-                    <p className="text-sm text-slate-600">Your <strong className="text-slate-800">24K Digital Gold Balance</strong> (stored in Brink's/Sequel) is digitally pledged.</p>
+                    <p className="text-sm text-slate-600">Your <strong className="text-slate-800">eligible Gold Balance</strong> is securely marked as collateral for the loan.</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 rounded-full bg-brand-primary/10 text-brand-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
@@ -83,7 +83,7 @@ export function InstantLoans() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative h-[400px] sm:h-[500px] rounded-3xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center p-4 sm:p-8 shadow-xl"
+              className="relative min-h-[500px] sm:min-h-[600px] py-12 rounded-3xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center p-4 sm:p-8 shadow-xl"
             >
               <div className="relative z-10 w-full max-w-sm bg-slate-50 border border-slate-100 rounded-2xl p-5 sm:p-8">
                 <div className="text-center mb-6">
@@ -93,6 +93,18 @@ export function InstantLoans() {
                   <h3 className="text-xl font-bold text-slate-800">Loan Approved</h3>
                 </div>
                 <div className="space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Available Gold Balance</span>
+                    <span className="font-bold text-slate-800 text-right">150.00g</span>
+                  </div>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Max. Loan Eligibility</span>
+                    <span className="font-bold text-slate-800 text-right">₹ 7,50,000</span>
+                  </div>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Required Loan Amount</span>
+                    <span className="font-bold text-brand-primary text-right border-b-2 border-brand-primary/30 px-1">₹ 2,50,000</span>
+                  </div>
                   <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
                     <span className="text-slate-500 leading-tight">Gold Pledged</span>
                     <span className="font-bold text-brand-gold-luxury text-right">50.00g</span>
@@ -124,7 +136,7 @@ export function InstantLoans() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="order-2 lg:order-1 relative h-[400px] sm:h-[500px] rounded-3xl border border-brand-secondary/20 bg-gradient-to-br from-slate-50 to-brand-secondary/5 overflow-hidden flex items-center justify-center p-4 sm:p-8 shadow-xl"
+              className="order-2 lg:order-1 relative min-h-[500px] sm:min-h-[600px] py-12 rounded-3xl border border-brand-secondary/20 bg-gradient-to-br from-slate-50 to-brand-secondary/5 overflow-hidden flex items-center justify-center p-4 sm:p-8 shadow-xl"
             >
               <div className="relative z-10 w-full max-w-sm bg-white border border-slate-100 rounded-2xl p-5 sm:p-8">
                 <div className="text-center mb-6">
@@ -134,6 +146,22 @@ export function InstantLoans() {
                   <h3 className="text-xl font-bold text-slate-800">Instant Cash Out</h3>
                 </div>
                 <div className="space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Available Gold Balance</span>
+                    <span className="font-bold text-slate-800 text-right">150.00g</span>
+                  </div>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Today Gold Price/Gram</span>
+                    <span className="font-bold text-slate-800 text-right">₹ 7,500</span>
+                  </div>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Eligible Value</span>
+                    <span className="font-bold text-slate-800 text-right">₹ 11,25,000</span>
+                  </div>
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
+                    <span className="text-slate-500 leading-tight">Required Liquidity</span>
+                    <span className="font-bold text-brand-secondary text-right border-b-2 border-brand-secondary/30 px-1">₹ 85,000</span>
+                  </div>
                   <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
                     <span className="text-slate-500 leading-tight">Gold Liquidated</span>
                     <span className="font-bold text-brand-gold-luxury text-right">-10.00g</span>
