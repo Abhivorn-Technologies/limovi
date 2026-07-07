@@ -87,10 +87,10 @@ export function Navbar() {
               <Image
                 src="/Limovi-1.png"
                 alt="LIMOVI"
-                width={1153}
-                height={288}
+                width={871}
+                height={237}
                 priority
-                style={{ objectFit: "contain", width: "160px", height: "auto" }}
+                style={{ objectFit: "contain", width: "135px", height: "auto" }}
               />
             </div>
           </Link>

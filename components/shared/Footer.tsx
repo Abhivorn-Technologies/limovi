@@ -37,9 +37,9 @@ export function Footer() {
               <Image
                 src="/Limovi-1.png"
                 alt="LIMOVI"
-                width={1153}
-                height={288}
-                style={{ width: "160px", height: "auto", objectFit: "contain" }}
+                width={871}
+                height={237}
+                style={{ width: "135px", height: "auto", objectFit: "contain" }}
               />
             </Link>
             <p className="text-slate-600 mb-6 max-w-sm font-medium text-sm lg:text-base">

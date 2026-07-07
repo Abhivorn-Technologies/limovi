@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/shared/SmoothScrollProvider";
+import { ScrollToTop } from "@/components/shared/ScrollToTop";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -77,6 +78,7 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased bg-background text-foreground overflow-x-clip selection:bg-brand-secondary selection:text-white`}>
         <SmoothScrollProvider>
           {children}
+          <ScrollToTop />
         </SmoothScrollProvider>
       </body>
     </html>
