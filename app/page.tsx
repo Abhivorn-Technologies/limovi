@@ -14,7 +14,7 @@ import { AccessStrategies } from "@/sections/AccessStrategies";
 import { MarketOpportunity } from "@/sections/MarketOpportunity";
 import { Security } from "@/sections/Security";
 
-import { Comparison } from "@/sections/Comparison";
+
 import { FAQ } from "@/sections/FAQ";
 import { FinalCTA } from "@/sections/FinalCTA";
 
@@ -28,14 +28,13 @@ export default function Home() {
       <Problem />
       <Dashboard />
       <JewelleryCloud />
-      <JewelleryExperience />
       <InstantLoans />
       <WealthGen />
 
       <GiftGold />
       <AccessStrategies />
       <GoldJourney />
-      <Comparison />
+
       <Security />
       <FAQ />
       <FinalCTA />

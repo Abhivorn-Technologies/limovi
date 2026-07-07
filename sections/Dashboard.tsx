@@ -19,10 +19,10 @@ import {
 } from "lucide-react";
 
 const STRATEGIES = [
-  { icon: <TrendingUp className="text-brand-gold w-6 h-6" />, title: "Investment Only", desc: "Pure capital appreciation", highlights: [1, 2, 3] },
+  { icon: <TrendingUp className="text-brand-gold w-6 h-6" />, title: "Investment Only", desc: "Pure capital appreciation", highlights: [0, 1, 2, 3] },
   { icon: <InfinityIcon className="text-brand-gold w-6 h-6" />, title: "Enrol & Experience", desc: "Bring your existing jewellery", highlights: [0, 1, 2, 3, 4] },
   { icon: <Sparkles className="text-brand-gold w-6 h-6" />, title: "Investment & Experience", desc: "Buy new gold & access luxury", highlights: [0, 1, 2, 3, 4] },
-  { icon: <Gem className="text-brand-gold w-6 h-6" />, title: "Experience Only", desc: "Access without ownership", highlights: [0] },
+  { icon: <Gem className="text-brand-gold w-6 h-6" />, title: "Experience Only", desc: "Access without ownership", highlights: [0, 1, 2] },
 ];
 
 const SERVICES = [
@@ -137,10 +137,9 @@ export function Dashboard() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="flex-1"
+            className="flex-1 lg:mt-16"
           >
             <h3 className="text-2xl font-bold text-brand-primary mb-8 flex items-center justify-center lg:justify-start gap-3">
-              <span className="w-8 h-8 rounded-lg bg-brand-gold/10 flex items-center justify-center text-brand-gold text-sm font-black">1</span>
               Investment Strategies
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -208,7 +207,6 @@ export function Dashboard() {
             className="flex-1"
           >
             <h3 className="text-2xl font-bold text-brand-primary mb-8 flex items-center justify-center lg:justify-start gap-3">
-              <span className="w-8 h-8 rounded-lg bg-brand-secondary/10 flex items-center justify-center text-brand-secondary text-sm font-black">2</span>
               Services & Benefits
             </h3>
             <div className="space-y-4">

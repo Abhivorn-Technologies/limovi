@@ -82,9 +82,9 @@ export function Solution() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
+            className="lg:mt-12"
           >
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 font-black flex items-center justify-center text-sm">1</div>
               <h3 className="text-2xl font-bold text-[#005CB9]">Investment Strategies</h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -108,7 +108,6 @@ export function Solution() {
             transition={{ delay: 0.4 }}
           >
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#005CB9] font-black flex items-center justify-center text-sm">2</div>
               <h3 className="text-2xl font-bold text-[#005CB9]">Services & Benefits</h3>
             </div>
             <div className="flex flex-col gap-4">

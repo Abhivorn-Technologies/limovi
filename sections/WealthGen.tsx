@@ -18,10 +18,10 @@ export function WealthGen() {
           >
             <div className="flex items-center gap-2 mb-4">
               <TrendingUp className="text-[#005CB9] w-5 h-5" />
-              <span className="text-[#005CB9] font-bold uppercase tracking-widest text-sm">Yield Generation</span>
+              <span className="text-[#005CB9] font-bold uppercase tracking-widest text-sm">Wealth Generation</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#0A2540] mb-6 tracking-tight leading-tight">
-              Wealth generation
+            <h2 className="text-4xl md:text-5xl font-bold text-[#005CB9] mb-6 tracking-tight leading-tight">
+              Grow Wealth, Not Just Grams
             </h2>
             <p className="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
               Your gold shouldn't just sit in a locker. Turn a passive ornament into a dividend-paying asset with our Circular Economy, earning up to a <strong className="text-[#005CB9]">25% commercial dividend</strong>.

@@ -191,7 +191,7 @@ export function JewelleryCloud() {
   }, []);
 
   return (
-    <section className="relative py-20 bg-[#F8F9FC] overflow-hidden">
+    <section id="jewellery-experience" className="relative py-20 bg-[#F8F9FC] overflow-hidden">
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute -top-32 left-0 w-[400px] h-[400px] rounded-full opacity-10 blur-3xl"
         style={{ background: "radial-gradient(circle,#D4AF37 0%,transparent 70%)" }} />
@@ -220,25 +220,31 @@ export function JewelleryCloud() {
               Own The Asset.
             </span>
           </h2>
+          
           <p className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed max-w-xl">
             Your <strong className="text-slate-700">Gold Balance</strong> is the key to the LIMOVI Jewellery Cloud. The more Gold Balance you build, the greater the value and variety of jewellery you can experience. From everyday elegance to grand celebrations, unlock premium collections whenever you need them—without buying a new piece every time.
+              
           </p>
         </motion.div>
       </div>
 
-      <CarouselSlider 
-        collections={celebrationCollections} 
-        title="Grand Celebrations" 
-        subtitle="Bridal pieces, heavy heritage sets, and premium neckwear." 
-        isMobile={isMobile} 
-      />
+      <div id="heritage-collection">
+        <CarouselSlider 
+          collections={celebrationCollections} 
+          title="The Heritage Collection" 
+          subtitle="Bridal pieces, heavy heritage sets, and premium neckwear." 
+          isMobile={isMobile} 
+        />
+      </div>
 
-      <CarouselSlider 
-        collections={dailyCollections} 
-        title="Minimalist Elegance" 
-        subtitle="Simple gold studs, chains, bracelets, and rings for a subtle touch." 
-        isMobile={isMobile} 
-      />
+      <div id="minimalist-elegance">
+        <CarouselSlider 
+          collections={dailyCollections} 
+          title="Minimalist Elegance" 
+          subtitle="Simple gold studs, chains, bracelets, and rings for a subtle touch." 
+          isMobile={isMobile} 
+        />
+      </div>
 
     </section>
   );

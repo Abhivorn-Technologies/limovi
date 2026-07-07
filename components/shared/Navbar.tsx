@@ -17,7 +17,14 @@ const SECONDARY        = "#2B7FE8";
 
 const navLinks = [
   { name: "Ecosystem", href: "#" },
-  { name: "Jewellery Experience", href: "#jewellery-experience" },
+  { 
+    name: "Jewellery Cloud", 
+    isDropdown: true,
+    subLinks: [
+      { name: "The Heritage Collection", href: "#heritage-collection" },
+      { name: "Minimalist Elegance", href: "#minimalist-elegance" }
+    ]
+  },
   { 
     name: "Loans & Liquidity", 
     isDropdown: true,
@@ -26,8 +33,8 @@ const navLinks = [
       { name: "Instant Liquidity", href: "#liquidity" }
     ]
   },
-  { name: "Wealth", href: "#wealth" },
-  { name: "Gift Happiness", href: "#gift-gold" },
+  { name: "Wealth Generation", href: "#wealth" },
+  { name: "Gift Gold Ecosystem", href: "#gift-gold" },
   { name: "Platform", href: "#platform" },
 ];
 
