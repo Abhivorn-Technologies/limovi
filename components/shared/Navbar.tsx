@@ -19,6 +19,7 @@ const navLinks = [
   { name: "Ecosystem", href: "#" },
   { 
     name: "Jewellery Cloud", 
+    href: "#jewellery-experience",
     isDropdown: true,
     subLinks: [
       { name: "The Heritage Collection", href: "#heritage-collection" },
@@ -27,6 +28,7 @@ const navLinks = [
   },
   { 
     name: "Loans & Liquidity", 
+    href: "#loans",
     isDropdown: true,
     subLinks: [
       { name: "Instant Loans", href: "#loans" },
@@ -112,7 +114,11 @@ export function Navbar() {
                 onMouseLeave={() => link.isDropdown && setActiveDropdown(null)}
               >
                 {link.isDropdown ? (
-                  <span
+                  <a
+                    href={link.href}
+                    onClick={(e) => {
+                      if (link.href) handleNavClick(e, link.href);
+                    }}
                     className="text-sm font-semibold transition-colors duration-200 cursor-pointer flex items-center gap-1"
                     style={{ color: currentTextColor }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = currentHoverColor)}
@@ -120,7 +126,7 @@ export function Navbar() {
                   >
                     {link.name}
                     <svg className="w-3 h-3 mt-0.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                  </span>
+                  </a>
                 ) : (
                   <a
                     href={link.href}
@@ -230,7 +236,17 @@ export function Navbar() {
                   >
                     {link.isDropdown ? (
                       <div className="flex flex-col py-2">
-                        <span className="text-[10px] font-black text-white/30 uppercase tracking-widest pt-3 pb-1 px-2">{link.name}</span>
+                        {link.href ? (
+                          <a
+                            href={link.href}
+                            onClick={(e) => handleNavClick(e, link.href as string)}
+                            className="text-[10px] font-black text-white/30 uppercase tracking-widest pt-3 pb-1 px-2 block cursor-pointer"
+                          >
+                            {link.name}
+                          </a>
+                        ) : (
+                          <span className="text-[10px] font-black text-white/30 uppercase tracking-widest pt-3 pb-1 px-2">{link.name}</span>
+                        )}
                         <div className="flex flex-col">
                           {link.subLinks?.map((sub) => (
                             <a

@@ -14,11 +14,11 @@ const celebrationCollections = [
 ];
 
 const dailyCollections = [
-  { id: 1, name: "Gold Chain",        category: "Minimal",  value: "₹15K – ₹80K", image: "/images/minimal_pendant.png",   accent: "#D4AF37" },
-  { id: 2, name: "Bracelet",          category: "Classic",  value: "₹20K – ₹1L",  image: "/images/minimal_bracelet.png",  accent: "#D4AF37" },
-  { id: 3, name: "Ear Studs",         category: "Everyday", value: "₹10K – ₹50K", image: "/images/minimal_studs.png",     accent: "#D4AF37" },
-  { id: 4, name: "Nose Stud",         category: "Subtle",   value: "₹5K – ₹30K",  image: "/images/minimal_nose_stud.png", accent: "#D4AF37" },
-  { id: 5, name: "Ring",              category: "Elegant",  value: "₹12K – ₹60K", image: "/images/minimal_ring.png",      accent: "#D4AF37" },
+  { id: 1, name: "Gold Chain",        category: "Minimal",  value: "₹15K – ₹80K", image: "/images/minimal_pendant_v2.png",   accent: "#D4AF37" },
+  { id: 2, name: "Bracelet",          category: "Classic",  value: "₹20K – ₹1L",  image: "/images/minimal_bracelet_v2.png",  accent: "#D4AF37" },
+  { id: 3, name: "Ear Studs",         category: "Everyday", value: "₹10K – ₹50K", image: "/images/minimal_studs_v2.png",     accent: "#D4AF37" },
+  { id: 4, name: "Nose Stud",         category: "Subtle",   value: "₹5K – ₹30K",  image: "/images/minimal_nose_stud_v4.png", accent: "#D4AF37" },
+  { id: 5, name: "Ring",              category: "Elegant",  value: "₹12K – ₹60K", image: "/images/minimal_ring_v2.png",      accent: "#D4AF37" },
 ];
 
 const AUTO_INTERVAL = 2500; // ms
@@ -85,7 +85,7 @@ function CarouselSlider({ collections, title, subtitle, isMobile }: { collection
           const w        = isActive ? activeW : normalW;
           const h        = isActive ? activeH : normalH;
           const xOffset  = offset * step;
-          const filter   = isActive ? "brightness(1) saturate(1)" : `brightness(0.65) saturate(0.8)`;
+          const filter   = isActive ? "brightness(1.05) saturate(1.15)" : `brightness(0.7) saturate(0.85)`;
 
           return (
             <motion.div
@@ -110,7 +110,7 @@ function CarouselSlider({ collections, title, subtitle, isMobile }: { collection
                 className="object-cover" priority={absOff <= 1}
               />
               <div className="absolute inset-0" style={{
-                background: "linear-gradient(to top,rgba(11,31,58,0.92) 0%,rgba(11,31,58,0.3) 50%,transparent 100%)",
+                background: "linear-gradient(to top,rgba(11,31,58,0.85) 0%,rgba(11,31,58,0.0) 35%,transparent 100%)",
               }} />
               {isActive && (
                 <div className="absolute top-0 left-0 right-0 h-[3px]"
