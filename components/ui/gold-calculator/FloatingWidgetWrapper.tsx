@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useDragControls } from 'framer-motion';
-import { Coins } from 'lucide-react';
+import { Calculator } from 'lucide-react';
 import { GoldBalanceCalculator } from './GoldBalanceCalculator';
 import type { TimelineKey } from './TimelineSelector';
 
@@ -104,7 +104,7 @@ export function FloatingWidgetWrapper() {
                 transition={{ duration: 2.4, repeat: Infinity, ease: 'easeOut', delay }}
               />
             ))}
-            <Coins size={22} color="#3D2800" style={{ position: 'relative', zIndex: 1, filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.35))' }} />
+            <Calculator size={22} color="#3D2800" style={{ position: 'relative', zIndex: 1, filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.35))' }} />
           </motion.button>
         )}
       </AnimatePresence>

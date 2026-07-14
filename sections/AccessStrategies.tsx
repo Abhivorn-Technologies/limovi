@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { Crown, Gem, Sparkles, TrendingUp, CheckCircle2, XCircle, X, ChevronRight } from "lucide-react";
+import { Crown, Gem, Sparkles, TrendingUp, CheckCircle2, XCircle, X, ChevronRight, Infinity as InfinityIcon } from "lucide-react";
 
 type Benefit = { label: string; desc: React.ReactNode; eligible: boolean };
 
@@ -96,7 +96,7 @@ const PLANS = [
     name: "Investment & Experience",
     tagline: "The complete luxury membership — zero experience charges.",
     shortDesc: "Invest, wear endlessly, and earn when others choose your piece.",
-    icon: Crown,
+    icon: Sparkles,
     accent: "#D4AF37",
     entryLabel: "Invest",
     entryDetail: <>Min. 50g of 24K <br/> 20% experience + 14% making charges at onboarding</>,
@@ -172,7 +172,7 @@ const PLANS = [
     name: "Enrol & Experience",
     tagline: "Bring your existing jewellery. Wear new. Earn in return.",
     shortDesc: "Turn your locked jewellery into a living, earning asset.",
-    icon: Sparkles,
+    icon: InfinityIcon,
     accent: "#A78BFA",
     entryLabel: "Enrol",
     entryDetail: "Existing jewellery worth ≥ 50g of 24K gold",

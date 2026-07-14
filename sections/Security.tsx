@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ShieldCheck, ChevronRight } from "lucide-react";
+import { Globe, ChevronRight } from "lucide-react";
 
 const ecosystemNodes = [
   {
@@ -70,7 +70,7 @@ export function Security() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-brand-primary/10 border border-brand-primary/20">
-            <ShieldCheck className="text-brand-primary w-4 h-4" />
+            <Globe className="text-brand-primary w-4 h-4" />
             <span className="text-brand-primary font-bold uppercase tracking-widest text-xs">Our Network</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6">The LIMOVI Ecosystem</h2>

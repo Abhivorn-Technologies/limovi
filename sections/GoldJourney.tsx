@@ -18,7 +18,7 @@ const milestones = [
     alt: "Gold Verification",
     contentOverlay: (
       <div className="absolute inset-y-0 left-0 w-[65%] bg-gradient-to-r from-white via-white to-transparent/10 p-5 flex flex-col justify-center rounded-l-[20px]">
-        <h3 className="font-bold text-[#1a237e] text-[16px] leading-tight mb-3">Enrol Your Gold</h3>
+        <h3 className="font-bold text-[#1a237e] text-[16px] leading-tight mb-3">Enrol by choosing strategy</h3>
         <ul className="text-[10px] text-[#1a237e]/80 font-semibold space-y-1.5 z-10 relative">
           <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] flex-shrink-0" />Investment Only</li>
           <li className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] flex-shrink-0" />Enrol & Experience</li>

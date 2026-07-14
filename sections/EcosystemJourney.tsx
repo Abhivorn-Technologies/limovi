@@ -14,7 +14,7 @@ const milestones = [
     image: "/images/journey-1.png"
   },
   {
-    title: "Enrol Your Gold",
+    title: "Enrol by choosing strategy",
     desc: "Convert your jewellery, coins or cash into digital gold balance in a few simple steps.",
     icon: <Smartphone className="w-6 h-6" />,
     color: "bg-emerald-100 text-emerald-600",

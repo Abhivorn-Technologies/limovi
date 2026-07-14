@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingUp, CheckCircle2 } from "lucide-react";
+import { HandCoins, CheckCircle2 } from "lucide-react";
 
 export function WealthGen() {
   return (
@@ -17,7 +17,7 @@ export function WealthGen() {
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center gap-2 mb-4">
-              <TrendingUp className="text-[#005CB9] w-5 h-5" />
+              <HandCoins className="text-[#005CB9] w-5 h-5" />
               <span className="text-[#005CB9] font-bold uppercase tracking-widest text-sm">Wealth Generation</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#005CB9] mb-6 tracking-tight leading-tight">
@@ -53,7 +53,7 @@ export function WealthGen() {
             <div className="relative z-10 w-full max-w-sm bg-white border border-slate-100 rounded-2xl p-5 sm:p-8 shadow-lg">
               <div className="text-center mb-6">
                 <div className="w-14 h-14 bg-[#005CB9]/10 rounded-full mx-auto flex items-center justify-center mb-4">
-                  <TrendingUp className="w-7 h-7 text-[#005CB9]" />
+                  <HandCoins className="w-7 h-7 text-[#005CB9]" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-800">Dividend Payout</h3>
               </div>

@@ -15,7 +15,10 @@ import {
   ShieldCheck,
   Landmark,
   Zap,
-  Infinity as InfinityIcon
+  Infinity as InfinityIcon,
+  HandCoins,
+  Clock,
+  Lightbulb
 } from "lucide-react";
 
 const STRATEGIES = [
@@ -27,17 +30,17 @@ const STRATEGIES = [
 
 const SERVICES = [
   { 
-    icon: <Sparkles className="text-brand-secondary w-7 h-7" />, 
+    icon: <Crown className="text-brand-secondary w-7 h-7" />, 
     title: "Luxury Jewellery Cloud", 
     desc: "Unlock premium jewellery experiences through your Gold Balance."
   },
   { 
-    icon: <Landmark className="text-brand-secondary w-7 h-7" />, 
+    icon: <ShieldCheck className="text-brand-secondary w-7 h-7" />, 
     title: "Instant Loans", 
     desc: "Backed instantly by your Gold Balance."
   },
   { 
-    icon: <Zap className="text-brand-secondary w-7 h-7" />, 
+    icon: <Clock className="text-brand-secondary w-7 h-7" />, 
     title: "Instant Liquidity", 
     desc: "Convert eligible Gold Balance into cash when needed."
   },
@@ -47,7 +50,7 @@ const SERVICES = [
     desc: "Share your Gold Balance and its ecosystem benefits with loved ones."
   },
   { 
-    icon: <TrendingUp className="text-brand-secondary w-7 h-7" />, 
+    icon: <HandCoins className="text-brand-secondary w-7 h-7" />, 
     title: "Wealth Generation", 
     desc: "Generate long-term value from your eligible gold assets."
   }
@@ -71,7 +74,7 @@ export function Dashboard() {
         {/* Header */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-6">
-            <ShieldCheck className="w-4 h-4 text-brand-gold" />
+            <Lightbulb className="w-4 h-4 text-brand-gold" />
             <span className="text-xs font-bold uppercase tracking-widest text-slate-600">The Solution</span>
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-brand-primary mb-6 tracking-tight">

@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useCallback, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValue, animate, useSpring } from "framer-motion";
-import { Play, Sparkles, ArrowRight, Zap, TrendingUp, Gift, Infinity as InfinityIcon, Gem, Landmark } from "lucide-react";
+import { Play, Sparkles, ArrowRight, Zap, TrendingUp, Gift, Infinity as InfinityIcon, Gem, Landmark, HandCoins, ShieldCheck, Clock } from "lucide-react";
 import { useLenis } from "lenis/react";
 
 const C = {
@@ -522,10 +522,10 @@ function Scene4_Benefits({ progress }: { progress: any }) {
   const visibility = useTransform(progress, [0.59, 0.60, 0.85, 0.86], ["hidden", "visible", "visible", "hidden"]);
   const portals  = [
     { title: "Luxury Jewellery Experience", icon: Sparkles },
-    { title: "Instant Loan",                icon: Landmark },
-    { title: "Instant Liquidity",           icon: Zap },
+    { title: "Instant Loan",                icon: ShieldCheck },
+    { title: "Instant Liquidity",           icon: Clock },
     { title: "Gift Gold Ecosystem",         icon: Gift },
-    { title: "Wealth Generation",           icon: TrendingUp },
+    { title: "Wealth Generation",           icon: HandCoins },
   ];
   return (
     <motion.div style={{ opacity, visibility }} className="absolute inset-0 flex flex-col items-center justify-center pt-4 sm:pt-8">
