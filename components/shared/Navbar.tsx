@@ -265,7 +265,7 @@ export function Navbar() {
                               <span className={`text-lg font-bold transition-colors pl-3 border-l-2 ${activeLink === sub.name ? 'text-brand-primary border-brand-primary' : 'text-slate-800 border-brand-primary/0 group-hover:text-brand-primary group-hover:border-brand-primary'}`}>
                                 {sub.name}
                               </span>
-                              <ChevronRight size={16} className="text-slate-300 group-hover:text-brand-primary group-hover:translate-x-1 transition-all" />
+                              <ChevronRight size={16} className="pointer-events-none text-slate-300 group-hover:text-brand-primary group-hover:translate-x-1 transition-all" />
                             </a>
                           ))}
                         </div>
@@ -279,7 +279,7 @@ export function Navbar() {
                         <span className={`text-xl font-bold transition-colors ${activeLink === link.name ? 'text-brand-primary' : 'text-slate-800 group-hover:text-brand-primary'}`}>
                           {link.name}
                         </span>
-                        <ChevronRight size={18} className="text-slate-300 group-hover:text-brand-primary group-hover:translate-x-1 transition-all" />
+                        <ChevronRight size={18} className="pointer-events-none text-slate-300 group-hover:text-brand-primary group-hover:translate-x-1 transition-all" />
                       </a>
                     )}
                   </motion.div>

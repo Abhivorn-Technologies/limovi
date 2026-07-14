@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import { ShieldCheck, Gem, Landmark, Cloud, Search } from "lucide-react";
+import { ShieldCheck, Gem, Landmark, Crown, Search } from "lucide-react";
 
 const faqs = [
   {
@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     question: "What is the Jewellery Cloud?",
-    icon: Cloud,
+    icon: Crown,
     answer: "The Jewellery Cloud is a subscription or credit-based service where you can use your gold holdings as a deposit to rent luxury jewellery for special occasions, without paying the full capital cost."
   },
   {
