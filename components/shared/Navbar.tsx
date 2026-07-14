@@ -22,8 +22,8 @@ const navLinks = [
     href: "#jewellery-experience",
     isDropdown: true,
     subLinks: [
-      { name: "The Heritage Collection", href: "#heritage-collection" },
-      { name: "Minimalist Elegance", href: "#minimalist-elegance" }
+      { name: "Heritage Grandeur", href: "#heritage-collection" },
+      { name: "Everyday Grace", href: "#minimalist-elegance" }
     ]
   },
   { 
