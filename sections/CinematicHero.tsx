@@ -346,20 +346,19 @@ function Scene1_Problem({ progress }: { progress: any }) {
             <span className="text-[9px] lg:text-[10px] font-bold tracking-[0.18em] uppercase" style={{ color: C.primary }}>India&apos;s 1st Living Gold Ecosystem</span>
           </div>
 
-          <h1 className="font-black tracking-tight leading-[1.08] mb-3 lg:mb-5 w-full" style={{ fontSize: "clamp(2.2rem, 5.2vw, 5rem)", color: C.textDark }}>
-            Turn Gold Into{" "}
+          <h1 className="font-black tracking-tight leading-[1.08] mb-2 lg:mb-3 w-full" style={{ fontSize: "clamp(2.2rem, 5.2vw, 5rem)", color: C.textDark }}>
+            Gold That Works{" "}
             <motion.span
               style={{ background: `linear-gradient(135deg,${C.goldBright} 0%,${C.gold} 45%,${C.goldDeep} 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", display: "inline" }}
               animate={{ filter: ["drop-shadow(0 2px 8px rgba(212,175,55,0.15))", "drop-shadow(0 2px 24px rgba(212,175,55,0.55))", "drop-shadow(0 2px 8px rgba(212,175,55,0.15))"] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              Wealth, Experiences
-            </motion.span>{" "}
-            &amp; Instant Liquidity
+              Beyond Ownership.
+            </motion.span>
           </h1>
 
-          <p className="leading-relaxed mb-5 lg:mb-7 max-w-2xl text-sm lg:text-[1.05rem]" style={{ color: C.textMid }}>
-            Convert cash, jewellery, coins or bars into a <span style={{ color: C.gold, fontWeight: 700 }}>Gold Balance</span> and unlock premium financial benefits.
+          <p className="font-bold mb-5 lg:mb-6 max-w-2xl text-sm lg:text-base" style={{ color: C.textMid }}>
+            Build Wealth. Experience Luxury. Unlock Financial Freedom.
           </p>
 
 

@@ -29,7 +29,7 @@ const SERVICES = [
   { 
     icon: <Sparkles className="text-brand-secondary w-7 h-7" />, 
     title: "Luxury Jewellery Cloud", 
-    desc: "Free for 'Investment & Experience'. Chargeable otherwise."
+    desc: "Unlock premium jewellery experiences through your Gold Balance."
   },
   { 
     icon: <Landmark className="text-brand-secondary w-7 h-7" />, 
@@ -39,17 +39,17 @@ const SERVICES = [
   { 
     icon: <Zap className="text-brand-secondary w-7 h-7" />, 
     title: "Instant Liquidity", 
-    desc: "Convert your gold balance to cash in 5 minutes."
+    desc: "Convert eligible Gold Balance into cash when needed."
   },
   { 
     icon: <Gift className="text-brand-secondary w-7 h-7" />, 
     title: "Gift Gold Ecosystem", 
-    desc: "Zero ownership transfer charges or hidden fees."
+    desc: "Share your Gold Balance and its ecosystem benefits with loved ones."
   },
   { 
     icon: <TrendingUp className="text-brand-secondary w-7 h-7" />, 
     title: "Wealth Generation", 
-    desc: "Jewellery as an asset. Owners get 25% of experience fees."
+    desc: "Generate long-term value from your eligible gold assets."
   }
 ];
 
@@ -57,7 +57,7 @@ export function Dashboard() {
   const [hoveredStrategy, setHoveredStrategy] = useState<number | null>(null);
 
   return (
-    <section id="platform" className="py-16 md:py-32 bg-slate-50 relative overflow-hidden">
+    <section id="platform" className="py-8 md:py-16 bg-slate-50 relative overflow-hidden">
       {/* Background Dots */}
       <div className="absolute inset-0 pointer-events-none" style={{
         backgroundImage: "radial-gradient(circle, rgba(212,175,55,0.08) 1px, transparent 1px)",
@@ -69,16 +69,16 @@ export function Dashboard() {
       <div className="container mx-auto px-6 relative z-10">
         
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-6">
             <ShieldCheck className="w-4 h-4 text-brand-gold" />
             <span className="text-xs font-bold uppercase tracking-widest text-slate-600">The Solution</span>
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
-            A Full Stack <br className="md:hidden" />Gold Ecosystem
+            Your Gold. One Connected Ecosystem.
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed">
-            Digitising physical assets (coins, bars, jewellery) or cash into a live, highly fluid dashboard.
+          <p className="text-sm md:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed">
+            Bring together cash, digital gold, coins, bars and eligible jewellery through one unified Gold Balance—designed to connect investment strategies, jewellery experiences, financial access and broader ecosystem benefits.
           </p>
         </div>
 

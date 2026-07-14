@@ -78,27 +78,36 @@ export function GiftGold() {
           >
             <div className="flex items-center gap-2 mb-4">
               <Gift className="text-pink-500 w-6 h-6" />
-              <span className="text-pink-500 font-bold uppercase tracking-widest text-sm">Gift Gold Ecosystem</span>
+              <span className="text-pink-500 font-bold uppercase tracking-widest text-sm">Gift The LIMOVI Ecosystem</span>
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
-              Gift Wealth, Not Objects 
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-primary mb-6 tracking-tight">
+              Give Gold More Meaning.
             </h2>
-            <p className="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
-              Give a gift that keeps creating possibilities. From memorable jewellery experiences to greater flexibility and lasting value, LIMOVI makes every gift more meaningful.
+            <p className="text-sm md:text-base lg:text-lg text-slate-600 mb-8 font-medium leading-relaxed">
+              Transform gifting into something more enduring. Give your loved ones access to a connected gold ecosystem designed to bring together value, curated jewellery experiences and greater flexibility—creating possibilities that extend well beyond the occasion.
             </p>
             
             <ul className="space-y-4 mb-10">
-              <li className="flex items-center gap-3 text-slate-700 font-medium">
-                <div className="w-2 h-2 rounded-full bg-brand-gold shadow-sm" />
-                Instant transfer via phone number
+              <li className="flex items-start gap-3">
+                <div className="w-2 h-2 rounded-full bg-brand-gold shadow-sm mt-2 flex-shrink-0" />
+                <div>
+                  <span className="text-slate-800 font-bold block">Experience More</span>
+                  <span className="text-slate-500 text-sm font-medium">Access eligible jewellery experiences for life’s meaningful moments.</span>
+                </div>
               </li>
-              <li className="flex items-center gap-3 text-slate-700 font-medium">
-                <div className="w-2 h-2 rounded-full bg-brand-gold shadow-sm" />
-                Receiver can convert to physical jewellery anytime
+              <li className="flex items-start gap-3">
+                <div className="w-2 h-2 rounded-full bg-brand-gold shadow-sm mt-2 flex-shrink-0" />
+                <div>
+                  <span className="text-slate-800 font-bold block">Unlock Flexibility</span>
+                  <span className="text-slate-500 text-sm font-medium">Explore supported financial possibilities within the ecosystem.</span>
+                </div>
               </li>
-              <li className="flex items-center gap-3 text-slate-700 font-medium">
-                <div className="w-2 h-2 rounded-full bg-brand-gold shadow-sm" />
-                Zero making charges on the gifted value
+              <li className="flex items-start gap-3">
+                <div className="w-2 h-2 rounded-full bg-brand-gold shadow-sm mt-2 flex-shrink-0" />
+                <div>
+                  <span className="text-slate-800 font-bold block">Create Lasting Value</span>
+                  <span className="text-slate-500 text-sm font-medium">Give access to benefits designed to extend beyond a one-time gift.</span>
+                </div>
               </li>
             </ul>
 

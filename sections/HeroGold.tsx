@@ -497,11 +497,10 @@ export function HeroGold() {
 
             {/* Headline */}
             <h1
-              className="font-black tracking-tight leading-[1.06] mb-6"
-              style={{ fontSize: "clamp(2.5rem, 4.2vw, 4rem)", color: C.textDark }}
+              className="font-black tracking-tight leading-[1.06] mb-3"
+              style={{ fontSize: "clamp(2.2rem, 4.2vw, 3.8rem)", color: C.textDark }}
             >
-              Turn Gold Into
-              <br />
+              Gold That Works{" "}
               <motion.span
                 style={{
                   background: `linear-gradient(135deg,${C.goldBright} 0%,${C.gold} 45%,${C.goldDeep} 100%)`,
@@ -519,11 +518,15 @@ export function HeroGold() {
                 }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                Wealth,<br />Experiences
+                Beyond Ownership.
               </motion.span>
-              <br />
-              &amp; Instant Liquidity
             </h1>
+            <p
+              className="font-bold mb-6"
+              style={{ fontSize: "clamp(1rem, 1.6vw, 1.25rem)", color: C.textMid }}
+            >
+              Build Wealth. Experience Luxury. Unlock Financial Freedom.
+            </p>
 
             {/* Description */}
             <p className="leading-relaxed mb-9 max-w-md mx-auto lg:mx-0"

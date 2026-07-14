@@ -211,19 +211,17 @@ export function JewelleryCloud() {
               Luxury Jewellery Cloud 
             </span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-5 leading-tight" style={{ color: "#0B1F3A" }}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-5 leading-tight" style={{ color: "#0B1F3A" }}>
             Experience Luxury.<br />
             <span style={{
               background: "linear-gradient(90deg,#D4AF37,#FFE066,#D4AF37)",
               WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
             }}>
-              Own The Asset.
+              Unlock More From Your Gold.
             </span>
           </h2>
-          
-          <p className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed max-w-xl">
-            Your <strong className="text-slate-700">Gold Balance</strong> is the key to the LIMOVI Jewellery Cloud. The more Gold Balance you build, the greater the value and variety of jewellery you can experience. From everyday elegance to grand celebrations, unlock premium collections whenever you need them—without buying a new piece every time.
-              
+          <p className="text-sm md:text-base lg:text-lg text-slate-500 font-medium leading-relaxed max-w-xl">
+            Your <strong className="text-slate-700">Gold Balance</strong> opens the door to the LIMOVI Jewellery Cloud. As your eligible Gold Balance grows, so can your access to a wider range of jewellery experiences—from everyday elegance to grand celebrations. Explore premium collections for different moments without having to purchase a new piece every time.
           </p>
         </motion.div>
       </div>
@@ -231,8 +229,8 @@ export function JewelleryCloud() {
       <div id="heritage-collection">
         <CarouselSlider 
           collections={celebrationCollections} 
-          title="The Heritage Collection" 
-          subtitle="Bridal pieces, heavy heritage sets, and premium neckwear." 
+          title="Heritage Grandeur" 
+          subtitle="For weddings and milestone celebrations." 
           isMobile={isMobile} 
         />
       </div>
@@ -240,8 +238,8 @@ export function JewelleryCloud() {
       <div id="minimalist-elegance">
         <CarouselSlider 
           collections={dailyCollections} 
-          title="Minimalist Elegance" 
-          subtitle="Simple gold studs, chains, bracelets, and rings for a subtle touch." 
+          title="Everyday Grace" 
+          subtitle="Refined jewellery for every moment." 
           isMobile={isMobile} 
         />
       </div>

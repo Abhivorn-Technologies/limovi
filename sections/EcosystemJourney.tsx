@@ -126,7 +126,7 @@ export function EcosystemJourney() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-32 bg-slate-50 relative">
+    <section ref={containerRef} className="py-32 bg-slate-50 relative overflow-x-hidden">
       <div className="container mx-auto px-6 mb-24 text-center">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
@@ -147,7 +147,7 @@ export function EcosystemJourney() {
         </motion.p>
       </div>
 
-      <div className="relative max-w-5xl mx-auto">
+      <div className="relative max-w-5xl mx-auto px-4 md:px-6">
         
         {/* The SVG Path Background */}
         <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-8 h-full pointer-events-none hidden md:block">
@@ -228,7 +228,7 @@ export function EcosystemJourney() {
                 <div className="absolute left-8 -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white bg-slate-300 md:hidden" />
 
                 {/* Image Side */}
-                <div className="w-full md:w-1/2 pl-16 md:pl-0">
+                <div className="w-full md:w-1/2 pl-16 md:pl-0 pr-2 md:pr-0">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}

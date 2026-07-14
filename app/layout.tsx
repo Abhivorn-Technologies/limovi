@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/shared/SmoothScrollProvider";
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
+import { FloatingWidgetWrapper } from "@/components/ui/gold-calculator";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -79,6 +80,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           {children}
           <ScrollToTop />
+          <FloatingWidgetWrapper />
         </SmoothScrollProvider>
       </body>
     </html>

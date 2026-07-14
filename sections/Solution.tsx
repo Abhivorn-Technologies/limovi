@@ -21,7 +21,7 @@ export function Solution() {
     {
       icon: <Sparkles className="w-5 h-5 text-blue-500" />,
       title: "Jewellery Experience",
-      desc: "Free for 'Investment & Experience'. Chargeable otherwise."
+      desc: "Unlock premium jewellery experiences through your Gold Balance."
     },
     {
       icon: <Landmark className="w-5 h-5 text-blue-500" />,
@@ -31,12 +31,12 @@ export function Solution() {
     {
       icon: <Zap className="w-5 h-5 text-blue-500" />,
       title: "Instant Liquidity",
-      desc: "Sell your digital gold balance 24/7."
+      desc: "Convert eligible Gold Balance into cash when needed."
     },
     {
       icon: <Gift className="w-5 h-5 text-blue-500" />,
       title: "Gift Gold Ecosystem",
-      desc: "Gift digital gold to loved ones easily."
+      desc: "Share your Gold Balance and its ecosystem benefits with loved ones."
     }
   ];
 
@@ -61,7 +61,7 @@ export function Solution() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-6xl font-black text-[#005CB9] mb-6 tracking-tight"
           >
-            A Full Stack Gold Ecosystem
+            Your Gold. One Connected Ecosystem.
           </motion.h2>
           
           <motion.p 
@@ -69,9 +69,9 @@ export function Solution() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed"
+            className="text-sm md:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed"
           >
-            Digitising physical assets (coins, bars, jewellery) or cash into a live, highly fluid dashboard.
+            Bring together cash, digital gold, coins, bars and eligible jewellery through one unified Gold Balance—designed to connect investment strategies, jewellery experiences, financial access and broader ecosystem benefits.
           </motion.p>
         </div>
 

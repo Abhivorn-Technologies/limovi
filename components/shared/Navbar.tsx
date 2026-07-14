@@ -44,6 +44,7 @@ export function Navbar() {
   const [isScrolled,       setIsScrolled]       = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown,   setActiveDropdown]   = useState<string | null>(null);
+  const [activeLink,       setActiveLink]       = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 50);
@@ -67,6 +68,11 @@ export function Navbar() {
       setIsMobileMenuOpen(false);
       setActiveDropdown(null);
     }
+  };
+
+  const handleNavClickWithActive = (e: React.MouseEvent<HTMLAnchorElement>, href: string, name: string) => {
+    setActiveLink(name);
+    handleNavClick(e, href);
   };
 
   const currentTextColor  = TEXT_DARK;
@@ -105,7 +111,7 @@ export function Navbar() {
           </Link>
 
           {/* ── Desktop Nav ── */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-8 relative z-[999] h-full">
+          <nav className="hidden xl:flex items-center gap-4 xl:gap-8 relative z-[999] h-full">
             {navLinks.map((link) => (
               <div 
                 key={link.name} 
@@ -117,12 +123,12 @@ export function Navbar() {
                   <a
                     href={link.href}
                     onClick={(e) => {
-                      if (link.href) handleNavClick(e, link.href);
+                      if (link.href) handleNavClickWithActive(e, link.href, link.name);
                     }}
                     className="text-sm font-semibold transition-colors duration-200 cursor-pointer flex items-center gap-1"
-                    style={{ color: currentTextColor }}
+                    style={{ color: activeLink === link.name ? PRIMARY : currentTextColor }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = currentHoverColor)}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = currentTextColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = activeLink === link.name ? PRIMARY : currentTextColor)}
                   >
                     {link.name}
                     <svg className="w-3 h-3 mt-0.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
@@ -130,11 +136,11 @@ export function Navbar() {
                 ) : (
                   <a
                     href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href as string)}
+                    onClick={(e) => handleNavClickWithActive(e, link.href as string, link.name)}
                     className="text-sm font-semibold transition-colors duration-200 relative group cursor-pointer"
-                    style={{ color: currentTextColor }}
+                    style={{ color: activeLink === link.name ? PRIMARY : currentTextColor }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = currentHoverColor)}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = currentTextColor)}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = activeLink === link.name ? PRIMARY : currentTextColor)}
                   >
                     {link.name}
                   </a>
@@ -170,7 +176,7 @@ export function Navbar() {
           </nav>
 
           {/* ── Desktop Actions ── */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden xl:flex items-center gap-4">
 
 
             <motion.button
@@ -187,7 +193,7 @@ export function Navbar() {
 
           {/* ── Mobile Toggle ── */}
           <button
-            className="lg:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all relative z-[999]"
+            className="xl:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all relative z-[999]"
             style={{ 
               background: isMobileMenuOpen ? PRIMARY : "white",
               border: isMobileMenuOpen ? "none" : "1px solid rgba(0,0,0,0.08)",
@@ -216,18 +222,19 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ type: "spring", damping: 26, stiffness: 220 }}
-            className="fixed inset-0 z-40 flex flex-col pt-24 px-8 pb-4 lg:hidden"
-            style={{ background: "#07111F", borderBottom: `1px solid ${NAV_BORDER}` }}
+            className="fixed inset-0 z-40 flex flex-col pt-24 px-8 pb-4 xl:hidden"
+            style={{ background: "#ffffff", borderBottom: `1px solid ${NAV_BORDER}` }}
           >
             {/* Subtle blue glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-48 pointer-events-none"
-              style={{ background: "radial-gradient(ellipse, rgba(43,127,232,0.12) 0%, transparent 70%)" }} />
+              style={{ background: "radial-gradient(ellipse, rgba(0,92,185,0.06) 0%, transparent 70%)" }} />
 
             <nav 
               className="relative flex flex-col flex-1 min-h-0 px-2 pb-10 overflow-y-auto"
               style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}
+              data-lenis-prevent="true"
             >
-              <div className="flex flex-col divide-y divide-white/5 border-t border-white/5 mt-4">
+              <div className="flex flex-col divide-y divide-slate-100 border-t border-slate-100 mt-4">
                 {navLinks.map((link, i) => (
                   <motion.div key={link.name}
                     initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
@@ -239,26 +246,26 @@ export function Navbar() {
                         {link.href ? (
                           <a
                             href={link.href}
-                            onClick={(e) => handleNavClick(e, link.href as string)}
-                            className="text-[10px] font-black text-white/30 uppercase tracking-widest pt-3 pb-1 px-2 block cursor-pointer"
+                            onClick={(e) => handleNavClickWithActive(e, link.href as string, link.name)}
+                            className={`text-[10px] font-black uppercase tracking-widest pt-3 pb-1 px-2 block cursor-pointer ${activeLink === link.name ? 'text-brand-primary' : 'text-slate-400'}`}
                           >
                             {link.name}
                           </a>
                         ) : (
-                          <span className="text-[10px] font-black text-white/30 uppercase tracking-widest pt-3 pb-1 px-2">{link.name}</span>
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest pt-3 pb-1 px-2">{link.name}</span>
                         )}
                         <div className="flex flex-col">
                           {link.subLinks?.map((sub) => (
                             <a
                               key={sub.name}
                               href={sub.href}
-                              onClick={(e) => handleNavClick(e, sub.href)}
+                              onClick={(e) => handleNavClickWithActive(e, sub.href, sub.name)}
                               className="flex items-center justify-between py-3.5 px-2 group transition-colors"
                             >
-                              <span className="text-lg font-bold text-[#EEF4FF] group-hover:text-blue-400 transition-colors pl-3 border-l-2 border-blue-500/0 group-hover:border-blue-500">
+                              <span className={`text-lg font-bold transition-colors pl-3 border-l-2 ${activeLink === sub.name ? 'text-brand-primary border-brand-primary' : 'text-slate-800 border-brand-primary/0 group-hover:text-brand-primary group-hover:border-brand-primary'}`}>
                                 {sub.name}
                               </span>
-                              <ChevronRight size={16} className="text-white/20 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" />
+                              <ChevronRight size={16} className="text-slate-300 group-hover:text-brand-primary group-hover:translate-x-1 transition-all" />
                             </a>
                           ))}
                         </div>
@@ -266,13 +273,13 @@ export function Navbar() {
                     ) : (
                       <a
                         href={link.href}
-                        onClick={(e) => handleNavClick(e, link.href as string)}
+                        onClick={(e) => handleNavClickWithActive(e, link.href as string, link.name)}
                         className="flex items-center justify-between py-4 px-2 group transition-colors"
                       >
-                        <span className="text-xl font-bold text-[#EEF4FF] group-hover:text-blue-400 transition-colors">
+                        <span className={`text-xl font-bold transition-colors ${activeLink === link.name ? 'text-brand-primary' : 'text-slate-800 group-hover:text-brand-primary'}`}>
                           {link.name}
                         </span>
-                        <ChevronRight size={18} className="text-white/20 group-hover:text-blue-400 group-hover:translate-x-1 transition-all" />
+                        <ChevronRight size={18} className="text-slate-300 group-hover:text-brand-primary group-hover:translate-x-1 transition-all" />
                       </a>
                     )}
                   </motion.div>
