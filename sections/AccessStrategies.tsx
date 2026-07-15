@@ -4,6 +4,29 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Crown, Gem, Sparkles, TrendingUp, CheckCircle2, XCircle, X, ChevronRight, Infinity as InfinityIcon } from "lucide-react";
 
+const InvestmentGrowthIcon = ({ className, size = 24, ...props }: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    width={size}
+    height={size}
+    className={className}
+    {...props}
+  >
+    <path d="M23 2h-7l3.3 3.3-7.6 7.6-4.3-4.3-5.7 5.7 1.4 1.4 4.3-4.3 4.3 4.3 9-9L23 9V2Z" />
+    <ellipse cx="5" cy="18" rx="3" ry="1.5" />
+    <path d="M2 18.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <ellipse cx="12" cy="15" rx="3" ry="1.5" />
+    <path d="M9 15.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <path d="M9 18v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5V18c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <ellipse cx="19" cy="12" rx="3" ry="1.5" />
+    <path d="M16 12.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <path d="M16 15v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5V15c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <path d="M16 17.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+  </svg>
+);
+
 type Benefit = { label: string; desc: React.ReactNode; eligible: boolean };
 
 const BENEFITS_LABELS = [
@@ -20,7 +43,7 @@ const PLANS = [
     name: "Investment Only",
     tagline: "Pure capital appreciation backed by 24K gold.",
     shortDesc: "Grow your gold, experience luxury on your terms.",
-    icon: TrendingUp,
+    icon: InvestmentGrowthIcon,
     accent: "#D4AF37",
     entryLabel: "Invest",
     entryDetail: "Min. 50g of 24K gold equivalent",
