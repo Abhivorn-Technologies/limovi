@@ -18,11 +18,70 @@ import {
   Infinity as InfinityIcon,
   HandCoins,
   Clock,
-  Lightbulb
+  Lightbulb,
+  IndianRupee
 } from "lucide-react";
 
+const BankWithAtIcon = ({ className, ...props }: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    {...props}
+  >
+    <defs>
+      <mask id="at-mask-dash">
+        <rect width="24" height="24" fill="white" />
+        <text 
+          x="12" y="5.7" 
+          fontSize="4" 
+          fontFamily="system-ui, sans-serif" 
+          fontWeight="900" 
+          textAnchor="middle" 
+          fill="black"
+        >
+          @
+        </text>
+      </mask>
+    </defs>
+    
+    <g mask="url(#at-mask-dash)">
+      <rect x="1" y="21" width="22" height="2" />
+      <rect x="2" y="19" width="20" height="1.5" />
+      <rect x="3.5" y="9" width="3" height="9.5" />
+      <rect x="8" y="9" width="3" height="9.5" />
+      <rect x="13" y="9" width="3" height="9.5" />
+      <rect x="17.5" y="9" width="3" height="9.5" />
+      <rect x="2" y="7" width="20" height="1.5" />
+      <path d="M1 6L12 1l11 5H1z" />
+    </g>
+  </svg>
+);
+
+const InvestmentGrowthIcon = ({ className, ...props }: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    {...props}
+  >
+    <path d="M23 2h-7l3.3 3.3-7.6 7.6-4.3-4.3-5.7 5.7 1.4 1.4 4.3-4.3 4.3 4.3 9-9L23 9V2Z" />
+    <ellipse cx="5" cy="18" rx="3" ry="1.5" />
+    <path d="M2 18.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <ellipse cx="12" cy="15" rx="3" ry="1.5" />
+    <path d="M9 15.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <path d="M9 18v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5V18c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <ellipse cx="19" cy="12" rx="3" ry="1.5" />
+    <path d="M16 12.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <path d="M16 15v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5V15c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <path d="M16 17.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+  </svg>
+);
+
 const STRATEGIES = [
-  { icon: <TrendingUp className="text-brand-gold w-6 h-6" />, title: "Investment Only", desc: "Pure capital appreciation", highlights: [0, 1, 2, 3] },
+  { icon: <InvestmentGrowthIcon className="text-brand-gold w-6 h-6" />, title: "Investment Only", desc: "Pure capital appreciation", highlights: [0, 1, 2, 3] },
   { icon: <InfinityIcon className="text-brand-gold w-6 h-6" />, title: "Enrol & Experience", desc: "Bring your existing jewellery", highlights: [0, 1, 2, 3, 4] },
   { icon: <Sparkles className="text-brand-gold w-6 h-6" />, title: "Investment & Experience", desc: "Buy new gold & access luxury", highlights: [0, 1, 2, 3, 4] },
   { icon: <Gem className="text-brand-gold w-6 h-6" />, title: "Experience Only", desc: "Access without ownership", highlights: [0, 1, 2] },
@@ -35,12 +94,12 @@ const SERVICES = [
     desc: "Unlock premium jewellery experiences through your Gold Balance."
   },
   { 
-    icon: <ShieldCheck className="text-brand-secondary w-7 h-7" />, 
+    icon: <BankWithAtIcon className="text-brand-secondary w-7 h-7" />, 
     title: "Instant Loans", 
     desc: "Backed instantly by your Gold Balance."
   },
   { 
-    icon: <Clock className="text-brand-secondary w-7 h-7" />, 
+    icon: <IndianRupee className="text-brand-secondary w-7 h-7" />, 
     title: "Instant Liquidity", 
     desc: "Convert eligible Gold Balance into cash when needed."
   },

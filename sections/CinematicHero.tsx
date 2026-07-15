@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useCallback, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValue, animate, useSpring } from "framer-motion";
-import { Play, Sparkles, ArrowRight, Zap, TrendingUp, Gift, Infinity as InfinityIcon, Gem, Landmark, HandCoins, ShieldCheck, Clock } from "lucide-react";
+import { Play, Sparkles, ArrowRight, Zap, TrendingUp, Gift, Infinity as InfinityIcon, Gem, Landmark, HandCoins, ShieldCheck, Clock, IndianRupee, Crown } from "lucide-react";
 import { useLenis } from "lenis/react";
 
 const C = {
@@ -15,6 +15,63 @@ const C = {
   textMid:    "#334155",
   textFaint:  "#64748B",
 };
+
+const BankWithAtIcon = ({ className, ...props }: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    {...props}
+  >
+    <defs>
+      <mask id="at-mask-cine">
+        <rect width="24" height="24" fill="white" />
+        <text 
+          x="12" y="5.7" 
+          fontSize="4" 
+          fontFamily="system-ui, sans-serif" 
+          fontWeight="900" 
+          textAnchor="middle" 
+          fill="black"
+        >
+          @
+        </text>
+      </mask>
+    </defs>
+    <g mask="url(#at-mask-cine)">
+      <rect x="1" y="21" width="22" height="2" />
+      <rect x="2" y="19" width="20" height="1.5" />
+      <rect x="3.5" y="9" width="3" height="9.5" />
+      <rect x="8" y="9" width="3" height="9.5" />
+      <rect x="13" y="9" width="3" height="9.5" />
+      <rect x="17.5" y="9" width="3" height="9.5" />
+      <rect x="2" y="7" width="20" height="1.5" />
+      <path d="M1 6L12 1l11 5H1z" />
+    </g>
+  </svg>
+);
+
+const InvestmentGrowthIcon = ({ className, ...props }: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    {...props}
+  >
+    <path d="M23 2h-7l3.3 3.3-7.6 7.6-4.3-4.3-5.7 5.7 1.4 1.4 4.3-4.3 4.3 4.3 9-9L23 9V2Z" />
+    <ellipse cx="5" cy="18" rx="3" ry="1.5" />
+    <path d="M2 18.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <ellipse cx="12" cy="15" rx="3" ry="1.5" />
+    <path d="M9 15.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <path d="M9 18v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5V18c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <ellipse cx="19" cy="12" rx="3" ry="1.5" />
+    <path d="M16 12.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <path d="M16 15v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5V15c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+    <path d="M16 17.5v1.5c0 .8 1.3 1.5 3 1.5s3-.7 3-1.5v-1.5c0 .8-1.3 1.5-3 1.5s-3-.7-3-1.5z" />
+  </svg>
+);
 
 // ─── CUSTOM COLORFUL SVGS (Mimicking references) ──────────────────────────────
 
@@ -439,7 +496,7 @@ function Scene3_Strategies({ progress }: { progress: any }) {
   const opacity = useTransform(progress, [0.40, 0.45, 0.60, 0.65], [0, 1, 1, 0], { clamp: true });
   const visibility = useTransform(progress, [0.39, 0.40, 0.65, 0.66], ["hidden", "visible", "visible", "hidden"]);
   const strategies = [
-    { title: "Investment Only",     desc: "Gold bars grow into a mountain.", pos: "-translate-x-[100px] sm:-translate-x-[190px] lg:-translate-x-[280px] -translate-y-[130px] sm:-translate-y-[155px] lg:-translate-y-[190px]", icon: TrendingUp },
+    { title: "Investment Only",     desc: "Gold bars grow into a mountain.", pos: "-translate-x-[100px] sm:-translate-x-[190px] lg:-translate-x-[280px] -translate-y-[130px] sm:-translate-y-[155px] lg:-translate-y-[190px]", icon: InvestmentGrowthIcon },
     { title: "Enroll & Experience", desc: "Join and unlock luxury.",         pos: "translate-x-[100px] sm:translate-x-[190px] lg:translate-x-[280px] -translate-y-[130px] sm:-translate-y-[155px] lg:-translate-y-[190px]",  icon: InfinityIcon },
     { title: "Invest & Experience", desc: "Grow wealth while you wear.",     pos: "-translate-x-[100px] sm:-translate-x-[190px] lg:-translate-x-[280px] translate-y-[130px] sm:translate-y-[155px] lg:translate-y-[190px]",   icon: Sparkles },
     { title: "Experience Only",     desc: "Wear and return.",                pos: "translate-x-[100px] sm:translate-x-[190px] lg:translate-x-[280px] translate-y-[130px] sm:translate-y-[155px] lg:translate-y-[190px]",    icon: Gem },
@@ -521,9 +578,9 @@ function Scene4_Benefits({ progress }: { progress: any }) {
   const titleY   = useTransform(progress, [0.60, 0.65], [20, 0], { clamp: true });
   const visibility = useTransform(progress, [0.59, 0.60, 0.85, 0.86], ["hidden", "visible", "visible", "hidden"]);
   const portals  = [
-    { title: "Luxury Jewellery Experience", icon: Sparkles },
-    { title: "Instant Loan",                icon: ShieldCheck },
-    { title: "Instant Liquidity",           icon: Clock },
+    { title: "Luxury Jewellery Experience", icon: Crown },
+    { title: "Instant Loan",                icon: BankWithAtIcon },
+    { title: "Instant Liquidity",           icon: IndianRupee },
     { title: "Gift Gold Ecosystem",         icon: Gift },
     { title: "Wealth Generation",           icon: HandCoins },
   ];

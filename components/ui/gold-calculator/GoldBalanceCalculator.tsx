@@ -5,18 +5,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { RefreshCw, ChevronDown, AlertCircle } from 'lucide-react';
 
 import { InvestmentSlider } from './InvestmentSlider';
+import { GramsSlider, ENROL_DEFAULT_GRAMS } from './GramsSlider';
 import { TimelineSelector, type TimelineKey, TIMELINE_YEARS } from './TimelineSelector';
 import { GoldBalanceCoin } from './GoldBalanceCoin';
 import { ResultCards } from './ResultCards';
+import { StrategySelector } from './StrategySelector';
 
 import {
   fetchGoldPrice,
-  fetchGoldPriceOnDate,
-  dateYearsAgo,
   type GoldPriceData,
-  type GoldHistoryData,
 } from '@/lib/services/goldService';
-import { calculateAll, formatINR, formatGrams, formatPercent, type CalculationResult } from '@/lib/utils/calculator';
+import {
+  calculateFutureProjection,
+  calculateForEnrolledGrams,
+  type CalculationResult,
+} from '@/lib/utils/calculator';
+import type { StrategyKey } from '@/lib/constants/strategyRules';
 
 // ─── Animated counter ──────────────────────────────────────────────────────
 function AnimatedNumber({
@@ -66,43 +70,54 @@ function Skeleton({ className, style }: { className?: string; style?: React.CSSP
   );
 }
 
+// ─── Input label ─────────────────────────────────────────────────────────
+function InputLabel({ strategy }: { strategy: StrategyKey }) {
+  const labels: Record<StrategyKey, string> = {
+    investment: 'Gold Balance (grams)',
+    investment_experience: 'Gold Balance (grams)',
+    enrol_experience: 'Current Gold Balance (grams)',
+    experience_only: 'Membership Plan',
+  };
+  return (
+    <p className="text-[9px] font-bold uppercase tracking-widest mb-1.5" style={{ color: '#94a3b8' }}>
+      {labels[strategy]}
+    </p>
+  );
+}
+
 // ─── Main component ───────────────────────────────────────────────────────
 interface GoldBalanceCalculatorProps {
-  investment: number;
-  setInvestment: (val: number) => void;
-  timeline: TimelineKey;
-  setTimeline: (val: TimelineKey) => void;
-  customDate: string;
-  setCustomDate: (val: string) => void;
-  onMinimize: () => void;
+  timeline: TimelineKey | null;
+  setTimeline: (val: TimelineKey | null) => void;
+  strategy: StrategyKey;
+  setStrategy: (val: StrategyKey) => void;
+  /** Unified grams input — used for ALL strategies that involve gold */
+  enrolledGrams: number;
+  setEnrolledGrams: (val: number) => void;
+  onMinimize?: () => void;
 }
 
 export function GoldBalanceCalculator({
-  investment,
-  setInvestment,
   timeline,
   setTimeline,
-  customDate,
-  setCustomDate,
+  strategy,
+  setStrategy,
+  enrolledGrams,
+  setEnrolledGrams,
   onMinimize,
 }: GoldBalanceCalculatorProps) {
 
   const [livePrice, setLivePrice] = useState<GoldPriceData | null>(null);
-  const [histPrice, setHistPrice] = useState<GoldHistoryData | null>(null);
   const [result, setResult] = useState<CalculationResult | null>(null);
 
   const [priceLoading, setPriceLoading] = useState(true);
-  const [histLoading, setHistLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const [coinTrigger, setCoinTrigger] = useState(0);
 
-  // ── Resolve the ISO date for the selected timeline
-  const resolveDate = useCallback((): string | null => {
-    if (timeline === 'custom') return customDate || null;
-    return dateYearsAgo(TIMELINE_YEARS[timeline]);
-  }, [timeline, customDate]);
+  // Derive years from timeline key (for future projection)
+  const years = timeline ? (TIMELINE_YEARS[timeline] ?? 1) : 0;
 
   // ── Load live price
   const loadLivePrice = useCallback(async (forceRefresh = false) => {
@@ -120,19 +135,6 @@ export function GoldBalanceCalculator({
     }
   }, []);
 
-  // ── Load historical price for the selected date
-  const loadHistPrice = useCallback(async (date: string) => {
-    setHistLoading(true);
-    try {
-      const p = await fetchGoldPriceOnDate(date);
-      setHistPrice(p);
-    } catch (e) {
-      console.error('[GoldCalc] hist price error:', e);
-    } finally {
-      setHistLoading(false);
-    }
-  }, []);
-
   // ── Boot: load live price once, refresh every 5 min
   useEffect(() => {
     loadLivePrice();
@@ -140,25 +142,31 @@ export function GoldBalanceCalculator({
     return () => clearInterval(iv);
   }, [loadLivePrice]);
 
-  // ── When timeline changes, fetch the correct historical price
-  useEffect(() => {
-    const date = resolveDate();
-    if (date) loadHistPrice(date);
-  }, [timeline, customDate, resolveDate, loadHistPrice]);
 
   // ── Recalculate whenever any input or price changes
   useEffect(() => {
-    if (!livePrice || !histPrice) return;
-    const next = calculateAll({
-      investmentAmount: investment,
-      historicalPricePerGram: histPrice.price,
+    if (!livePrice) return;
+
+    if (strategy === 'experience_only' || strategy === 'enrol_experience') {
+      const next = calculateForEnrolledGrams(enrolledGrams, livePrice.price, years, strategy === 'experience_only');
+      setResult(next);
+      setCoinTrigger((n) => n + 1);
+      return;
+    }
+
+
+    // Strategies 1 & 2: FUTURE projection (buy today, grow for `years`)
+    const next = calculateFutureProjection({
+      goldBalanceGrams: enrolledGrams,
       currentPricePerGram: livePrice.price,
+      years,
     });
     setResult(next);
     setCoinTrigger((n) => n + 1);
-  }, [investment, livePrice, histPrice]);
+  }, [enrolledGrams, strategy, livePrice, years]);
 
-  const isLoading = priceLoading || histLoading;
+  const needsTimeline = true; // All strategies now use the timeline
+  const isLoading = priceLoading;
 
   return (
     <div className="flex flex-col flex-1 min-h-0 select-none">
@@ -196,7 +204,7 @@ export function GoldBalanceCalculator({
               Gold Balance Calculator
             </h2>
             <p className="text-[10px] mt-0.5 leading-snug font-medium" style={{ color: '#64748b' }}>
-              Estimate your Gold Balance using live 24K gold prices.
+              Estimate your returns using live 24K gold prices.
             </p>
           </div>
 
@@ -239,16 +247,33 @@ export function GoldBalanceCalculator({
         </AnimatePresence>
       </div>
 
-      {/* ── 3-COLUMN INPUTS ───────────────────────────────────────────── */}
-      <div className="px-3 pt-3 pb-0 flex-shrink-0">
+      {/* ── SCROLLABLE BODY ────────────────────────────────────────────── */}
+      <div
+        className="flex-1 overflow-y-auto overscroll-contain px-3 py-3 space-y-3"
+        style={{ scrollbarWidth: 'thin' }}
+        data-lenis-prevent="true"
+      >
+
+        {/* ── STRATEGY SELECTOR ──────────────────────────────────────── */}
+        <StrategySelector selected={strategy} onChange={setStrategy} />
+
+        {/* ── INPUT + LIVE PRICE PANEL ───────────────────────────────── */}
         <div className="grid grid-cols-[1fr_auto_auto] gap-2 items-start">
 
-          {/* LEFT: slider */}
+          {/* LEFT: slider (swaps based on strategy) */}
           <div className="min-w-0">
-            <p className="text-[9px] font-bold uppercase tracking-widest mb-1.5" style={{ color: '#94a3b8' }}>
-              Investment Amount
-            </p>
-            <InvestmentSlider value={investment} onChange={setInvestment} />
+            <InputLabel strategy={strategy} />
+
+              {/* All strategies use grams-based input now */}
+              <motion.div
+                key="strategy-grams"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 10 }}
+                transition={{ duration: 0.2 }}
+              >
+                <GramsSlider value={enrolledGrams} onChange={setEnrolledGrams} />
+              </motion.div>
           </div>
 
           {/* DIVIDER */}
@@ -283,27 +308,26 @@ export function GoldBalanceCalculator({
             </div>
           </div>
         </div>
-      </div>
 
-      {/* ── TIMELINE ──────────────────────────────────────────────────── */}
-      <div className="px-3 pt-3 flex-shrink-0">
-        <TimelineSelector
-          selected={timeline}
-          customDate={customDate}
-          onSelect={setTimeline}
-          onCustomDateChange={setCustomDate}
-        />
-      </div>
+        {/* ── TIMELINE (only for investment strategies) ──────────────── */}
+        <AnimatePresence>
+          {needsTimeline && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <TimelineSelector
+                selected={timeline}
+                onSelect={setTimeline}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* ── DIVIDER ───────────────────────────────────────────────────── */}
-      <div className="mx-3 mt-3 mb-0 h-px" style={{ background: 'linear-gradient(90deg,transparent,rgba(11,98,214,0.12),transparent)' }} />
-
-      {/* ── SCROLLABLE RESULTS ────────────────────────────────────────── */}
-      <div 
-        className="flex-1 overflow-y-auto overscroll-contain px-3 py-3 space-y-3" 
-        style={{ scrollbarWidth: 'thin' }}
-        data-lenis-prevent="true"
-      >
+        {/* ── DIVIDER ───────────────────────────────────────────────── */}
+        <div className="h-px" style={{ background: 'linear-gradient(90deg,transparent,rgba(11,98,214,0.12),transparent)' }} />
 
         {/* CENTER coin */}
         <div
@@ -320,85 +344,29 @@ export function GoldBalanceCalculator({
               <Skeleton className="h-6 w-20" />
             </div>
           ) : (
-            <GoldBalanceCoin grams={result?.goldBalance ?? 0} size="sm" trigger={coinTrigger} />
+            <GoldBalanceCoin
+              grams={enrolledGrams}
+              amount={result?.currentValue ?? 0}
+              size="sm"
+              trigger={coinTrigger}
+            />
           )}
         </div>
 
-        {/* Hist price context */}
-        {histPrice && !histLoading && (
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex items-center justify-between px-3 py-2 rounded-xl text-[10px] font-semibold"
-            style={{
-              background: 'rgba(11,98,214,0.04)',
-              border: '1px solid rgba(11,98,214,0.1)',
-              color: '#64748b',
-            }}
-          >
-            <span>Gold price on {new Date(histPrice.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
-            <span className="font-black" style={{ color: '#0B62D6' }}>
-              ₹{new Intl.NumberFormat('en-IN').format(histPrice.price)}/g
-            </span>
-          </motion.div>
-        )}
-
-        {/* 6 result cards */}
+        {/* Strategy-aware result cards */}
         {isLoading ? (
           <div className="grid grid-cols-2 gap-2">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <Skeleton key={i} className="h-20 rounded-2xl" />
+            {Array.from({ length: 4 }).map((_, i) => (
+              <Skeleton key={i} className={`h-20 rounded-2xl ${i === 3 ? 'col-span-2' : ''}`} />
             ))}
           </div>
         ) : result ? (
-          <ResultCards result={result} />
+          <ResultCards
+            result={result}
+            strategy={strategy}
+            enrolledGrams={enrolledGrams}
+          />
         ) : null}
-
-        {/* Summary strip */}
-        {result && !isLoading && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
-            className="rounded-2xl p-3"
-            style={{
-              background: 'linear-gradient(135deg,rgba(11,98,214,0.06),rgba(0,39,113,0.04))',
-              border: '1px solid rgba(11,98,214,0.12)',
-            }}
-          >
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { label: 'Investment', value: investment, color: '#1e293b', prefix: '₹' },
-                { label: 'Current Value', value: result.currentValue, color: '#1e293b', prefix: '₹' },
-                {
-                  label: 'Profit',
-                  value: result.profit,
-                  color: result.profit >= 0 ? '#16a34a' : '#dc2626',
-                  prefix: result.profit >= 0 ? '+₹' : '-₹',
-                },
-                { label: 'Gold Balance', value: result.goldBalance, color: '#D4AF37', prefix: '', suffix: ' g', decimals: 2 },
-              ].map((row) => (
-                <div key={row.label}>
-                  <p className="text-[9px] font-bold uppercase tracking-wider" style={{ color: '#94a3b8' }}>
-                    {row.label}
-                  </p>
-                  <p className="text-sm font-black mt-0.5" style={{ color: row.color }}>
-                    <AnimatedNumber
-                      value={Math.abs(row.value)}
-                      prefix={row.prefix}
-                      suffix={row.suffix ?? ''}
-                      formatter={
-                        row.label === 'Gold Balance'
-                          ? (v) => `${v.toFixed(2)} g`
-                          : undefined
-                      }
-                    />
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
       </div>
     </div>
   );

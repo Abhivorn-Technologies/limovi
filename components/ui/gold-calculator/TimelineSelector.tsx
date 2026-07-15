@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import { Calendar } from 'lucide-react';
 
-export type TimelineKey = '1Y' | '3Y' | '5Y' | '10Y' | 'custom';
+export type TimelineKey = '1Y' | '3Y' | '5Y' | '10Y';
 
-export const TIMELINE_YEARS: Record<Exclude<TimelineKey, 'custom'>, number> = {
+export const TIMELINE_YEARS: Record<TimelineKey, number> = {
   '1Y': 1,
   '3Y': 3,
   '5Y': 5,
@@ -13,33 +13,23 @@ export const TIMELINE_YEARS: Record<Exclude<TimelineKey, 'custom'>, number> = {
 };
 
 interface TimelineSelectorProps {
-  selected: TimelineKey;
-  customDate: string;
-  onSelect: (key: TimelineKey) => void;
-  onCustomDateChange: (isoDate: string) => void;
+  selected: TimelineKey | null;
+  onSelect: (key: TimelineKey | null) => void;
 }
 
-const PRESETS: { label: string; sub: string; key: Exclude<TimelineKey, 'custom'> }[] = [
-  { label: '1 Year', sub: 'Short', key: '1Y' },
-  { label: '3 Years', sub: 'Mid', key: '3Y' },
-  { label: '5 Years', sub: 'Growth', key: '5Y' },
-  { label: '10 Years', sub: 'Long', key: '10Y' },
+const PRESETS: { label: string; sub: string; key: TimelineKey }[] = [
+  { label: '1 Year', sub: '1Y Ahead', key: '1Y' },
+  { label: '3 Years', sub: '3Y Ahead', key: '3Y' },
+  { label: '5 Years', sub: '5Y Ahead', key: '5Y' },
+  { label: '10 Years', sub: '10Y Ahead', key: '10Y' },
 ];
 
 const minDate = '2000-01-01';
-
-const maxDate = () => {
-  const d = new Date();
-  return d.toISOString().split('T')[0];
-};
-
-export function TimelineSelector({ selected, customDate, onSelect, onCustomDateChange }: TimelineSelectorProps) {
-  const [showPicker, setShowPicker] = useState(selected === 'custom');
-
+export function TimelineSelector({ selected, onSelect }: TimelineSelectorProps) {
   return (
     <div className="space-y-2">
       <p className="text-[10px] font-bold uppercase tracking-widest" style={{ color: '#94a3b8' }}>
-        Investment Timeline
+        Investment Timeline (Projection)
       </p>
 
       <div className="grid grid-cols-4 gap-1.5">
@@ -48,7 +38,7 @@ export function TimelineSelector({ selected, customDate, onSelect, onCustomDateC
           return (
             <button
               key={p.key}
-              onClick={() => { onSelect(p.key); setShowPicker(false); }}
+              onClick={() => { active ? onSelect(null) : onSelect(p.key); }}
               className="flex flex-col items-center py-2.5 rounded-xl text-center transition-all duration-200"
               style={
                 active
@@ -70,38 +60,6 @@ export function TimelineSelector({ selected, customDate, onSelect, onCustomDateC
           );
         })}
       </div>
-
-      {/* Custom date trigger */}
-      <button
-        onClick={() => { onSelect('custom'); setShowPicker(true); }}
-        className="w-full flex items-center gap-2 px-3 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold transition-all duration-200"
-        style={
-          selected === 'custom'
-            ? { background: 'rgba(11,98,214,0.08)', border: '1.5px solid #0B62D6', color: '#0B62D6' }
-            : { background: 'rgba(11,98,214,0.03)', border: '1px dashed rgba(11,98,214,0.25)', color: '#64748b' }
-        }
-      >
-        <Calendar size={12} />
-        <span>Custom Investment Date</span>
-        {selected === 'custom' && customDate && (
-          <span className="ml-auto font-bold opacity-80">
-            {new Date(customDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
-          </span>
-        )}
-      </button>
-
-      {showPicker && (
-        <input
-          type="date"
-          value={customDate}
-          min={minDate}
-          max={maxDate()}
-          onChange={(e) => onCustomDateChange(e.target.value)}
-          className="w-full px-3 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold border outline-none"
-          style={{ borderColor: 'rgba(11,98,214,0.25)', color: '#0B62D6', background: 'rgba(11,98,214,0.04)' }}
-          aria-label="Custom investment date"
-        />
-      )}
     </div>
   );
 }

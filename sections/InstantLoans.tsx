@@ -3,6 +3,43 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, IndianRupee, ShieldCheck, Clock } from "lucide-react";
 
+const BankWithAtIcon = ({ className, ...props }: any) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    {...props}
+  >
+    <defs>
+      <mask id="at-mask">
+        <rect width="24" height="24" fill="white" />
+        <text 
+          x="12" y="5.7" 
+          fontSize="4" 
+          fontFamily="system-ui, sans-serif" 
+          fontWeight="900" 
+          textAnchor="middle" 
+          fill="black"
+        >
+          @
+        </text>
+      </mask>
+    </defs>
+    
+    <g mask="url(#at-mask)">
+      <rect x="1" y="21" width="22" height="2" />
+      <rect x="2" y="19" width="20" height="1.5" />
+      <rect x="3.5" y="9" width="3" height="9.5" />
+      <rect x="8" y="9" width="3" height="9.5" />
+      <rect x="13" y="9" width="3" height="9.5" />
+      <rect x="17.5" y="9" width="3" height="9.5" />
+      <rect x="2" y="7" width="20" height="1.5" />
+      <path d="M1 6L12 1l11 5H1z" />
+    </g>
+  </svg>
+);
+
 const steps = [
   { id: 1, title: "Gold Balance", desc: "Select from your digital vault", icon: <ShieldCheck className="w-6 h-6 text-brand-secondary" /> },
   { id: 2, title: "Instant Verify", desc: "No physical checks needed", icon: <CheckCircle2 className="w-6 h-6 text-brand-primary" /> },
@@ -44,7 +81,7 @@ export function InstantLoans() {
               transition={{ duration: 0.8 }}
             >
               <div className="flex items-center gap-2 mb-4">
-                <ShieldCheck className="text-brand-secondary w-6 h-6" />
+                <BankWithAtIcon className="text-brand-secondary w-6 h-6" />
                 <span className="text-brand-secondary font-bold uppercase tracking-widest text-sm">INSTANT LOANS </span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 tracking-tight">

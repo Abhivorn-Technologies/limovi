@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 
 interface GoldBalanceCoinProps {
   grams: number;
+  /** When provided, the label below the coin shows this ₹ amount instead of grams */
+  amount?: number;
   size?: 'sm' | 'md' | 'lg';
   trigger?: number; // increment to trigger pop animation
 }
@@ -15,7 +17,7 @@ const sizeMap = {
   lg: { coin: 100, icon: 40, glyph: '✦' },
 };
 
-export function GoldBalanceCoin({ grams, size = 'md', trigger = 0 }: GoldBalanceCoinProps) {
+export function GoldBalanceCoin({ grams, amount, size = 'md', trigger = 0 }: GoldBalanceCoinProps) {
   const dims = sizeMap[size];
   const popScale = useMotionValue(1);
   const springScale = useSpring(popScale, { stiffness: 280, damping: 18 });
@@ -122,7 +124,7 @@ export function GoldBalanceCoin({ grams, size = 'md', trigger = 0 }: GoldBalance
           Gold Balance
         </p>
         <motion.p
-          key={Math.round(grams * 100)}
+          key={amount != null ? Math.round(amount) : Math.round(grams * 100)}
           initial={{ scale: 0.8, opacity: 0.4 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 320, damping: 20 }}
@@ -134,8 +136,18 @@ export function GoldBalanceCoin({ grams, size = 'md', trigger = 0 }: GoldBalance
             backgroundClip: 'text',
           }}
         >
-          {grams.toFixed(2)} g
+          {amount != null
+            ? `₹${new Intl.NumberFormat('en-IN').format(Math.round(amount))}`
+            : `${grams.toFixed(2)} g`}
         </motion.p>
+        {amount != null && (
+          <p
+            className="text-[10px] font-semibold mt-0.5"
+            style={{ color: 'rgba(212,175,55,0.6)' }}
+          >
+            {grams.toFixed(2)} g
+          </p>
+        )}
       </div>
     </div>
   );

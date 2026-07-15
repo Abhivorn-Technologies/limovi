@@ -5,6 +5,8 @@ import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { Calculator } from 'lucide-react';
 import { GoldBalanceCalculator } from './GoldBalanceCalculator';
 import type { TimelineKey } from './TimelineSelector';
+import type { StrategyKey } from '@/lib/constants/strategyRules';
+import { ENROL_DEFAULT_GRAMS } from './GramsSlider';
 
 const SESSION_KEY = 'limovi_gc_minimized';
 
@@ -28,9 +30,9 @@ export function FloatingWidgetWrapper() {
   const isMobile = useIsMobile();
 
   // Shared state to remember inputs when minimized / maximized
-  const [investment, setInvestment] = useState(1_00_000);
-  const [timeline, setTimeline] = useState<TimelineKey>('3Y');
-  const [customDate, setCustomDate] = useState('');
+  const [timeline, setTimeline] = useState<TimelineKey | null>('3Y');
+  const [strategy, setStrategy] = useState<StrategyKey>('investment_experience');
+  const [enrolledGrams, setEnrolledGrams] = useState(ENROL_DEFAULT_GRAMS);
 
   useEffect(() => {
     // If they previously opened it in this session, we can restore it,
@@ -207,12 +209,12 @@ export function FloatingWidgetWrapper() {
               </div>
 
               <GoldBalanceCalculator
-                investment={investment}
-                setInvestment={setInvestment}
                 timeline={timeline}
                 setTimeline={setTimeline}
-                customDate={customDate}
-                setCustomDate={setCustomDate}
+                strategy={strategy}
+                setStrategy={setStrategy}
+                enrolledGrams={enrolledGrams}
+                setEnrolledGrams={setEnrolledGrams}
                 onMinimize={minimize}
               />
             </motion.div>

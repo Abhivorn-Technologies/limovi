@@ -49,10 +49,10 @@ export const EXPERIENCE_TIERS: ExperienceTier[] = [
 ];
 
 /** Loan-to-Value ratio used for loan eligibility. Configurable. */
-export const LTV_RATIO = 0.75;
+export const LTV_RATIO = 0.85;
 
 /** Minimum gold balance (grams) required to gift gold */
-export const GIFT_MIN_GRAMS = 0.1;
+export const GIFT_MIN_GRAMS = 50;
 
 /**
  * Returns the experience tier for a given gold balance.
