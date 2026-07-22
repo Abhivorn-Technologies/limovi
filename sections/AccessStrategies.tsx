@@ -29,15 +29,23 @@ const InvestmentGrowthIcon = ({ className, size = 24, ...props }: any) => (
 
 type Benefit = { label: string; desc: React.ReactNode; eligible: boolean };
 
-const BENEFITS_LABELS = [
-  "Jewellery Experience",
-  "Instant Loans",
-  "Instant Liquidity",
-  "Gift Gold Ecosystem",
-  "Jewellery as an Asset",
-];
+interface Plan {
+  id: string;
+  name: string;
+  tagline: string;
+  shortDesc: string;
+  icon: any;
+  accent: string;
+  entryLabel: string;
+  entryDetail: React.ReactNode;
+  exitPolicy: React.ReactNode;
+  fee: string;
+  feeLabel: string;
+  highlight: boolean;
+  benefits: Benefit[];
+}
 
-const PLANS = [
+const PLANS: Plan[] = [
   {
     id: "investment-only",
     name: "Investment Only",
@@ -45,27 +53,28 @@ const PLANS = [
     shortDesc: "Grow your gold, experience luxury on your terms.",
     icon: InvestmentGrowthIcon,
     accent: "#D4AF37",
-    entryLabel: "Invest",
-    entryDetail: "Min. 50g of 24K gold equivalent",
+    entryLabel: "Investment",
+    entryDetail: "Minimum  50 grams of 24 carat gold for Limovi membership benefits.",
+    exitPolicy: "Redeem your gold balance as pure 24K gold or equivalent funds at prevailing market rates.",
     fee: "0.9%",
-    feeLabel: "of jewellery value + ₹1,099 service fee per occasion",
+    feeLabel: "of jewellery value + ₹1,099 service fee per experience",
     highlight: false,
     benefits: [
       { 
-        label: "Luxury Jewellery Experience", 
+        label: "Luxury Jewellery Cloud", 
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
               <div className="font-bold text-white/80">Experience Charges</div>
-              <div className="text-slate-400 mt-0.5">= 0.9% of Selected Jewellery Value</div>
+              <div className="text-slate-400 mt-0.5">= 0.9% of selected jewellery value.</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Service Charges</div>
-              <div className="text-slate-400 mt-0.5">= ₹1,099</div>
+              <div className="text-slate-400 mt-0.5">= ₹1,099 per experience</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Amount Saved on this Experience</div>
-              <div className="text-slate-400 mt-0.5">= 13.1% of Selected Jewellery Value</div>
+              <div className="font-bold text-white/80">Value Unlock</div>
+              <div className="text-slate-400 mt-0.5">= Save 14% on making charges / VA with every jewellery experienced.</div>
             </li>
           </ul>
         ), 
@@ -76,12 +85,12 @@ const PLANS = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="font-bold text-white/80">Maximum Loan Eligibility</div>
-              <div className="text-slate-400 mt-0.5">= 85% of Gold Balance Value</div>
+              
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (T&C)</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Experience</div>
-              <div className="text-slate-400 mt-0.5">= 25-50% of Gold Balance Loan + 25% of Gold Balance Jewellery Experience</div>
+              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
+              <div className="text-slate-400 mt-0.5">= Gold loan of 25–30% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -92,8 +101,8 @@ const PLANS = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="font-bold text-white/80">Maximum Liquidity</div>
-              <div className="text-slate-400 mt-0.5">= Value Equal to Gold Balance According to Current Market Price</div>
+              <div className="text-slate-400 mt-0.5"> Liquidity Amount  Equal to gold balance value.</div>
+              
             </li>
           </ul>
         ), 
@@ -104,15 +113,14 @@ const PLANS = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="font-bold text-white/80">Minimum Gift Card for Benefits of Limovi Gold Ecosystem</div>
-              <div className="text-slate-400 mt-0.5">= 50gm 24K Value</div>
+              <div className="text-slate-400 mt-0.5"> Minimum gifted gold balance to unlock the Limovi Gold Ecosystem is 50 grams.</div>
             </li>
           </ul>
         ), 
         eligible: true 
       },
-      { label: "Jewellery as an Asset", desc: "Not eligible — Investment Only holds pure 24K gold, not a jewellery asset", eligible: false },
-    ] as Benefit[],
+      { label: "Wealth Generation", desc: "Not eligible — Holds pure 24K gold investment", eligible: false },
+    ],
   },
   {
     id: "investment-experience",
@@ -121,27 +129,44 @@ const PLANS = [
     shortDesc: "Invest, wear endlessly, and earn when others choose your piece.",
     icon: Sparkles,
     accent: "#D4AF37",
-    entryLabel: "Invest",
-    entryDetail: <>Min. 50g of 24K <br/> 20% experience + 14% making charges at onboarding</>,
+    entryLabel: "Investment",
+    entryDetail: (
+      <ul className="list-disc list-outside ml-3.5 space-y-0.5 text-[9.5px]">
+        <li>Minimum 50 grams of 24 carat gold for Limovi membership benefits.</li>
+        <li>Convert 80% of your investment into jewellery of your choice (includes gold weight rate + stone rate + GST = 80%), zero-making charge.</li>
+        <li>20% membership fee = lifetime Luxury Jewellery Cloud access + 14% making charge coverage.</li>
+      </ul>
+    ),
+    exitPolicy: (
+      <ul className="list-disc list-outside ml-3.5 space-y-0.5 text-[9.5px]">
+        <li>Redeem your gold balance as pure 24K gold subject to a 14% making charge deduction on the selected ornament.</li>
+        <li>Exit with the selected ornament.</li>
+      </ul>
+    ),
     fee: "₹1,499",
-    feeLabel: "service fee per occasion · 0% experience charge on jewellery",
+    feeLabel: "service fee per experience · 0% fee on 1st two experiences",
     highlight: true,
     benefits: [
       { 
-        label: "Luxury Jewellery Experience", 
+        label: "Luxury Jewellery Cloud", 
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
               <div className="font-bold text-white/80">Experience Charges</div>
-              <div className="text-slate-400 mt-0.5">= 0% of Selected Jewellery Value</div>
+              <div className="text-slate-400 mt-0.5">
+                Zero for first two experiences every year.<br/><br/>
+              </div>
+              <div className="text-slate-400 mt-0.5">
+                0.5% of selected jewellery value from 3rd experience
+              </div>
             </li>
             <li>
               <div className="font-bold text-white/80">Service Charges</div>
-              <div className="text-slate-400 mt-0.5">= ₹1,499</div>
+              <div className="text-slate-400 mt-0.5">= ₹1,499 per experience</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Amount Saved on this Experience</div>
-              <div className="text-slate-400 mt-0.5">= 14% of Selected Jewellery Value</div>
+              <div className="font-bold text-white/80">Value Unlock</div>
+              <div className="text-slate-400 mt-0.5">= Save 28% on making / remodelling charges with every jewellery experience.</div>
             </li>
           </ul>
         ), 
@@ -152,12 +177,11 @@ const PLANS = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="font-bold text-white/80">Maximum Loan Eligibility</div>
-              <div className="text-slate-400 mt-0.5">= 85% of Gold Balance Value</div>
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (T&C)</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Experience</div>
-              <div className="text-slate-400 mt-0.5">= 25-50% of Gold Balance Loan + 25% of Gold Balance Jewellery Experience</div>
+              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
+              <div className="text-slate-400 mt-0.5">= Gold loan of 25–30% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -168,8 +192,7 @@ const PLANS = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="font-bold text-white/80">Maximum Liquidity</div>
-              <div className="text-slate-400 mt-0.5">= Value Equal to Gold Balance According to Current Market Price</div>
+              <div className="text-slate-400 mt-0.5">Liquidity Amount Equal to gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -180,15 +203,25 @@ const PLANS = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="font-bold text-white/80">Minimum Gift Card for Benefits of Limovi Gold Ecosystem</div>
-              <div className="text-slate-400 mt-0.5">= 50gm 24K Value</div>
+              <div className="text-slate-400 mt-0.5">Minimum gifted gold balance to unlock the Limovi Gold Ecosystem is 50 grams.</div>
             </li>
           </ul>
         ), 
         eligible: true 
       },
-      { label: "Jewellery as an Asset", desc: "Earn 25% of experience charges whenever another customer selects your jewellery", eligible: true },
-    ] as Benefit[],
+      { 
+        label: "Wealth Generation", 
+        desc: (
+          <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
+            <li>
+              
+              <div className="text-slate-400 mt-0.5">Turn your jewellery into an earning asset by receiving 25% of its experience value on every experience by others.</div>
+            </li>
+          </ul>
+        ), 
+        eligible: true 
+      },
+    ],
   },
   {
     id: "enrol-experience",
@@ -197,27 +230,28 @@ const PLANS = [
     shortDesc: "Turn your locked jewellery into a living, earning asset.",
     icon: InfinityIcon,
     accent: "#A78BFA",
-    entryLabel: "Enrol",
-    entryDetail: "Existing jewellery worth ≥ 50g of 24K gold",
+    entryLabel: "Investment",
+    entryDetail: "Unlock lifetime Limovi membership benefits by enrolling your existing ornament worth the equivalent of 50 grams of 24-carat gold.",
+    exitPolicy: "Reclaim your enrolled ornament and seamlessly exit the Limovi Gold Ecosystem.",
     fee: "0.9%",
     feeLabel: "of jewellery value + ₹1,099 service fee · earn 25% back",
     highlight: false,
     benefits: [
       { 
-        label: "Luxury Jewellery Experience", 
+        label: "Luxury Jewellery Cloud", 
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
               <div className="font-bold text-white/80">Experience Charges</div>
-              <div className="text-slate-400 mt-0.5">= 0.9% of Selected Jewellery Value</div>
+              <div className="text-slate-400 mt-0.5">= 0.9% of selected jewellery value.</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Service Charges</div>
-              <div className="text-slate-400 mt-0.5">= ₹1,099</div>
+              <div className="text-slate-400 mt-0.5">= ₹1,099 per experience</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Amount Saved on this Experience</div>
-              <div className="text-slate-400 mt-0.5">= 13.1% of Selected Jewellery Value</div>
+              <div className="font-bold text-white/80">Value Unlock</div>
+              <div className="text-slate-400 mt-0.5">= Save 14% on making charges / VA with every jewellery experienced.</div>
             </li>
           </ul>
         ), 
@@ -228,12 +262,11 @@ const PLANS = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="font-bold text-white/80">Maximum Loan Eligibility</div>
-              <div className="text-slate-400 mt-0.5">= 85% of Gold Balance Value</div>
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (T&C)</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Experience</div>
-              <div className="text-slate-400 mt-0.5">= 25-50% of Gold Balance Loan + 25% of Gold Balance Jewellery Experience</div>
+              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
+              <div className="text-slate-400 mt-0.5">= Gold loan of 25–30% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -244,8 +277,7 @@ const PLANS = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="font-bold text-white/80">Maximum Liquidity</div>
-              <div className="text-slate-400 mt-0.5">= Value Equal to Gold Balance According to Current Market Price</div>
+              <div className="text-slate-400 mt-0.5">Liquidity Amount Equal to gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -256,15 +288,25 @@ const PLANS = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="font-bold text-white/80">Minimum Gift Card for Benefits of Limovi Gold Ecosystem</div>
-              <div className="text-slate-400 mt-0.5">= 50gm 24K Value</div>
+              <div className="text-slate-400 mt-0.5">Minimum gifted gold balance to unlock the Limovi Gold Ecosystem is 50 grams.</div>
             </li>
           </ul>
         ), 
         eligible: true 
       },
-      { label: "Jewellery as an Asset", desc: "Earn 25% of experience charges whenever another customer selects your enrolled jewellery", eligible: true },
-    ] as Benefit[],
+      { 
+        label: "Wealth Generation", 
+        desc: (
+          <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
+            <li>
+              
+              <div className="text-slate-400 mt-0.5">Turn your jewellery into an earning asset by receiving 25% of its experience value on every experience by others.</div>
+            </li>
+          </ul>
+        ), 
+        eligible: true 
+      },
+    ],
   },
   {
     id: "experience-only",
@@ -273,27 +315,28 @@ const PLANS = [
     shortDesc: "Ideal for one-time occasions — experience without long-term commitment.",
     icon: Gem,
     accent: "#4DA3FF",
-    entryLabel: "Invest",
-    entryDetail: "Min. 50g of 24K · 24–30 hour experience window",
+    entryLabel: "Investment",
+    entryDetail: "Unlock a world of Limovi benefits with a gold balance valued at 50 grams of 24-carat gold.",
+    exitPolicy: "Redeem your gold balance as pure 24K gold or equivalent funds at onboarding market rates.",
     fee: "0.9%",
-    feeLabel: "of jewellery value + ₹1,099 service fee · short duration",
+    feeLabel: "of jewellery value + ₹1,099 service fee per experience",
     highlight: false,
     benefits: [
       { 
-        label: "Luxury Jewellery Experience", 
+        label: "Luxury Jewellery Cloud", 
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
               <div className="font-bold text-white/80">Experience Charges</div>
-              <div className="text-slate-400 mt-0.5">= 0.9% of Selected Jewellery Value</div>
+              <div className="text-slate-400 mt-0.5">= 0.9% of selected jewellery value.</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Service Charges</div>
-              <div className="text-slate-400 mt-0.5">= ₹1,099</div>
+              <div className="text-slate-400 mt-0.5">= ₹1,099 per experience</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Amount Saved on this Experience</div>
-              <div className="text-slate-400 mt-0.5">= 13.1% of Selected Jewellery Value</div>
+              <div className="font-bold text-white/80">Value Unlock</div>
+              <div className="text-slate-400 mt-0.5">= Save 14% on making charges / VA with every jewellery experienced.</div>
             </li>
           </ul>
         ), 
@@ -304,12 +347,11 @@ const PLANS = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="font-bold text-white/80">Maximum Loan Eligibility</div>
-              <div className="text-slate-400 mt-0.5">= 85% of Gold Balance Value</div>
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (T&C)</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Experience</div>
-              <div className="text-slate-400 mt-0.5">= 25-50% of Gold Balance Loan + 25% of Gold Balance Jewellery Experience</div>
+              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
+              <div className="text-slate-400 mt-0.5">= Gold loan of 25–30% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -320,16 +362,15 @@ const PLANS = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="font-bold text-white/80">Maximum Liquidity</div>
-              <div className="text-slate-400 mt-0.5">= Value Equal to Gold Balance According to Current Market Price</div>
+              <div className="text-slate-400 mt-0.5">Liquidity Amount Equal to gold balance value.</div>
             </li>
           </ul>
         ), 
         eligible: true 
       },
-      { label: "Gift Gold Ecosystem", desc: "Not eligible — short-duration investment window does not support gifting", eligible: false },
-      { label: "Jewellery as an Asset", desc: "Not eligible — short-duration investment window does not qualify for asset earning", eligible: false },
-    ] as Benefit[],
+      { label: "Gift Gold Ecosystem", desc: "Not eligible — Experience Only strategy does not qualify for Gift Gold Ecosystem", eligible: false },
+      { label: "Wealth Generation", desc: "Not eligible — Experience Only strategy does not qualify for Wealth Generation", eligible: false },
+    ],
   },
 ];
 
@@ -382,55 +423,65 @@ export function AccessStrategies() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className={"group relative rounded-3xl border flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 " + (p.highlight ? "border-[#D4AF37]/40 shadow-[0_0_40px_rgba(212,175,55,0.1)]" : "border-white/8 hover:border-white/16")}
+                className={"group relative rounded-2xl border flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 " + (p.highlight ? "border-[#D4AF37]/40 shadow-[0_0_40px_rgba(212,175,55,0.1)]" : "border-white/8 hover:border-white/16")}
                 style={{ background: p.highlight ? "linear-gradient(160deg,rgba(212,175,55,0.08) 0%,rgba(4,15,29,1) 60%)" : "rgba(255,255,255,0.02)" }}
               >
                 {p.highlight && (
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent" />
                 )}
 
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-start justify-between mb-5">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                <div className="p-4 flex-1 flex flex-col">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                       style={{ background: p.accent + "18", border: "1px solid " + p.accent + "30" }}>
-                      <Icon size={18} style={{ color: p.accent }} />
+                      <Icon size={15} style={{ color: p.accent }} />
                     </div>
                     {p.highlight && (
-                      <span className="text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded-full bg-[#D4AF37] text-[#040F1D]">
+                      <span className="text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-[#D4AF37] text-[#040F1D]">
                         Best Value
                       </span>
                     )}
                   </div>
 
-                  <h3 className="font-black text-white text-base mb-1 leading-tight">{p.name}</h3>
-                  <p className="text-slate-500 text-xs leading-relaxed mb-5">{p.shortDesc}</p>
+                  <h3 className="font-black text-white text-sm mb-0.5 leading-tight">{p.name}</h3>
+                  <p className="text-slate-500 text-[10px] leading-snug mb-3">{p.shortDesc}</p>
 
-                  <div className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: p.accent + "80" }}>
-                    {p.entryLabel} Required
+                  <div className="mb-3 pb-3 border-b border-white/5 space-y-2 flex-1">
+                    <div>
+                      <div className="text-[8.5px] font-black uppercase tracking-wider mb-0.5 text-[#D4AF37]">
+                        Investment Required
+                      </div>
+                      <div className="text-[9.5px] text-slate-400 leading-snug">{p.entryDetail}</div>
+                    </div>
+                    <div>
+                      <div className="text-[8.5px] font-black uppercase tracking-wider mb-0.5 text-emerald-400">
+                        Exit Policy
+                      </div>
+                      <div className="text-[9.5px] text-slate-400 leading-snug">{p.exitPolicy}</div>
+                    </div>
                   </div>
-                  <div className="text-xs text-slate-500 mb-5 pb-5 border-b border-white/5">{p.entryDetail}</div>
 
                   <div className="flex items-center gap-1 flex-wrap mt-auto">
                     {p.benefits.map((b, bi) => (
-                      <span key={bi} className={"w-5 h-5 rounded-full flex items-center justify-center " + (b.eligible ? "bg-emerald-500/20" : "bg-white/5")}>
+                      <span key={bi} className={"w-4 h-4 rounded-full flex items-center justify-center " + (b.eligible ? "bg-emerald-500/20" : "bg-white/5")}>
                         {b.eligible
-                          ? <CheckCircle2 size={12} className="text-emerald-400" />
-                          : <XCircle size={12} className="text-slate-700" />
+                          ? <CheckCircle2 size={10} className="text-emerald-400" />
+                          : <XCircle size={10} className="text-slate-700" />
                         }
                       </span>
                     ))}
-                    <span className="text-[10px] text-slate-500 ml-1">{eligibleCount}/5 benefits</span>
+                    <span className="text-[9px] text-slate-500 ml-1">{eligibleCount}/5 benefits</span>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setActivePlan(activePlan === i ? null : i)}
-                  className="flex items-center justify-between px-6 py-4 border-t border-white/5 text-xs font-bold uppercase tracking-widest transition-all duration-300 group-hover:bg-white/3"
+                  className="flex items-center justify-between px-4 py-2.5 border-t border-white/5 text-[9.5px] font-bold uppercase tracking-wider transition-all duration-300 group-hover:bg-white/3"
                   style={{ color: p.accent }}
                 >
                   <span>Explore Strategy</span>
                   <ChevronRight
-                    size={14}
+                    size={12}
                     className={"transition-transform duration-300 " + (activePlan === i ? "rotate-90" : "")}
                   />
                 </button>
@@ -467,15 +518,12 @@ export function AccessStrategies() {
                     <div className="text-slate-500 text-xs mt-0.5">{PLANS[activePlan].tagline}</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-6">
-
-                  <button
-                    onClick={() => setActivePlan(null)}
-                    className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-white/10 hover:text-white transition-all"
-                  >
-                    <X size={14} />
-                  </button>
-                </div>
+                <button
+                  onClick={() => setActivePlan(null)}
+                  className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-white/10 hover:text-white transition-all"
+                >
+                  <X size={14} />
+                </button>
               </div>
 
               <div className="grid grid-cols-5 divide-x divide-white/5">
@@ -548,8 +596,6 @@ export function AccessStrategies() {
                     <X size={14} />
                   </button>
                 </div>
-
-
 
                 <div
                   className="overflow-y-scroll flex-1 min-h-0 py-2"

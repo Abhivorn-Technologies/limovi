@@ -67,25 +67,31 @@ export const STRATEGIES: StrategyMeta[] = [
   },
 ];
 
-// ─── Strategy 2: Investment + Experience ────────────────────────────────────
+// ─── Commercial Business Constants ──────────────────────────────────────────
 
-/**
- * Amount Saved on this Experience = 14% of Selected Jewellery Value.
- * Since Selected Jewellery Value = Gold Balance Value, the savings is 14% of the gold value per year.
- */
+/** Standard Experience Charge (0.9% of Selected Jewellery Value) */
+export const STANDARD_EXPERIENCE_FEE_PCT = 0.009; // 0.9%
+
+/** Service Fee per experience for Investment Only, Enrol, and Experience Only (₹) */
+export const STANDARD_SERVICE_FEE = 1099; // ₹1,099
+
+/** Service Fee per experience for Investment & Experience (₹) */
+export const INVESTMENT_EXP_SERVICE_FEE = 1499; // ₹1,499
+
+/** Making Charge / VA Savings for Investment Only, Enrol, & Experience Only (14%) */
 export const EXPERIENCE_SAVINGS_PCT = 0.14; // 14%
 
-// ─── Strategy 3: Enrol & Experience ─────────────────────────────────────────
+/** Enrol & Experience savings percentage on making charges (14%) */
+export const ENROL_EXPERIENCE_SAVINGS_PCT = 0.14; // 14%
+
+/** Making / Remodelling Charge Savings for Investment & Experience (28%) */
+export const INVESTMENT_EXP_SAVINGS_PCT = 0.28; // 28%
+
+/** Experience charge for Investment & Experience strategy after 2nd experience per year (0.5%) */
+export const INVESTMENT_EXP_FEE_AFTER_2ND_PCT = 0.005; // 0.5%
 
 /**
- * Amount Saved on this Experience = 13.1% of Selected Jewellery Value.
- * For Enrol & Experience, the user pays a 0.9% fee, so they save 13.1% (compared to the standard 14%).
- */
-export const ENROL_EXPERIENCE_SAVINGS_PCT = 0.131; // 13.1%
-
-/**
- * Earn 25% of experience charges whenever another customer selects your jewellery.
- * The experience charge is 14%, so the dividend earned is 25% of that 14%.
+ * Earn 25% of experience charges whenever another customer selects your jewellery / enrolled ornament.
  */
 export const EXPERIENCE_DIVIDEND_PCT = 0.25; // 25%
 
@@ -111,5 +117,6 @@ export const ENROL_MAX_GRAMS = 500;
  * If a user selects fewer than this, show a validation notice.
  */
 export const MIN_INVEST_GRAMS = 50;
+
 
 
