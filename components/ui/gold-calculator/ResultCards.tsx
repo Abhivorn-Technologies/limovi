@@ -3,19 +3,16 @@
 import type { LucideProps } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  TrendingUp,
   Coins,
   Gem,
   CreditCard,
   Sparkles,
   HandCoins,
-  Infinity as InfinityIcon,
-  Plus,
-  Equal,
-  ArrowRight,
-  Crown,
-  Landmark,
   Gift,
+  PieChart,
+  Crown,
+  ShieldCheck,
+  TrendingUp,
 } from 'lucide-react';
 import type { CalculationResult } from '@/lib/utils/calculator';
 import { formatINR, formatGrams, formatPercent } from '@/lib/utils/calculator';
@@ -35,7 +32,7 @@ interface CardData {
   highlight?: boolean;
   /** Full-width card (spans 2 columns) */
   wide?: boolean;
-  /** Custom render override — if set, renders instead of standard layout */
+  /** Custom render override */
   custom?: React.ReactNode;
 }
 
@@ -51,7 +48,6 @@ const item = {
 interface ResultCardsProps {
   result: CalculationResult;
   strategy: StrategyKey;
-  /** For Strategy 3: pre-owned gold grams (used for display label) */
   enrolledGrams?: number;
 }
 
@@ -61,9 +57,9 @@ function goldBalanceCard(result: CalculationResult): CardData {
   return {
     id: 'gold-balance',
     icon: Coins,
-    title: 'Gold Balance',
+    title: 'Gold Balance Value',
     primary: formatGrams(result.goldBalance),
-    secondary: '24K Pure Gold',
+    secondary: `Current Value: ${formatINR(result.currentValue, true)}`,
     accent: '#D4AF37',
     bg: 'rgba(212,175,55,0.07)',
   };
@@ -75,7 +71,7 @@ function giftCard(result: CalculationResult): CardData {
     icon: Gift,
     title: 'Gift Ecosystem',
     primary: result.isGiftEligible ? 'Eligible' : 'Locked',
-    secondary: result.isGiftEligible ? 'Full benefits unlocked' : 'Unlocks at 50g',
+    secondary: result.isGiftEligible ? 'Full benefits unlocked (≥50g)' : 'Requires min 50g gold',
     accent: result.isGiftEligible ? '#16a34a' : '#94a3b8',
     bg: result.isGiftEligible ? 'rgba(22,163,74,0.07)' : 'rgba(148,163,184,0.07)',
   };
@@ -85,7 +81,7 @@ function experienceTierCard(result: CalculationResult): CardData {
   return {
     id: 'experience-tier',
     icon: Gem,
-    title: 'Jewellery Experience',
+    title: 'Jewellery Cloud',
     primary: result.experienceTier.label,
     secondary: result.experienceTier.tagline,
     accent: result.experienceTier.color,
@@ -93,74 +89,105 @@ function experienceTierCard(result: CalculationResult): CardData {
   };
 }
 
-function loanCard(result: CalculationResult, label = 'Loan Eligibility'): CardData {
+function loanCard(result: CalculationResult, label = 'Instant Loan Eligibility'): CardData {
   return {
     id: 'loan',
     icon: CreditCard,
     title: label,
     primary: `Up to ${formatINR(result.loanEligibility, true)}`,
-    secondary: `At ${Math.round(LTV_RATIO * 100)}% LTV`,
-    accent: '#059669',
-    bg: 'rgba(5,150,105,0.07)',
+    secondary: `75% LTV on ${formatGrams(result.goldBalance)} balance`,
+    accent: '#0B62D6',
+    bg: 'rgba(11,98,214,0.07)',
+  };
+}
+
+function totalEcosystemCard(result: CalculationResult): CardData {
+  const years = result.yearsTimeline;
+  return {
+    id: 'total-ecosystem-value',
+    icon: Crown,
+    title: `⭐ Total Strategy Benefit (${years}Y Horizon)`,
+    primary: `${formatINR(result.totalEcosystemValue, true)} (${formatPercent(result.returnPct)})`,
+    secondary: `Combined Making Charge Savings + Dividend Earnings over ${years}Y`,
+    accent: '#D4AF37',
+    bg: 'linear-gradient(135deg, rgba(212,175,55,0.14) 0%, rgba(244,196,48,0.06) 100%)',
+    highlight: true,
+    wide: true,
   };
 }
 
 // ─── Strategy card builders ───────────────────────────────────────────────────
 
 function buildInvestmentOnly(result: CalculationResult): CardData[] {
+  const years = result.yearsTimeline;
   return [
     goldBalanceCard(result),
-
-    loanCard(result),
-    giftCard(result),
     {
       id: 'exp-savings',
       icon: Sparkles,
-      title: 'Experience Savings',
+      title: `${years}Y Making Charge Savings`,
       primary: formatINR(result.experienceSavings, true),
-      secondary: 'Amount saved on luxury jewellery experience',
+      secondary: '14% savings on every jewellery experienced',
       accent: '#D4AF37',
       bg: 'rgba(212,175,55,0.07)',
     },
+    loanCard(result),
+    giftCard(result),
+    totalEcosystemCard(result),
   ];
 }
 
 function buildInvestmentExperience(result: CalculationResult): CardData[] {
+  const years = result.yearsTimeline;
+  const allocationCard: CardData = {
+    id: 'allocation-breakdown',
+    icon: PieChart,
+    title: '80 / 20 Smart Allocation',
+    primary: `80% Jewellery (${formatINR(result.jewelleryAllocation, true)})`,
+    secondary: `20% Membership (${formatINR(result.membershipFeeAllocation, true)}) — 0% Making Charges`,
+    accent: '#0B62D6',
+    bg: 'rgba(11,98,214,0.07)',
+    wide: true,
+  };
+
   return [
     goldBalanceCard(result),
-    experienceTierCard(result),
-    loanCard(result, 'Instant Loan Limit'),
-    giftCard(result),
+    allocationCard,
     {
       id: 'wealth-growth',
       icon: HandCoins,
-      title: 'Wealth Generation',
+      title: `${years}Y Wealth Generation Earning`,
       primary: formatINR(result.experienceEarnings, true),
-      secondary: '25% commercial dividend',
-      accent: '#0B62D6',
-      bg: 'rgba(11,98,214,0.07)',
+      secondary: '25% commercial dividend when experienced by others',
+      accent: '#7C3AED',
+      bg: 'rgba(124,58,237,0.07)',
+      highlight: true,
     },
     {
       id: 'exp-savings',
       icon: Sparkles,
-      title: 'Experience Savings',
+      title: `${years}Y Making Charge Savings`,
       primary: formatINR(result.experienceSavings, true),
-      secondary: 'Amount saved on luxury jewellery experience',
+      secondary: '28% coverage + 0% fee on 1st two experiences/yr',
       accent: '#D4AF37',
       bg: 'rgba(212,175,55,0.07)',
     },
+    loanCard(result, 'Instant Loan Limit'),
+    giftCard(result),
+    totalEcosystemCard(result),
   ];
 }
 
 function buildEnrolExperience(result: CalculationResult): CardData[] {
+  const years = result.yearsTimeline;
   const earningsCard: CardData = {
     id: 'wealth-generation',
     icon: HandCoins,
-    title: '💎 Wealth Generation',
+    title: `💎 ${years}Y Wealth Generation Dividends`,
     primary: formatINR(result.experienceEarnings, true),
-    secondary: 'Est. total income from enrolled gold',
+    secondary: '25% passive income earned from enrolled gold',
     accent: '#7C3AED',
-    bg: 'rgba(124,58,237,0.07)',
+    bg: 'rgba(124,58,237,0.09)',
     highlight: true,
     wide: true,
   };
@@ -171,27 +198,29 @@ function buildEnrolExperience(result: CalculationResult): CardData[] {
       icon: Coins,
       title: 'Current Gold Balance',
       primary: formatGrams(result.goldBalance),
-      secondary: '24K enrolled gold',
+      secondary: `24K Enrolled Gold (${formatINR(result.currentValue, true)})`,
       accent: '#D4AF37',
       bg: 'rgba(212,175,55,0.07)',
     },
     experienceTierCard(result),
-    loanCard(result, 'Loan Eligibility'),
-    giftCard(result),
+    earningsCard,
     {
       id: 'exp-savings',
       icon: Sparkles,
-      title: 'Experience Savings',
+      title: `${years}Y Making Charge Savings`,
       primary: formatINR(result.experienceSavings, true),
-      secondary: 'Amount saved on luxury jewellery experience',
+      secondary: '14% savings on every jewellery experienced',
       accent: '#D4AF37',
       bg: 'rgba(212,175,55,0.07)',
     },
-    earningsCard,
+    loanCard(result, 'Loan Eligibility'),
+    giftCard(result),
+    totalEcosystemCard(result),
   ];
 }
 
 function buildExperienceOnly(result: CalculationResult): CardData[] {
+  const years = result.yearsTimeline;
   return [
     goldBalanceCard(result),
     experienceTierCard(result),
@@ -199,18 +228,29 @@ function buildExperienceOnly(result: CalculationResult): CardData[] {
     {
       id: 'exp-savings',
       icon: Sparkles,
-      title: 'Experience Savings',
+      title: `${years}Y Luxury Access Savings`,
       primary: formatINR(result.experienceSavings, true),
-      secondary: 'Amount saved on luxury jewellery experience',
+      secondary: '14% savings vs purchasing luxury jewellery',
       accent: '#D4AF37',
       bg: 'rgba(212,175,55,0.07)',
     },
+    {
+      id: 'gift-locked',
+      icon: ShieldCheck,
+      title: 'Gift Ecosystem & Wealth Gen',
+      primary: 'Not Eligible',
+      secondary: 'Experience-only tier excludes passive earning & gifting',
+      accent: '#94a3b8',
+      bg: 'rgba(148,163,184,0.07)',
+      wide: true,
+    },
+    totalEcosystemCard(result),
   ];
 }
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
-export function ResultCards({ result, strategy, enrolledGrams }: ResultCardsProps) {
+export function ResultCards({ result, strategy }: ResultCardsProps) {
   let cards: CardData[];
   switch (strategy) {
     case 'investment':
@@ -232,7 +272,7 @@ export function ResultCards({ result, strategy, enrolledGrams }: ResultCardsProp
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        key={strategy}
+        key={`${strategy}-${result.yearsTimeline}`}
         variants={list}
         initial="hidden"
         animate="show"
@@ -255,7 +295,6 @@ export function ResultCards({ result, strategy, enrolledGrams }: ResultCardsProp
                 boxShadow: card.highlight ? `0 4px 16px ${card.accent}18` : undefined,
               }}
             >
-              {/* Custom layout override */}
               {card.custom ? (
                 card.custom
               ) : (

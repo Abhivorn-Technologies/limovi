@@ -40,7 +40,7 @@ export const STRATEGIES: StrategyMeta[] = [
     key: 'investment',
     label: 'Investment Only',
     shortLabel: 'Invest',
-    desc: 'Pure capital appreciation',
+    desc: 'Build long-term wealth with the flexibility to access luxury whenever you choose.',
     emoji: '📈',
   },
   {
@@ -48,26 +48,35 @@ export const STRATEGIES: StrategyMeta[] = [
     label: 'Investment + Experience',
     badge: '⭐ Best Value',
     shortLabel: 'Invest + Exp',
-    desc: 'Buy gold & access luxury',
+    desc: 'Invest once, experience luxury, and unlock additional earning potential.',
     emoji: '💫',
   },
   {
     key: 'enrol_experience',
     label: 'Enrol & Experience',
     shortLabel: 'Enrol',
-    desc: 'Bring your existing jewellery',
+    desc: 'Keep your treasured jewellery. Experience designer pieces and earn passive income.',
     emoji: '💎',
   },
   {
     key: 'experience_only',
     label: 'Experience Only',
     shortLabel: 'Experience',
-    desc: 'Access without ownership',
+    desc: 'Access premium jewellery whenever you need it—without ownership',
     emoji: '✨',
   },
 ];
 
 // ─── Commercial Business Constants ──────────────────────────────────────────
+
+/** Estimated annual compound growth rate for 24K gold in INR (10.5% p.a.) */
+export const GOLD_ESTIMATED_CAGR = 0.105; // 10.5% p.a.
+
+/** Strategy 2: Percentage of gold investment converted directly into 24K jewellery (80%) */
+export const INVESTMENT_EXP_JEWELLERY_ALLOC_PCT = 0.80; // 80%
+
+/** Strategy 2: Percentage of investment allocated for membership & making charge protection (20%) */
+export const INVESTMENT_EXP_MEMBERSHIP_FEE_PCT = 0.20; // 20%
 
 /** Standard Experience Charge (0.9% of Selected Jewellery Value) */
 export const STANDARD_EXPERIENCE_FEE_PCT = 0.009; // 0.9%
@@ -117,6 +126,7 @@ export const ENROL_MAX_GRAMS = 500;
  * If a user selects fewer than this, show a validation notice.
  */
 export const MIN_INVEST_GRAMS = 50;
+
 
 
 

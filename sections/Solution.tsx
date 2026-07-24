@@ -20,7 +20,7 @@ export function Solution() {
   const benefits = [
     {
       icon: <Sparkles className="w-5 h-5 text-blue-500" />,
-      title: "Jewellery Experience",
+      title: "Luxury Jewellery Cloud",
       desc: "Unlock premium jewellery experiences through your Gold Balance."
     },
     {

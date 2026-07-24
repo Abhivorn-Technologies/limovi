@@ -499,7 +499,7 @@ function Scene3_Strategies({ progress }: { progress: any }) {
     { title: "Investment Only",     desc: "Gold bars grow into a mountain.", pos: "-translate-x-[100px] sm:-translate-x-[190px] lg:-translate-x-[280px] -translate-y-[130px] sm:-translate-y-[155px] lg:-translate-y-[190px]", icon: InvestmentGrowthIcon },
     { title: "Enroll & Experience", desc: "Join and unlock luxury.",         pos: "translate-x-[100px] sm:translate-x-[190px] lg:translate-x-[280px] -translate-y-[130px] sm:-translate-y-[155px] lg:-translate-y-[190px]",  icon: InfinityIcon },
     { title: "Invest & Experience", desc: "Grow wealth while you wear.",     pos: "-translate-x-[100px] sm:-translate-x-[190px] lg:-translate-x-[280px] translate-y-[130px] sm:translate-y-[155px] lg:translate-y-[190px]",   icon: Sparkles },
-    { title: "Experience Only",     desc: "Wear and return.",                pos: "translate-x-[100px] sm:translate-x-[190px] lg:translate-x-[280px] translate-y-[130px] sm:translate-y-[155px] lg:translate-y-[190px]",    icon: Gem },
+    { title: "Experience Only",     desc: "Access luxury without ownership.", pos: "translate-x-[100px] sm:translate-x-[190px] lg:translate-x-[280px] translate-y-[130px] sm:translate-y-[155px] lg:translate-y-[190px]",    icon: Gem },
   ];
   return (
     <motion.div style={{ opacity, visibility }} className="absolute inset-0 flex items-center justify-center overflow-hidden">
@@ -578,7 +578,7 @@ function Scene4_Benefits({ progress }: { progress: any }) {
   const titleY   = useTransform(progress, [0.60, 0.65], [20, 0], { clamp: true });
   const visibility = useTransform(progress, [0.59, 0.60, 0.85, 0.86], ["hidden", "visible", "visible", "hidden"]);
   const portals  = [
-    { title: "Luxury Jewellery Experience", icon: Crown },
+    { title: "Luxury Jewellery Cloud",       icon: Crown },
     { title: "Instant Loan",                icon: BankWithAtIcon },
     { title: "Instant Liquidity",           icon: IndianRupee },
     { title: "Gift Gold Ecosystem",         icon: Gift },
@@ -607,7 +607,7 @@ function Scene5_Ending({ progress }: { progress: any }) {
   const rings = [
     { size: "w-[360px] h-[360px] lg:w-[580px] lg:h-[580px]", duration: 40, reverse: false, color: "border-slate-300", items: ["Instant Loan", "Instant Liquidity"] },
     { size: "w-[280px] h-[280px] lg:w-[440px] lg:h-[440px]", duration: 25, reverse: true, color: "border-[#D4AF37]/50", items: ["Investment", "Wealth Generation"] },
-    { size: "w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]", duration: 15, reverse: false, color: "border-[#D4AF37]/80", items: ["Luxury Jewellery Experience", "Gift Gold Ecosystem"] },
+    { size: "w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]", duration: 15, reverse: false, color: "border-[#D4AF37]/80", items: ["Luxury Jewellery Cloud", "Gift Gold Ecosystem"] },
   ];
 
   return (

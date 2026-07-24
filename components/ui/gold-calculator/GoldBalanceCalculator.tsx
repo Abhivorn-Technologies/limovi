@@ -147,19 +147,11 @@ export function GoldBalanceCalculator({
   useEffect(() => {
     if (!livePrice) return;
 
-    if (strategy === 'experience_only' || strategy === 'enrol_experience') {
-      const next = calculateForEnrolledGrams(enrolledGrams, livePrice.price, years, strategy === 'experience_only');
-      setResult(next);
-      setCoinTrigger((n) => n + 1);
-      return;
-    }
-
-
-    // Strategies 1 & 2: FUTURE projection (buy today, grow for `years`)
     const next = calculateFutureProjection({
       goldBalanceGrams: enrolledGrams,
       currentPricePerGram: livePrice.price,
       years,
+      strategy,
     });
     setResult(next);
     setCoinTrigger((n) => n + 1);

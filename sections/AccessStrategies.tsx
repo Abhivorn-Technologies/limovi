@@ -50,11 +50,11 @@ const PLANS: Plan[] = [
     id: "investment-only",
     name: "Investment Only",
     tagline: "Pure capital appreciation backed by 24K gold.",
-    shortDesc: "Grow your gold, experience luxury on your terms.",
+    shortDesc: "Build long-term wealth with the flexibility to access luxury whenever you choose.",
     icon: InvestmentGrowthIcon,
     accent: "#D4AF37",
     entryLabel: "Investment",
-    entryDetail: "Minimum  50 grams of 24 carat gold for Limovi membership benefits.",
+    entryDetail: "Minimum 50 grams for Limovi membership benefits.",
     exitPolicy: "Redeem your gold balance as pure 24K gold or equivalent funds at prevailing market rates.",
     fee: "0.9%",
     feeLabel: "of jewellery value + ₹1,099 service fee per experience",
@@ -70,11 +70,11 @@ const PLANS: Plan[] = [
             </li>
             <li>
               <div className="font-bold text-white/80">Service Charges</div>
-              <div className="text-slate-400 mt-0.5">= ₹1,099 per experience</div>
+              <div className="text-slate-400 mt-0.5">= ₹1,099 per experience.</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Value Unlock</div>
-              <div className="text-slate-400 mt-0.5">= Save 14% on making charges / VA with every jewellery experienced.</div>
+              <div className="text-slate-400 mt-0.5">= Save 14% on remodelling charges with every jewellery experienced.</div>
             </li>
           </ul>
         ), 
@@ -86,7 +86,7 @@ const PLANS: Plan[] = [
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
               
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (T&C)</div>
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
@@ -113,7 +113,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5"> Minimum gifted gold balance to unlock the Limovi Gold Ecosystem is 50 grams.</div>
+              <div className="text-slate-400 mt-0.5">Minimum gold balance to unlock the Limovi Gold Ecosystem is 50 grams 24K gold.</div>
             </li>
           </ul>
         ), 
@@ -126,13 +126,13 @@ const PLANS: Plan[] = [
     id: "investment-experience",
     name: "Investment & Experience",
     tagline: "The complete luxury membership — zero experience charges.",
-    shortDesc: "Invest, wear endlessly, and earn when others choose your piece.",
+    shortDesc: "Invest once, experience luxury, and unlock additional earning potential.",
     icon: Sparkles,
     accent: "#D4AF37",
     entryLabel: "Investment",
     entryDetail: (
       <ul className="list-disc list-outside ml-3.5 space-y-0.5 text-[9.5px]">
-        <li>Minimum 50 grams of 24 carat gold for Limovi membership benefits.</li>
+        <li>Minimum 50 grams for Limovi membership benefits.</li>
         <li>Convert 80% of your investment into jewellery of your choice (includes gold weight rate + stone rate + GST = 80%), zero-making charge.</li>
         <li>20% membership fee = lifetime Luxury Jewellery Cloud access + 14% making charge coverage.</li>
       </ul>
@@ -162,11 +162,11 @@ const PLANS: Plan[] = [
             </li>
             <li>
               <div className="font-bold text-white/80">Service Charges</div>
-              <div className="text-slate-400 mt-0.5">= ₹1,499 per experience</div>
+              <div className="text-slate-400 mt-0.5">= ₹1,499 per experience.</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Value Unlock</div>
-              <div className="text-slate-400 mt-0.5">= Save 28% on making / remodelling charges with every jewellery experience.</div>
+              <div className="text-slate-400 mt-0.5">= Save 28% on remodelling charges with every jewellery experience.</div>
             </li>
           </ul>
         ), 
@@ -177,7 +177,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (T&C)</div>
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
@@ -203,7 +203,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Minimum gifted gold balance to unlock the Limovi Gold Ecosystem is 50 grams.</div>
+              <div className="text-slate-400 mt-0.5">Minimum gold balance to unlock the Limovi Gold Ecosystem is 50 grams 24K gold.</div>
             </li>
           </ul>
         ), 
@@ -227,11 +227,11 @@ const PLANS: Plan[] = [
     id: "enrol-experience",
     name: "Enrol & Experience",
     tagline: "Bring your existing jewellery. Wear new. Earn in return.",
-    shortDesc: "Turn your locked jewellery into a living, earning asset.",
+    shortDesc: "Keep your treasured jewellery exactly as it is. Experience unlimited designer jewellery, earn passive income from your enrolled pieces, and save significantly on remodelling and making charges.",
     icon: InfinityIcon,
     accent: "#A78BFA",
     entryLabel: "Investment",
-    entryDetail: "Unlock lifetime Limovi membership benefits by enrolling your existing ornament worth the equivalent of 50 grams of 24-carat gold.",
+    entryDetail: "Unlock lifetime Limovi membership benefits by enrolling your existing ornament worth the equivalent of 50 grams.",
     exitPolicy: "Reclaim your enrolled ornament and seamlessly exit the Limovi Gold Ecosystem.",
     fee: "0.9%",
     feeLabel: "of jewellery value + ₹1,099 service fee · earn 25% back",
@@ -247,11 +247,11 @@ const PLANS: Plan[] = [
             </li>
             <li>
               <div className="font-bold text-white/80">Service Charges</div>
-              <div className="text-slate-400 mt-0.5">= ₹1,099 per experience</div>
+              <div className="text-slate-400 mt-0.5">= ₹1,099 per experience.</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Value Unlock</div>
-              <div className="text-slate-400 mt-0.5">= Save 14% on making charges / VA with every jewellery experienced.</div>
+              <div className="text-slate-400 mt-0.5">= Save 14% on remodelling charges with every jewellery experienced.</div>
             </li>
           </ul>
         ), 
@@ -262,7 +262,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (T&C)</div>
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
@@ -288,7 +288,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Minimum gifted gold balance to unlock the Limovi Gold Ecosystem is 50 grams.</div>
+              <div className="text-slate-400 mt-0.5">Minimum gold balance to unlock the Limovi Gold Ecosystem is 50 grams 24K gold.</div>
             </li>
           </ul>
         ), 
@@ -312,11 +312,11 @@ const PLANS: Plan[] = [
     id: "experience-only",
     name: "Experience Only",
     tagline: "Short-duration access. Pure luxury on demand.",
-    shortDesc: "Ideal for one-time occasions — experience without long-term commitment.",
+    shortDesc: "Access premium jewellery whenever you need it—without ownership",
     icon: Gem,
     accent: "#4DA3FF",
     entryLabel: "Investment",
-    entryDetail: "Unlock a world of Limovi benefits with a gold balance valued at 50 grams of 24-carat gold.",
+    entryDetail: "Unlock a world of Limovi benefits with a gold balance valued at 50 grams.",
     exitPolicy: "Redeem your gold balance as pure 24K gold or equivalent funds at onboarding market rates.",
     fee: "0.9%",
     feeLabel: "of jewellery value + ₹1,099 service fee per experience",
@@ -332,11 +332,11 @@ const PLANS: Plan[] = [
             </li>
             <li>
               <div className="font-bold text-white/80">Service Charges</div>
-              <div className="text-slate-400 mt-0.5">= ₹1,099 per experience</div>
+              <div className="text-slate-400 mt-0.5">= ₹1,099 per experience.</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Value Unlock</div>
-              <div className="text-slate-400 mt-0.5">= Save 14% on making charges / VA with every jewellery experienced.</div>
+              <div className="text-slate-400 mt-0.5">= Save 14% on remodelling charges with every jewellery experienced.</div>
             </li>
           </ul>
         ), 
@@ -347,7 +347,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (T&C)</div>
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
@@ -406,9 +406,10 @@ export function AccessStrategies() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-slate-500 text-sm max-w-sm"
+            className="text-slate-500 text-xs max-w-lg leading-relaxed text-left"
           >
-            Every strategy unlocks the full Jewellery Cloud. Each comes with its own set of benefits and earning potential.
+            Select the strategy that best fits your lifestyle and financial goals.<br className="hidden sm:block" />
+            Each option offers a tailored mix of ecosystem benefits and wealth-building opportunities.
           </motion.p>
         </div>
 
@@ -515,7 +516,7 @@ export function AccessStrategies() {
                   })()}
                   <div>
                     <div className="font-black text-white">{PLANS[activePlan].name}</div>
-                    <div className="text-slate-500 text-xs mt-0.5">{PLANS[activePlan].tagline}</div>
+                    <div className="text-slate-500 text-xs mt-0.5">{PLANS[activePlan].shortDesc}</div>
                   </div>
                 </div>
                 <button
@@ -586,7 +587,7 @@ export function AccessStrategies() {
                     })()}
                     <div>
                       <div className="font-black text-white text-sm">{PLANS[activePlan].name}</div>
-                      <div className="text-slate-500 text-[11px] mt-0.5 line-clamp-1">{PLANS[activePlan].tagline}</div>
+                      <div className="text-slate-500 text-[11px] mt-0.5 line-clamp-1">{PLANS[activePlan].shortDesc}</div>
                     </div>
                   </div>
                   <button
