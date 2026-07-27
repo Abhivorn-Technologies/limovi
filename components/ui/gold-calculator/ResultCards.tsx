@@ -99,16 +99,16 @@ function moneyEarnedSavedCard(result: CalculationResult): CardData {
 
         <div className="space-y-1 text-[10px]">
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
-            <span>On Luxury Jewellery ({result.luxuryExperiencesPerYear} exp/yr @ 14% savings):</span>
+            <span>On Luxury Jewellery ({result.luxuryExperiencesPerYear} exp @ 14% savings):</span>
             <span className="font-bold text-emerald-600 dark:text-emerald-400">{formatINR(result.luxurySavingsTotal)}</span>
           </div>
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
-            <span>On Lifestyle Jewellery ({result.lifestyleExperiencesPerYear} exp/yr @ 7% savings):</span>
+            <span>On Lifestyle Jewellery ({result.lifestyleExperiencesPerYear} exp @ 7% savings):</span>
             <span className="font-bold text-emerald-600 dark:text-emerald-400">{formatINR(result.lifestyleSavingsTotal)}</span>
           </div>
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
             <div>
-              <div>Wealth Generated (25% dividend payout):</div>
+              <div>Wealth Generated (25% dividend payout on every experience charge):</div>
               {isWealthEligible && (
                 <div className="text-[8.5px] text-slate-400 font-medium">*Calculated with a minimum of 5 experiences per year</div>
               )}

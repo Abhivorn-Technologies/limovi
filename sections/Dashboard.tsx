@@ -214,7 +214,7 @@ export function Dashboard() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="flex-1"
+            className="flex-1 flex flex-col justify-center lg:pt-12"
           >
             <h3 className="text-2xl font-bold text-brand-primary mb-8 flex items-center justify-center lg:justify-start gap-3">
               Investment Strategies

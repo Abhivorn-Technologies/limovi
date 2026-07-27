@@ -83,7 +83,7 @@ export function Solution() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="lg:mt-12"
+            className="flex-1 flex flex-col justify-center lg:pt-12"
           >
             <div className="flex items-center gap-4 mb-8">
               <h3 className="text-2xl font-bold text-[#005CB9]">Investment Strategies</h3>
