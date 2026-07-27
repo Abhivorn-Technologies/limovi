@@ -11,6 +11,7 @@ import { GoldBalanceCoin } from './GoldBalanceCoin';
 import { ResultCards } from './ResultCards';
 import { StrategySelector } from './StrategySelector';
 
+import { JewelleryExperiencesSelector } from './JewelleryExperiencesSelector';
 import {
   fetchGoldPrice,
   type GoldPriceData,
@@ -116,6 +117,10 @@ export function GoldBalanceCalculator({
 
   const [coinTrigger, setCoinTrigger] = useState(0);
 
+  // Experience counts per year (Section 6 of Blueprint Note 1)
+  const [luxuryCount, setLuxuryCount] = useState(1);
+  const [lifestyleCount, setLifestyleCount] = useState(1);
+
   // Derive years from timeline key (for future projection)
   const years = timeline ? (TIMELINE_YEARS[timeline] ?? 1) : 0;
 
@@ -152,10 +157,12 @@ export function GoldBalanceCalculator({
       currentPricePerGram: livePrice.price,
       years,
       strategy,
+      luxuryExperiencesPerYear: luxuryCount,
+      lifestyleExperiencesPerYear: lifestyleCount,
     });
     setResult(next);
     setCoinTrigger((n) => n + 1);
-  }, [enrolledGrams, strategy, livePrice, years]);
+  }, [enrolledGrams, strategy, livePrice, years, luxuryCount, lifestyleCount]);
 
   const needsTimeline = true; // All strategies now use the timeline
   const isLoading = priceLoading;
@@ -300,6 +307,14 @@ export function GoldBalanceCalculator({
             </div>
           </div>
         </div>
+
+        {/* ── JEWELLERY EXPERIENCES PER YEAR (SECTION 6) ───────────── */}
+        <JewelleryExperiencesSelector
+          luxuryCount={luxuryCount}
+          setLuxuryCount={setLuxuryCount}
+          lifestyleCount={lifestyleCount}
+          setLifestyleCount={setLifestyleCount}
+        />
 
         {/* ── TIMELINE (only for investment strategies) ──────────────── */}
         <AnimatePresence>

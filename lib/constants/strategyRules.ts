@@ -53,8 +53,8 @@ export const STRATEGIES: StrategyMeta[] = [
   },
   {
     key: 'enrol_experience',
-    label: 'Enrol & Experience',
-    shortLabel: 'Enrol',
+    label: 'Enroll & Experience',
+    shortLabel: 'Enroll',
     desc: 'Keep your treasured jewellery. Experience designer pieces and earn passive income.',
     emoji: '💎',
   },
@@ -104,6 +104,12 @@ export const INVESTMENT_EXP_FEE_AFTER_2ND_PCT = 0.005; // 0.5%
  */
 export const EXPERIENCE_DIVIDEND_PCT = 0.25; // 25%
 
+/** Savings percentage on Luxury Jewellery Experience (14% of Gold Value) */
+export const LUXURY_JEWELLERY_SAVINGS_PCT = 0.14; // 14%
+
+/** Savings percentage on Lifestyle Jewellery Experience (7% of Gold Value) */
+export const LIFESTYLE_JEWELLERY_SAVINGS_PCT = 0.07; // 7%
+
 // ─── Strategy 4: Experience Only ─────────────────────────────────────────────
 
 /** Annual membership / subscription cost for Experience Only tier */
@@ -118,7 +124,7 @@ export const EXPERIENCE_ONLY_LUXURY_SAVINGS_ANNUAL = 1_50_000; // ₹
 export const ENROL_DEFAULT_GRAMS = 50;
 
 /** Min / max gold grams for the Enrol & Experience grams slider */
-export const ENROL_MIN_GRAMS = 1;
+export const ENROL_MIN_GRAMS = 50;
 export const ENROL_MAX_GRAMS = 500;
 
 /**
@@ -126,6 +132,31 @@ export const ENROL_MAX_GRAMS = 500;
  * If a user selects fewer than this, show a validation notice.
  */
 export const MIN_INVEST_GRAMS = 50;
+
+// ─── Value-Added (More Than Money) Comparison Benefits ──────────────────────
+
+export const VALUE_ADDED_BENEFITS = [
+  {
+    title: 'Save Valuable Time',
+    desc: 'No branch visits, paperwork, or lengthy processing. Access liquidity and benefits seamlessly.',
+  },
+  {
+    title: 'Save Time and Effort',
+    desc: 'Eliminate the hassle of pledging, redeeming, transporting, or managing physical gold.',
+  },
+  {
+    title: 'Avoid Social Stigma',
+    desc: 'Access liquidity and financial flexibility privately without the embarrassment often associated with gold loans.',
+  },
+  {
+    title: 'Never Sacrifice Your Jewellery Experience',
+    desc: 'Continue enjoying premium jewellery experiences while your wealth remains invested in gold.',
+  },
+  {
+    title: 'No Repayment Stress',
+    desc: 'No EMIs, monthly instalments, or fear of loan defaults. Experience financial freedom without repayment pressure.',
+  },
+];
 
 
 

@@ -17,6 +17,9 @@ import {
   INVESTMENT_EXP_MEMBERSHIP_FEE_PCT,
   EXPERIENCE_SAVINGS_PCT,
   INVESTMENT_EXP_SAVINGS_PCT,
+  LUXURY_JEWELLERY_SAVINGS_PCT,
+  LIFESTYLE_JEWELLERY_SAVINGS_PCT,
+  STANDARD_EXPERIENCE_FEE_PCT,
   EXPERIENCE_DIVIDEND_PCT,
   EXPERIENCE_ONLY_LUXURY_SAVINGS_ANNUAL,
   EXPERIENCE_ONLY_MEMBERSHIP_ANNUAL_COST,
@@ -47,12 +50,20 @@ export interface CalculationResult {
   jewelleryAllocation: number;   // ₹ (80% of investment converted to jewellery)
   membershipFeeAllocation: number;// ₹ (20% membership fee)
 
+  // ── Blueprint Specific Calculation Breakdown ──────────────────────────────
+  luxuryExperiencesPerYear: number;
+  lifestyleExperiencesPerYear: number;
+  luxurySavingsTotal: number;     // ₹ (14% of Gold Value × Luxury Exps/Yr × Years)
+  lifestyleSavingsTotal: number;  // ₹ (7% of Gold Value × Lifestyle Exps/Yr × Years)
+  wealthGenTotal: number;         // ₹ (25% of 0.9% of Gold Value × Total Exps/Yr × Years for I&E / E&E)
+  totalMoneyEarnedSaved: number;  // ₹ (Luxury Savings + Lifestyle Savings + Wealth Gen)
+
   // ── Strategy-specific cumulative benefit fields over timeline (years) ───────
-  /** Cumulative estimated savings from jewellery experience (14% or 28% × years) */
+  /** Cumulative estimated savings from jewellery experience */
   experienceSavings: number;
   /** Total Strategy Net Benefit = cumulative experience savings + cumulative dividends */
   totalEcosystemValue: number;
-  /** Cumulative estimated earnings from dividend (25% × experience charge × years) */
+  /** Cumulative estimated earnings from dividend */
   experienceEarnings: number;
   /** Flat annual savings estimate from luxury access (Strategy 4) */
   luxuryAccessSavings: number;
@@ -68,15 +79,22 @@ export function calculateFutureProjection({
   currentPricePerGram,
   years = 1,
   strategy = 'investment_experience',
+  luxuryExperiencesPerYear = 1,
+  lifestyleExperiencesPerYear = 1,
 }: {
   goldBalanceGrams: number;
   currentPricePerGram: number;
   years: number;
   strategy?: StrategyKey;
+  luxuryExperiencesPerYear?: number;
+  lifestyleExperiencesPerYear?: number;
 }): CalculationResult {
   const effectiveYears = Math.max(1, years);
   const isGiftEligible = strategy !== 'experience_only' && goldBalanceGrams >= GIFT_MIN_GRAMS;
   const experienceTier = getExperienceTier(goldBalanceGrams);
+
+  const safeLuxuryExp = Math.max(0, luxuryExperiencesPerYear);
+  const safeLifestyleExp = Math.max(0, lifestyleExperiencesPerYear);
 
   if (currentPricePerGram <= 0) {
     return {
@@ -94,6 +112,12 @@ export function calculateFutureProjection({
       yearsTimeline: effectiveYears,
       jewelleryAllocation: 0,
       membershipFeeAllocation: 0,
+      luxuryExperiencesPerYear: safeLuxuryExp,
+      lifestyleExperiencesPerYear: safeLifestyleExp,
+      luxurySavingsTotal: 0,
+      lifestyleSavingsTotal: 0,
+      wealthGenTotal: 0,
+      totalMoneyEarnedSaved: 0,
       experienceSavings: 0,
       totalEcosystemValue: 0,
       experienceEarnings: 0,
@@ -113,27 +137,37 @@ export function calculateFutureProjection({
   // 3. Instant Loan Eligibility (75% LTV of Gold Balance Value)
   const loanEligibility = currentValue * LTV_RATIO;
 
-  // 4. Cumulative Making Charge Savings over N Years
-  // Strategy 2 gives 28% savings on making charges; Strategy 1, 3, 4 give 14% savings
-  const savingsPctPerYear = strategy === 'investment_experience' ? INVESTMENT_EXP_SAVINGS_PCT : EXPERIENCE_SAVINGS_PCT;
-  const experienceSavings = currentValue * savingsPctPerYear * effectiveYears;
+  // 4. Blueprint Section 7 Calculations:
+  // - On Luxury Jewellery Experience: 14% of Gold Balance Value per experience
+  const luxurySavingsTotal = (LUXURY_JEWELLERY_SAVINGS_PCT * currentValue) * safeLuxuryExp * effectiveYears;
 
-  // 5. Cumulative Wealth Generation Dividends over N Years (Strategies 2 & 3 only)
-  // Earn 25% dividend when others experience your gold
+  // - On Lifestyle Jewellery Experience: 7% of Gold Balance Value per experience
+  const lifestyleSavingsTotal = (LIFESTYLE_JEWELLERY_SAVINGS_PCT * currentValue) * safeLifestyleExp * effectiveYears;
+
+  // - Wealth Generation: 25% of 0.9% of Gold Value per experience (Eligible ONLY for Investment & Experience / Enroll & Experience)
+  // Guaranteed minimum 5 experiences per year
   const isDividendEligible = strategy === 'investment_experience' || strategy === 'enrol_experience';
-  const experienceEarnings = isDividendEligible
-    ? (currentValue * EXPERIENCE_SAVINGS_PCT) * EXPERIENCE_DIVIDEND_PCT * effectiveYears
+  const totalExperiencesPerYear = safeLuxuryExp + safeLifestyleExp;
+  const wealthGenExperiencesPerYear = Math.max(5, totalExperiencesPerYear);
+  const wealthGenPerExperience = isDividendEligible
+    ? (EXPERIENCE_DIVIDEND_PCT * STANDARD_EXPERIENCE_FEE_PCT * currentValue)
     : 0;
+  const wealthGenTotal = wealthGenPerExperience * wealthGenExperiencesPerYear * effectiveYears;
 
-  // 6. Total Net Strategy Benefit Created over N Years
-  const totalEcosystemValue = experienceSavings + experienceEarnings;
+  // - Total Money Earned / Saved
+  const totalMoneyEarnedSaved = luxurySavingsTotal + lifestyleSavingsTotal + wealthGenTotal;
+
+  // 5. Legacy/Alias Fields for Total Ecosystem Benefit
+  const experienceSavings = luxurySavingsTotal + lifestyleSavingsTotal;
+  const experienceEarnings = wealthGenTotal;
+  const totalEcosystemValue = totalMoneyEarnedSaved;
   const returnPct = currentValue > 0 ? (totalEcosystemValue / currentValue) * 100 : 0;
 
   return {
     goldPurchased: goldBalanceGrams,
     currentValue,
     projectedGoldValue: currentValue,
-    profit: totalEcosystemValue,
+    profit: totalMoneyEarnedSaved,
     returnPct,
     loanEligibility,
     goldBalance: goldBalanceGrams,
@@ -144,6 +178,12 @@ export function calculateFutureProjection({
     yearsTimeline: effectiveYears,
     jewelleryAllocation,
     membershipFeeAllocation,
+    luxuryExperiencesPerYear: safeLuxuryExp,
+    lifestyleExperiencesPerYear: safeLifestyleExp,
+    luxurySavingsTotal,
+    lifestyleSavingsTotal,
+    wealthGenTotal,
+    totalMoneyEarnedSaved,
     experienceSavings,
     totalEcosystemValue,
     experienceEarnings,

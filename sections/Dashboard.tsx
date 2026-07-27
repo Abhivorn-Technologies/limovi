@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 import { motion } from "framer-motion";
 import { 
@@ -82,8 +83,8 @@ const InvestmentGrowthIcon = ({ className, ...props }: any) => (
 
 const STRATEGIES = [
   { icon: <InvestmentGrowthIcon className="text-brand-gold w-6 h-6" />, title: "Investment Only", desc: "Pure capital appreciation", highlights: [0, 1, 2, 3] },
-  { icon: <InfinityIcon className="text-brand-gold w-6 h-6" />, title: "Enrol & Experience", desc: "Bring your existing jewellery", highlights: [0, 1, 2, 3, 4] },
-  { icon: <Sparkles className="text-brand-gold w-6 h-6" />, title: "Investment & Experience", desc: "Buy new gold & access luxury", highlights: [0, 1, 2, 3, 4] },
+  { icon: <InfinityIcon className="text-brand-gold w-6 h-6" />, title: "Enroll & Experience", desc: "Bring your existing jewellery", highlights: [0, 1, 2, 3, 4] },
+  { icon: <Sparkles className="text-brand-gold w-6 h-6" />, title: "Investment & Experience", desc: "Buy new gold & access luxury & More", highlights: [0, 1, 2, 3, 4] },
   { icon: <Gem className="text-brand-gold w-6 h-6" />, title: "Experience Only", desc: "Access without ownership", highlights: [0, 1, 2] },
 ];
 
@@ -104,7 +105,21 @@ const SERVICES = [
     desc: "Convert eligible Gold Balance into cash when needed."
   },
   { 
-    icon: <Gift className="text-brand-secondary w-7 h-7" />, 
+    icon: (
+      <div 
+        className="w-7 h-7 bg-brand-secondary shrink-0" 
+        style={{
+          maskImage: "url(/images/gifting-eco.png)",
+          WebkitMaskImage: "url(/images/gifting-eco.png)",
+          maskSize: "contain",
+          WebkitMaskSize: "contain",
+          maskRepeat: "no-repeat",
+          WebkitMaskRepeat: "no-repeat",
+          maskPosition: "center",
+          WebkitMaskPosition: "center"
+        }}
+      />
+    ), 
     title: "Gift Gold Ecosystem", 
     desc: "Share your Gold Balance and its ecosystem benefits with loved ones."
   },
@@ -140,7 +155,7 @@ export function Dashboard() {
             Your Gold. One Connected Ecosystem.
           </h2>
           <p className="text-sm md:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed">
-            Bring together cash, digital gold, coins, bars and eligible jewellery through one unified Gold Balance—designed to connect investment strategies, jewellery experiences, financial access and broader ecosystem benefits.
+            Bring together cash, digital gold, coins, bars and existing jewellery through one unified Gold Balance—designed to connect investment strategies, jewellery experiences, financial access and broader ecosystem benefits.
           </p>
         </div>
 
@@ -199,7 +214,7 @@ export function Dashboard() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="flex-1 lg:mt-32"
+            className="flex-1"
           >
             <h3 className="text-2xl font-bold text-brand-primary mb-8 flex items-center justify-center lg:justify-start gap-3">
               Investment Strategies

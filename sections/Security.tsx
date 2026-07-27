@@ -215,55 +215,6 @@ export function Security() {
               </div>
             ))}
         </div>
-
-        {/* Partners Marquee / List */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-12 md:mt-24 pt-12 border-t border-slate-200 overflow-hidden relative"
-        >
-          <div className="text-center mb-10">
-            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Backed by India&apos;s most trusted ecosystem partners</h3>
-          </div>
-          
-          <div className="relative flex overflow-hidden group">
-            {/* Left and right gradient masks for smooth fade */}
-            <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
-
-            <div 
-              className="flex w-max animate-marquee-infinite opacity-60 hover:opacity-100 transition-opacity duration-500"
-            >
-              {[1, 2].map((set) => (
-                <div key={set} className="flex items-center pr-16 gap-16">
-                  {[
-                    { name: "SafeGold", domain: "safegold.com" },
-                    { name: "MMTC-PAMP", domain: "mmtcpamp.com" },
-                    { name: "Rupeek", domain: "rupeek.com" },
-                    { name: "Sequel Logistics", domain: "sequelglobal.com" },
-                    { name: "Brink's", domain: "us.brinks.com" },
-                    { name: "Razorpay", domain: "razorpay.com" },
-                    { name: "Cashfree", domain: "cashfree.com" }
-                  ].map((partner, i) => (
-                    <div key={i} className="flex items-center justify-center gap-3 relative whitespace-nowrap">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img 
-                        src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${partner.domain}&size=128`}
-                        alt={partner.name}
-                        className="h-8 w-8 object-contain rounded-md"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                      <span className="text-xl font-bold text-slate-800">{partner.name}</span>
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

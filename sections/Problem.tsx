@@ -22,6 +22,10 @@ export function Problem() {
       <div className="container mx-auto px-6 relative z-10">
         
         <motion.div style={{ y, opacity }} className="text-center mb-16 md:mb-24">
+          <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full border border-slate-200 bg-white shadow-sm">
+            <AlertCircle className="w-4 h-4 text-amber-500" />
+            <span className="text-xs font-bold text-slate-700 tracking-widest uppercase">The Problem</span>
+          </div>
           <h2 className="text-4xl md:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
             The Gold Ownership Gap
           </h2>

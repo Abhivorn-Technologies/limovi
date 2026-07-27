@@ -14,7 +14,7 @@ const milestones = [
     image: "/images/journey-1.png"
   },
   {
-    title: "Enrol by choosing strategy",
+    title: "Enroll by choosing strategy",
     desc: "Convert your jewellery, coins or cash into digital gold balance in a few simple steps.",
     icon: <Smartphone className="w-6 h-6" />,
     color: "bg-emerald-100 text-emerald-600",
@@ -44,7 +44,7 @@ const milestones = [
   {
     title: "Gift Gold Balance",
     desc: "Gift wealth. Not just things. Send digital gold balance to your loved ones.",
-    icon: <Gift className="w-6 h-6" />,
+    icon: <Image src="/images/gifting-eco.png" alt="Gift Gold" width={24} height={24} className="w-6 h-6 object-contain" />,
     color: "bg-pink-100 text-pink-600",
     image: "/images/journey-6.png"
   },
@@ -64,7 +64,7 @@ const milestones = [
   },
   {
     title: "How It Works",
-    desc: "Simple steps. Powerful impact. Enrol, balance, choose services, earn & grow.",
+    desc: "Simple steps. Powerful impact. Enroll, balance, choose services, earn & grow.",
     icon: <CheckCircle2 className="w-6 h-6" />,
     color: "bg-teal-100 text-teal-600",
     image: "/images/journey-9.png"

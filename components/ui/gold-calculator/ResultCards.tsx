@@ -19,6 +19,8 @@ import { formatINR, formatGrams, formatPercent } from '@/lib/utils/calculator';
 import type { StrategyKey } from '@/lib/constants/strategyRules';
 import { LTV_RATIO } from '@/lib/constants/experienceRules';
 
+import { VALUE_ADDED_BENEFITS } from '@/lib/constants/strategyRules';
+
 type LucideIcon = React.FC<LucideProps>;
 
 interface CardData {
@@ -65,209 +67,133 @@ function goldBalanceCard(result: CalculationResult): CardData {
   };
 }
 
-function giftCard(result: CalculationResult): CardData {
+/** Section 7: Financial Returns Breakdown Card */
+function moneyEarnedSavedCard(result: CalculationResult): CardData {
+  const isWealthEligible = result.wealthGenTotal > 0;
+
   return {
-    id: 'gift-ecosystem',
-    icon: Gift,
-    title: 'Gift Ecosystem',
-    primary: result.isGiftEligible ? 'Eligible' : 'Locked',
-    secondary: result.isGiftEligible ? 'Full benefits unlocked (≥50g)' : 'Requires min 50g gold',
-    accent: result.isGiftEligible ? '#16a34a' : '#94a3b8',
-    bg: result.isGiftEligible ? 'rgba(22,163,74,0.07)' : 'rgba(148,163,184,0.07)',
+    id: 'money-earned-saved',
+    icon: TrendingUp,
+    title: `Financial Returns (${result.yearsTimeline}Y Horizon)`,
+    primary: formatINR(result.totalMoneyEarnedSaved),
+    secondary: `Luxury: ${formatINR(result.luxurySavingsTotal, true)} · Lifestyle: ${formatINR(result.lifestyleSavingsTotal, true)} · Wealth Gen: ${isWealthEligible ? formatINR(result.wealthGenTotal, true) : '₹0'}`,
+    accent: '#10B981',
+    bg: 'linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(16,185,129,0.03) 100%)',
+    highlight: true,
+    wide: true,
+    custom: (
+      <div className="space-y-2">
+        <div className="flex items-center justify-between border-b border-emerald-500/20 pb-1.5">
+          <div className="flex items-center gap-1.5">
+            <div className="w-5 h-5 rounded-md bg-emerald-500/20 flex items-center justify-center">
+              <TrendingUp size={11} className="text-emerald-500" />
+            </div>
+            <span className="text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-200">
+              Financial Returns
+            </span>
+          </div>
+          <span className="text-[9px] font-bold text-slate-500">
+            {result.yearsTimeline}Y Horizon
+          </span>
+        </div>
+
+        <div className="space-y-1 text-[10px]">
+          <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
+            <span>On Luxury Jewellery ({result.luxuryExperiencesPerYear} exp/yr @ 14% savings):</span>
+            <span className="font-bold text-emerald-600 dark:text-emerald-400">{formatINR(result.luxurySavingsTotal)}</span>
+          </div>
+          <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
+            <span>On Lifestyle Jewellery ({result.lifestyleExperiencesPerYear} exp/yr @ 7% savings):</span>
+            <span className="font-bold text-emerald-600 dark:text-emerald-400">{formatINR(result.lifestyleSavingsTotal)}</span>
+          </div>
+          <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
+            <div>
+              <div>Wealth Generated (25% dividend payout):</div>
+              {isWealthEligible && (
+                <div className="text-[8.5px] text-slate-400 font-medium">*Calculated with a minimum of 5 experiences per year</div>
+              )}
+            </div>
+            <span className="font-bold text-indigo-600 dark:text-indigo-400">
+              {isWealthEligible ? formatINR(result.wealthGenTotal) : 'Not Eligible'}
+            </span>
+          </div>
+          <div className="pt-1.5 mt-1 border-t border-emerald-500/20 flex justify-between items-center text-xs font-black text-slate-900 dark:text-white">
+            <span>TOTAL FINANCIAL BENEFIT:</span>
+            <span className="text-sm text-emerald-600 dark:text-emerald-400">{formatINR(result.totalMoneyEarnedSaved)}</span>
+          </div>
+        </div>
+      </div>
+    ),
   };
 }
 
-function experienceTierCard(result: CalculationResult): CardData {
+/** Exclusive Ecosystem Benefits Comparison Card */
+function valueAddedComparisonCard(result: CalculationResult): CardData {
   return {
-    id: 'experience-tier',
-    icon: Gem,
-    title: 'Jewellery Cloud',
-    primary: result.experienceTier.label,
-    secondary: result.experienceTier.tagline,
-    accent: result.experienceTier.color,
-    bg: `${result.experienceTier.color}12`,
-  };
-}
-
-function loanCard(result: CalculationResult, label = 'Instant Loan Eligibility'): CardData {
-  return {
-    id: 'loan',
-    icon: CreditCard,
-    title: label,
-    primary: `Up to ${formatINR(result.loanEligibility, true)}`,
-    secondary: `75% LTV on ${formatGrams(result.goldBalance)} balance`,
-    accent: '#0B62D6',
-    bg: 'rgba(11,98,214,0.07)',
-  };
-}
-
-function totalEcosystemCard(result: CalculationResult): CardData {
-  const years = result.yearsTimeline;
-  return {
-    id: 'total-ecosystem-value',
+    id: 'value-added-comparison',
     icon: Crown,
-    title: `⭐ Total Strategy Benefit (${years}Y Horizon)`,
-    primary: `${formatINR(result.totalEcosystemValue, true)} (${formatPercent(result.returnPct)})`,
-    secondary: `Combined Making Charge Savings + Dividend Earnings over ${years}Y`,
+    title: 'Exclusive Ecosystem Benefits',
+    primary: 'LIMOVI vs Traditional Gold Loans',
+    secondary: 'Privately access liquidity & luxury experiences without repayment stress or interest.',
     accent: '#D4AF37',
-    bg: 'linear-gradient(135deg, rgba(212,175,55,0.14) 0%, rgba(244,196,48,0.06) 100%)',
-    highlight: true,
+    bg: 'linear-gradient(135deg, rgba(212,175,55,0.08) 0%, rgba(11,98,214,0.04) 100%)',
     wide: true,
+    custom: (
+      <div className="space-y-2.5 pt-0.5">
+        <div className="flex items-center justify-between border-b border-amber-500/20 pb-1.5">
+          <div className="flex items-center gap-1.5">
+            <div className="w-5 h-5 rounded-md bg-amber-500/20 flex items-center justify-center">
+              <Crown size={11} className="text-amber-500" />
+            </div>
+            <span className="text-[10px] font-black uppercase tracking-wider text-slate-800 dark:text-slate-100">
+              Exclusive Ecosystem Benefits
+            </span>
+          </div>
+          <span className="text-[8px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-600 dark:text-amber-300">
+            With LIMOVI
+          </span>
+        </div>
+
+        {/* Value add features list */}
+        <div className="space-y-1.5">
+          {VALUE_ADDED_BENEFITS.map((benefit, i) => (
+            <div key={i} className="flex items-start gap-1.5 text-[9.5px]">
+              <span className="text-emerald-500 font-bold flex-shrink-0 mt-0.5">✓</span>
+              <div>
+                <span className="font-bold text-slate-800 dark:text-slate-200">{benefit.title}: </span>
+                <span className="text-slate-500 dark:text-slate-400">{benefit.desc}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Ecosystem badges */}
+        <div className="grid grid-cols-3 gap-1 pt-1 border-t border-amber-500/15 text-[8.5px]">
+          <div className="p-1 rounded bg-blue-500/10 text-center">
+            <div className="font-bold text-blue-600 dark:text-blue-400">Instant Loans</div>
+            <div className="text-[8px] text-slate-500">{formatINR(result.loanEligibility, true)}</div>
+          </div>
+          <div className="p-1 rounded bg-emerald-500/10 text-center">
+            <div className="font-bold text-emerald-600 dark:text-emerald-400">Instant Liquidity</div>
+            <div className="text-[8px] text-slate-500">{formatINR(result.currentValue)}</div>
+          </div>
+          <div className="p-1 rounded bg-amber-500/10 text-center">
+            <div className="font-bold text-amber-600 dark:text-amber-400">Gift Ecosystem</div>
+            <div className="text-[8px] text-slate-500">{result.isGiftEligible ? 'Unlocked' : '≥50g Required'}</div>
+          </div>
+        </div>
+      </div>
+    ),
   };
-}
-
-// ─── Strategy card builders ───────────────────────────────────────────────────
-
-function buildInvestmentOnly(result: CalculationResult): CardData[] {
-  const years = result.yearsTimeline;
-  return [
-    goldBalanceCard(result),
-    {
-      id: 'exp-savings',
-      icon: Sparkles,
-      title: `${years}Y Making Charge Savings`,
-      primary: formatINR(result.experienceSavings, true),
-      secondary: '14% savings on every jewellery experienced',
-      accent: '#D4AF37',
-      bg: 'rgba(212,175,55,0.07)',
-    },
-    loanCard(result),
-    giftCard(result),
-    totalEcosystemCard(result),
-  ];
-}
-
-function buildInvestmentExperience(result: CalculationResult): CardData[] {
-  const years = result.yearsTimeline;
-  const allocationCard: CardData = {
-    id: 'allocation-breakdown',
-    icon: PieChart,
-    title: '80 / 20 Smart Allocation',
-    primary: `80% Jewellery (${formatINR(result.jewelleryAllocation, true)})`,
-    secondary: `20% Membership (${formatINR(result.membershipFeeAllocation, true)}) — 0% Making Charges`,
-    accent: '#0B62D6',
-    bg: 'rgba(11,98,214,0.07)',
-    wide: true,
-  };
-
-  return [
-    goldBalanceCard(result),
-    allocationCard,
-    {
-      id: 'wealth-growth',
-      icon: HandCoins,
-      title: `${years}Y Wealth Generation Earning`,
-      primary: formatINR(result.experienceEarnings, true),
-      secondary: '25% commercial dividend when experienced by others',
-      accent: '#7C3AED',
-      bg: 'rgba(124,58,237,0.07)',
-      highlight: true,
-    },
-    {
-      id: 'exp-savings',
-      icon: Sparkles,
-      title: `${years}Y Making Charge Savings`,
-      primary: formatINR(result.experienceSavings, true),
-      secondary: '28% coverage + 0% fee on 1st two experiences/yr',
-      accent: '#D4AF37',
-      bg: 'rgba(212,175,55,0.07)',
-    },
-    loanCard(result, 'Instant Loan Limit'),
-    giftCard(result),
-    totalEcosystemCard(result),
-  ];
-}
-
-function buildEnrolExperience(result: CalculationResult): CardData[] {
-  const years = result.yearsTimeline;
-  const earningsCard: CardData = {
-    id: 'wealth-generation',
-    icon: HandCoins,
-    title: `💎 ${years}Y Wealth Generation Dividends`,
-    primary: formatINR(result.experienceEarnings, true),
-    secondary: '25% passive income earned from enrolled gold',
-    accent: '#7C3AED',
-    bg: 'rgba(124,58,237,0.09)',
-    highlight: true,
-    wide: true,
-  };
-
-  return [
-    {
-      id: 'enrolled-balance',
-      icon: Coins,
-      title: 'Current Gold Balance',
-      primary: formatGrams(result.goldBalance),
-      secondary: `24K Enrolled Gold (${formatINR(result.currentValue, true)})`,
-      accent: '#D4AF37',
-      bg: 'rgba(212,175,55,0.07)',
-    },
-    experienceTierCard(result),
-    earningsCard,
-    {
-      id: 'exp-savings',
-      icon: Sparkles,
-      title: `${years}Y Making Charge Savings`,
-      primary: formatINR(result.experienceSavings, true),
-      secondary: '14% savings on every jewellery experienced',
-      accent: '#D4AF37',
-      bg: 'rgba(212,175,55,0.07)',
-    },
-    loanCard(result, 'Loan Eligibility'),
-    giftCard(result),
-    totalEcosystemCard(result),
-  ];
-}
-
-function buildExperienceOnly(result: CalculationResult): CardData[] {
-  const years = result.yearsTimeline;
-  return [
-    goldBalanceCard(result),
-    experienceTierCard(result),
-    loanCard(result, 'Loan Eligibility'),
-    {
-      id: 'exp-savings',
-      icon: Sparkles,
-      title: `${years}Y Luxury Access Savings`,
-      primary: formatINR(result.experienceSavings, true),
-      secondary: '14% savings vs purchasing luxury jewellery',
-      accent: '#D4AF37',
-      bg: 'rgba(212,175,55,0.07)',
-    },
-    {
-      id: 'gift-locked',
-      icon: ShieldCheck,
-      title: 'Gift Ecosystem & Wealth Gen',
-      primary: 'Not Eligible',
-      secondary: 'Experience-only tier excludes passive earning & gifting',
-      accent: '#94a3b8',
-      bg: 'rgba(148,163,184,0.07)',
-      wide: true,
-    },
-    totalEcosystemCard(result),
-  ];
 }
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function ResultCards({ result, strategy }: ResultCardsProps) {
-  let cards: CardData[];
-  switch (strategy) {
-    case 'investment':
-      cards = buildInvestmentOnly(result);
-      break;
-    case 'investment_experience':
-      cards = buildInvestmentExperience(result);
-      break;
-    case 'enrol_experience':
-      cards = buildEnrolExperience(result);
-      break;
-    case 'experience_only':
-      cards = buildExperienceOnly(result);
-      break;
-    default:
-      cards = buildInvestmentExperience(result);
-  }
+  const cards: CardData[] = [
+    moneyEarnedSavedCard(result),
+    valueAddedComparisonCard(result),
+  ];
 
   return (
     <AnimatePresence mode="wait">

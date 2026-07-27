@@ -6,19 +6,19 @@ import { Crown, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 const celebrationCollections = [
-  { id: 1, name: "Long Haram",    category: "Traditional",  value: "₹5L – ₹25L", image: "/images/long_haram.png",     accent: "#E8A020" },
-  { id: 2, name: "Necklace",      category: "Signature",    value: "₹2L – ₹10L", image: "/images/necklace.png",       accent: "#D4AF37" },
-  { id: 3, name: "Nose Piercing", category: "Bridal",       value: "₹50K – ₹2L", image: "/images/nose_piercing.png",  accent: "#9b2c2c" },
-  { id: 4, name: "Ear Piercing",  category: "Heritage",     value: "₹1L – ₹3L",  image: "/images/ear_piercing.png",   accent: "#b7791f" },
-  { id: 5, name: "Wedding Set",   category: "Grand",        value: "₹15L – ₹50L",image: "/images/jewellery-wedding.png",accent: "#ed8936" },
+  { id: 1, name: "Royal Long Haram",    category: "Traditional",       image: "/images/long_haram.png",     accent: "#E8A020" },
+  { id: 2, name: "Heritage Necklace",   category: "Signature",         image: "/images/necklace.png",       accent: "#D4AF37" },
+  { id: 3, name: "Bridal Nose Ring",    category: "Bridal",            image: "/images/nose_piercing.png",  accent: "#9b2c2c" },
+  { id: 4, name: "Temple Jhumkas",     category: "Heritage",          image: "/images/ear_piercing.png",   accent: "#b7791f" },
+  { id: 5, name: "Bridal Wedding Set",  category: "Grand Collection",  image: "/images/jewellery-wedding.png",accent: "#ed8936" },
 ];
 
 const dailyCollections = [
-  { id: 1, name: "Gold Chain",        category: "Minimal",  value: "₹15K – ₹80K", image: "/images/minimal_pendant_v2.png",   accent: "#D4AF37" },
-  { id: 2, name: "Bracelet",          category: "Classic",  value: "₹20K – ₹1L",  image: "/images/minimal_bracelet_v2.png",  accent: "#D4AF37" },
-  { id: 3, name: "Ear Studs",         category: "Everyday", value: "₹10K – ₹50K", image: "/images/minimal_studs_v2.png",     accent: "#D4AF37" },
-  { id: 4, name: "Nose Stud",         category: "Subtle",   value: "₹5K – ₹30K",  image: "/images/minimal_nose_stud_v4.png", accent: "#D4AF37" },
-  { id: 5, name: "Ring",              category: "Elegant",  value: "₹12K – ₹60K", image: "/images/minimal_ring_v2.png",      accent: "#D4AF37" },
+  { id: 1, name: "Pendant & Chain",     category: "Minimalist", image: "/images/minimal_pendant_v2.png",   accent: "#D4AF37" },
+  { id: 2, name: "Classic Bracelet",    category: "Classic",    image: "/images/minimal_bracelet_v2.png",  accent: "#D4AF37" },
+  { id: 3, name: "Solitaire Studs",     category: "Everyday",   image: "/images/minimal_studs_v2.png",     accent: "#D4AF37" },
+  { id: 4, name: "Subtle Nose Pin",     category: "Subtle",     image: "/images/minimal_nose_stud_v4.png", accent: "#D4AF37" },
+  { id: 5, name: "Elegant Gold Ring",  category: "Elegance",   image: "/images/minimal_ring_v2.png",      accent: "#D4AF37" },
 ];
 
 const AUTO_INTERVAL = 2500; // ms
@@ -128,8 +128,7 @@ function CarouselSlider({ collections, title, subtitle, isMobile }: { collection
                   </span>
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3 leading-snug">{item.name}</h3>
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-base font-semibold" style={{ color: item.accent }}>{item.value}</span>
+                <div className="flex items-center justify-end">
                   <button
                     className="px-5 py-2 rounded-full text-sm font-bold hover:scale-105 active:scale-95 transition-all duration-200"
                     style={{
@@ -230,7 +229,7 @@ export function JewelleryCloud() {
         <CarouselSlider 
           collections={celebrationCollections} 
           title="Heritage Grandeur" 
-          subtitle="For weddings and milestone celebrations." 
+          subtitle="Exquisitely crafted for weddings and significant life milestones." 
           isMobile={isMobile} 
         />
       </div>

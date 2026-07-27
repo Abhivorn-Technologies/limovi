@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Gift, Sparkles } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
@@ -34,11 +35,23 @@ export function GiftGold() {
                 {/* Header */}
                 <div className="flex justify-between items-start">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-gold to-[#B8860B] flex items-center justify-center shadow-[0_4px_15px_rgba(212,175,55,0.4)] border border-yellow-200/50">
-                      <Gift className="w-5 h-5 text-[#0A2540]" />
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-brand-gold to-[#B8860B] flex items-center justify-center shadow-[0_4px_15px_rgba(212,175,55,0.4)] border-2 border-white overflow-hidden">
+                      <div 
+                        className="w-7 h-7 bg-white shrink-0" 
+                        style={{
+                          maskImage: "url(/images/gifting-eco.png)",
+                          WebkitMaskImage: "url(/images/gifting-eco.png)",
+                          maskSize: "contain",
+                          WebkitMaskSize: "contain",
+                          maskRepeat: "no-repeat",
+                          WebkitMaskRepeat: "no-repeat",
+                          maskPosition: "center",
+                          WebkitMaskPosition: "center"
+                        }}
+                      />
                     </div>
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-[#FFF2CD] to-brand-gold font-bold tracking-[0.2em] text-sm">
-                      LIMOVI GOLD
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-[#FFF2CD] to-brand-gold font-bold tracking-[0.2em] text-xs sm:text-sm">
+                      LIMOVI GOLD ECOSYSTEM
                     </span>
                   </div>
                   <Sparkles className="text-brand-gold w-6 h-6 animate-pulse" />
@@ -46,7 +59,7 @@ export function GiftGold() {
                 
                 {/* Body / Value */}
                 <div>
-                  <p className="text-slate-400 text-xs mb-1 uppercase tracking-[0.3em] font-medium">Gift Value</p>
+                  <p className="text-slate-400 text-xs mb-1 uppercase tracking-[0.3em] font-medium">Gold Balance</p>
                   <div className="flex items-baseline gap-2 mb-2">
                     <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-300">
                       10.00g
@@ -76,8 +89,20 @@ export function GiftGold() {
             transition={{ duration: 0.8 }}
             className="order-1 lg:order-2"
           >
-            <div className="flex items-center gap-2 mb-4">
-              <Gift className="text-pink-500 w-6 h-6" />
+            <div className="flex items-center gap-3 mb-4">
+              <div 
+                className="w-8 h-8 bg-pink-500 shrink-0" 
+                style={{
+                  maskImage: "url(/images/gifting-eco.png)",
+                  WebkitMaskImage: "url(/images/gifting-eco.png)",
+                  maskSize: "contain",
+                  WebkitMaskSize: "contain",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskPosition: "center",
+                  WebkitMaskPosition: "center"
+                }}
+              />
               <span className="text-pink-500 font-bold uppercase tracking-widest text-sm">Gift The LIMOVI Ecosystem</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-primary mb-6 tracking-tight">
@@ -113,7 +138,7 @@ export function GiftGold() {
 
             <MagneticButton>
               <button className="bg-gradient-to-r from-brand-gold to-brand-gold-luxury text-brand-primary px-8 py-4 rounded-full font-bold shadow-[0_10px_30px_rgba(255,215,0,0.3)] hover:scale-105 transition-transform">
-                Send a Gold Gift 
+                Gold Balance Gift
               </button>
             </MagneticButton>
           </motion.div>

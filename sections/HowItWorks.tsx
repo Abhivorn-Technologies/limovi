@@ -44,7 +44,7 @@ const STEPS = [
     accentBorder: "rgba(212,175,55,0.3)",
   },
   {
-    image:   "/images/icon_gift.png",
+    image:   "/images/gifting-eco.png",
     step:    "04",
     title:   "Unlock Benefits",
     desc:    "Access loans, liquidity,\nexperiences & more",

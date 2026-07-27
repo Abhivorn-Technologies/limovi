@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ShieldCheck, TrendingUp, Infinity as InfinityIcon, Sparkles, Landmark, Zap, Gift } from "lucide-react";
 
 export function Solution() {
@@ -12,7 +13,7 @@ export function Solution() {
     },
     {
       icon: <InfinityIcon className="w-5 h-5 text-amber-500" />,
-      title: "Enrol & Experience",
+      title: "Enroll & Experience",
       desc: "Bring your existing jewellery"
     }
   ];
@@ -34,7 +35,7 @@ export function Solution() {
       desc: "Convert eligible Gold Balance into cash when needed."
     },
     {
-      icon: <Gift className="w-5 h-5 text-blue-500" />,
+      icon: <Image src="/images/gifting-eco.png" alt="Gift Gold Ecosystem" width={32} height={32} className="w-7 h-7 object-contain shrink-0" />,
       title: "Gift Gold Ecosystem",
       desc: "Share your Gold Balance and its ecosystem benefits with loved ones."
     }
@@ -71,7 +72,7 @@ export function Solution() {
             transition={{ delay: 0.2 }}
             className="text-sm md:text-base lg:text-lg text-slate-600 max-w-3xl mx-auto font-medium leading-relaxed"
           >
-            Bring together cash, digital gold, coins, bars and eligible jewellery through one unified Gold Balance—designed to connect investment strategies, jewellery experiences, financial access and broader ecosystem benefits.
+            Bring together cash, digital gold, coins, bars and existing jewellery through one unified Gold Balance—designed to connect investment strategies, jewellery experiences, financial access and broader ecosystem benefits.
           </motion.p>
         </div>
 

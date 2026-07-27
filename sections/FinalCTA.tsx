@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { MagneticButton } from "@/components/ui/magnetic-button";
-import { PhoneCall, Crown, Rocket } from "lucide-react";
+import { PhoneCall, Rocket } from "lucide-react";
 import { HeroParticles } from "@/components/3d/HeroParticles";
 
 export function FinalCTA() {
@@ -24,13 +25,21 @@ export function FinalCTA() {
           transition={{ duration: 0.8, type: "spring" }}
           className="max-w-4xl mx-auto bg-white/10 border border-white/20 p-6 md:p-12 lg:p-20 rounded-3xl backdrop-blur-md shadow-2xl relative overflow-hidden"
         >
+          {/* Faint Background LIMOVI Logo Watermark */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0 opacity-20 sm:opacity-25">
+            <Image
+              src="/browser-logo.png"
+              alt="LIMOVI Logo"
+              width={1000}
+              height={1000}
+              className="w-[600px] sm:w-[850px] md:w-[1150px] max-w-none h-auto object-contain brightness-0 invert pointer-events-none"
+            />
+          </div>
+
           <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/20 to-brand-accent/20 opacity-50 pointer-events-none" />
           
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8 relative z-10">
-            <div className="hidden md:flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-600 shadow-[0_0_40px_rgba(234,179,8,0.4)] border-2 border-yellow-200/50 flex-shrink-0">
-              <Crown size={40} className="text-white drop-shadow-md" />
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white text-center md:text-left leading-tight">
+          <div className="flex flex-col items-center justify-center mb-8 relative z-10">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white text-center leading-tight">
               Your Gold Is More<br className="hidden md:block" /> Powerful Than You Think
             </h2>
           </div>

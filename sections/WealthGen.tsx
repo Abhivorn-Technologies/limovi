@@ -32,7 +32,7 @@ export function WealthGen() {
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-[#005CB9]/10 text-[#005CB9] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
-                  <p className="text-sm text-slate-600">Your gold powers our <strong className="text-slate-800">Jewellery Experience platform</strong> securely.</p>
+                  <p className="text-sm text-slate-600">Your gold powers our <strong className="text-slate-800">Luxury Jewellery Cloud</strong> securely.</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-green-100 text-green-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>

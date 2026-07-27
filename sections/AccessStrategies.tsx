@@ -225,7 +225,7 @@ const PLANS: Plan[] = [
   },
   {
     id: "enrol-experience",
-    name: "Enrol & Experience",
+    name: "Enroll & Experience",
     tagline: "Bring your existing jewellery. Wear new. Earn in return.",
     shortDesc: "Keep your treasured jewellery exactly as it is. Experience unlimited designer jewellery, earn passive income from your enrolled pieces, and save significantly on remodelling and making charges.",
     icon: InfinityIcon,

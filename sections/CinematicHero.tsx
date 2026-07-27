@@ -4,6 +4,7 @@ import { useRef, useEffect, useCallback, useState } from "react";
 import { motion, useScroll, useTransform, useMotionValue, animate, useSpring } from "framer-motion";
 import { Play, Sparkles, ArrowRight, Zap, TrendingUp, Gift, Infinity as InfinityIcon, Gem, Landmark, HandCoins, ShieldCheck, Clock, IndianRupee, Crown } from "lucide-react";
 import { useLenis } from "lenis/react";
+import Image from "next/image";
 
 const C = {
   primary:    "#005CB9",
@@ -344,8 +345,18 @@ function Scene1_Item({ item, i, progress }: { item: any, i: number, progress: an
         animate={item.animate}
         transition={{ duration: item.duration, repeat: Infinity, ease: "easeInOut", delay: i * 0.25 }}
       >
-        <div className="w-16 h-16 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(212,175,55,0.18)] border-2" style={{ borderColor: "rgba(212,175,55,0.3)" }}>
-          <item.icon size={52} />
+        <div className="w-16 h-16 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow-md border border-slate-200">
+          {item.image ? (
+            <Image
+              src={item.image}
+              alt={item.label}
+              width={64}
+              height={64}
+              className="w-10 h-10 lg:w-16 lg:h-16 object-contain"
+            />
+          ) : (
+            <item.icon size={52} />
+          )}
         </div>
         <span className="text-[10px] lg:text-[11px] font-bold tracking-widest uppercase text-slate-700 bg-white/70 px-3 py-1 rounded-full backdrop-blur-sm border border-slate-200">
           {item.label}
@@ -378,7 +389,7 @@ function Scene1_Problem({ progress }: { progress: any }) {
     { label: "Cash",         icon: CashSVG,         x: isMobile ? "-125px" : "-28vw", y: isMobile ? "-110px" : "-8vh",  animate: { y: [0, -12, 0], rotate: [0, -3, 3, 0] }, duration: 5 },
     { label: "Gold Coins",   icon: CoinsSVG,        x: isMobile ? "125px" : "28vw", y: isMobile ? "-110px" : "-8vh",  animate: { y: [0, 10, 0],  scale: [1, 1.05, 1]   }, duration: 4 },
     { label: "Gold Bars",    icon: GoldBarsSVG,     x: isMobile ? "-115px" : "-18vw", y: isMobile ? "160px" : "20vh", animate: { x: [0, -8, 8, 0], y: [0, 8, -8, 0]    }, duration: 6 },
-    { label: "Jewellery",    icon: JewellerySVG,    x: isMobile ? "115px" : "18vw", y: isMobile ? "160px" : "20vh", animate: { rotate: [0, 8, -8, 0], scale: [1, 1.05, 1] }, duration: 4.5 },
+    { label: "Jewellery",    image: "/images/gold-haram.png", x: isMobile ? "115px" : "18vw", y: isMobile ? "160px" : "20vh", animate: { rotate: [0, 8, -8, 0], scale: [1, 1.05, 1] }, duration: 4.5 },
   ];
 
   const metrics = [
@@ -434,8 +445,8 @@ function Scene1_Problem({ progress }: { progress: any }) {
       <motion.div style={{ visibility: fragVisibility }} className="absolute inset-0 flex items-center justify-center">
         <div className="relative flex items-center justify-center w-full h-full">
           <motion.div style={{ opacity: fragOp }} className="absolute text-center z-20 pointer-events-none flex flex-col items-center">
-            <p className="text-[11px] lg:text-xs font-bold tracking-[0.2em] uppercase text-slate-400 mb-1">YOU HAVE GOLD ASSETS.</p>
-            <p className="text-[11px] lg:text-xs font-bold tracking-[0.2em] uppercase text-slate-400 mb-3 lg:mb-4">YOU HAVE GOLD INVESTMENTS.</p>
+            <p className="text-[11px] lg:text-xs font-bold tracking-[0.2em] uppercase mb-1" style={{ color: C.goldDeep }}>YOU HAVE GOLD ASSETS.</p>
+            <p className="text-[11px] lg:text-xs font-bold tracking-[0.2em] uppercase mb-3 lg:mb-4" style={{ color: C.goldDeep }}>YOU HAVE GOLD INVESTMENTS.</p>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.1]">
               But they&apos;re <br /><span style={{ color: C.goldDeep }}>fragmented.</span>
             </h2>
@@ -563,7 +574,11 @@ function Scene4_Item({ p, i, progress }: { p: any; i: number; progress: any }) {
       <div className="absolute inset-0 bg-gradient-to-t from-[#B8860B]/35 via-transparent to-transparent" />
       <div className="absolute -bottom-4 lg:-bottom-8 w-12 h-12 lg:w-32 lg:h-32 bg-[#F4C430] blur-2xl opacity-70" />
       <div className="relative z-10 w-6 h-6 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full bg-slate-50 border border-slate-200 shadow-sm flex items-center justify-center mb-1 lg:mb-2 text-[#B8860B]">
-        <Icon className="w-3.5 h-3.5 sm:w-6 sm:h-6 lg:w-8 lg:h-8" strokeWidth={1.5} />
+        {p.image ? (
+          <Image src={p.image} alt={p.title} width={32} height={32} className="w-3.5 h-3.5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 object-contain" />
+        ) : (
+          <Icon className="w-3.5 h-3.5 sm:w-6 sm:h-6 lg:w-8 lg:h-8" strokeWidth={1.5} />
+        )}
       </div>
       <div className="relative z-10 h-6 sm:h-10 lg:h-12 flex items-start justify-center px-1 w-full">
         <span className="text-slate-800 text-center font-bold text-[6.5px] sm:text-[9px] lg:text-[11px] leading-tight">{p.title}</span>
@@ -581,7 +596,7 @@ function Scene4_Benefits({ progress }: { progress: any }) {
     { title: "Luxury Jewellery Cloud",       icon: Crown },
     { title: "Instant Loan",                icon: BankWithAtIcon },
     { title: "Instant Liquidity",           icon: IndianRupee },
-    { title: "Gift Gold Ecosystem",         icon: Gift },
+    { title: "Gift Gold Ecosystem",         image: "/images/gifting-eco.png" },
     { title: "Wealth Generation",           icon: HandCoins },
   ];
   return (

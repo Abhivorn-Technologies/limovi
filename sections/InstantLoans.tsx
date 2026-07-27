@@ -88,7 +88,7 @@ export function InstantLoans() {
                 Digital & physical gold backed loans.
               </h2>
               <p className="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
-                Take a loan against your gold balance instantly without physical visits. We partner with RBI-regulated NBFCs like <strong className="text-brand-secondary">Rupeek</strong> as our primary lending rail.
+                Take a loan against your gold balance instantly without physical visits. We partner with RBI-regulated NBFCs as our primary lending rail.
               </p>
 
               {/* HOW GOLD CONVERTS TO LOAN */}
@@ -109,10 +109,6 @@ export function InstantLoans() {
                   </div>
                 </div>
               </div>
-
-              <button className="cursor-pointer bg-brand-primary text-white hover:bg-slate-800 px-8 py-4 rounded-full font-bold transition-all shadow-[0_10px_30px_rgba(10,37,64,0.2)]">
-                Check Loan Eligibility
-              </button>
             </motion.div>
 
             <motion.div
@@ -124,10 +120,10 @@ export function InstantLoans() {
             >
               <div className="relative z-10 w-full max-w-sm bg-slate-50 border border-slate-100 rounded-2xl p-5 sm:p-8">
                 <div className="text-center mb-6">
-                  <div className="w-14 h-14 bg-green-100 rounded-full mx-auto flex items-center justify-center mb-4">
-                    <CheckCircle2 className="w-7 h-7 text-green-600" />
+                  <div className="w-14 h-14 bg-brand-primary/10 rounded-full mx-auto flex items-center justify-center mb-4">
+                    <BankWithAtIcon className="w-7 h-7 text-brand-primary" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-800">Loan Approved</h3>
+                  <h3 className="text-xl font-bold text-slate-800">Instant Loans</h3>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
@@ -152,7 +148,7 @@ export function InstantLoans() {
                   </div>
                   <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
                     <span className="text-slate-500 leading-tight">Lending Partner</span>
-                    <span className="font-bold text-brand-secondary text-right">Rupeek (NBFC)</span>
+                    <span className="font-bold text-brand-secondary text-right">RBI Regulated NBFC</span>
                   </div>
                 </div>
               </div>
@@ -180,7 +176,7 @@ export function InstantLoans() {
                   <div className="w-14 h-14 bg-brand-secondary/10 rounded-full mx-auto flex items-center justify-center mb-4">
                     <IndianRupee className="w-7 h-7 text-brand-secondary" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-800">Instant Cash Out</h3>
+                  <h3 className="text-xl font-bold text-slate-800">Instant Liquidity</h3>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
@@ -212,8 +208,8 @@ export function InstantLoans() {
                     <span className="font-bold text-right">IMPS / UPI</span>
                   </div>
                   <div className="flex items-center justify-between pb-3 gap-4">
-                    <span className="text-slate-500 leading-tight">Gateway</span>
-                    <span className="font-bold text-slate-700 text-right">Razorpay / Cashfree</span>
+                    <span className="text-slate-500 leading-tight">Liquidity Partner</span>
+                    <span className="font-bold text-brand-primary text-right">LIMOVI</span>
                   </div>
                 </div>
               </div>
@@ -227,14 +223,14 @@ export function InstantLoans() {
               className="order-1 lg:order-2"
             >
               <div className="flex items-center gap-2 mb-4">
-                <Clock className="text-brand-accent w-6 h-6" />
-                <span className="text-brand-accent font-bold uppercase tracking-widest text-sm">INSTANT LIQUIDITY ️</span>
+                <IndianRupee className="text-brand-accent w-6 h-6" />
+                <span className="text-brand-accent font-bold uppercase tracking-widest text-sm">INSTANT LIQUIDITY</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 tracking-tight">
                 Instant Liquidity on Gold Balances
               </h2>
               <p className="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
-                Liquidate your digital gold  or physical gold into transparent cash value instantly. Connected via secure IMPS/UPI banking APIs through certified payment gateways.
+                Liquidate your Gold Balance into transparent cash value instantly. Connected via secure IMPS/UPI banking APIs through certified payment gateways.
               </p>
 
               {/* HOW GOLD CONVERTS TO CASH */}
@@ -243,7 +239,7 @@ export function InstantLoans() {
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
-                    <p className="text-sm text-slate-600">Select the exact <strong className="text-slate-800">grams of Digital Gold</strong> you wish to liquidate from your balance.</p>
+                    <p className="text-sm text-slate-600">Select the exact <strong className="text-slate-800">Gold Balance</strong> you wish to liquidate from your balance.</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
