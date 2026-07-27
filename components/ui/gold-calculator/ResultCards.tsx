@@ -77,22 +77,22 @@ function moneyEarnedSavedCard(result: CalculationResult): CardData {
     title: `Financial Returns (${result.yearsTimeline}Y Horizon)`,
     primary: formatINR(result.totalMoneyEarnedSaved),
     secondary: `Luxury: ${formatINR(result.luxurySavingsTotal, true)} · Lifestyle: ${formatINR(result.lifestyleSavingsTotal, true)} · Wealth Gen: ${isWealthEligible ? formatINR(result.wealthGenTotal, true) : '₹0'}`,
-    accent: '#10B981',
-    bg: 'linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(16,185,129,0.03) 100%)',
+    accent: '#005CB9',
+    bg: 'linear-gradient(135deg, rgba(0,92,185,0.08) 0%, rgba(0,92,185,0.02) 100%)',
     highlight: true,
     wide: true,
     custom: (
       <div className="space-y-2">
-        <div className="flex items-center justify-between border-b border-emerald-500/20 pb-1.5">
+        <div className="flex items-center justify-between border-b border-[#005CB9]/20 pb-1.5">
           <div className="flex items-center gap-1.5">
-            <div className="w-5 h-5 rounded-md bg-emerald-500/20 flex items-center justify-center">
-              <TrendingUp size={11} className="text-emerald-500" />
+            <div className="w-5 h-5 rounded-md bg-[#005CB9]/15 flex items-center justify-center">
+              <TrendingUp size={11} className="text-[#005CB9]" />
             </div>
-            <span className="text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-200">
+            <span className="text-[10px] font-black uppercase tracking-wider text-[#005CB9]">
               Financial Returns
             </span>
           </div>
-          <span className="text-[9px] font-bold text-slate-500">
+          <span className="text-[9px] font-bold text-[#005CB9]/80">
             {result.yearsTimeline}Y Horizon
           </span>
         </div>
@@ -100,11 +100,11 @@ function moneyEarnedSavedCard(result: CalculationResult): CardData {
         <div className="space-y-1 text-[10px]">
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
             <span>On Luxury Jewellery ({result.luxuryExperiencesPerYear} exp @ 14% savings):</span>
-            <span className="font-bold text-emerald-600 dark:text-emerald-400">{formatINR(result.luxurySavingsTotal)}</span>
+            <span className="font-bold text-[#005CB9]">{formatINR(result.luxurySavingsTotal)}</span>
           </div>
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
             <span>On Lifestyle Jewellery ({result.lifestyleExperiencesPerYear} exp @ 7% savings):</span>
-            <span className="font-bold text-emerald-600 dark:text-emerald-400">{formatINR(result.lifestyleSavingsTotal)}</span>
+            <span className="font-bold text-[#005CB9]">{formatINR(result.lifestyleSavingsTotal)}</span>
           </div>
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
             <div>
@@ -113,13 +113,13 @@ function moneyEarnedSavedCard(result: CalculationResult): CardData {
                 <div className="text-[8.5px] text-slate-400 font-medium">*Calculated with a minimum of 5 experiences per year</div>
               )}
             </div>
-            <span className="font-bold text-indigo-600 dark:text-indigo-400">
+            <span className="font-bold text-[#005CB9]">
               {isWealthEligible ? formatINR(result.wealthGenTotal) : 'Not Eligible'}
             </span>
           </div>
-          <div className="pt-1.5 mt-1 border-t border-emerald-500/20 flex justify-between items-center text-xs font-black text-slate-900 dark:text-white">
-            <span>TOTAL FINANCIAL BENEFIT:</span>
-            <span className="text-sm text-emerald-600 dark:text-emerald-400">{formatINR(result.totalMoneyEarnedSaved)}</span>
+          <div className="pt-1.5 mt-1 border-t border-[#005CB9]/20 flex justify-between items-center text-xs font-black text-[#005CB9]">
+            <span className="font-black text-[#005CB9]">TOTAL FINANCIAL BENEFIT:</span>
+            <span className="text-sm font-black text-[#005CB9]">{formatINR(result.totalMoneyEarnedSaved)}</span>
           </div>
         </div>
       </div>

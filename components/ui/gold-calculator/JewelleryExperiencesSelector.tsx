@@ -10,7 +10,7 @@ interface JewelleryExperiencesSelectorProps {
   setLifestyleCount: (val: number) => void;
 }
 
-const COUNTS = [1, 2, 3, 4, 5];
+const COUNTS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export function JewelleryExperiencesSelector({
   luxuryCount,
@@ -41,7 +41,7 @@ export function JewelleryExperiencesSelector({
             </span>
           </div>
 
-          <div className="flex items-center gap-1 justify-between">
+          <div className="flex items-center gap-0.5 justify-between">
             {COUNTS.map((num) => {
               const active = luxuryCount === num;
               return (
@@ -49,7 +49,7 @@ export function JewelleryExperiencesSelector({
                   key={`lux-${num}`}
                   type="button"
                   onClick={() => setLuxuryCount(num)}
-                  className={`flex-1 h-6 rounded-md text-[10px] font-black transition-all ${
+                  className={`flex-1 h-6 rounded text-[9px] sm:text-[10px] font-black transition-all min-w-0 ${
                     active
                       ? 'bg-amber-500 text-white shadow-sm shadow-amber-500/30 scale-105'
                       : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-amber-500/10'
@@ -76,7 +76,7 @@ export function JewelleryExperiencesSelector({
             </span>
           </div>
 
-          <div className="flex items-center gap-1 justify-between">
+          <div className="flex items-center gap-0.5 justify-between">
             {COUNTS.map((num) => {
               const active = lifestyleCount === num;
               return (
@@ -84,7 +84,7 @@ export function JewelleryExperiencesSelector({
                   key={`life-${num}`}
                   type="button"
                   onClick={() => setLifestyleCount(num)}
-                  className={`flex-1 h-6 rounded-md text-[10px] font-black transition-all ${
+                  className={`flex-1 h-6 rounded text-[9px] sm:text-[10px] font-black transition-all min-w-0 ${
                     active
                       ? 'bg-blue-600 text-white shadow-sm shadow-blue-600/30 scale-105'
                       : 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 hover:bg-blue-500/10'

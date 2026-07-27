@@ -497,7 +497,7 @@ function Scene3_Item({ strat, i, progress }: { strat: any; i: number; progress: 
       <div className="w-7 h-7 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded-full bg-white/90 border border-slate-200 flex items-center justify-center mb-1.5 lg:mb-2.5 shadow-md text-slate-700">
         <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5" />
       </div>
-      <div className="text-sm sm:text-lg lg:text-2xl font-black text-slate-900 mb-1 leading-tight">{strat.title}</div>
+      <div className="text-sm sm:text-lg lg:text-2xl font-black text-[#005CB9] mb-1 leading-tight">{strat.title}</div>
       <div className="text-[9px] sm:text-xs lg:text-sm text-slate-500 font-medium leading-snug">{strat.desc}</div>
     </motion.div>
   );
