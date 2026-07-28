@@ -22,8 +22,8 @@ const navLinks = [
     href: "#jewellery-experience",
     isDropdown: true,
     subLinks: [
-      { name: "Heritage Grandeur", href: "#heritage-collection" },
-      { name: "Everyday Grace", href: "#minimalist-elegance" }
+      { name: "Luxury Jewellery", href: "#heritage-collection" },
+      { name: "Lifestyle Jewellery", href: "#minimalist-elegance" }
     ]
   },
   { 
@@ -225,10 +225,6 @@ export function Navbar() {
             className="fixed inset-0 z-40 flex flex-col pt-24 px-8 pb-4 xl:hidden"
             style={{ background: "#ffffff", borderBottom: `1px solid ${NAV_BORDER}` }}
           >
-            {/* Subtle blue glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-48 pointer-events-none"
-              style={{ background: "radial-gradient(ellipse, rgba(0,92,185,0.06) 0%, transparent 70%)" }} />
-
             <nav 
               className="relative flex flex-col flex-1 min-h-0 px-2 pb-10 overflow-y-auto"
               style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}

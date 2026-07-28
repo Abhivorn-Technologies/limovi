@@ -4,6 +4,7 @@ import "./globals.css";
 import { SmoothScrollProvider } from "@/components/shared/SmoothScrollProvider";
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import { FloatingWidgetWrapper } from "@/components/ui/gold-calculator";
+import { DoodleIconBackground } from "@/components/shared/DoodleIconBackground";
 
 const inter = Inter({
   variable: "--font-sans",

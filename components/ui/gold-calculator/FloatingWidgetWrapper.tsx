@@ -84,7 +84,7 @@ export function FloatingWidgetWrapper() {
                 ? { bottom: 96, right: 20, width: 48, height: 48, borderRadius: '50%' }
                 : { bottom: 96, right: 28, width: 52, height: 52, borderRadius: '50%' }
             }
-            aria-label="Open Gold Balance Calculator"
+            aria-label="Open LIMOVI ROI Calculator"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.94 }}
           >
@@ -155,7 +155,7 @@ export function FloatingWidgetWrapper() {
               }
               transition={{ type: 'spring', stiffness: 310, damping: 30 }}
               role="dialog"
-              aria-label="LIMOVI Gold Balance Calculator"
+              aria-label="LIMOVI ROI Calculator"
               aria-modal="false"
               style={
                 isMobile

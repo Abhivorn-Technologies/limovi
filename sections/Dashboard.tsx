@@ -84,7 +84,7 @@ const InvestmentGrowthIcon = ({ className, ...props }: any) => (
 const STRATEGIES = [
   { icon: <InvestmentGrowthIcon className="text-brand-gold w-6 h-6" />, title: "Investment Only", desc: "Pure capital appreciation", highlights: [0, 1, 2, 3] },
   { icon: <InfinityIcon className="text-brand-gold w-6 h-6" />, title: "Enroll & Experience", desc: "Bring your existing jewellery", highlights: [0, 1, 2, 3, 4] },
-  { icon: <Sparkles className="text-brand-gold w-6 h-6" />, title: "Investment & Experience", desc: "Buy new gold & access luxury & More", highlights: [0, 1, 2, 3, 4] },
+  { icon: <Sparkles className="text-brand-gold w-6 h-6" />, title: "Investment & Experience", desc: "Buy new gold, access luxury and more.", highlights: [0, 1, 2, 3, 4] },
   { icon: <Gem className="text-brand-gold w-6 h-6" />, title: "Experience Only", desc: "Access without ownership", highlights: [0, 1, 2] },
 ];
 
@@ -134,14 +134,7 @@ export function Dashboard() {
   const [hoveredStrategy, setHoveredStrategy] = useState<number | null>(null);
 
   return (
-    <section id="platform" className="py-8 md:py-16 bg-slate-50 relative overflow-hidden">
-      {/* Background Dots */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: "radial-gradient(circle, rgba(212,175,55,0.08) 1px, transparent 1px)",
-        backgroundSize: "40px 40px",
-        maskImage: "radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 100%)",
-        WebkitMaskImage: "radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 100%)",
-      }} />
+    <section id="platform" className="py-8 md:py-16 bg-white relative overflow-hidden" style={{ background: "#FFFFFF" }}>
 
       <div className="container mx-auto px-6 relative z-10">
         
@@ -160,13 +153,13 @@ export function Dashboard() {
         </div>
 
         {/* Content Flow */}
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-stretch max-w-6xl mx-auto relative">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-24 items-stretch max-w-7xl mx-auto relative">
           
           {/* Connector Line Desktop */}
-          <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center pointer-events-none">
+          <div className="hidden lg:flex absolute left-1/2 top-[54%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center pointer-events-none z-10">
              
              {/* Left Flow Line (Strategy -> Center) */}
-             <div className="absolute top-1/2 left-[-100px] w-[100px] h-[3px] -translate-y-1/2 -z-10 overflow-hidden">
+             <div className="absolute top-1/2 left-[-70px] w-[70px] h-[3px] -translate-y-1/2 -z-10 overflow-hidden">
                <div className="absolute inset-0 border-t-2 border-dashed border-slate-300" />
                {hoveredStrategy !== null && (
                  <motion.div 
@@ -187,14 +180,14 @@ export function Dashboard() {
                  boxShadow: hoveredStrategy !== null ? "0 0 40px rgba(212, 175, 55, 0.5)" : "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" 
                }}
                transition={{ duration: 0.5, type: "spring", bounce: 0.4, delay: 0.5 }}
-               className={`w-32 h-32 rounded-full bg-white flex flex-col items-center justify-center border-[3px] z-20 relative transition-colors ${hoveredStrategy !== null ? 'border-[#F4C430]/40' : 'border-slate-100'}`}
+               className={`w-28 h-28 lg:w-32 lg:h-32 rounded-full bg-white flex flex-col items-center justify-center border-[3px] z-10 relative transition-colors ${hoveredStrategy !== null ? 'border-[#F4C430]/40' : 'border-slate-100'}`}
              >
-               <span className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Central</span>
-               <span className="text-sm font-bold text-brand-gold uppercase tracking-wider text-center">Gold<br/>Balance</span>
+               <span className="text-[9px] lg:text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Central</span>
+               <span className="text-xs lg:text-sm font-bold text-brand-gold uppercase tracking-wider text-center">Gold<br/>Balance</span>
              </motion.div>
 
              {/* Right Flow Line (Center -> Benefits) */}
-             <div className="absolute top-1/2 right-[-100px] w-[100px] h-[3px] -translate-y-1/2 -z-10 overflow-hidden">
+             <div className="absolute top-1/2 right-[-70px] w-[70px] h-[3px] -translate-y-1/2 -z-10 overflow-hidden">
                <div className="absolute inset-0 border-t-2 border-dashed border-slate-300" />
                {hoveredStrategy !== null && (
                  <motion.div 
@@ -214,7 +207,7 @@ export function Dashboard() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="flex-1 flex flex-col justify-center lg:pt-12"
+            className="flex-1 flex flex-col justify-center lg:pt-16 lg:pr-12"
           >
             <h3 className="text-2xl font-bold text-brand-primary mb-8 flex items-center justify-center lg:justify-start gap-3">
               Investment Strategies
@@ -268,7 +261,7 @@ export function Dashboard() {
                  boxShadow: hoveredStrategy !== null ? "0 0 30px rgba(212, 175, 55, 0.5)" : "0 10px 15px -3px rgba(0, 0, 0, 0.1)" 
                }}
                transition={{ duration: 0.5, type: "spring", bounce: 0.4, delay: 0.6 }}
-               className={`w-28 h-28 rounded-full bg-white flex flex-col items-center justify-center border-[3px] z-20 relative transition-colors ${hoveredStrategy !== null ? 'border-[#F4C430]/40' : 'border-slate-100'}`}
+               className={`w-28 h-28 rounded-full bg-white flex flex-col items-center justify-center border-[3px] z-10 relative transition-colors ${hoveredStrategy !== null ? 'border-[#F4C430]/40' : 'border-slate-100'}`}
              >
                <span className="text-[9px] font-black uppercase text-slate-400 tracking-widest mb-1">Central</span>
                <span className="text-xs font-bold text-brand-gold uppercase tracking-wider text-center">Gold<br/>Balance</span>
@@ -281,7 +274,7 @@ export function Dashboard() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-1"
+            className="flex-1 lg:pl-12"
           >
             <h3 className="text-2xl font-bold text-brand-primary mb-8 flex items-center justify-center lg:justify-start gap-3">
               Services & Benefits

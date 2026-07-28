@@ -87,15 +87,10 @@ function SphereSvg({ parallaxX, parallaxY }: { parallaxX: MotionValue<number>; p
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
-        {/* ── Sphere gradient — rich gold, image-1 style ── */}
-        <radialGradient id="sg" cx="30%" cy="30%" r="70%" fx="25%" fy="25%">
-          <stop offset="0%"   stopColor="#FFFFFF" />
-          <stop offset="20%"  stopColor="#FFF7C2" />
-          <stop offset="45%"  stopColor="#FFE566" />
-          <stop offset="70%"  stopColor="#F2C94C" />
-          <stop offset="90%"  stopColor="#D4AF37" />
-          <stop offset="100%" stopColor="#B8860B" />
-        </radialGradient>
+        {/* Globe image clip */}
+        <clipPath id="globe-img-clip">
+          <circle cx={CX} cy={CY} r={SR} />
+        </clipPath>
 
         {/* Specular #1 */}
         <radialGradient id="sp1" cx="50%" cy="50%" r="50%">
@@ -252,25 +247,22 @@ function SphereSvg({ parallaxX, parallaxY }: { parallaxX: MotionValue<number>; p
         <ellipse cx={CX} cy={CY + SR} rx={85} ry={12} fill="none" stroke="url(#goldRim)" strokeWidth={2.5} />
         <ellipse cx={CX} cy={CY + SR} rx={75} ry={10} fill="url(#goldRim)" opacity={0.6} /> {/* shadow under sphere */}
 
-        {/* ── Sphere main body ── */}
+        {/* ── Globe image (ChatGPT gold globe) clipped to circle ── */}
+        {/* Drop shadow behind globe */}
         <circle
           cx={CX} cy={CY} r={SR}
-          fill="url(#sg)"
-          opacity={0.92}
-          filter="drop-shadow(0 8px 40px rgba(212,175,55,0.45)) drop-shadow(0 20px 80px rgba(212,175,55,0.2))"
+          fill="none"
+          filter="drop-shadow(0 8px 40px rgba(212,175,55,0.55)) drop-shadow(0 20px 80px rgba(212,175,55,0.25))"
         />
-
-        {/* Primary large specular */}
-        <ellipse
-          cx={CX - SR * 0.25} cy={CY - SR * 0.32}
-          rx={SR * 0.35} ry={SR * 0.2}
-          fill="url(#sp1)" opacity={0.65}
-        />
-        {/* Bottom warm reflection */}
-        <ellipse
-          cx={CX + SR * 0.28} cy={CY + SR * 0.42}
-          rx={SR * 0.2} ry={SR * 0.1}
-          fill="rgba(255,220,100,0.25)"
+        {/* Globe image — 4% scale crop removes thin white border */}
+        <image
+          href="/images/ChatGPT Image Jul 28, 2026, 11_54_39 AM.png"
+          x={CX - SR * 1.04}
+          y={CY - SR * 1.04}
+          width={SR * 2.08}
+          height={SR * 2.08}
+          clipPath="url(#globe-img-clip)"
+          preserveAspectRatio="xMidYMid slice"
         />
 
         {/* ── Equatorial gold ring ── */}
@@ -282,22 +274,13 @@ function SphereSvg({ parallaxX, parallaxY }: { parallaxX: MotionValue<number>; p
           strokeWidth={3}
           opacity={0.85}
         />
-        {/* Inner equatorial line */}
-        <ellipse
-          cx={CX} cy={CY}
-          rx={SR + 4} ry={14}
-          fill="none"
-          stroke="rgba(212,175,55,0.4)"
-          strokeWidth={1}
-        />
-
         {/* ── Gold light rays ── */}
         {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => {
           const rad = ((deg - 90) * Math.PI) / 180;
           const cos = Math.cos(rad), sin = Math.sin(rad);
           return (
             <line key={deg}
-              x1={CX + cos * SR}       y1={CY + sin * SR}
+              x1={CX + cos * SR}        y1={CY + sin * SR}
               x2={CX + cos * (SR + 55)} y2={CY + sin * (SR + 55)}
               stroke="rgba(212,175,55,0.5)"
               strokeWidth={1.2}
@@ -306,20 +289,6 @@ function SphereSvg({ parallaxX, parallaxY }: { parallaxX: MotionValue<number>; p
             />
           );
         })}
-
-        {/* ── GOLD BALANCE text ── */}
-        <text x={CX} y={CY - 7}
-          textAnchor="middle" dominantBaseline="middle"
-          fontSize={12} fontWeight={700} letterSpacing={4}
-          fill="rgba(20,10,2,0.52)" fontFamily="Inter,system-ui,sans-serif">
-          GOLD
-        </text>
-        <text x={CX} y={CY + 13}
-          textAnchor="middle" dominantBaseline="middle"
-          fontSize={16} fontWeight={900} letterSpacing={3}
-          fill="rgba(20,10,2,0.48)" fontFamily="Inter,system-ui,sans-serif">
-          BALANCE
-        </text>
       </g>
 
       {/* ── SVG particles ── */}

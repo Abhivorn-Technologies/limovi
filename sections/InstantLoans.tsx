@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, IndianRupee, ShieldCheck, Clock } from "lucide-react";
 
@@ -40,37 +41,166 @@ const BankWithAtIcon = ({ className, ...props }: any) => (
   </svg>
 );
 
-const steps = [
-  { id: 1, title: "Gold Balance", desc: "Select from your digital vault", icon: <ShieldCheck className="w-6 h-6 text-brand-secondary" /> },
-  { id: 2, title: "Instant Verify", desc: "No physical checks needed", icon: <CheckCircle2 className="w-6 h-6 text-brand-primary" /> },
-  { id: 3, title: "NBFC Partner", desc: "Best rates secured instantly", icon: <Clock className="w-6 h-6 text-brand-accent" /> },
-  { id: 4, title: "Money In Bank", desc: "Disbursed in minutes", icon: <IndianRupee className="w-6 h-6 text-green-500" /> },
-];
+// Default 24K Gold Rate per Gram
+const DEFAULT_GOLD_RATE = 14400;
 
-// Pre-computed stable values — no Math.random() at render time (prevents hydration mismatch)
-const NOTES = [
-  { left: 8,  r0: 12,  r1: 180, dur: 5.2, delay: 0.0 },
-  { left: 18, r0: 55,  r1: 270, dur: 4.8, delay: 0.8 },
-  { left: 28, r0: 30,  r1: 90,  dur: 6.1, delay: 1.5 },
-  { left: 38, r0: 70,  r1: 320, dur: 5.5, delay: 0.3 },
-  { left: 48, r0: 5,   r1: 200, dur: 4.3, delay: 2.1 },
-  { left: 57, r0: 45,  r1: 140, dur: 6.4, delay: 0.6 },
-  { left: 65, r0: 80,  r1: 260, dur: 5.0, delay: 1.9 },
-  { left: 73, r0: 20,  r1: 330, dur: 4.6, delay: 1.2 },
-  { left: 82, r0: 60,  r1: 100, dur: 5.8, delay: 2.7 },
-  { left: 91, r0: 35,  r1: 215, dur: 6.0, delay: 0.4 },
-  { left: 14, r0: 15,  r1: 75,  dur: 4.9, delay: 1.7 },
-  { left: 33, r0: 50,  r1: 295, dur: 5.3, delay: 2.3 },
-  { left: 52, r0: 25,  r1: 160, dur: 6.2, delay: 0.9 },
-  { left: 70, r0: 65,  r1: 240, dur: 4.7, delay: 1.4 },
-  { left: 88, r0: 40,  r1: 310, dur: 5.6, delay: 2.6 },
-];
+// ─── Instant Loans Interactive Widget matching notebook note ───────────────
+function InstantLoansWidget() {
+  const [goldRate] = useState<number>(DEFAULT_GOLD_RATE);
+  const [availableGrams] = useState<number>(50);
+  const [requiredLoan] = useState<number>(200000);
+
+  const totalGoldValue = Math.round(availableGrams * goldRate);
+  const maxLoanEligibility = Math.round(totalGoldValue * 0.75);
+  const safeLoanAmount = Math.min(requiredLoan, maxLoanEligibility);
+
+  // Gold pledged in grams = Loan amount / gold rate
+  const goldPledgedGrams = (safeLoanAmount / goldRate).toFixed(2);
+  const eligibleJewelleryGrams = Math.max(0, availableGrams - parseFloat(goldPledgedGrams)).toFixed(2);
+
+  return (
+    <div className="relative z-10 w-full max-w-md bg-white border border-slate-200 rounded-2xl p-5 sm:p-7 shadow-xl">
+      <div className="text-center mb-6">
+        <div className="w-13 h-13 bg-brand-primary/10 rounded-full mx-auto flex items-center justify-center mb-3">
+          <BankWithAtIcon className="w-7 h-7 text-brand-primary" />
+        </div>
+        <h3 className="text-xl font-black text-slate-800 tracking-tight">Instant Loans</h3>
+        <p className="text-xs text-slate-500 font-medium mt-0.5">Gold Collateral &amp; Jewellery Experience Example</p>
+      </div>
+
+      <div className="space-y-3.5 text-xs sm:text-sm">
+        {/* 1. Available Gold Balance */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3">
+          <span className="text-slate-600 font-medium leading-tight">1. Available Gold Balance</span>
+          <span className="font-bold text-slate-900 text-right">{availableGrams.toFixed(2)}g (24K)</span>
+        </div>
+
+        {/* 2. Gold Rate per Gram */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3">
+          <span className="text-slate-600 font-medium leading-tight">2. Today Gold Rate per Gram (24K)</span>
+          <span className="font-bold text-slate-800 text-right">₹ {goldRate.toLocaleString('en-IN')}</span>
+        </div>
+
+        {/* 3. Total Gold Balance Value */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3">
+          <span className="text-slate-600 font-medium leading-tight">3. Total Gold Balance Value</span>
+          <span className="font-bold text-slate-900 text-right">₹ {totalGoldValue.toLocaleString('en-IN')}</span>
+        </div>
+
+        {/* 4. Max Loan Eligibility */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3 bg-blue-50/60 px-3 py-2 rounded-lg">
+          <span className="text-slate-700 font-semibold leading-tight">4. Max. Loan Eligibility (75%)</span>
+          <span className="font-bold text-[#003D80] text-right">₹ {maxLoanEligibility.toLocaleString('en-IN')}</span>
+        </div>
+
+        {/* 5. Required Gold Loan Amount */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3">
+          <span className="text-slate-600 font-medium leading-tight">5. Required Gold Loan Amount</span>
+          <span className="font-bold text-[#005CB9] text-right border-b-2 border-[#005CB9]/40 pb-0.5">
+            ₹ {safeLoanAmount.toLocaleString('en-IN')}
+          </span>
+        </div>
+
+        {/* 6. Gold Pledged (in GOLD text) */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3 bg-amber-50/70 px-3 py-2 rounded-lg border border-amber-200/40">
+          <span className="text-slate-700 font-semibold leading-tight">6. Gold Pledged</span>
+          <span className="font-extrabold text-[#B8860B] text-right">{goldPledgedGrams}g (24K)</span>
+        </div>
+
+        {/* 7. Eligible Jewellery Experience (in GREEN text) */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3 bg-emerald-50/80 px-3 py-2 rounded-lg border border-emerald-200/40">
+          <span className="text-slate-700 font-semibold leading-tight">7. Eligible Jewellery Experience</span>
+          <span className="font-extrabold text-emerald-700 text-right">Value up to {eligibleJewelleryGrams}g (24K)</span>
+        </div>
+
+        {/* 8. Lending Partner */}
+        <div className="flex items-center justify-between pt-1 gap-3 px-1">
+          <span className="text-slate-500 font-medium leading-tight">8. Lending Partner</span>
+          <span className="font-bold text-[#005CB9] text-right">RBI Regulated NBFC</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Instant Liquidity Interactive Widget matching notebook note ────────────
+function InstantLiquidityWidget() {
+  const [goldRate] = useState<number>(DEFAULT_GOLD_RATE);
+  const [availableGrams] = useState<number>(50);
+  const [requiredLiquidity] = useState<number>(200000);
+
+  const totalGoldValue = Math.round(availableGrams * goldRate);
+  const goldLiquidatedGrams = (requiredLiquidity / goldRate).toFixed(2);
+  const remainingGoldGrams = (availableGrams - parseFloat(goldLiquidatedGrams)).toFixed(2);
+
+  return (
+    <div className="relative z-10 w-full max-w-md bg-white border border-slate-200 rounded-2xl p-5 sm:p-7 shadow-xl">
+      <div className="text-center mb-6">
+        <div className="w-13 h-13 bg-brand-secondary/10 rounded-full mx-auto flex items-center justify-center mb-3">
+          <IndianRupee className="w-7 h-7 text-brand-secondary" />
+        </div>
+        <h3 className="text-xl font-black text-slate-800 tracking-tight">Instant Liquidity</h3>
+        <p className="text-xs text-slate-500 font-medium mt-0.5">Gold Liquidation Example</p>
+      </div>
+
+      <div className="space-y-3.5 text-xs sm:text-sm">
+        {/* 1. Available Gold Balance */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3">
+          <span className="text-slate-600 font-medium leading-tight">1. Available Gold Balance</span>
+          <span className="font-bold text-slate-900 text-right">{availableGrams.toFixed(2)}g (24K)</span>
+        </div>
+
+        {/* 2. Gold Rate per Gram */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3">
+          <span className="text-slate-600 font-medium leading-tight">2. Today Gold Rate per Gram (24K)</span>
+          <span className="font-bold text-slate-800 text-right">₹ {goldRate.toLocaleString('en-IN')}</span>
+        </div>
+
+        {/* 3. Total Gold Balance Value */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3">
+          <span className="text-slate-600 font-medium leading-tight">3. Total Gold Balance Value</span>
+          <span className="font-bold text-slate-900 text-right">₹ {totalGoldValue.toLocaleString('en-IN')}</span>
+        </div>
+
+        {/* 4. Required Liquidity */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3 bg-blue-50/60 px-3 py-2 rounded-lg">
+          <span className="text-slate-700 font-semibold leading-tight">4. Required Liquidity</span>
+          <span className="font-bold text-[#003D80] text-right">₹ {requiredLiquidity.toLocaleString('en-IN')}</span>
+        </div>
+
+        {/* 5. Gold Liquidated */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3 bg-amber-50/70 px-3 py-2 rounded-lg border border-amber-200/40">
+          <span className="text-slate-700 font-semibold leading-tight">5. Gold Liquidated</span>
+          <span className="font-extrabold text-[#B8860B] text-right">{goldLiquidatedGrams}g (24K)</span>
+        </div>
+
+        {/* 6. Remaining Gold Balance */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3 bg-emerald-50/80 px-3 py-2 rounded-lg border border-emerald-200/40">
+          <span className="text-slate-700 font-semibold leading-tight">6. Remaining Gold Balance</span>
+          <span className="font-extrabold text-emerald-700 text-right">{remainingGoldGrams}g (24K)</span>
+        </div>
+
+        {/* 7. Settlement Rail */}
+        <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 gap-3">
+          <span className="text-slate-600 font-medium leading-tight">7. Settlement Rail</span>
+          <span className="font-bold text-slate-800 text-right">IMPS / RTGS</span>
+        </div>
+
+        {/* 8. Liquidity Partner */}
+        <div className="flex items-center justify-between pt-1 gap-3 px-1">
+          <span className="text-slate-500 font-medium leading-tight">8. Liquidity Partner</span>
+          <span className="font-bold text-brand-secondary text-right">LIMOVI</span>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function InstantLoans() {
   return (
     <>
       {/* ── Instant Loans Section ── */}
-      <section id="loans" className="py-16 md:py-32 bg-slate-50 relative overflow-hidden">
+      <section id="loans" className="py-16 md:py-32 bg-white relative overflow-hidden" style={{ background: "#FFFFFF" }}>
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
@@ -85,11 +215,23 @@ export function InstantLoans() {
                 <span className="text-brand-secondary font-bold uppercase tracking-widest text-sm">INSTANT LOANS </span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 tracking-tight">
-                Digital & physical gold backed loans.
+                Digital &amp; physical gold backed loans.
               </h2>
-              <p className="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
+              <p className="text-xl text-slate-600 mb-4 font-medium leading-relaxed">
                 Take a loan against your gold balance instantly without physical visits. We partner with RBI-regulated NBFCs as our primary lending rail.
               </p>
+
+              {/* Bullet points directly under paragraph */}
+              <ul className="space-y-2.5 mb-8 text-slate-600 text-base font-medium">
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-2.5" />
+                  <span>Enjoy jewellery experience worth value of remaining gold balance.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-2.5" />
+                  <span>Loan + Jewellery Experience.</span>
+                </li>
+              </ul>
 
               {/* HOW GOLD CONVERTS TO LOAN */}
               <div className="bg-white border border-slate-200 rounded-xl p-6 mb-8 shadow-sm">
@@ -118,40 +260,7 @@ export function InstantLoans() {
               transition={{ duration: 0.8 }}
               className="relative min-h-[500px] sm:min-h-[600px] py-12 rounded-3xl border border-slate-200 bg-white overflow-hidden flex items-center justify-center p-4 sm:p-8 shadow-xl"
             >
-              <div className="relative z-10 w-full max-w-sm bg-slate-50 border border-slate-100 rounded-2xl p-5 sm:p-8">
-                <div className="text-center mb-6">
-                  <div className="w-14 h-14 bg-brand-primary/10 rounded-full mx-auto flex items-center justify-center mb-4">
-                    <BankWithAtIcon className="w-7 h-7 text-brand-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-800">Instant Loans</h3>
-                </div>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Available Gold Balance</span>
-                    <span className="font-bold text-slate-800 text-right">150.00g</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Max. Loan Eligibility</span>
-                    <span className="font-bold text-slate-800 text-right">₹ 7,50,000</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Required Loan Amount</span>
-                    <span className="font-bold text-brand-primary text-right border-b-2 border-brand-primary/30 px-1">₹ 2,50,000</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Gold Pledged</span>
-                    <span className="font-bold text-brand-gold-luxury text-right">50.00g</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Loan Amount</span>
-                    <span className="font-bold text-right">₹ 2,50,000</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Lending Partner</span>
-                    <span className="font-bold text-brand-secondary text-right">RBI Regulated NBFC</span>
-                  </div>
-                </div>
-              </div>
+              <InstantLoansWidget />
             </motion.div>
 
           </div>
@@ -163,7 +272,7 @@ export function InstantLoans() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center flex-row-reverse">
             
-            {/* Swapped order for visual balance */}
+            {/* Widget container */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -171,48 +280,7 @@ export function InstantLoans() {
               transition={{ duration: 0.8 }}
               className="order-2 lg:order-1 relative min-h-[500px] sm:min-h-[600px] py-12 rounded-3xl border border-brand-secondary/20 bg-gradient-to-br from-slate-50 to-brand-secondary/5 overflow-hidden flex items-center justify-center p-4 sm:p-8 shadow-xl"
             >
-              <div className="relative z-10 w-full max-w-sm bg-white border border-slate-100 rounded-2xl p-5 sm:p-8">
-                <div className="text-center mb-6">
-                  <div className="w-14 h-14 bg-brand-secondary/10 rounded-full mx-auto flex items-center justify-center mb-4">
-                    <IndianRupee className="w-7 h-7 text-brand-secondary" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-800">Instant Liquidity</h3>
-                </div>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Available Gold Balance</span>
-                    <span className="font-bold text-slate-800 text-right">150.00g</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Today Gold Price/Gram</span>
-                    <span className="font-bold text-slate-800 text-right">₹ 7,500</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Eligible Value</span>
-                    <span className="font-bold text-slate-800 text-right">₹ 11,25,000</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Required Liquidity</span>
-                    <span className="font-bold text-brand-secondary text-right border-b-2 border-brand-secondary/30 px-1">₹ 85,000</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Gold Liquidated</span>
-                    <span className="font-bold text-brand-gold-luxury text-right">-10.00g</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Liquidation Value</span>
-                    <span className="font-bold text-green-600 text-right">₹ 85,000</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-200 gap-4">
-                    <span className="text-slate-500 leading-tight">Settlement Rail</span>
-                    <span className="font-bold text-right">IMPS / UPI</span>
-                  </div>
-                  <div className="flex items-center justify-between pb-3 gap-4">
-                    <span className="text-slate-500 leading-tight">Liquidity Partner</span>
-                    <span className="font-bold text-brand-primary text-right">LIMOVI</span>
-                  </div>
-                </div>
-              </div>
+              <InstantLiquidityWidget />
             </motion.div>
 
             <motion.div
@@ -223,8 +291,8 @@ export function InstantLoans() {
               className="order-1 lg:order-2"
             >
               <div className="flex items-center gap-2 mb-4">
-                <IndianRupee className="text-brand-accent w-6 h-6" />
-                <span className="text-brand-accent font-bold uppercase tracking-widest text-sm">INSTANT LIQUIDITY</span>
+                <IndianRupee className="text-brand-secondary w-6 h-6" />
+                <span className="text-brand-secondary font-bold uppercase tracking-widest text-sm">INSTANT LIQUIDITY</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-brand-primary mb-6 tracking-tight">
                 Instant Liquidity on Gold Balances
@@ -233,16 +301,16 @@ export function InstantLoans() {
                 Liquidate your Gold Balance into transparent cash value instantly. Connected via secure IMPS/UPI banking APIs through certified payment gateways.
               </p>
 
-              {/* HOW GOLD CONVERTS TO CASH */}
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 mb-8 shadow-sm">
-                <h4 className="font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">How your Gold converts to Cash:</h4>
+              {/* HOW YOUR GOLD CONVERTS TO CASH */}
+              <div className="bg-white border border-slate-200 rounded-xl p-6 mb-8 shadow-sm">
+                <h4 className="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">How your Gold converts to Cash:</h4>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
+                    <div className="w-6 h-6 rounded-full bg-brand-primary/10 text-brand-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
                     <p className="text-sm text-slate-600">Select the exact <strong className="text-slate-800">Gold Balance</strong> you wish to liquidate from your balance.</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
+                    <div className="w-6 h-6 rounded-full bg-brand-primary/10 text-brand-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
                     <p className="text-sm text-slate-600">The equivalent cash value is locked in using <strong className="text-slate-800">transparent wholesale spot prices (MCX)</strong>.</p>
                   </div>
                   <div className="flex items-start gap-3">
@@ -251,7 +319,6 @@ export function InstantLoans() {
                   </div>
                 </div>
               </div>
-
             </motion.div>
 
           </div>

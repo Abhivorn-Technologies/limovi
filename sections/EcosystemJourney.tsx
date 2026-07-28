@@ -18,7 +18,7 @@ const milestones = [
     desc: "Convert your jewellery, coins or cash into digital gold balance in a few simple steps.",
     icon: <Smartphone className="w-6 h-6" />,
     color: "bg-emerald-100 text-emerald-600",
-    image: "/images/journey-2.png"
+    image: "/images/journey-2-v2.png"
   },
   {
     title: "Jewellery Cloud",
@@ -28,11 +28,18 @@ const milestones = [
     image: "/images/journey-3.png"
   },
   {
+    title: "Instant Loans",
+    desc: "Get instant loans backed by your Gold Balance through partner NBFCs. Zero paperwork, 100% digital disbursal.",
+    icon: <Landmark className="w-6 h-6" />,
+    color: "bg-amber-100 text-amber-600",
+    image: "/images/journey-4.png"
+  },
+  {
     title: "Instant Liquidity",
-    desc: "Get instant loans or liquidity against your gold balance. No paperwork. No waiting.",
+    desc: "Convert eligible Gold Balance into instant bank cash whenever needed. 24/7 digital access.",
     icon: <CreditCard className="w-6 h-6" />,
     color: "bg-orange-100 text-orange-600",
-    image: "/images/journey-4.png"
+    image: "/images/journey-9.png"
   },
   {
     title: "Wealth Generation",

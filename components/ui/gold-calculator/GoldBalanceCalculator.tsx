@@ -200,7 +200,7 @@ export function GoldBalanceCalculator({
                 backgroundClip: 'text',
               }}
             >
-              Gold Balance Calculator
+              <span className="tracking-[0.14em] inline-block mr-1">LIMOVI</span> ROI Calculator
             </h2>
             <p className="text-[10px] mt-0.5 leading-snug font-medium" style={{ color: '#64748b' }}>
               Estimate your returns using live 24K gold prices.
@@ -253,32 +253,26 @@ export function GoldBalanceCalculator({
         data-lenis-prevent="true"
       >
 
-        {/* ── STRATEGY SELECTOR ──────────────────────────────────────── */}
-        <StrategySelector selected={strategy} onChange={setStrategy} />
-
-        {/* ── INPUT + LIVE PRICE PANEL ───────────────────────────────── */}
-        <div className="grid grid-cols-[1fr_auto_auto] gap-2 items-start">
-
-          {/* LEFT: slider (swaps based on strategy) */}
+        {/* ── GOLD PRICE, GRAMS & INVESTMENT REQUIRED ─── */}
+        <div className="grid grid-cols-[1fr_auto_auto] gap-2 items-start bg-slate-50/70 p-2.5 rounded-2xl border border-slate-200/70">
+          {/* LEFT: Grams Slider */}
           <div className="min-w-0">
-            <InputLabel strategy={strategy} />
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">
+                Gold Balance (Grams)
+              </span>
+              <span className="text-[9px] font-bold text-brand-primary">
+                Min. Investment: ₹{new Intl.NumberFormat('en-IN').format(enrolledGrams * (livePrice?.price ?? 14400))}
+              </span>
+            </div>
 
-              {/* All strategies use grams-based input now */}
-              <motion.div
-                key="strategy-grams"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 10 }}
-                transition={{ duration: 0.2 }}
-              >
-                <GramsSlider value={enrolledGrams} onChange={setEnrolledGrams} />
-              </motion.div>
+            <GramsSlider value={enrolledGrams} onChange={setEnrolledGrams} />
           </div>
 
           {/* DIVIDER */}
-          <div className="w-px self-stretch mt-5" style={{ background: 'rgba(11,98,214,0.1)' }} />
+          <div className="w-px self-stretch mt-5 bg-slate-200" />
 
-          {/* RIGHT: live price */}
+          {/* RIGHT: Live Price */}
           <div className="flex-shrink-0 flex flex-col items-center justify-center min-w-[90px]">
             <div
               className="rounded-xl px-2.5 py-2 text-center"
@@ -293,30 +287,25 @@ export function GoldBalanceCalculator({
                   {livePrice?.isLive ? 'LIVE' : 'DEMO'}
                 </span>
               </div>
-              <p className="text-[8px] font-semibold uppercase tracking-wider" style={{ color: '#92692a' }}>
+              <p className="text-[8px] font-semibold uppercase tracking-wider text-[#92692a]">
                 24K Gold Price
               </p>
               {priceLoading ? (
                 <Skeleton className="h-5 w-16 mt-1 mx-auto" />
               ) : (
-                <p className="text-sm font-black mt-0.5" style={{ color: '#7A5E00' }}>
-                  ₹{new Intl.NumberFormat('en-IN').format(livePrice?.price ?? 9850)}
+                <p className="text-sm font-black mt-0.5 text-[#7A5E00]">
+                  ₹{new Intl.NumberFormat('en-IN').format(livePrice?.price ?? 14400)}
                 </p>
               )}
-              <p className="text-[8px] mt-0.5" style={{ color: '#94a3b8' }}>per gram</p>
+              <p className="text-[8px] mt-0.5 text-slate-400">per gram</p>
             </div>
           </div>
         </div>
 
-        {/* ── JEWELLERY EXPERIENCES PER YEAR (SECTION 6) ───────────── */}
-        <JewelleryExperiencesSelector
-          luxuryCount={luxuryCount}
-          setLuxuryCount={setLuxuryCount}
-          lifestyleCount={lifestyleCount}
-          setLifestyleCount={setLifestyleCount}
-        />
+        {/* ── SELECT STRATEGY ──────────────────────────────────────── */}
+        <StrategySelector selected={strategy} onChange={setStrategy} />
 
-        {/* ── TIMELINE (only for investment strategies) ──────────────── */}
+        {/* ── SELECT INVESTMENT TIMELINE ────────────────────────────── */}
         <AnimatePresence>
           {needsTimeline && (
             <motion.div
@@ -332,6 +321,14 @@ export function GoldBalanceCalculator({
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* ── JEWELLERY EXPERIENCES PER YEAR ───────────────────────── */}
+        <JewelleryExperiencesSelector
+          luxuryCount={luxuryCount}
+          setLuxuryCount={setLuxuryCount}
+          lifestyleCount={lifestyleCount}
+          setLifestyleCount={setLifestyleCount}
+        />
 
         {/* ── DIVIDER ───────────────────────────────────────────────── */}
         <div className="h-px" style={{ background: 'linear-gradient(90deg,transparent,rgba(11,98,214,0.12),transparent)' }} />
@@ -360,7 +357,7 @@ export function GoldBalanceCalculator({
           )}
         </div>
 
-        {/* Strategy-aware result cards */}
+        {/* ── MONEY EARNED / SAVED & VALUE ADDED ───────────────────── */}
         {isLoading ? (
           <div className="grid grid-cols-2 gap-2">
             {Array.from({ length: 4 }).map((_, i) => (

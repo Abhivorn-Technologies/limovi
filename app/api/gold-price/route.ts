@@ -14,7 +14,7 @@ export interface GoldPriceResponse {
 }
 
 const FALLBACK: GoldPriceResponse = {
-  price: 9850,
+  price: 14400,
   currency: 'INR',
   metal: 'XAU',
   purity: '24K',
@@ -44,11 +44,16 @@ export async function GET(_req: NextRequest): Promise<Response> {
 
   try {
     const res = await fetchFromGoldAPI('/XAU/INR');
-    if (!res.ok) throw new Error(`GoldAPI ${res.status}`);
+    if (!res.ok) {
+      console.warn(`[gold-price] GoldAPI HTTP ${res.status} — using static benchmark rate (₹14,400).`);
+      return Response.json(FALLBACK);
+    }
 
     const data = await res.json();
-    const price = Math.round(pricePerGram(data.price));
-    const prevGram = pricePerGram(data.prev_close_price ?? data.price);
+    // Indian Market Multiplier: ~12.5% Import Duty + 3% GST + local jeweller premium ≈ 15.95% (1.1595x)
+    const INDIAN_MARKET_MULTIPLIER = 1.1596;
+    const price = Math.round(pricePerGram(data.price) * INDIAN_MARKET_MULTIPLIER);
+    const prevGram = pricePerGram(data.prev_close_price ?? data.price) * INDIAN_MARKET_MULTIPLIER;
     const change = Math.round(price - prevGram);
 
     return Response.json(
@@ -64,7 +69,7 @@ export async function GET(_req: NextRequest): Promise<Response> {
       { headers: { 'Cache-Control': 's-maxage=300, stale-while-revalidate=60' } }
     );
   } catch (err) {
-    console.error('[gold-price] Error:', err);
+    console.warn('[gold-price] Network error — using static benchmark rate (₹14,400):', String(err));
     return Response.json({ ...FALLBACK, error: String(err) });
   }
 }

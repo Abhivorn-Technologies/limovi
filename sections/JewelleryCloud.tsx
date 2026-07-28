@@ -190,7 +190,7 @@ export function JewelleryCloud() {
   }, []);
 
   return (
-    <section id="jewellery-experience" className="relative py-20 bg-[#F8F9FC] overflow-hidden">
+    <section id="jewellery-experience" className="relative py-20 bg-white overflow-hidden" style={{ background: "#FFFFFF" }}>
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute -top-32 left-0 w-[400px] h-[400px] rounded-full opacity-10 blur-3xl"
         style={{ background: "radial-gradient(circle,#D4AF37 0%,transparent 70%)" }} />
@@ -228,7 +228,7 @@ export function JewelleryCloud() {
       <div id="heritage-collection">
         <CarouselSlider 
           collections={celebrationCollections} 
-          title="Heritage Grandeur" 
+          title="Luxury Jewellery" 
           subtitle="Exquisitely crafted for weddings and significant life milestones." 
           isMobile={isMobile} 
         />
@@ -237,7 +237,7 @@ export function JewelleryCloud() {
       <div id="minimalist-elegance">
         <CarouselSlider 
           collections={dailyCollections} 
-          title="Everyday Grace" 
+          title="Lifestyle Jewellery" 
           subtitle="Refined jewellery for every moment." 
           isMobile={isMobile} 
         />

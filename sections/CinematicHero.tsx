@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useMotionValue, animate, useSpring } f
 import { Play, Sparkles, ArrowRight, Zap, TrendingUp, Gift, Infinity as InfinityIcon, Gem, Landmark, HandCoins, ShieldCheck, Clock, IndianRupee, Crown } from "lucide-react";
 import { useLenis } from "lenis/react";
 import Image from "next/image";
+import { DoodleIconBackground } from "@/components/shared/DoodleIconBackground";
 
 const C = {
   primary:    "#005CB9",
@@ -381,8 +382,8 @@ function Scene1_Problem({ progress }: { progress: any }) {
   const textScale   = useTransform(progress, [0, 0.10],  [1, 0.90], { clamp: true });
   const textBlur    = useTransform(progress, [0.06, 0.10], ["blur(0px)", "blur(8px)"], { clamp: true });
   const fragOp      = useTransform(progress, [0.08, 0.12, 0.16, 0.19], [0, 1, 1, 0], { clamp: true });
-  const textVisibility = useTransform(progress, [0.10, 0.11], ["visible", "hidden"]);
-  const fragVisibility = useTransform(progress, [0.25, 0.26], ["visible", "hidden"]);
+  const textDisplay = useTransform(progress, (p: number) => (p <= 0.11 ? "flex" : "none"));
+  const fragDisplay = useTransform(progress, (p: number) => (p >= 0.07 && p <= 0.26 ? "flex" : "none"));
 
   const items = [
     { label: "Digital Gold", icon: DigitalGoldSVG,  x:  "0px", y: isMobile ? "-190px" : "-25vh", animate: { y: [0, -10, 0], scale: [1, 1.06, 1] }, duration: 4.2 },
@@ -393,48 +394,47 @@ function Scene1_Problem({ progress }: { progress: any }) {
   ];
 
   const metrics = [
-    { value: "₹500Cr+", label: "Gold Managed",   grad: `linear-gradient(135deg,${C.goldBright},${C.gold})` },
-    { value: "50K+",    label: "Customers",       grad: `linear-gradient(135deg,${C.primary},${C.secondary})` },
-    { value: "100%",    label: "Insured & Secure", grad: `linear-gradient(135deg,${C.primary},${C.secondary})` },
+    { value: "₹500Cr+", label: "Gold Managed",   color: C.goldDeep },
+    { value: "50K+",    label: "Customers",       color: C.primary },
+    { value: "100%",    label: "Insured & Secure", color: C.primary },
   ];
 
   return (
     <>
       {/* Layer 1: Hero text */}
       <motion.div
-        style={{ opacity: textLayerOp, scale: textScale, filter: textBlur, visibility: textVisibility }}
+        style={{ opacity: textLayerOp, scale: textScale, filter: textBlur, display: textDisplay }}
         className="absolute inset-0 flex flex-col items-center justify-center px-6 md:px-16 lg:px-24 pb-12 md:pb-20 overflow-hidden pointer-events-none"
       >
         <motion.div
           className="w-full flex flex-col items-center text-center z-10 flex-shrink-0 pointer-events-auto"
           style={{ opacity: textInnerOp }}
         >
-          <div className="inline-flex items-center gap-2 mb-4 lg:mb-6 px-3 py-1.5 lg:px-4 lg:py-2 rounded-full" style={{ background: "rgba(0,92,185,0.06)", border: "1px solid rgba(0,92,185,0.18)" }}>
-            <motion.span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full" style={{ background: C.gold }} animate={{ scale: [1, 1.5, 1], opacity: [0.6, 1, 0.6] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} />
-            <span className="text-[9px] lg:text-[10px] font-bold tracking-[0.18em] uppercase" style={{ color: C.primary }}>India&apos;s 1st Living Gold Ecosystem</span>
+          <div className="inline-flex items-center gap-2 mb-4 lg:mb-6 px-3 py-1.5 lg:px-4 lg:py-2 rounded-full bg-white border border-slate-200 shadow-sm">
+            <motion.span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-[#D4AF37]" animate={{ scale: [1, 1.5, 1], opacity: [0.6, 1, 0.6] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} />
+            <span className="text-[9px] lg:text-[10px] font-bold tracking-[0.18em] uppercase text-[#005CB9]">India&apos;s 1st Living Gold Ecosystem</span>
           </div>
 
-          <h1 className="font-black tracking-tight leading-[1.08] mb-2 lg:mb-3 w-full" style={{ fontSize: "clamp(2.2rem, 5.2vw, 5rem)", color: C.textDark }}>
+          <h1 className="font-black tracking-tight leading-[1.08] mb-2 lg:mb-3 w-full text-slate-900" style={{ fontSize: "clamp(2.2rem, 5.2vw, 5rem)" }}>
             Gold That Works{" "}
-            <motion.span
-              style={{ background: `linear-gradient(135deg,${C.goldBright} 0%,${C.gold} 45%,${C.goldDeep} 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", display: "inline" }}
-              animate={{ filter: ["drop-shadow(0 2px 8px rgba(212,175,55,0.15))", "drop-shadow(0 2px 24px rgba(212,175,55,0.55))", "drop-shadow(0 2px 8px rgba(212,175,55,0.15))"] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-            >
-              Beyond Ownership.
-            </motion.span>
+            <span style={{ background: `linear-gradient(135deg, ${C.goldBright} 0%, ${C.gold} 45%, ${C.goldDeep} 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", filter: "drop-shadow(0 0 25px rgba(212,175,55,0.4))" }}>
+              Beyond
+            </span>
+            <br />
+            <span style={{ background: `linear-gradient(135deg, ${C.goldBright} 0%, ${C.gold} 45%, ${C.goldDeep} 100%)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", filter: "drop-shadow(0 0 25px rgba(212,175,55,0.4))" }}>
+              Ownership.
+            </span>
           </h1>
 
-          <p className="font-bold mb-5 lg:mb-6 max-w-2xl text-sm lg:text-base" style={{ color: C.textMid }}>
+          <p className="font-bold mb-5 lg:mb-6 max-w-2xl text-sm lg:text-base text-slate-600">
             Build Wealth. Experience Luxury. Unlock Financial Freedom.
           </p>
 
-
           <div className="flex items-stretch gap-2 lg:gap-4 flex-nowrap justify-center">
             {metrics.map((m) => (
-              <div key={m.value} className="flex flex-col items-center justify-center px-4 py-2.5 lg:px-6 lg:py-3 rounded-xl lg:rounded-2xl" style={{ background: "rgba(255,255,255,0.82)", border: "1px solid rgba(0,92,185,0.1)", backdropFilter: "blur(12px)", boxShadow: "0 3px 14px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.9)", minWidth: 90 }}>
-                <div className="font-black mb-0.5 text-base sm:text-lg lg:text-xl whitespace-nowrap" style={{ background: m.grad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{m.value}</div>
-                <div className="text-[8px] sm:text-[9px] lg:text-[10px] font-semibold tracking-wide whitespace-nowrap" style={{ color: C.textFaint }}>{m.label}</div>
+              <div key={m.value} className="flex flex-col items-center justify-center px-4 py-2.5 lg:px-6 lg:py-3 rounded-xl lg:rounded-2xl bg-white border border-slate-200 shadow-sm" style={{ minWidth: 90 }}>
+                <div className="font-black mb-0.5 text-base sm:text-lg lg:text-xl whitespace-nowrap" style={{ color: m.color }}>{m.value}</div>
+                <div className="text-[8px] sm:text-[9px] lg:text-[10px] font-semibold tracking-wide whitespace-nowrap text-slate-500">{m.label}</div>
               </div>
             ))}
           </div>
@@ -442,7 +442,7 @@ function Scene1_Problem({ progress }: { progress: any }) {
       </motion.div>
 
       {/* Layer 2: Fragmented cinematic */}
-      <motion.div style={{ visibility: fragVisibility }} className="absolute inset-0 flex items-center justify-center">
+      <motion.div style={{ display: fragDisplay }} className="absolute inset-0 flex items-center justify-center">
         <div className="relative flex items-center justify-center w-full h-full">
           <motion.div style={{ opacity: fragOp }} className="absolute text-center z-20 pointer-events-none flex flex-col items-center">
             <p className="text-[11px] lg:text-xs font-bold tracking-[0.2em] uppercase mb-1" style={{ color: C.goldDeep }}>YOU HAVE GOLD ASSETS.</p>
@@ -465,23 +465,39 @@ function Scene1_Problem({ progress }: { progress: any }) {
 function Scene2_GoldBalance({ progress }: { progress: any }) {
   const opacity = useTransform(progress, [0.20, 0.25, 0.40, 0.45], [0, 1, 1, 0], { clamp: true });
   const scale   = useTransform(progress, [0.20, 0.25, 0.40, 0.45], [0.6, 1, 1.15, 1.45], { clamp: true });
-  const blur    = useTransform(progress, [0.40, 0.45], ["blur(0px)", "blur(24px)"], { clamp: true });
-  const visibility = useTransform(progress, [0.19, 0.20, 0.45, 0.46], ["hidden", "visible", "visible", "hidden"]);
+  const display = useTransform(progress, (p: number) => (p >= 0.19 && p <= 0.46 ? "flex" : "none"));
+
   return (
-    <motion.div style={{ opacity, scale, filter: blur, visibility }} className="absolute inset-0 flex flex-col items-center justify-center">
+    <motion.div style={{ opacity, scale, display }} className="absolute inset-0 flex flex-col items-center justify-center">
+      {/* Pulsing gold ambient halo — sits behind, no white ring */}
       <motion.div
-        className="relative flex items-center justify-center rounded-full"
-        style={{ width: 360, height: 360, background: `radial-gradient(circle at 35% 35%, ${C.goldBright} 0%, ${C.gold} 45%, ${C.goldDeep} 80%, transparent 100%)`, boxShadow: `0 0 100px rgba(212,175,55,0.6), 0 0 200px rgba(212,175,55,0.2)` }}
-        animate={{ boxShadow: ["0 0 80px rgba(212,175,55,0.5), 0 0 160px rgba(212,175,55,0.15)", "0 0 140px rgba(212,175,55,0.8), 0 0 280px rgba(212,175,55,0.3)", "0 0 80px rgba(212,175,55,0.5), 0 0 160px rgba(212,175,55,0.15)"] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute rounded-full pointer-events-none"
+        style={{
+          width: 400, height: 400,
+          background: "radial-gradient(circle, rgba(212,175,55,0.32) 0%, rgba(184,134,11,0.12) 55%, transparent 72%)",
+          filter: "blur(28px)",
+        }}
+        animate={{ scale: [1, 1.10, 1], opacity: [0.75, 1, 0.75] }}
+        transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Globe image — edge-to-edge, no gap */}
+      <div
+        className="relative rounded-full overflow-hidden"
+        style={{
+          width: 380, height: 380,
+          boxShadow: "0 0 60px rgba(212,175,55,0.45), 0 16px 48px rgba(0,30,90,0.35)",
+        }}
       >
-        <div className="absolute inset-0 rounded-full border border-white/20 animate-[spin_10s_linear_infinite]" style={{ transformStyle: "preserve-3d", transform: "rotateX(60deg)" }} />
-        <div className="absolute inset-0 rounded-full border border-white/20 animate-[spin_15s_linear_infinite_reverse]" style={{ transformStyle: "preserve-3d", transform: "rotateY(60deg)" }} />
-        <div className="text-center z-10 select-none">
-          <p className="text-sm font-bold tracking-[0.4em] text-black/50 mb-2">INTRODUCING</p>
-          <h2 className="text-5xl lg:text-6xl font-black tracking-tight text-black leading-[0.95]">GOLD<br />BALANCE</h2>
-        </div>
-      </motion.div>
+        <Image
+          src="/images/ChatGPT Image Jul 28, 2026, 11_54_39 AM.png"
+          alt="Introducing Gold Balance"
+          fill
+          sizes="380px"
+          className="object-cover object-center scale-[1.04]"
+          priority
+        />
+      </div>
     </motion.div>
   );
 }
@@ -494,7 +510,7 @@ function Scene3_Item({ strat, i, progress }: { strat: any; i: number; progress: 
   const Icon = strat.icon;
   return (
     <motion.div className={`absolute flex flex-col items-center text-center max-w-[120px] sm:max-w-[180px] lg:max-w-xs ${strat.pos}`} style={{ opacity: op, y }}>
-      <div className="w-7 h-7 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded-full bg-white/90 border border-slate-200 flex items-center justify-center mb-1.5 lg:mb-2.5 shadow-md text-slate-700">
+      <div className="w-7 h-7 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded-full bg-white/90 border border-amber-200/60 flex items-center justify-center mb-1.5 lg:mb-2.5 shadow-md text-[#B8860B]">
         <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 lg:w-5 lg:h-5" />
       </div>
       <div className="text-sm sm:text-lg lg:text-2xl font-black text-[#005CB9] mb-1 leading-tight">{strat.title}</div>
@@ -505,7 +521,7 @@ function Scene3_Item({ strat, i, progress }: { strat: any; i: number; progress: 
 
 function Scene3_Strategies({ progress }: { progress: any }) {
   const opacity = useTransform(progress, [0.40, 0.45, 0.60, 0.65], [0, 1, 1, 0], { clamp: true });
-  const visibility = useTransform(progress, [0.39, 0.40, 0.65, 0.66], ["hidden", "visible", "visible", "hidden"]);
+  const display = useTransform(progress, (p: number) => (p >= 0.39 && p <= 0.66 ? "flex" : "none"));
   const strategies = [
     { title: "Investment Only",     desc: "Gold bars grow into a mountain.", pos: "-translate-x-[100px] sm:-translate-x-[190px] lg:-translate-x-[280px] -translate-y-[130px] sm:-translate-y-[155px] lg:-translate-y-[190px]", icon: InvestmentGrowthIcon },
     { title: "Enroll & Experience", desc: "Join and unlock luxury.",         pos: "translate-x-[100px] sm:translate-x-[190px] lg:translate-x-[280px] -translate-y-[130px] sm:-translate-y-[155px] lg:-translate-y-[190px]",  icon: InfinityIcon },
@@ -513,14 +529,14 @@ function Scene3_Strategies({ progress }: { progress: any }) {
     { title: "Experience Only",     desc: "Access luxury without ownership.", pos: "translate-x-[100px] sm:translate-x-[190px] lg:translate-x-[280px] translate-y-[130px] sm:translate-y-[155px] lg:translate-y-[190px]",    icon: Gem },
   ];
   return (
-    <motion.div style={{ opacity, visibility }} className="absolute inset-0 flex items-center justify-center overflow-hidden">
+    <motion.div style={{ opacity, display }} className="absolute inset-0 flex items-center justify-center overflow-hidden">
       <div className="relative w-full h-full flex items-center justify-center">
         
         {/* Gold Balance Ripples */}
         {[0, 1, 2].map((i) => (
           <motion.div
             key={i}
-            className="absolute z-10 rounded-full border border-[#D4AF37]/40"
+            className="absolute z-10 rounded-full border border-slate-300"
             style={{ width: "100px", height: "100px" }}
             animate={{ scale: [1, 3], opacity: [0.8, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeOut", delay: i * 1 }}
@@ -528,26 +544,40 @@ function Scene3_Strategies({ progress }: { progress: any }) {
         ))}
 
         <motion.div
-          className="absolute z-20 flex flex-col items-center justify-center w-20 h-20 sm:w-28 sm:h-28 rounded-full border-4 border-white/30"
-          style={{ background: `linear-gradient(135deg, ${C.goldBright} 0%, ${C.goldDeep} 100%)`, boxShadow: `inset 0 0 20px rgba(255,255,255,0.4)` }}
-          animate={{ 
-            scale: [1, 1.05, 1], 
-            boxShadow: ["0 0 40px rgba(212,175,55,0.4), inset 0 0 20px rgba(255,255,255,0.4)", "0 0 80px rgba(212,175,55,0.8), inset 0 0 20px rgba(255,255,255,0.4)", "0 0 40px rgba(212,175,55,0.4), inset 0 0 20px rgba(255,255,255,0.4)"] 
+          className="absolute z-20 rounded-full overflow-hidden"
+          style={{
+            width: "clamp(80px, 11vw, 160px)",
+            height: "clamp(80px, 11vw, 160px)",
+            boxShadow: "0 0 40px rgba(212,175,55,0.5), 0 8px 32px rgba(184,134,11,0.35)",
+          }}
+          animate={{
+            scale: [1, 1.05, 1],
+            boxShadow: [
+              "0 0 40px rgba(212,175,55,0.5), 0 8px 32px rgba(184,134,11,0.35)",
+              "0 0 80px rgba(212,175,55,0.85), 0 8px 48px rgba(184,134,11,0.5)",
+              "0 0 40px rgba(212,175,55,0.5), 0 8px 32px rgba(184,134,11,0.35)",
+            ],
           }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Sparkles className="text-white/90 mb-0.5 w-4 h-4 sm:w-5 sm:h-5" />
-          <span className="text-[7px] sm:text-[9px] font-black text-white tracking-[0.2em] text-center leading-tight">GOLD<br />BALANCE</span>
+          <Image
+            src="/images/ChatGPT Image Jul 28, 2026, 11_54_39 AM.png"
+            alt="Gold Balance Globe"
+            fill
+            sizes="160px"
+            className="object-cover object-center scale-[1.04]"
+            priority
+          />
         </motion.div>
 
         {/* Animated Connecting Lines with Triggering Dots */}
         {[45, 135, 225, 315].map((angle, idx) => (
-          <div key={angle} className="absolute top-1/2 left-1/2 origin-left overflow-hidden" style={{ width: "clamp(100px, 22vw, 260px)", height: 2, background: "rgba(212,175,55,0.1)", transform: `rotate(${angle}deg)`, marginTop: -1 }}>
+          <div key={angle} className="absolute top-1/2 left-1/2 origin-left overflow-hidden rounded-full" style={{ width: "clamp(100px, 22vw, 260px)", height: 3.5, background: "rgba(212,175,55,0.35)", transform: `rotate(${angle}deg)`, marginTop: -1.75 }}>
             {[0, 1, 2].map((dotIdx) => (
               <motion.div 
                 key={dotIdx}
                 className="absolute top-1/2 -translate-y-1/2 rounded-full" 
-                style={{ width: "6px", height: "6px", background: "#FFFFFF", boxShadow: "0 0 12px 3px #F4C430" }} 
+                style={{ width: "8px", height: "8px", background: "#FFFFFF", boxShadow: "0 0 12px 3px #F4C430" }} 
                 animate={{ left: ["100%", "0%"], opacity: [0, 1, 0.2] }} 
                 transition={{ duration: 1.8, repeat: Infinity, ease: "easeIn", delay: dotIdx * 0.6 + idx * 0.15 }}
               />
@@ -591,7 +621,7 @@ function Scene4_Benefits({ progress }: { progress: any }) {
   const opacity  = useTransform(progress, [0.60, 0.65, 0.80, 0.85], [0, 1, 1, 0], { clamp: true });
   const titleOp  = useTransform(progress, [0.60, 0.65], [0, 1], { clamp: true });
   const titleY   = useTransform(progress, [0.60, 0.65], [20, 0], { clamp: true });
-  const visibility = useTransform(progress, [0.59, 0.60, 0.85, 0.86], ["hidden", "visible", "visible", "hidden"]);
+  const display  = useTransform(progress, (p: number) => (p >= 0.59 && p <= 0.86 ? "flex" : "none"));
   const portals  = [
     { title: "Luxury Jewellery Cloud",       icon: Crown },
     { title: "Instant Loan",                icon: BankWithAtIcon },
@@ -600,9 +630,9 @@ function Scene4_Benefits({ progress }: { progress: any }) {
     { title: "Wealth Generation",           icon: HandCoins },
   ];
   return (
-    <motion.div style={{ opacity, visibility }} className="absolute inset-0 flex flex-col items-center justify-center pt-4 sm:pt-8">
-      <motion.h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-6 sm:mb-10 lg:mb-14 tracking-tight text-center px-4" style={{ opacity: titleOp, y: titleY }}>
-        Five Infinite Portals
+    <motion.div style={{ opacity, display }} className="absolute inset-0 flex flex-col items-center justify-center pt-4 sm:pt-8">
+      <motion.h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#005CB9] mb-6 sm:mb-10 lg:mb-14 tracking-tight text-center px-4" style={{ opacity: titleOp, y: titleY }}>
+        Five Powerful Gateways
       </motion.h2>
       <div className="flex flex-nowrap sm:flex-wrap justify-center gap-1.5 sm:gap-5 lg:gap-7 px-2 max-w-5xl w-full">
         {portals.map((p, i) => (
@@ -618,16 +648,21 @@ function Scene4_Benefits({ progress }: { progress: any }) {
 function Scene5_Ending({ progress }: { progress: any }) {
   const opacity = useTransform(progress, [0.80, 0.85, 1], [0, 1, 1]);
   const scale   = useTransform(progress, [0.84, 1.0], [0.85, 1], { clamp: true });
+  const display = useTransform(progress, (p: number) => (p >= 0.79 ? "flex" : "none"));
 
   const rings = [
-    { size: "w-[360px] h-[360px] lg:w-[580px] lg:h-[580px]", duration: 40, reverse: false, color: "border-slate-300", items: ["Instant Loan", "Instant Liquidity"] },
-    { size: "w-[280px] h-[280px] lg:w-[440px] lg:h-[440px]", duration: 25, reverse: true, color: "border-[#D4AF37]/50", items: ["Investment", "Wealth Generation"] },
-    { size: "w-[200px] h-[200px] lg:w-[300px] lg:h-[300px]", duration: 15, reverse: false, color: "border-[#D4AF37]/80", items: ["Luxury Jewellery Cloud", "Gift Gold Ecosystem"] },
+    { size: "w-[340px] h-[340px] md:w-[480px] md:h-[480px] lg:w-[580px] lg:h-[580px]", duration: 40, reverse: false, color: "border-slate-300", items: ["Instant Loan", "Instant Liquidity"] },
+    { size: "w-[260px] h-[260px] md:w-[360px] md:h-[360px] lg:w-[440px] lg:h-[440px]", duration: 25, reverse: true,  color: "border-[#D4AF37]/50", items: ["Investment", "Wealth Generation"] },
+    { size: "w-[180px] h-[180px] md:w-[250px] md:h-[250px] lg:w-[300px] lg:h-[300px]", duration: 15, reverse: false, color: "border-[#D4AF37]/80", items: ["Luxury Jewellery Cloud", "Gift Gold Ecosystem"] },
   ];
 
   return (
-    <motion.div style={{ opacity, scale }} className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-      <div className="relative w-full h-full flex items-center justify-center max-w-[500px] mx-auto pointer-events-auto">
+    <motion.div style={{ opacity, scale, display }} className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+      {/* Doodle background — only for this last scene */}
+      <motion.div style={{ opacity }} className="absolute inset-0 pointer-events-none">
+        <DoodleIconBackground />
+      </motion.div>
+      <div className="relative w-full h-full flex items-center justify-center max-w-[600px] md:max-w-[700px] mx-auto pointer-events-auto">
         
         {rings.map((ring, i) => (
           <motion.div 
@@ -643,7 +678,7 @@ function Scene5_Ending({ progress }: { progress: any }) {
                 transition={{ duration: ring.duration, repeat: Infinity, ease: "linear" }}
               >
                 <motion.div 
-                  className="px-3 py-1 rounded-full border border-slate-200 bg-white shadow-[0_6px_16px_rgba(212,175,55,0.15)] text-[9px] lg:text-xs font-bold text-slate-700 whitespace-nowrap"
+                  className="px-2 py-0.5 md:px-3 md:py-1 rounded-full border border-slate-200 bg-white shadow-[0_6px_16px_rgba(212,175,55,0.15)] text-[8px] md:text-[10px] lg:text-xs font-bold text-[#005CB9] whitespace-nowrap"
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: i * 0.6 }}
                 >
@@ -658,7 +693,7 @@ function Scene5_Ending({ progress }: { progress: any }) {
                 transition={{ duration: ring.duration, repeat: Infinity, ease: "linear" }}
               >
                 <motion.div 
-                  className="px-3 py-1 rounded-full border border-slate-200 bg-white shadow-[0_6px_16px_rgba(212,175,55,0.15)] text-[9px] lg:text-xs font-bold text-slate-700 whitespace-nowrap"
+                  className="px-2 py-0.5 md:px-3 md:py-1 rounded-full border border-slate-200 bg-white shadow-[0_6px_16px_rgba(212,175,55,0.15)] text-[8px] md:text-[10px] lg:text-xs font-bold text-[#005CB9] whitespace-nowrap"
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 + 1 }}
                 >
@@ -669,9 +704,9 @@ function Scene5_Ending({ progress }: { progress: any }) {
           </motion.div>
         ))}
 
-        <div className="z-10 flex flex-col items-center justify-center bg-white/70 backdrop-blur-xl w-32 h-32 lg:w-40 lg:h-40 rounded-full shadow-[0_10px_40px_rgba(212,175,55,0.2)] border border-white/90">
-          <h1 className="text-xl lg:text-3xl font-black text-[#387ed1] tracking-widest mb-0.5 mt-2">LIMOVI</h1>
-          <p className="tracking-[0.2em] text-[5.5px] lg:text-[7px] font-bold uppercase text-[#B8860B]">The Gold Ecosystem</p>
+        <div className="z-10 flex flex-col items-center justify-center bg-white/70 backdrop-blur-xl w-28 h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full shadow-[0_10px_40px_rgba(212,175,55,0.2)] border border-white/90">
+          <h1 className="text-lg md:text-2xl lg:text-3xl font-black text-[#387ed1] tracking-widest mb-0.5 mt-2">LIMOVI</h1>
+          <p className="tracking-[0.2em] text-[5px] md:text-[6px] lg:text-[7px] font-bold uppercase text-[#B8860B]">The Gold Ecosystem</p>
         </div>
 
       </div>
@@ -708,10 +743,8 @@ export function CinematicHero() {
   }, []);
   
   return (
-    <section ref={containerRef} className="relative h-[800vh]" style={{ background: "linear-gradient(145deg,#FFFFFF 0%,#F8FAFC 25%,#EEF4FF 60%,#DCEBFF 100%)" }}>
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(circle at center, rgba(212,175,55,0.06) 0%, transparent 70%)" }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(0,92,185,0.07) 1px, transparent 1px)", backgroundSize: "40px 40px", maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)", WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)" }} />
+    <section ref={containerRef} className="relative h-[800vh] bg-white" style={{ background: "#FFFFFF" }}>
+      <div className="sticky top-0 h-screen w-full overflow-hidden bg-white" style={{ background: "#FFFFFF" }}>
 
         <Scene1_Problem     progress={scrollYProgress} />
         <Scene2_GoldBalance progress={scrollYProgress} />

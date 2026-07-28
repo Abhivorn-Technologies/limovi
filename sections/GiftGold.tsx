@@ -91,7 +91,7 @@ export function GiftGold() {
           >
             <div className="flex items-center gap-3 mb-4">
               <div 
-                className="w-8 h-8 bg-pink-500 shrink-0" 
+                className="w-8 h-8 bg-brand-secondary shrink-0" 
                 style={{
                   maskImage: "url(/images/gifting-eco.png)",
                   WebkitMaskImage: "url(/images/gifting-eco.png)",
@@ -103,7 +103,7 @@ export function GiftGold() {
                   WebkitMaskPosition: "center"
                 }}
               />
-              <span className="text-pink-500 font-bold uppercase tracking-widest text-sm">Gift The LIMOVI Ecosystem</span>
+              <span className="text-brand-secondary font-bold uppercase tracking-widest text-sm">Gift The LIMOVI Ecosystem</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-primary mb-6 tracking-tight">
               Give Gold More Meaning.

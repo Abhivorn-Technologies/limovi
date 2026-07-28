@@ -95,21 +95,22 @@ export function GoldBalanceCoin({ grams, amount, size = 'md', trigger = 0 }: Gol
                   'radial-gradient(circle at 32% 28%, rgba(255,255,255,0.5) 0%, transparent 55%)',
               }}
             />
-            {/* L glyph */}
+            {/* LIMOVI text */}
             <span
               style={{
                 position: 'relative',
                 zIndex: 1,
-                fontSize: dims.icon * 0.6,
+                fontSize: dims.icon * 0.28,
                 fontWeight: 900,
                 color: '#4A3000',
-                letterSpacing: '-0.03em',
-                fontFamily: 'serif',
-                textShadow: '0 1px 3px rgba(0,0,0,0.35)',
+                letterSpacing: '0.12em',
+                paddingLeft: '0.12em',
+                fontFamily: 'sans-serif',
+                textShadow: '0 1px 2px rgba(0,0,0,0.3)',
                 userSelect: 'none',
               }}
             >
-              L
+              LIMOVI
             </span>
           </div>
         </motion.div>

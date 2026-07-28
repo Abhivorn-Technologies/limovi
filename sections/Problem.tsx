@@ -5,6 +5,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { Counter } from "@/components/ui/counter";
 import { Lock, TrendingDown, Hourglass, ArrowRight, ArrowDown, Smartphone, Gem, AlertCircle } from "lucide-react";
+import { DoodleIconBackground } from "@/components/shared/DoodleIconBackground";
 
 
 export function Problem() {
@@ -18,7 +19,7 @@ export function Problem() {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section ref={containerRef} className="py-16 md:py-32 bg-slate-50 relative overflow-hidden">
+    <section ref={containerRef} className="py-16 md:py-32 bg-white relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         
         <motion.div style={{ y, opacity }} className="text-center mb-16 md:mb-24">
@@ -81,7 +82,7 @@ export function Problem() {
               <div className="mt-auto pt-5 border-t border-slate-100">
                 <div className="px-4 py-3 bg-red-50 border border-red-100 rounded-xl text-center flex flex-col justify-center min-h-[72px]">
                   <h4 className="text-red-700 font-bold text-sm mb-0.5">Value Without Experience</h4>
-                  <p className="text-red-600/80 text-xs font-medium">Your gold may hold value, but its everyday utility remains limited.</p>
+                  <p className="text-red-600/80 text-xs font-medium">Digital gold preserves your capital, but lacks any physical or lifestyle utility.</p>
                 </div>
               </div>
             </div>
@@ -123,8 +124,8 @@ export function Problem() {
 
               <div className="mt-auto pt-5 border-t border-slate-100">
                 <div className="px-4 py-3 bg-red-50 border border-red-100 rounded-xl text-center flex flex-col justify-center min-h-[72px]">
-                  <h4 className="text-red-700 font-bold text-sm mb-0.5">Limited Experience With Limited Flexibility</h4>
-                  <p className="text-red-600/80 text-xs font-medium">You enjoy limited jewellery, and its broader financial utility may remain constrained.</p>
+                  <h4 className="text-red-700 font-bold text-sm mb-0.5">One Experience With Limited Flexibility</h4>
+                  <p className="text-red-600/80 text-xs font-medium">You enjoy one jewellery, and its broader financial utility may remain constrained.</p>
                 </div>
               </div>
             </div>

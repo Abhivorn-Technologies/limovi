@@ -89,10 +89,20 @@ export async function GET(req: NextRequest): Promise<Response> {
       next: { revalidate: 86400 }, // cache historical prices for 24h
     });
 
-    if (!res.ok) throw new Error(`GoldAPI ${res.status}`);
+    if (!res.ok) {
+      console.warn(`[gold-history] GoldAPI HTTP ${res.status} for ${isoDate} — using static fallback.`);
+      return Response.json({
+        date: isoDate,
+        price: fallbackForDate(isoDate),
+        currency: 'INR',
+        isLive: false,
+      } satisfies GoldHistoryResponse);
+    }
 
     const data = await res.json();
-    const price = Math.round(pricePerGram(data.price));
+    // Indian Market Multiplier: ~12.5% Import Duty + 3% GST + local jeweller premium ≈ 15.95% (1.1595x)
+    const INDIAN_MARKET_MULTIPLIER = 1.1596;
+    const price = Math.round(pricePerGram(data.price) * INDIAN_MARKET_MULTIPLIER);
 
     return Response.json(
       {
@@ -104,7 +114,7 @@ export async function GET(req: NextRequest): Promise<Response> {
       { headers: { 'Cache-Control': 's-maxage=86400' } }
     );
   } catch (err) {
-    console.error(`[gold-history] Error fetching ${isoDate}:`, err);
+    console.warn(`[gold-history] Error fetching ${isoDate}:`, String(err));
     return Response.json({
       date: isoDate,
       price: fallbackForDate(isoDate),

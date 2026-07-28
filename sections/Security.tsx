@@ -8,9 +8,9 @@ const ecosystemNodes = [
   {
     id: 1,
     title: "Jewellery Cloud",
-    partner: "Sequel Logistics",
-    domain: "sequelglobal.com",
-    desc: "Custom on-demand jewellery catalogs. Manufactured and stored securely via Sequel Vaults.",
+    partner: "Powered by LIMOVI Partners",
+    isLimovi: true,
+    desc: "Custom on-demand jewellery catalogs. Manufactured and stored securely via LIMOVI Vaults.",
     color: "from-blue-400 to-blue-600",
     border: "border-blue-500/30",
     // Desktop orbital positions using calc() to bypass Framer Motion transform override
@@ -21,6 +21,7 @@ const ecosystemNodes = [
     title: "Physical Gold Loans",
     partner: "Top NBFCs",
     domain: "rbi.org.in", 
+    isLimovi: false,
     desc: "Partnered with trusted NBFCs to provide secure and flexible physical gold-backed loans.",
     color: "from-green-400 to-green-600",
     border: "border-green-500/30",
@@ -29,8 +30,8 @@ const ecosystemNodes = [
   {
     id: 3,
     title: "Instant Liquidity",
-    partner: "Powered by LIMOVI",
-    domain: "google.com", // Fallback for no icon
+    partner: "Powered by LIMOVI Partners",
+    isLimovi: true,
     desc: "Ensuring you have instant, seamless access to your wealth whenever you need it.",
     color: "from-cyan-400 to-cyan-600",
     border: "border-cyan-500/30",
@@ -39,9 +40,9 @@ const ecosystemNodes = [
   {
     id: 4,
     title: "Digital Gold",
-    partner: "SafeGold & MMTC",
-    domain: "safegold.com",
-    desc: "A secure, 24K pure digital gold balance powered by our partners SafeGold and MMTC-PAMP.",
+    partner: "Powered by LIMOVI Partners",
+    isLimovi: true,
+    desc: "A secure, 24K pure digital gold balance powered directly by LIMOVI.",
     color: "from-yellow-400 to-yellow-600",
     border: "border-yellow-500/30",
     position: { left: "calc(50% - 160px)", top: "calc(85% - 50px)" }
@@ -49,9 +50,9 @@ const ecosystemNodes = [
   {
     id: 5,
     title: "Digital Gold Loans",
-    partner: "Rupeek",
-    domain: "rupeek.com",
-    desc: "Instant credit against your digital gold balance, partnered seamlessly with Rupeek.",
+    partner: "Powered by LIMOVI Partners",
+    isLimovi: true,
+    desc: "Instant credit against your digital gold balance, powered seamlessly by LIMOVI.",
     color: "from-purple-400 to-purple-600",
     border: "border-purple-500/30",
     position: { left: "calc(15% - 160px)", top: "calc(60% - 50px)" }
@@ -62,7 +63,7 @@ export function Security() {
   const [activeNode, setActiveNode] = useState<number | null>(null);
 
   return (
-    <section className="py-16 md:py-32 bg-slate-50 relative overflow-hidden">
+    <section className="py-16 md:py-32 bg-white relative overflow-hidden" style={{ background: "#FFFFFF" }}>
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-secondary/5 to-transparent pointer-events-none" />
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -110,8 +111,8 @@ export function Security() {
           >
              <div className="absolute inset-0 rounded-full bg-brand-primary/5 animate-ping" style={{ animationDuration: '3s' }} />
              <div className="text-center">
-               <div className="font-black text-2xl text-brand-primary tracking-tighter">LIMOVI</div>
-               <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">Core Engine</div>
+                <div className="font-black text-2xl text-brand-primary tracking-[0.18em] pl-[0.18em]">LIMOVI</div>
+                <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">Core Engine</div>
              </div>
           </motion.div>
 
@@ -143,16 +144,24 @@ export function Security() {
                   {/* Icon/Logo */}
                   <div className={`w-14 h-14 rounded-2xl flex-shrink-0 bg-gradient-to-br ${node.color} p-[2px] shadow-sm`}>
                     <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center overflow-hidden">
-                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                       <img 
-                          src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${node.domain}&size=64`}
-                          alt={node.partner}
-                          className={`h-8 w-8 object-contain ${node.title === 'Instant Liquidity' ? 'hidden' : ''}`}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                        {node.title === 'Instant Liquidity' && <span className="font-black text-brand-primary text-xl">L</span>}
+                       {node.isLimovi ? (
+                         /* eslint-disable-next-line @next/next/no-img-element */
+                         <img 
+                            src="/browser-logo.png"
+                            alt="LIMOVI Logo"
+                            className="w-full h-full object-cover p-1 scale-110"
+                          />
+                       ) : (
+                         /* eslint-disable-next-line @next/next/no-img-element */
+                         <img 
+                            src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${node.domain}&size=64`}
+                            alt={node.partner}
+                            className="h-8 w-8 object-contain"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                            }}
+                          />
+                       )}
                     </div>
                   </div>
 
@@ -190,16 +199,24 @@ export function Security() {
                 <div className="flex items-start gap-4 mb-4">
                   <div className={`w-14 h-14 rounded-2xl flex-shrink-0 bg-gradient-to-br ${node.color} p-[2px] shadow-sm`}>
                     <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center overflow-hidden">
-                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                       <img 
-                          src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${node.domain}&size=64`}
-                          alt={node.partner}
-                          className={`h-8 w-8 object-contain ${node.title === 'Instant Liquidity' ? 'hidden' : ''}`}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                        {node.title === 'Instant Liquidity' && <span className="font-black text-brand-primary text-xl">L</span>}
+                       {node.isLimovi ? (
+                         /* eslint-disable-next-line @next/next/no-img-element */
+                         <img 
+                            src="/browser-logo.png"
+                            alt="LIMOVI Logo"
+                            className="w-full h-full object-cover p-1 scale-110"
+                          />
+                       ) : (
+                         /* eslint-disable-next-line @next/next/no-img-element */
+                         <img 
+                            src={`https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${node.domain}&size=64`}
+                            alt={node.partner}
+                            className="h-8 w-8 object-contain"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                            }}
+                          />
+                       )}
                     </div>
                   </div>
                   <div className="flex-1 pt-1">
