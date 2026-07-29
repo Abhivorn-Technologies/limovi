@@ -47,12 +47,8 @@ export function StrategySelector({ selected, onChange }: StrategySelectorProps) 
         Investment Strategy
       </p>
 
-      {/* Scrollable tab strip */}
-      <div
-        ref={scrollRef}
-        className="flex gap-1.5 overflow-x-auto pb-1"
-        style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
-      >
+      {/* 4 Strategy Tabs in one line without scrolling */}
+      <div className="grid grid-cols-4 gap-1 w-full">
         {STRATEGIES.map((s) => {
           const isActive = selected === s.key;
           return (
@@ -60,20 +56,18 @@ export function StrategySelector({ selected, onChange }: StrategySelectorProps) 
               key={s.key}
               id={`strategy-tab-${s.key}`}
               onClick={() => onChange(s.key)}
-              className="relative flex-shrink-0 flex flex-col items-center gap-0.5 px-3 py-2 rounded-xl text-center transition-all duration-200 focus:outline-none"
+              className="relative flex flex-col items-center justify-center gap-0.5 px-1 py-1.5 rounded-xl text-center transition-all duration-200 focus:outline-none w-full min-w-0"
               style={
                 isActive
                   ? {
                       background: 'linear-gradient(135deg,#0B62D6,#002771)',
                       color: '#fff',
                       boxShadow: '0 4px 14px rgba(11,98,214,0.45)',
-                      minWidth: 72,
                     }
                   : {
                       background: 'rgba(11,98,214,0.05)',
                       color: '#475569',
                       border: '1px solid rgba(11,98,214,0.12)',
-                      minWidth: 72,
                     }
               }
               aria-pressed={isActive}
@@ -83,12 +77,12 @@ export function StrategySelector({ selected, onChange }: StrategySelectorProps) 
               <span className="flex items-center justify-center mb-0.5">
                 {(() => {
                   const Icon: any = STRATEGY_ICONS[s.key];
-                  return <Icon className="w-[18px] h-[18px]" style={{ color: isActive ? '#F4C430' : '#D4AF37' }} strokeWidth={2} />;
+                  return <Icon className="w-4 h-4" style={{ color: isActive ? '#F4C430' : '#D4AF37' }} strokeWidth={2} />;
                 })()}
               </span>
 
               {/* Label */}
-              <span className="text-[10px] font-black leading-tight whitespace-nowrap">
+              <span className="text-[8.5px] sm:text-[9.5px] font-black leading-tight text-center">
                 {s.shortLabel}
               </span>
 

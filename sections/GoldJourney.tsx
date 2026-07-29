@@ -20,7 +20,7 @@ const milestones = [
   {
     step: "02",
     image: "/images/journey-2-strategy.png",
-    alt: "Enrol by choosing strategy",
+    alt: "Enroll by choosing strategy",
   },
   {
     step: "03",

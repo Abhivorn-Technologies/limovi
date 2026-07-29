@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Crown, Gem, Sparkles, TrendingUp, CheckCircle2, XCircle, X, ChevronRight, Infinity as InfinityIcon } from "lucide-react";
 
 const InvestmentGrowthIcon = ({ className, size = 24, ...props }: any) => (
@@ -54,10 +54,10 @@ const PLANS: Plan[] = [
     icon: InvestmentGrowthIcon,
     accent: "#D4AF37",
     entryLabel: "Investment",
-    entryDetail: "Minimum 50 grams for Limovi membership benefits.",
+    entryDetail: "Minimum 50 grams 24K gold for Limovi membership benefits.",
     exitPolicy: "Redeem your gold balance as pure 24K gold or equivalent funds at prevailing market rates.",
     fee: "0.9%",
-    feeLabel: "of jewellery value + ₹1,099 service fee per experience",
+    feeLabel: "of jewellery value + ₹1,099 service fee per-experience",
     highlight: false,
     benefits: [
       { 
@@ -65,19 +65,19 @@ const PLANS: Plan[] = [
         desc: (
           <div className="mt-2 space-y-3 text-xs">
             <div>
-              <div className="font-bold text-white/90">A. Luxury Jewellery Subscription</div>
+              <div className="font-bold text-white/90">A. Luxury Jewellery Experience</div>
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
-                <li>Experience Charges: 0.9% of selected jewellery value / month.</li>
-                <li>Service Charges: ₹1,099 per experience.</li>
-                <li>Value Unlock: Save 14% on remodelling charges.</li>
+                <li>Experience Charges: 0.9% of selected jewellery value per-experience.</li>
+                <li>Service Charges: ₹1,099 per-experience.</li>
+                <li>Value Unlock: Save 14% on remodelling charges per-experience.</li>
               </ul>
             </div>
             <div>
               <div className="font-bold text-white/90">B. Lifestyle Jewellery Subscription</div>
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
-                <li>Experience Charges: 1.1% of selected jewellery value / month.</li>
-                <li>Service Charges: ₹1,499 per experience.</li>
-                <li>Value Unlock: Save 7% on remodelling charges.</li>
+                <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
+                <li>Service Charges: ₹1,499 per-experience.</li>
+                <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
               </ul>
             </div>
           </div>
@@ -135,7 +135,7 @@ const PLANS: Plan[] = [
     entryLabel: "Investment",
     entryDetail: (
       <ul className="list-disc list-outside ml-3.5 space-y-0.5 text-[9.5px]">
-        <li>Minimum 50 grams for Limovi membership benefits.</li>
+        <li>Minimum 50 grams 24K gold for Limovi membership benefits.</li>
         <li>Convert 80% of your investment into jewellery of your choice (includes gold weight rate + stone rate + GST = 80%), zero-making charge.</li>
         <li>20% membership fee = lifetime Luxury Jewellery Cloud access + 14% making charge coverage.</li>
       </ul>
@@ -147,31 +147,30 @@ const PLANS: Plan[] = [
       </ul>
     ),
     fee: "₹1,499",
-    feeLabel: "service fee per experience · 0% fee on 1st two experiences",
+    feeLabel: "service fee per-experience · 0% fee on 1st two experiences",
     highlight: true,
     benefits: [
       { 
         label: "Luxury Jewellery Cloud", 
         desc: (
-          <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
-            <li>
-              <div className="font-bold text-white/80">Experience Charges</div>
-              <div className="text-slate-400 mt-0.5">
-                Zero for first two experiences every year.<br/><br/>
-              </div>
-              <div className="text-slate-400 mt-0.5">
-                0.5% of selected jewellery value from 3rd experience
-              </div>
-            </li>
-            <li>
-              <div className="font-bold text-white/80">Service Charges</div>
-              <div className="text-slate-400 mt-0.5">= ₹1,499 per experience.</div>
-            </li>
-            <li>
-              <div className="font-bold text-white/80">Value Unlock</div>
-              <div className="text-slate-400 mt-0.5">= Save 28% on remodelling charges with every jewellery experience.</div>
-            </li>
-          </ul>
+          <div className="mt-2 space-y-3 text-xs">
+            <div>
+              <div className="font-bold text-white/90">A. Luxury Jewellery Experience</div>
+              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
+                <li>Experience Charges: Zero for first two experiences every year (0.5% of selected jewellery value from 3rd experience).</li>
+                <li>Service Charges: ₹1,499 per-experience.</li>
+                <li>Value Unlock: Save 28% on remodelling charges per-experience.</li>
+              </ul>
+            </div>
+            <div>
+              <div className="font-bold text-white/90">B. Lifestyle Jewellery Subscription</div>
+              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
+                <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
+                <li>Service Charges: ₹1,499 per-experience.</li>
+                <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
+              </ul>
+            </div>
+          </div>
         ), 
         eligible: true 
       },
@@ -234,10 +233,10 @@ const PLANS: Plan[] = [
     icon: InfinityIcon,
     accent: "#A78BFA",
     entryLabel: "Investment",
-    entryDetail: "Unlock lifetime Limovi membership benefits by enrolling your existing ornament worth the equivalent of 50 grams.",
+    entryDetail: "Unlock lifetime Limovi membership benefits by enrolling your existing ornament worth the equivalent of 50 grams 24K gold.",
     exitPolicy: "Reclaim your enrolled ornament and seamlessly exit the Limovi Gold Ecosystem.",
     fee: "0.9%",
-    feeLabel: "of jewellery value + ₹1,099 service fee · earn 25% back",
+    feeLabel: "of jewellery value + ₹1,099 service fee per-experience · earn 25% back",
     highlight: false,
     benefits: [
       { 
@@ -245,19 +244,19 @@ const PLANS: Plan[] = [
         desc: (
           <div className="mt-2 space-y-3 text-xs">
             <div>
-              <div className="font-bold text-white/90">A. Luxury Jewellery Subscription</div>
+              <div className="font-bold text-white/90">A. Luxury Jewellery Experience</div>
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
-                <li>Experience Charges: 0.9% of selected jewellery value / month.</li>
-                <li>Service Charges: ₹1,099 per experience.</li>
-                <li>Value Unlock: Save 14% on remodelling charges.</li>
+                <li>Experience Charges: 0.9% of selected jewellery value per-experience.</li>
+                <li>Service Charges: ₹1,099 per-experience.</li>
+                <li>Value Unlock: Save 14% on remodelling charges per-experience.</li>
               </ul>
             </div>
             <div>
               <div className="font-bold text-white/90">B. Lifestyle Jewellery Subscription</div>
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
-                <li>Experience Charges: 1.1% of selected jewellery value / month.</li>
-                <li>Service Charges: ₹1,499 per experience.</li>
-                <li>Value Unlock: Save 7% on remodelling charges.</li>
+                <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
+                <li>Service Charges: ₹1,499 per-experience.</li>
+                <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
               </ul>
             </div>
           </div>
@@ -323,10 +322,10 @@ const PLANS: Plan[] = [
     icon: Gem,
     accent: "#4DA3FF",
     entryLabel: "Investment",
-    entryDetail: "Unlock a world of Limovi benefits with a gold balance valued at 50 grams.",
+    entryDetail: "Unlock a world of Limovi benefits with a gold balance valued at 50 grams 24K gold.",
     exitPolicy: "Redeem your gold balance as pure 24K gold or equivalent funds at onboarding market rates.",
     fee: "0.9%",
-    feeLabel: "of jewellery value + ₹1,099 service fee per experience",
+    feeLabel: "of jewellery value + ₹1,099 service fee per-experience",
     highlight: false,
     benefits: [
       { 
@@ -334,19 +333,19 @@ const PLANS: Plan[] = [
         desc: (
           <div className="mt-2 space-y-3 text-xs">
             <div>
-              <div className="font-bold text-white/90">A. Luxury Jewellery Subscription</div>
+              <div className="font-bold text-white/90">A. Luxury Jewellery Experience</div>
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
-                <li>Experience Charges: 0.9% of selected jewellery value / month.</li>
-                <li>Service Charges: ₹1,099 per experience.</li>
-                <li>Value Unlock: Save 14% on remodelling charges.</li>
+                <li>Experience Charges: 0.9% of selected jewellery value per-experience.</li>
+                <li>Service Charges: ₹1,099 per-experience.</li>
+                <li>Value Unlock: Save 14% on remodelling charges per-experience.</li>
               </ul>
             </div>
             <div>
               <div className="font-bold text-white/90">B. Lifestyle Jewellery Subscription</div>
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
-                <li>Experience Charges: 1.1% of selected jewellery value / month.</li>
-                <li>Service Charges: ₹1,499 per experience.</li>
-                <li>Value Unlock: Save 7% on remodelling charges.</li>
+                <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
+                <li>Service Charges: ₹1,499 per-experience.</li>
+                <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
               </ul>
             </div>
           </div>
@@ -445,8 +444,8 @@ export function AccessStrategies() {
                 <div className="p-4 flex-1 flex flex-col">
                   <div className="flex items-start justify-between mb-3">
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{ background: p.accent + "18", border: "1px solid " + p.accent + "30" }}>
-                      <Icon size={15} style={{ color: p.accent }} />
+                      style={{ background: "rgba(11,98,214,0.18)", border: "1px solid rgba(11,98,214,0.35)" }}>
+                      <Icon size={15} style={{ color: "#3B82F6" }} />
                     </div>
                     {p.highlight && (
                       <span className="text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-[#D4AF37] text-[#040F1D]">
@@ -488,8 +487,8 @@ export function AccessStrategies() {
 
                 <button
                   onClick={() => setActivePlan(activePlan === i ? null : i)}
-                  className="flex items-center justify-between px-4 py-2.5 border-t border-white/5 text-[9.5px] font-bold uppercase tracking-wider transition-all duration-300 group-hover:bg-white/3"
-                  style={{ color: p.accent }}
+                  className="flex items-center justify-between px-4 py-2.5 border-t border-white/5 text-[9.5px] font-bold uppercase tracking-wider transition-all duration-300 group-hover:bg-white/3 text-[#3B82F6]"
+                  style={{ color: "#3B82F6" }}
                 >
                   <span>Explore Strategy</span>
                   <ChevronRight
@@ -514,14 +513,14 @@ export function AccessStrategies() {
               style={{ background: "rgba(255,255,255,0.02)" }}
             >
               <div className="flex items-center justify-between px-8 py-5 border-b border-white/5"
-                style={{ background: PLANS[activePlan].accent + "08" }}>
+                style={{ background: "rgba(11,98,214,0.08)" }}>
                 <div className="flex items-center gap-3">
                   {(() => {
                     const Icon = PLANS[activePlan].icon;
                     return (
                       <div className="w-9 h-9 rounded-xl flex items-center justify-center"
-                        style={{ background: PLANS[activePlan].accent + "20", border: "1px solid " + PLANS[activePlan].accent + "30" }}>
-                        <Icon size={16} style={{ color: PLANS[activePlan].accent }} />
+                        style={{ background: "rgba(11,98,214,0.18)", border: "1px solid rgba(11,98,214,0.35)" }}>
+                        <Icon size={16} style={{ color: "#3B82F6" }} />
                       </div>
                     );
                   })()}

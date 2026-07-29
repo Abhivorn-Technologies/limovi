@@ -11,7 +11,7 @@
  *    experienceSavings = goldBalance × EXPERIENCE_SAVINGS_PER_GRAM_PER_YEAR
  *    totalEcosystemValue = profit + experienceSavings
  *
- *  Enrol & Experience (customer already owns gold)
+ *  Enroll & Experience (customer already owns gold)
  *    experienceEarnings = goldBalanceGrams × EXPERIENCE_EARNINGS_PER_GRAM_PER_YEAR
  *    (loan eligibility is still calculated at live gold price × LTV_RATIO)
  *
@@ -23,7 +23,7 @@
 export type StrategyKey =
   | 'investment'            // Strategy 1 — Investment Only
   | 'investment_experience' // Strategy 2 — Investment + Experience ⭐
-  | 'enrol_experience'      // Strategy 3 — Enrol & Experience
+  | 'enrol_experience'      // Strategy 3 — Enroll & Experience
   | 'experience_only';      // Strategy 4 — Experience Only
 
 export interface StrategyMeta {
@@ -39,29 +39,29 @@ export const STRATEGIES: StrategyMeta[] = [
   {
     key: 'investment',
     label: 'Investment Only',
-    shortLabel: 'Invest',
+    shortLabel: 'Investment Only',
     desc: 'Build long-term wealth with the flexibility to access luxury whenever you choose.',
     emoji: '📈',
   },
   {
     key: 'investment_experience',
-    label: 'Investment + Experience',
+    label: 'Investment & Experience',
     badge: '⭐ Best Value',
-    shortLabel: 'Invest + Exp',
+    shortLabel: 'Investment & Experience',
     desc: 'Invest once, experience luxury, and unlock additional earning potential.',
     emoji: '💫',
   },
   {
     key: 'enrol_experience',
     label: 'Enroll & Experience',
-    shortLabel: 'Enroll',
+    shortLabel: 'Enroll & Experience',
     desc: 'Keep your treasured jewellery. Experience designer pieces and earn passive income.',
     emoji: '💎',
   },
   {
     key: 'experience_only',
     label: 'Experience Only',
-    shortLabel: 'Experience',
+    shortLabel: 'Experience Only',
     desc: 'Access premium jewellery whenever you need it—without ownership',
     emoji: '✨',
   },
@@ -81,16 +81,16 @@ export const INVESTMENT_EXP_MEMBERSHIP_FEE_PCT = 0.20; // 20%
 /** Standard Experience Charge (0.9% of Selected Jewellery Value) */
 export const STANDARD_EXPERIENCE_FEE_PCT = 0.009; // 0.9%
 
-/** Service Fee per experience for Investment Only, Enrol, and Experience Only (₹) */
+/** Service Fee per experience for Investment Only, Enroll, and Experience Only (₹) */
 export const STANDARD_SERVICE_FEE = 1099; // ₹1,099
 
 /** Service Fee per experience for Investment & Experience (₹) */
 export const INVESTMENT_EXP_SERVICE_FEE = 1499; // ₹1,499
 
-/** Making Charge / VA Savings for Investment Only, Enrol, & Experience Only (14%) */
+/** Making Charge / VA Savings for Investment Only, Enroll, & Experience Only (14%) */
 export const EXPERIENCE_SAVINGS_PCT = 0.14; // 14%
 
-/** Enrol & Experience savings percentage on making charges (14%) */
+/** Enroll & Experience savings percentage on making charges (14%) */
 export const ENROL_EXPERIENCE_SAVINGS_PCT = 0.14; // 14%
 
 /** Making / Remodelling Charge Savings for Investment & Experience (28%) */
@@ -118,12 +118,12 @@ export const EXPERIENCE_ONLY_MEMBERSHIP_ANNUAL_COST = 12_000; // ₹
 /** Estimated annual savings from luxury jewellery access vs. buying/renting */
 export const EXPERIENCE_ONLY_LUXURY_SAVINGS_ANNUAL = 1_50_000; // ₹
 
-// ─── Enrol & Experience: Gold balance slider defaults ───────────────────────
+// ─── Enroll & Experience: Gold balance slider defaults ───────────────────────
 
-/** Default pre-owned gold balance (grams) for Enrol & Experience strategy */
+/** Default pre-owned gold balance (grams) for Enroll & Experience strategy */
 export const ENROL_DEFAULT_GRAMS = 50;
 
-/** Min / max gold grams for the Enrol & Experience grams slider */
+/** Min / max gold grams for the Enroll & Experience grams slider */
 export const ENROL_MIN_GRAMS = 50;
 export const ENROL_MAX_GRAMS = 500;
 
