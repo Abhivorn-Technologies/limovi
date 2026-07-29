@@ -10,6 +10,7 @@ export interface GoldPriceResponse {
   timestamp: string;
   isLive: boolean;
   change?: number;  // ₹ change from previous close per gram
+  provider?: string;
   error?: string;
 }
 
@@ -22,54 +23,98 @@ const FALLBACK: GoldPriceResponse = {
   isLive: false,
 };
 
-async function fetchFromGoldAPI(path: string): Promise<Response> {
-  return fetch(`https://www.goldapi.io/api${path}`, {
-    headers: {
-      'x-access-token': GOLD_API_KEY!,
-      'Content-Type': 'application/json',
-    },
-  });
-}
+// Indian Market Multiplier: ~12.5% Import Duty + 3% GST + local jeweller premium ≈ 15.96% (1.1596x)
+const INDIAN_MARKET_MULTIPLIER = 1.1596;
 
 function pricePerGram(troyOzPrice: number): number {
   // 1 troy oz = 31.1035 g
-  return troyOzPrice / 31.1035;
+  return (troyOzPrice / 31.1035) * INDIAN_MARKET_MULTIPLIER;
+}
+
+/** Primary Provider: goldapi.io (requires GOLD_API_KEY) */
+async function fetchFromGoldAPIio(): Promise<{ price: number; change: number } | null> {
+  if (!GOLD_API_KEY) return null;
+  const res = await fetch('https://www.goldapi.io/api/XAU/INR', {
+    headers: {
+      'x-access-token': GOLD_API_KEY,
+      'Content-Type': 'application/json',
+    },
+    next: { revalidate: 300 },
+  });
+  if (!res.ok) throw new Error(`GoldAPI.io returned HTTP ${res.status}`);
+  const data = await res.json();
+  const price = Math.round(pricePerGram(data.price));
+  const prevGram = pricePerGram(data.prev_close_price ?? data.price);
+  const change = Math.round(price - prevGram);
+  return { price, change };
+}
+
+/** Secondary Fallback Provider: gold-api.com (free open endpoint) */
+async function fetchFromGoldAPIcom(): Promise<{ price: number; change: number }> {
+  const res = await fetch('https://api.gold-api.com/price/XAU/INR', {
+    next: { revalidate: 300 },
+  });
+  if (!res.ok) throw new Error(`gold-api.com returned HTTP ${res.status}`);
+  const data = await res.json();
+  if (typeof data.price !== 'number' || data.price <= 0) {
+    throw new Error('Invalid price data from gold-api.com');
+  }
+  const price = Math.round(pricePerGram(data.price));
+  return { price, change: 0 };
 }
 
 export async function GET(_req: NextRequest): Promise<Response> {
-  if (!GOLD_API_KEY) {
-    console.warn('[gold-price] GOLD_API_KEY not set — returning fallback.');
-    return Response.json(FALLBACK);
+  // 1. Try Primary Provider (goldapi.io with GOLD_API_KEY)
+  if (GOLD_API_KEY) {
+    try {
+      const primaryData = await fetchFromGoldAPIio();
+      if (primaryData) {
+        return Response.json(
+          {
+            price: primaryData.price,
+            change: primaryData.change,
+            currency: 'INR',
+            metal: 'XAU',
+            purity: '24K',
+            timestamp: new Date().toISOString(),
+            isLive: true,
+            provider: 'goldapi.io',
+          } satisfies GoldPriceResponse,
+          { headers: { 'Cache-Control': 's-maxage=300, stale-while-revalidate=60' } }
+        );
+      }
+    } catch (err) {
+      console.warn('[gold-price] Primary provider (goldapi.io) failed:', String(err));
+    }
   }
 
+  // 2. Try Secondary Fallback Provider (gold-api.com)
   try {
-    const res = await fetchFromGoldAPI('/XAU/INR');
-    if (!res.ok) {
-      console.warn(`[gold-price] GoldAPI HTTP ${res.status} — using static benchmark rate (₹14,400).`);
-      return Response.json(FALLBACK);
-    }
-
-    const data = await res.json();
-    // Indian Market Multiplier: ~12.5% Import Duty + 3% GST + local jeweller premium ≈ 15.95% (1.1595x)
-    const INDIAN_MARKET_MULTIPLIER = 1.1596;
-    const price = Math.round(pricePerGram(data.price) * INDIAN_MARKET_MULTIPLIER);
-    const prevGram = pricePerGram(data.prev_close_price ?? data.price) * INDIAN_MARKET_MULTIPLIER;
-    const change = Math.round(price - prevGram);
-
+    const secondaryData = await fetchFromGoldAPIcom();
     return Response.json(
       {
-        price,
-        change,
+        price: secondaryData.price,
+        change: secondaryData.change,
         currency: 'INR',
         metal: 'XAU',
         purity: '24K',
         timestamp: new Date().toISOString(),
         isLive: true,
+        provider: 'gold-api.com',
       } satisfies GoldPriceResponse,
       { headers: { 'Cache-Control': 's-maxage=300, stale-while-revalidate=60' } }
     );
   } catch (err) {
-    console.warn('[gold-price] Network error — using static benchmark rate (₹14,400):', String(err));
-    return Response.json({ ...FALLBACK, error: String(err) });
+    console.warn('[gold-price] Secondary provider (gold-api.com) failed:', String(err));
   }
+
+  // 3. Static Benchmark Rate Fallback
+  return Response.json(
+    {
+      ...FALLBACK,
+      timestamp: new Date().toISOString(),
+      error: 'All live providers unavailable. Using benchmark rate.',
+    } satisfies GoldPriceResponse,
+    { headers: { 'Cache-Control': 's-maxage=60' } }
+  );
 }

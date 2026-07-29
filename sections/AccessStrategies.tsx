@@ -89,7 +89,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% CTV)</div>
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
@@ -180,7 +180,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% CTV)</div>
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
@@ -269,7 +269,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% CTV)</div>
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
@@ -358,7 +358,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% CTV)</div>
+              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
               <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
