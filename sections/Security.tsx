@@ -8,7 +8,7 @@ const ecosystemNodes = [
   {
     id: 1,
     title: "Jewellery Cloud",
-    partner: "Powered by LIMOVI Partners",
+    partner: "Powered by LIMOVI",
     isLimovi: true,
     desc: "Custom on-demand jewellery catalogs. Manufactured and stored securely via LIMOVI Vaults.",
     color: "from-blue-400 to-blue-600",
@@ -30,7 +30,7 @@ const ecosystemNodes = [
   {
     id: 3,
     title: "Instant Liquidity",
-    partner: "Powered by LIMOVI Partners",
+    partner: "Powered by LIMOVI",
     isLimovi: true,
     desc: "Ensuring you have instant, seamless access to your wealth whenever you need it.",
     color: "from-cyan-400 to-cyan-600",

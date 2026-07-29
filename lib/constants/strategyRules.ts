@@ -152,10 +152,6 @@ export const VALUE_ADDED_BENEFITS = [
     title: 'Never Sacrifice Your Jewellery Experience',
     desc: 'Continue enjoying premium jewellery experiences while your wealth remains invested in gold.',
   },
-  {
-    title: 'No Repayment Stress',
-    desc: 'No EMIs, monthly instalments, or fear of loan defaults. Experience financial freedom without repayment pressure.',
-  },
 ];
 
 

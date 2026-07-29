@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Crown, Sparkles } from 'lucide-react';
+import { ShoppingBag, Heart } from 'lucide-react';
 
 interface JewelleryExperiencesSelectorProps {
   luxuryCount: number;
@@ -29,15 +29,15 @@ export function JewelleryExperiencesSelector({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
         {/* Luxury Jewellery Experiences */}
         <div className="rounded-xl p-2 bg-white/40 dark:bg-slate-900/40 border border-amber-500/20">
-          <div className="flex items-center justify-between mb-1.5">
-            <div className="flex items-center gap-1">
-              <Crown size={11} className="text-amber-500" />
+          <div className="flex items-center justify-between mb-1.5 gap-1">
+            <div className="flex items-center gap-1 min-w-0">
+              <ShoppingBag size={11} className="text-amber-500 shrink-0" />
               <span className="text-[9.5px] font-bold text-slate-700 dark:text-slate-200">
-                Luxury Jewellery
+                Luxury Jewellery Experience
               </span>
             </div>
-            <span className="text-[8.5px] font-semibold text-amber-600 dark:text-amber-400">
-              14% / exp
+            <span className="text-[8px] font-bold text-amber-600 dark:text-amber-400 shrink-0 text-right leading-tight">
+              Save 14%<br />per-experience
             </span>
           </div>
 
@@ -64,15 +64,15 @@ export function JewelleryExperiencesSelector({
 
         {/* Lifestyle Jewellery Experiences */}
         <div className="rounded-xl p-2 bg-white/40 dark:bg-slate-900/40 border border-blue-500/20">
-          <div className="flex items-center justify-between mb-1.5">
-            <div className="flex items-center gap-1">
-              <Sparkles size={11} className="text-blue-500" />
+          <div className="flex items-center justify-between mb-1.5 gap-1">
+            <div className="flex items-center gap-1 min-w-0">
+              <Heart size={11} className="text-blue-500 shrink-0" />
               <span className="text-[9.5px] font-bold text-slate-700 dark:text-slate-200">
-                Lifestyle Jewellery
+                Lifestyle Jewellery Experience
               </span>
             </div>
-            <span className="text-[8.5px] font-semibold text-blue-600 dark:text-blue-400">
-              7% / exp
+            <span className="text-[8px] font-bold text-blue-600 dark:text-blue-400 shrink-0 text-right leading-tight">
+              Save 7%<br />per-experience
             </span>
           </div>
 

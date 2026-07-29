@@ -99,11 +99,11 @@ function moneyEarnedSavedCard(result: CalculationResult): CardData {
 
         <div className="space-y-1 text-[10px]">
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
-            <span>On Luxury Jewellery ({result.luxuryExperiencesPerYear} exp @ 14% savings):</span>
+            <span>On Luxury Jewellery (14% savings / experience):</span>
             <span className="font-bold text-[#005CB9]">{formatINR(result.luxurySavingsTotal)}</span>
           </div>
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
-            <span>On Lifestyle Jewellery ({result.lifestyleExperiencesPerYear} exp @ 7% savings):</span>
+            <span>On Lifestyle Jewellery (7% savings / experience):</span>
             <span className="font-bold text-[#005CB9]">{formatINR(result.lifestyleSavingsTotal)}</span>
           </div>
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
@@ -131,7 +131,7 @@ function moneyEarnedSavedCard(result: CalculationResult): CardData {
 function valueAddedComparisonCard(result: CalculationResult): CardData {
   return {
     id: 'value-added-comparison',
-    icon: Crown,
+    icon: ShieldCheck,
     title: 'Exclusive Ecosystem Benefits',
     primary: 'LIMOVI vs Traditional Gold Loans',
     secondary: 'Privately access liquidity & luxury experiences without repayment stress or interest.',
@@ -143,7 +143,7 @@ function valueAddedComparisonCard(result: CalculationResult): CardData {
         <div className="flex items-center justify-between border-b border-amber-500/20 pb-1.5">
           <div className="flex items-center gap-1.5">
             <div className="w-5 h-5 rounded-md bg-amber-500/20 flex items-center justify-center">
-              <Crown size={11} className="text-amber-500" />
+              <ShieldCheck size={11} className="text-amber-500" />
             </div>
             <span className="text-[10px] font-black uppercase tracking-wider text-slate-800 dark:text-slate-100">
               Exclusive Ecosystem Benefits
@@ -170,7 +170,7 @@ function valueAddedComparisonCard(result: CalculationResult): CardData {
         {/* Ecosystem badges */}
         <div className="grid grid-cols-3 gap-1 pt-1 border-t border-amber-500/15 text-[8.5px]">
           <div className="p-1 rounded bg-blue-500/10 text-center">
-            <div className="font-bold text-blue-600 dark:text-blue-400">Instant Loans</div>
+            <div className="font-bold text-blue-600 dark:text-blue-400">Instant Loans (75% LTV)</div>
             <div className="text-[8px] text-slate-500">{formatINR(result.loanEligibility, true)}</div>
           </div>
           <div className="p-1 rounded bg-emerald-500/10 text-center">

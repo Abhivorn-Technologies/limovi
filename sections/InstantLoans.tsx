@@ -229,7 +229,7 @@ export function InstantLoans() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0 mt-2.5" />
-                  <span>Loan + Jewellery Experience.</span>
+                  <span>Gold Loan + Jewellery Experience.</span>
                 </li>
               </ul>
 

@@ -110,8 +110,11 @@ export function StrategySelector({ selected, onChange }: StrategySelectorProps) 
           border: '1px solid rgba(212,175,55,0.2)',
         }}
       >
-        <span className="text-base leading-none">
-          {STRATEGIES.find((s) => s.key === selected)?.emoji}
+        <span className="flex items-center justify-center shrink-0">
+          {(() => {
+            const Icon: any = STRATEGY_ICONS[selected];
+            return <Icon className="w-5 h-5 text-brand-gold" style={{ color: '#D4AF37' }} strokeWidth={2} />;
+          })()}
         </span>
         <div className="flex-1 min-w-0">
           <p className="text-[11px] font-black leading-tight" style={{ color: '#7A5E00' }}>
