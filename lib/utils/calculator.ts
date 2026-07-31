@@ -144,11 +144,9 @@ export function calculateFutureProjection({
   // - On Lifestyle Jewellery Experience: 7% of Gold Balance Value per experience
   const lifestyleSavingsTotal = (LIFESTYLE_JEWELLERY_SAVINGS_PCT * currentValue) * safeLifestyleExp * effectiveYears;
 
-  // - Wealth Generation: 25% of 0.9% of Gold Value per experience (Eligible ONLY for Investment & Experience / Enroll & Experience)
-  // Guaranteed minimum 5 experiences per year
+  // - Wealth Generation: 25% of 0.9% of Gold Value per experience (Fixed 5 times per year)
   const isDividendEligible = strategy === 'investment_experience' || strategy === 'enrol_experience';
-  const totalExperiencesPerYear = safeLuxuryExp + safeLifestyleExp;
-  const wealthGenExperiencesPerYear = Math.max(5, totalExperiencesPerYear);
+  const wealthGenExperiencesPerYear = 5;
   const wealthGenPerExperience = isDividendEligible
     ? (EXPERIENCE_DIVIDEND_PCT * STANDARD_EXPERIENCE_FEE_PCT * currentValue)
     : 0;
