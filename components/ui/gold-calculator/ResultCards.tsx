@@ -92,7 +92,7 @@ function moneyEarnedSavedCard(result: CalculationResult): CardData {
               Financial Returns
             </span>
           </div>
-          <span className="text-[9px] font-bold text-[#005CB9]/80">
+          <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">
             {result.yearsTimeline}Y Horizon
           </span>
         </div>
@@ -100,11 +100,11 @@ function moneyEarnedSavedCard(result: CalculationResult): CardData {
         <div className="space-y-1.5 text-xs">
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
             <span className="text-[11px] font-medium">On Luxury Jewellery (14% savings / experience):</span>
-            <span className="font-extrabold text-sm text-[#005CB9]">{formatINR(result.luxurySavingsTotal)}</span>
+            <span className="font-extrabold text-sm text-emerald-600 dark:text-emerald-400">{formatINR(result.luxurySavingsTotal)}</span>
           </div>
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
             <span className="text-[11px] font-medium">On Lifestyle Jewellery (7% savings / experience):</span>
-            <span className="font-extrabold text-sm text-[#005CB9]">{formatINR(result.lifestyleSavingsTotal)}</span>
+            <span className="font-extrabold text-sm text-emerald-600 dark:text-emerald-400">{formatINR(result.lifestyleSavingsTotal)}</span>
           </div>
           <div className="flex justify-between items-center text-slate-600 dark:text-slate-300">
             <div>
@@ -113,13 +113,13 @@ function moneyEarnedSavedCard(result: CalculationResult): CardData {
                 <div className="text-[9px] text-slate-400 font-medium">*Calculated with 5 experiences per year</div>
               )}
             </div>
-            <span className="font-extrabold text-sm text-[#005CB9]">
+            <span className="font-extrabold text-sm text-emerald-600 dark:text-emerald-400">
               {isWealthEligible ? formatINR(result.wealthGenTotal) : 'Not Eligible'}
             </span>
           </div>
           <div className="pt-2 mt-1.5 border-t border-[#005CB9]/20 flex justify-between items-center">
             <span className="font-black text-xs text-[#005CB9] uppercase tracking-wide">TOTAL FINANCIAL BENEFIT:</span>
-            <span className="text-base sm:text-lg font-black text-[#005CB9]">{formatINR(result.totalMoneyEarnedSaved)}</span>
+            <span className="text-base sm:text-lg font-black text-emerald-600 dark:text-emerald-400">{formatINR(result.totalMoneyEarnedSaved)}</span>
           </div>
         </div>
       </div>

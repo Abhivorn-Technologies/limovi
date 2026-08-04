@@ -35,9 +35,6 @@ export function FloatingWidgetWrapper() {
   const [enrolledGrams, setEnrolledGrams] = useState(ENROL_DEFAULT_GRAMS);
 
   useEffect(() => {
-    // If they previously opened it in this session, we can restore it,
-    // but the requirement "should not open directly untill open manually"
-    // means it starts minimized by default. We respect sessionStorage if they already opened it.
     const saved = sessionStorage.getItem(SESSION_KEY);
     if (saved !== null) {
       setMinimized(saved === 'true');
@@ -45,6 +42,13 @@ export function FloatingWidgetWrapper() {
       setMinimized(true);
     }
     setMounted(true);
+
+    const handleCustomOpen = () => {
+      setMinimized(false);
+      sessionStorage.setItem(SESSION_KEY, 'false');
+    };
+    window.addEventListener('open-limovi-roi-calculator', handleCustomOpen);
+    return () => window.removeEventListener('open-limovi-roi-calculator', handleCustomOpen);
   }, []);
 
   const minimize = () => {

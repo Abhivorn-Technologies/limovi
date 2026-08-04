@@ -94,6 +94,16 @@ const existingSteps = [
   },
   {
     num: "3",
+    title: "ONE JEWELLERY EXPERIENCE",
+    desc: "Limited to enjoying just one piece of jewellery.",
+    icon: <Gem className="w-5.5 h-5.5 text-[#334155]" />,
+    rightTag: {
+      icon: <Frown className="w-5 h-5 text-[#334155]" />,
+      text: "One jewellery experience.",
+    },
+  },
+  {
+    num: "4",
     title: "NEED MONEY?",
     desc: "Go for a gold loan. Limited loan value.",
     icon: <HandCoins className="w-5.5 h-5.5 text-[#334155]" />,
@@ -103,7 +113,7 @@ const existingSteps = [
     },
   },
   {
-    num: "4",
+    num: "5",
     title: "REPAY LOAN",
     desc: "EMI, Interest & repayment create ongoing burden.",
     icon: <Calendar className="w-5.5 h-5.5 text-[#334155]" />,
@@ -113,13 +123,23 @@ const existingSteps = [
     },
   },
   {
-    num: "5",
+    num: "6",
     title: "REDEEM OR SELL",
     desc: "Sell jewellery or redeem gold after deductions.",
     icon: <Banknote className="w-5.5 h-5.5 text-[#334155]" />,
     rightTag: {
       icon: <Frown className="w-5 h-5 text-[#334155]" />,
       text: "Deductions, wastage & emotional loss.",
+    },
+  },
+  {
+    num: "7",
+    title: "GIFT OLD JEWELLERY TO NEXT GENERATION",
+    desc: "Pass down old jewellery designs to next generation.",
+    icon: <Gift className="w-5.5 h-5.5 text-[#334155]" />,
+    rightTag: {
+      icon: <Frown className="w-5 h-5 text-[#334155]" />,
+      text: "Gifting old jewellery to next generation.",
     },
   },
 ];
@@ -148,8 +168,13 @@ const glassCardRows = [
   },
   {
     icon: <Gift className="w-5 h-5 text-[#005CB9]" />,
-    title: "Share & Gift",
-    desc: "Gift gold instantly, strengthen relationships.",
+    title: "Gifting Gold Ecosystem",
+    desc: "Gifting a luxury memory to next generation.",
+  },
+  {
+    icon: <Gem className="w-5 h-5 text-[#005CB9]" />,
+    title: "Experience Unlimited Jewellery",
+    desc: "Wear premium designer jewellery anytime.",
   },
 ];
 
@@ -197,11 +222,11 @@ const circularMilestones = [
   },
   {
     step: "6",
-    title: "GIFT & SHARE GOLD",
-    desc: "Gift digital gold instantly to your loved ones.",
+    title: "GIFT & SHARE GOLD ECOSYSTEM",
+    desc: "Gifting a luxury memory to next generation.",
     icon: <Gift className="w-4.5 h-4.5 text-[#005CB9]" />,
     iconPos: { left: "29%", top: "50%" },
-    textPosClass: "right-full mr-3 top-1/2 -translate-y-1/2 text-right w-28",
+    textPosClass: "right-full mr-3 top-1/2 -translate-y-1/2 text-right w-36",
   },
   {
     step: "7",
@@ -462,13 +487,13 @@ export function GoldJourney() {
                   />
 
                   {/* Arcs */}
-                  <path d="M 270 137 A 115 115 0 0 1 320 162" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 342 190 A 115 115 0 0 1 359 232" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 359 268 A 115 115 0 0 1 342 310" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 318 334 A 115 115 0 0 1 182 334" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 158 310 A 115 115 0 0 1 141 268" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 141 232 A 115 115 0 0 1 158 190" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 180 162 A 115 115 0 0 1 230 137" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 274 137 A 115 115 0 0 1 323 161" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 345 190 A 115 115 0 0 1 360 230" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 360 270 A 115 115 0 0 1 340 312" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 306 350 A 115 115 0 0 1 194 350" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 158 319 A 115 115 0 0 1 137 274" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 137 226 A 115 115 0 0 1 158 181" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 194 150 A 115 115 0 0 1 226 137" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
                 </svg>
 
                 {/* CENTER LIMOVI MEDALLION */}

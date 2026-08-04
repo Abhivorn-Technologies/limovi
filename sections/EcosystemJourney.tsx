@@ -49,8 +49,8 @@ const milestones = [
     image: "/images/journey-5.png"
   },
   {
-    title: "Gift Gold Balance",
-    desc: "Gift wealth. Not just things. Send digital gold balance to your loved ones.",
+    title: "Gift & Share Gold Ecosystem",
+    desc: "Gift digital gold instantly to your loved ones & unlock lifetime ecosystem benefits.",
     icon: <Image src="/images/gifting-eco.png" alt="Gift Gold" width={24} height={24} className="w-6 h-6 object-contain" />,
     color: "bg-pink-100 text-pink-600",
     image: "/images/journey-6.png"

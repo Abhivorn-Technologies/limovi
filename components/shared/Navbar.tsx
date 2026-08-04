@@ -177,11 +177,12 @@ export function Navbar() {
 
           {/* ── Desktop Actions ── */}
           <div className="hidden xl:flex items-center gap-4">
-
-
             <motion.button
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent("open-early-access-modal"));
+              }}
               className="cursor-pointer px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all relative z-[999] whitespace-nowrap"
               style={{
                 background: `linear-gradient(135deg, ${PRIMARY}, ${SECONDARY})`,
@@ -290,7 +291,10 @@ export function Navbar() {
                     background: `linear-gradient(135deg, ${PRIMARY}, ${SECONDARY})`,
                     boxShadow: `0 6px 24px ${PRIMARY}40`,
                   }}
-                  onClick={() => setIsMobileMenuOpen(false)}>
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    window.dispatchEvent(new CustomEvent("open-early-access-modal"));
+                  }}>
                   Get Early Access
                 </button>
               </motion.div>

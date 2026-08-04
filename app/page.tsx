@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
+import { EarlyAccessModal } from "@/components/shared/EarlyAccessModal";
 import { CinematicHero } from "@/sections/CinematicHero";
 import { Problem } from "@/sections/Problem";
 import { Dashboard } from "@/sections/Dashboard";
@@ -40,6 +41,7 @@ export default function Home() {
       <FinalCTA />
 
       <Footer />
+      <EarlyAccessModal />
     </main>
   );
 }

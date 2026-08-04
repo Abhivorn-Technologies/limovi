@@ -388,35 +388,36 @@ export function AccessStrategies() {
   const [activePlan, setActivePlan] = useState<number | null>(null);
 
   return (
-    <section id="access-strategies" className="bg-[#040F1D] relative overflow-hidden py-24 lg:py-32">
-      <div className="px-6 md:px-16 lg:px-24 max-w-7xl mx-auto">
+    <section id="access-strategies" className="bg-gradient-to-b from-[#F2F6FB] via-[#EBF2FA] to-[#F8FAFC] relative overflow-hidden py-24 lg:py-32 border-t border-b border-slate-200/80">
+      {/* Soft Ambient Radial Luxury Glows */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#D4AF37]/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-[#005CB9]/12 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="px-6 md:px-16 lg:px-24 max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
           <div>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-600 mb-4"
+              className="text-[10px] font-black uppercase tracking-[0.3em] text-[#005CB9] mb-4"
             >
-              Access Strategies
+              ACCESS STRATEGIES
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-black text-white leading-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0A1929] tracking-tight"
             >
-              Choose Your{" "}
-              <span style={{ background: "linear-gradient(90deg,#D4AF37,#F4C430)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                Strategy
-              </span>
+              Choose Your <span className="text-[#005CB9]">Strategy</span>
             </motion.h2>
           </div>
           <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-slate-500 text-xs max-w-lg leading-relaxed text-left"
+            className="text-slate-600 text-xs sm:text-sm max-w-md font-medium leading-relaxed"
           >
             Select the strategy that best fits your lifestyle and financial goals.<br className="hidden sm:block" />
             Each option offers a tailored mix of ecosystem benefits and wealth-building opportunities.
@@ -434,61 +435,61 @@ export function AccessStrategies() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className={"group relative rounded-2xl border flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 " + (p.highlight ? "border-[#D4AF37]/40 shadow-[0_0_40px_rgba(212,175,55,0.1)]" : "border-white/8 hover:border-white/16")}
-                style={{ background: p.highlight ? "linear-gradient(160deg,rgba(212,175,55,0.08) 0%,rgba(4,15,29,1) 60%)" : "rgba(255,255,255,0.02)" }}
+                onClick={() => setActivePlan(activePlan === i ? null : i)}
+                className={"group relative rounded-2xl border-2 flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 cursor-pointer select-none " + (p.highlight ? "border-[#E5C158] shadow-[0_12px_32px_rgba(229,193,88,0.18)]" : "border-slate-300/90 hover:border-[#005CB9] shadow-sm hover:shadow-xl")}
+                style={{ background: p.highlight ? "linear-gradient(160deg, rgba(255,254,248,1) 0%, rgba(255,255,255,1) 100%)" : "#FFFFFF" }}
               >
                 {p.highlight && (
-                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent" />
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#F0D574] via-[#FFF3B0] to-[#F0D574]" />
                 )}
 
                 <div className="p-4 flex-1 flex flex-col">
                   <div className="flex items-start justify-between mb-3">
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{ background: "rgba(11,98,214,0.18)", border: "1px solid rgba(11,98,214,0.35)" }}>
-                      <Icon size={15} style={{ color: "#3B82F6" }} />
+                      style={{ background: "rgba(0,92,185,0.1)", border: "1.5px solid rgba(0,92,185,0.25)" }}>
+                      <Icon size={15} style={{ color: "#005CB9" }} />
                     </div>
                     {p.highlight && (
-                      <span className="text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-[#D4AF37] text-[#040F1D]">
+                      <span className="text-[8px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#F0D574] text-slate-900 shadow-xs border border-[#D4AF37]/30">
                         Best Value
                       </span>
                     )}
                   </div>
 
-                  <h3 className="font-black text-white text-sm mb-0.5 leading-tight">{p.name}</h3>
-                  <p className="text-slate-500 text-[10px] leading-snug mb-3">{p.shortDesc}</p>
+                  <h3 className="font-black text-[#0A1929] text-sm mb-0.5 leading-tight">{p.name}</h3>
+                  <p className="text-slate-500 text-[10px] leading-snug mb-3 font-medium">{p.shortDesc}</p>
 
-                  <div className="mb-3 pb-3 border-b border-white/5 space-y-2 flex-1">
+                  <div className="mb-3 p-2.5 rounded-xl bg-slate-50/90 border border-slate-200/90 space-y-2 flex-1">
                     <div>
-                      <div className="text-[8.5px] font-black uppercase tracking-wider mb-0.5 text-[#D4AF37]">
+                      <div className="text-[8.5px] font-black uppercase tracking-wider mb-0.5 text-[#C59B27]">
                         Investment Required
                       </div>
-                      <div className="text-[9.5px] text-slate-400 leading-snug">{p.entryDetail}</div>
+                      <div className="text-[9.5px] text-slate-700 font-medium leading-snug">{p.entryDetail}</div>
                     </div>
-                    <div>
-                      <div className="text-[8.5px] font-black uppercase tracking-wider mb-0.5 text-emerald-400">
+                    <div className="pt-2 border-t border-slate-200/70">
+                      <div className="text-[8.5px] font-black uppercase tracking-wider mb-0.5 text-emerald-700">
                         Exit Policy
                       </div>
-                      <div className="text-[9.5px] text-slate-400 leading-snug">{p.exitPolicy}</div>
+                      <div className="text-[9.5px] text-slate-700 font-medium leading-snug">{p.exitPolicy}</div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-1 flex-wrap mt-auto">
+                  <div className="flex items-center gap-1 flex-wrap mt-auto pt-1">
                     {p.benefits.map((b, bi) => (
-                      <span key={bi} className={"w-4 h-4 rounded-full flex items-center justify-center " + (b.eligible ? "bg-emerald-500/20" : "bg-white/5")}>
+                      <span key={bi} className={"w-4 h-4 rounded-full flex items-center justify-center " + (b.eligible ? "bg-emerald-100 border border-emerald-300/60" : "bg-slate-100 border border-slate-200")}>
                         {b.eligible
-                          ? <CheckCircle2 size={10} className="text-emerald-400" />
-                          : <XCircle size={10} className="text-slate-700" />
+                          ? <CheckCircle2 size={10} className="text-emerald-600" />
+                          : <XCircle size={10} className="text-slate-400" />
                         }
                       </span>
                     ))}
-                    <span className="text-[9px] text-slate-500 ml-1">{eligibleCount}/5 benefits</span>
+                    <span className="text-[9px] text-slate-600 ml-1 font-bold">{eligibleCount}/5 benefits</span>
                   </div>
                 </div>
 
                 <button
                   onClick={() => setActivePlan(activePlan === i ? null : i)}
-                  className="flex items-center justify-between px-4 py-2.5 border-t border-white/5 text-[9.5px] font-bold uppercase tracking-wider transition-all duration-300 group-hover:bg-white/3 text-[#3B82F6]"
-                  style={{ color: "#3B82F6" }}
+                  className="flex items-center justify-between px-4 py-2.5 border-t border-slate-200 text-[9.5px] font-extrabold uppercase tracking-wider transition-all duration-300 bg-slate-50/80 hover:bg-[#005CB9]/10 text-[#005CB9]"
                 >
                   <span>Explore Strategy</span>
                   <ChevronRight
@@ -509,48 +510,45 @@ export function AccessStrategies() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="hidden md:block rounded-3xl border border-white/10 overflow-hidden mt-4"
-              style={{ background: "rgba(255,255,255,0.02)" }}
+              className="hidden md:block rounded-3xl border border-slate-200 shadow-xl overflow-hidden mt-4 bg-white"
             >
-              <div className="flex items-center justify-between px-8 py-5 border-b border-white/5"
-                style={{ background: "rgba(11,98,214,0.08)" }}>
+              <div className="flex items-center justify-between px-8 py-5 border-b border-slate-200 bg-[#EBF5FF]">
                 <div className="flex items-center gap-3">
                   {(() => {
                     const Icon = PLANS[activePlan].icon;
                     return (
-                      <div className="w-9 h-9 rounded-xl flex items-center justify-center"
-                        style={{ background: "rgba(11,98,214,0.18)", border: "1px solid rgba(11,98,214,0.35)" }}>
-                        <Icon size={16} style={{ color: "#3B82F6" }} />
+                      <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-white border border-[#005CB9]/20 shadow-xs">
+                        <Icon size={16} style={{ color: "#005CB9" }} />
                       </div>
                     );
                   })()}
                   <div>
-                    <div className="font-black text-white">{PLANS[activePlan].name}</div>
-                    <div className="text-slate-500 text-xs mt-0.5">{PLANS[activePlan].shortDesc}</div>
+                    <div className="font-black text-[#0A1929]">{PLANS[activePlan].name}</div>
+                    <div className="text-slate-600 text-xs mt-0.5 font-medium">{PLANS[activePlan].shortDesc}</div>
                   </div>
                 </div>
                 <button
                   onClick={() => setActivePlan(null)}
-                  className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-white/10 hover:text-white transition-all"
+                  className="w-8 h-8 rounded-full bg-slate-200/60 flex items-center justify-center text-slate-600 hover:bg-slate-300 transition-all cursor-pointer"
                 >
                   <X size={14} />
                 </button>
               </div>
 
-              <div className="grid grid-cols-5 divide-x divide-white/5">
+              <div className="grid grid-cols-5 divide-x divide-slate-200/80 bg-white">
                 {PLANS[activePlan].benefits.map((b, bi) => (
-                  <div key={bi} className={"p-6 flex flex-col gap-3 " + (!b.eligible ? "opacity-40" : "")}>
+                  <div key={bi} className={"p-6 flex flex-col gap-3 " + (!b.eligible ? "opacity-50" : "")}>
                     <div className="flex items-center gap-2">
                       {b.eligible
-                        ? <CheckCircle2 size={15} className="text-emerald-400 flex-shrink-0" />
-                        : <XCircle size={15} className="text-slate-600 flex-shrink-0" />
+                        ? <CheckCircle2 size={15} className="text-emerald-600 flex-shrink-0" />
+                        : <XCircle size={15} className="text-slate-400 flex-shrink-0" />
                       }
-                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">{bi + 1}</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">{bi + 1}</span>
                     </div>
-                    <div className="font-bold text-sm text-white leading-tight">{b.label}</div>
-                    <div className="text-xs text-slate-500 leading-relaxed">{b.desc}</div>
+                    <div className="font-bold text-sm text-[#0A1929] leading-tight">{b.label}</div>
+                    <div className="text-xs text-slate-600 leading-relaxed font-medium">{b.desc}</div>
                     {!b.eligible && (
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-red-500/10 text-red-400 font-bold uppercase tracking-wide self-start">Not Eligible</span>
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-red-100 text-red-600 font-bold uppercase tracking-wide self-start">Not Eligible</span>
                     )}
                   </div>
                 ))}
@@ -568,7 +566,7 @@ export function AccessStrategies() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setActivePlan(null)}
-                className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm md:hidden"
+                className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs md:hidden"
               />
 
               <motion.div
@@ -577,62 +575,61 @@ export function AccessStrategies() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: "100%", opacity: 0 }}
                 transition={{ type: "spring", damping: 30, stiffness: 280 }}
-                className="fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl flex flex-col md:hidden"
-                style={{ background: "#0A1628", border: "1px solid rgba(255,255,255,0.08)", height: "85vh", maxHeight: "85vh" }}
+                className="fixed bottom-0 left-0 right-0 z-50 rounded-t-3xl flex flex-col md:hidden bg-white border-t border-slate-200 shadow-2xl"
+                style={{ height: "85vh", maxHeight: "85vh" }}
               >
                 <div className="flex justify-center pt-3 pb-1 flex-shrink-0">
-                  <div className="w-10 h-1 rounded-full bg-white/20" />
+                  <div className="w-10 h-1 rounded-full bg-slate-300" />
                 </div>
 
-                <div className="flex items-center justify-between px-6 py-4 border-b border-white/8 flex-shrink-0">
+                <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 flex-shrink-0 bg-[#EBF5FF]">
                   <div className="flex items-center gap-3">
                     {(() => {
                       const Icon = PLANS[activePlan].icon;
                       return (
-                        <div className="w-9 h-9 rounded-xl flex items-center justify-center"
-                          style={{ background: PLANS[activePlan].accent + "20", border: "1px solid " + PLANS[activePlan].accent + "30" }}>
-                          <Icon size={16} style={{ color: PLANS[activePlan].accent }} />
+                        <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-white border border-[#005CB9]/20 shadow-xs">
+                          <Icon size={16} style={{ color: "#005CB9" }} />
                         </div>
                       );
                     })()}
                     <div>
-                      <div className="font-black text-white text-sm">{PLANS[activePlan].name}</div>
-                      <div className="text-slate-500 text-[11px] mt-0.5 line-clamp-1">{PLANS[activePlan].shortDesc}</div>
+                      <div className="font-black text-[#0A1929] text-sm">{PLANS[activePlan].name}</div>
+                      <div className="text-slate-600 text-[11px] mt-0.5 line-clamp-1 font-medium">{PLANS[activePlan].shortDesc}</div>
                     </div>
                   </div>
                   <button
                     onClick={() => setActivePlan(null)}
-                    className="w-8 h-8 rounded-full bg-white/8 flex items-center justify-center text-slate-400 hover:bg-white/15 hover:text-white transition-all flex-shrink-0 ml-2"
+                    className="w-8 h-8 rounded-full bg-slate-200/70 flex items-center justify-center text-slate-600 hover:bg-slate-300 transition-all flex-shrink-0 ml-2"
                   >
                     <X size={14} />
                   </button>
                 </div>
 
                 <div
-                  className="overflow-y-scroll flex-1 min-h-0 py-2"
+                  className="overflow-y-scroll flex-1 min-h-0 py-2 bg-white"
                   style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}
                   onTouchMove={(e) => e.stopPropagation()}
                 >
                   {PLANS[activePlan].benefits.map((b, bi) => (
                     <div
                       key={bi}
-                      className={"flex items-start gap-4 px-6 py-4 border-b border-white/5 last:border-b-0 " + (!b.eligible ? "opacity-35" : "")}
+                      className={"flex items-start gap-4 px-6 py-4 border-b border-slate-100 last:border-b-0 " + (!b.eligible ? "opacity-50" : "")}
                     >
-                      <div className={"flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mt-0.5 " + (b.eligible ? "bg-emerald-500/15" : "bg-white/5")}>
+                      <div className={"flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mt-0.5 " + (b.eligible ? "bg-emerald-100" : "bg-slate-100")}>
                         {b.eligible
-                          ? <CheckCircle2 size={15} className="text-emerald-400" />
-                          : <XCircle size={15} className="text-slate-600" />
+                          ? <CheckCircle2 size={15} className="text-emerald-600" />
+                          : <XCircle size={15} className="text-slate-400" />
                         }
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">{bi + 1}</span>
-                          <span className={"font-bold text-sm leading-tight " + (b.eligible ? "text-white" : "text-slate-500")}>{b.label}</span>
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{bi + 1}</span>
+                          <span className={"font-bold text-sm leading-tight " + (b.eligible ? "text-[#0A1929]" : "text-slate-400")}>{b.label}</span>
                           {!b.eligible && (
-                            <span className="text-[9px] px-1.5 py-0.5 rounded bg-red-500/10 text-red-400 font-bold uppercase tracking-wide flex-shrink-0">Not Eligible</span>
+                            <span className="text-[9px] px-1.5 py-0.5 rounded bg-red-100 text-red-600 font-bold uppercase tracking-wide flex-shrink-0">Not Eligible</span>
                           )}
                         </div>
-                        <div className="text-xs text-slate-500 leading-relaxed">{b.desc}</div>
+                        <div className="text-xs text-slate-600 leading-relaxed font-medium">{b.desc}</div>
                       </div>
                     </div>
                   ))}
