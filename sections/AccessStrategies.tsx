@@ -65,16 +65,16 @@ const PLANS: Plan[] = [
         desc: (
           <div className="mt-2 space-y-3 text-xs">
             <div>
-              <div className="font-bold text-white/90">A. Luxury Jewellery Experience</div>
-              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
+              <div className="font-bold text-slate-800">A. Luxury Jewellery Experience</div>
+              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 0.9% of selected jewellery value per-experience.</li>
                 <li>Service Charges: ₹1,099 per-experience.</li>
                 <li>Value Unlock: Save 14% on remodelling charges per-experience.</li>
               </ul>
             </div>
             <div>
-              <div className="font-bold text-white/90">B. Lifestyle Jewellery Subscription</div>
-              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
+              <div className="font-bold text-slate-800">B. Lifestyle Jewellery Subscription</div>
+              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
                 <li>Service Charges: ₹1,499 per-experience.</li>
                 <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
@@ -89,11 +89,11 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% LTV)</div>
+              <div className="text-slate-600 mt-0.5">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
-              <div className="text-slate-400 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
+              <div className="font-bold text-slate-800">Gold Loan + Luxury Jewellery Cloud</div>
+              <div className="text-slate-600 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -104,7 +104,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Liquidity Amount Equivalent to the gold balance value.</div>
+              <div className="text-slate-600 mt-0.5">Liquidity Amount Equivalent to the gold balance value.</div>
               
             </li>
           </ul>
@@ -116,7 +116,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Minimum gold balance to unlock the Limovi Gold Ecosystem is 50 grams 24K gold.</div>
+              <div className="text-slate-600 mt-0.5">Minimum gold balance to unlock the Limovi Gold Ecosystem is 50 grams 24K gold.</div>
             </li>
           </ul>
         ), 
@@ -155,16 +155,16 @@ const PLANS: Plan[] = [
         desc: (
           <div className="mt-2 space-y-3 text-xs">
             <div>
-              <div className="font-bold text-white/90">A. Luxury Jewellery Experience</div>
-              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
+              <div className="font-bold text-slate-800">A. Luxury Jewellery Experience</div>
+              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: Zero for first two experiences every year (0.5% of selected jewellery value from 3rd experience).</li>
                 <li>Service Charges: ₹1,499 per-experience.</li>
                 <li>Value Unlock: Save 28% on remodelling charges per-experience.</li>
               </ul>
             </div>
             <div>
-              <div className="font-bold text-white/90">B. Lifestyle Jewellery Subscription</div>
-              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
+              <div className="font-bold text-slate-800">B. Lifestyle Jewellery Subscription</div>
+              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
                 <li>Service Charges: ₹1,499 per-experience.</li>
                 <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
@@ -179,11 +179,11 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% LTV)</div>
+              <div className="text-slate-600 mt-0.5">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
-              <div className="text-slate-400 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
+              <div className="font-bold text-slate-800">Gold Loan + Luxury Jewellery Cloud</div>
+              <div className="text-slate-600 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -194,7 +194,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Liquidity Amount Equivalent to the gold balance value.</div>
+              <div className="text-slate-600 mt-0.5">Liquidity Amount Equivalent to the gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -205,7 +205,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Minimum gold balance to unlock the Limovi Gold Ecosystem is 50 grams 24K gold.</div>
+              <div className="text-slate-600 mt-0.5">Minimum gold balance to unlock the Limovi Gold Ecosystem is 50 grams 24K gold.</div>
             </li>
           </ul>
         ), 
@@ -217,7 +217,7 @@ const PLANS: Plan[] = [
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
               
-              <div className="text-slate-400 mt-0.5">Turn your jewellery into an earning asset by receiving 25% of its experience value on every experience by others.</div>
+              <div className="text-slate-600 mt-0.5">Turn your jewellery into an earning asset by receiving 25% of its experience value on every experience by others.</div>
             </li>
           </ul>
         ), 
@@ -244,16 +244,16 @@ const PLANS: Plan[] = [
         desc: (
           <div className="mt-2 space-y-3 text-xs">
             <div>
-              <div className="font-bold text-white/90">A. Luxury Jewellery Experience</div>
-              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
+              <div className="font-bold text-slate-800">A. Luxury Jewellery Experience</div>
+              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 0.9% of selected jewellery value per-experience.</li>
                 <li>Service Charges: ₹1,099 per-experience.</li>
                 <li>Value Unlock: Save 14% on remodelling charges per-experience.</li>
               </ul>
             </div>
             <div>
-              <div className="font-bold text-white/90">B. Lifestyle Jewellery Subscription</div>
-              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
+              <div className="font-bold text-slate-800">B. Lifestyle Jewellery Subscription</div>
+              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
                 <li>Service Charges: ₹1,499 per-experience.</li>
                 <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
@@ -268,11 +268,11 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% LTV)</div>
+              <div className="text-slate-600 mt-0.5">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
-              <div className="text-slate-400 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
+              <div className="font-bold text-slate-800">Gold Loan + Luxury Jewellery Cloud</div>
+              <div className="text-slate-600 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -283,7 +283,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Liquidity Amount Equivalent to the gold balance value.</div>
+              <div className="text-slate-600 mt-0.5">Liquidity Amount Equivalent to the gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -294,7 +294,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Minimum gold balance to unlock the Limovi Gold Ecosystem is 50 grams 24K gold.</div>
+              <div className="text-slate-600 mt-0.5">Minimum gold balance to unlock the Limovi Gold Ecosystem is 50 grams 24K gold.</div>
             </li>
           </ul>
         ), 
@@ -306,7 +306,7 @@ const PLANS: Plan[] = [
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
               
-              <div className="text-slate-400 mt-0.5">Turn your jewellery into an earning asset by receiving 25% of its experience value on every experience by others.</div>
+              <div className="text-slate-600 mt-0.5">Turn your jewellery into an earning asset by receiving 25% of its experience value on every experience by others.</div>
             </li>
           </ul>
         ), 
@@ -333,16 +333,16 @@ const PLANS: Plan[] = [
         desc: (
           <div className="mt-2 space-y-3 text-xs">
             <div>
-              <div className="font-bold text-white/90">A. Luxury Jewellery Experience</div>
-              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
+              <div className="font-bold text-slate-800">A. Luxury Jewellery Experience</div>
+              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 0.9% of selected jewellery value per-experience.</li>
                 <li>Service Charges: ₹1,099 per-experience.</li>
                 <li>Value Unlock: Save 14% on remodelling charges per-experience.</li>
               </ul>
             </div>
             <div>
-              <div className="font-bold text-white/90">B. Lifestyle Jewellery Subscription</div>
-              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-400">
+              <div className="font-bold text-slate-800">B. Lifestyle Jewellery Subscription</div>
+              <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
                 <li>Service Charges: ₹1,499 per-experience.</li>
                 <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
@@ -357,11 +357,11 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Maximum loan eligibility (75% LTV)</div>
+              <div className="text-slate-600 mt-0.5">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
-              <div className="font-bold text-white/80">Gold Loan + Luxury Jewellery Cloud</div>
-              <div className="text-slate-400 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
+              <div className="font-bold text-slate-800">Gold Loan + Luxury Jewellery Cloud</div>
+              <div className="text-slate-600 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
           </ul>
         ), 
@@ -372,7 +372,7 @@ const PLANS: Plan[] = [
         desc: (
           <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
             <li>
-              <div className="text-slate-400 mt-0.5">Liquidity Amount Equivalent to the gold balance value.</div>
+              <div className="text-slate-600 mt-0.5">Liquidity Amount Equivalent to the gold balance value.</div>
             </li>
           </ul>
         ), 
