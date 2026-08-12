@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, User, LogOut, Shield } from "lucide-react";
+
 
 // LIMOVI official palette — light hero theme
 const NAV_BG_SCROLLED  = "rgba(255, 255, 255, 0.98)"; // solid/frosted white when scrolled
@@ -45,12 +46,39 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown,   setActiveDropdown]   = useState<string | null>(null);
   const [activeLink,       setActiveLink]       = useState<string | null>(null);
+  const [user, setUser] = useState<any>(null);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+
+  const fetchUser = async () => {
+    try {
+      const res = await fetch("/api/auth/me");
+      if (res.ok) {
+        const data = await res.json();
+        setUser(data.user);
+      }
+    } catch (err) {
+      setUser(null);
+    }
+  };
 
   useEffect(() => {
+    fetchUser();
     const onScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("user-state-changed", fetchUser);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("user-state-changed", fetchUser);
+    };
   }, []);
+
+  const handleLogout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    setUser(null);
+    setIsProfileMenuOpen(false);
+    window.location.reload();
+  };
+
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith("#")) {
@@ -175,8 +203,72 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* ── Desktop Actions ── */}
-          <div className="hidden xl:flex items-center gap-4">
+          {/* ── Desktop Actions & User Profile ── */}
+          <div className="hidden xl:flex items-center gap-4 relative">
+            {/* User Profile Icon / Button */}
+            <div className="relative">
+              <button
+                onClick={() => {
+                  if (user) {
+                    setIsProfileMenuOpen(!isProfileMenuOpen);
+                  } else {
+                    const webappUrl = process.env.NEXT_PUBLIC_WEBAPP_URL;
+                    window.location.href = `${webappUrl}/login`;
+                  }
+
+
+                }}
+                className="flex items-center gap-2 p-2 rounded-full border border-slate-200 hover:border-[#005CB9] bg-white text-slate-700 hover:text-[#005CB9] transition-all cursor-pointer shadow-sm hover:shadow-md"
+                title={user ? user.fullName : "Create Account / Login"}
+              >
+                <div className="w-8 h-8 rounded-full bg-[#005CB9] text-white flex items-center justify-center font-bold text-sm">
+                  {user ? user.fullName.charAt(0).toUpperCase() : <User size={18} />}
+                </div>
+                {user && (
+                  <span className="text-xs font-bold max-w-[100px] truncate pr-1">
+                    {user.fullName.split(" ")[0]}
+                  </span>
+                )}
+              </button>
+
+              {/* Profile Dropdown Menu */}
+              <AnimatePresence>
+                {isProfileMenuOpen && user && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute right-0 top-12 w-64 bg-white border border-slate-200 rounded-2xl shadow-xl p-4 z-[1000]"
+                  >
+                    <div className="pb-3 mb-3 border-b border-slate-100">
+                      <p className="font-bold text-slate-900 text-sm">{user.fullName}</p>
+                      <p className="text-xs text-slate-500 truncate">{user.email}</p>
+                      <p className="text-[11px] text-slate-400 mt-0.5">{user.phoneNumber}</p>
+                    </div>
+
+                    <div className="space-y-1">
+                      <Link
+                        href="/admin"
+                        onClick={() => setIsProfileMenuOpen(false)}
+                        className="flex items-center gap-2.5 px-3 py-2 text-sm font-semibold text-slate-700 hover:text-[#005CB9] hover:bg-slate-50 rounded-xl transition-colors"
+                      >
+                        <Shield size={16} className="text-[#005CB9]" />
+                        <span>Admin Panel</span>
+                      </Link>
+
+                      <button
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-2.5 px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 rounded-xl transition-colors cursor-pointer text-left"
+                      >
+                        <LogOut size={16} />
+                        <span>Sign Out</span>
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             <motion.button
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.97 }}
@@ -232,6 +324,44 @@ export function Navbar() {
               data-lenis-prevent="true"
             >
               <div className="flex flex-col divide-y divide-slate-100 border-t border-slate-100 mt-4">
+                {/* Mobile User Profile Section */}
+                <div className="py-3 px-2">
+                  {user ? (
+                    <div className="flex items-center justify-between bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[#005CB9] text-white flex items-center justify-center font-bold">
+                          {user.fullName.charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                          <p className="font-bold text-slate-900 text-sm">{user.fullName}</p>
+                          <p className="text-xs text-slate-500">{user.email}</p>
+                        </div>
+                      </div>
+                      <Link
+                        href="/admin"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="px-3 py-1.5 bg-[#005CB9] text-white text-xs font-bold rounded-xl"
+                      >
+                        Admin
+                      </Link>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        const webappUrl = process.env.NEXT_PUBLIC_WEBAPP_URL;
+                        window.location.href = `${webappUrl}/login`;
+                      }}
+
+
+                      className="w-full flex items-center justify-center gap-2 py-3 bg-blue-50 text-[#005CB9] font-bold text-sm rounded-2xl border border-blue-100"
+                    >
+                      <User size={18} />
+                      <span>Create Account / Login</span>
+                    </button>
+                  )}
+                </div>
+
                 {navLinks.map((link, i) => (
                   <motion.div key={link.name}
                     initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
@@ -302,6 +432,9 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
     </>
   );
 }
+
+

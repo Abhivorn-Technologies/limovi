@@ -76,6 +76,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
+
       </head>
       <body className={`${inter.variable} font-sans antialiased bg-background text-foreground overflow-x-clip selection:bg-brand-secondary selection:text-white`}>
         <SmoothScrollProvider>
