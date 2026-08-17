@@ -43,7 +43,7 @@ export function StrategySelector({ selected, onChange }: StrategySelectorProps) 
 
   return (
     <div className="space-y-1.5">
-      <p className="text-[9px] font-bold uppercase tracking-widest px-0.5" style={{ color: '#94a3b8' }}>
+      <p className="text-[10px] font-extrabold uppercase tracking-widest px-0.5 text-slate-700">
         Investment Strategy
       </p>
 

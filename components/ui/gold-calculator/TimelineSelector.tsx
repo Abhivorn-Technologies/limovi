@@ -28,7 +28,7 @@ const minDate = '2000-01-01';
 export function TimelineSelector({ selected, onSelect }: TimelineSelectorProps) {
   return (
     <div className="space-y-2">
-      <p className="text-[10px] font-bold uppercase tracking-widest" style={{ color: '#94a3b8' }}>
+      <p className="text-[10px] font-extrabold uppercase tracking-widest text-slate-700">
         Investment Timeline (Projection)
       </p>
 

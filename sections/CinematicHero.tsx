@@ -393,11 +393,7 @@ function Scene1_Problem({ progress }: { progress: any }) {
     { label: "Jewellery",    image: "/images/gold-haram.png", x: isMobile ? "115px" : "18vw", y: isMobile ? "160px" : "20vh", animate: { rotate: [0, 8, -8, 0], scale: [1, 1.05, 1] }, duration: 4.5 },
   ];
 
-  const metrics = [
-    { value: "₹500Cr+", label: "Gold Managed",   color: C.goldDeep },
-    { value: "50K+",    label: "Customers",       color: C.primary },
-    { value: "100%",    label: "Insured & Secure", color: C.primary },
-  ];
+
 
   return (
     <>
@@ -430,13 +426,36 @@ function Scene1_Problem({ progress }: { progress: any }) {
             Build Wealth. Experience Luxury. Unlock Financial Freedom.
           </p>
 
-          <div className="flex items-stretch gap-2 lg:gap-4 flex-nowrap justify-center">
-            {metrics.map((m) => (
-              <div key={m.value} className="flex flex-col items-center justify-center px-4 py-2.5 lg:px-6 lg:py-3 rounded-xl lg:rounded-2xl bg-white border border-slate-200 shadow-sm" style={{ minWidth: 90 }}>
-                <div className="font-black mb-0.5 text-base sm:text-lg lg:text-xl whitespace-nowrap" style={{ color: m.color }}>{m.value}</div>
-                <div className="text-[8px] sm:text-[9px] lg:text-[10px] font-semibold tracking-wide whitespace-nowrap text-slate-500">{m.label}</div>
+          <div className="flex justify-center mt-2">
+            <motion.div
+              whileHover={{ y: -2, scale: 1.02 }}
+              className="flex items-center gap-3 px-5 py-3 rounded-full cursor-default"
+              style={{
+                background: "linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7))",
+                border: "1px solid rgba(212,175,55,0.3)",
+                backdropFilter: "blur(12px)",
+                boxShadow: "0 8px 24px rgba(212,175,55,0.12), inset 0 1px 0 rgba(255,255,255,1)",
+              }}
+            >
+              <div className="flex items-center justify-center w-10 h-10 rounded-full shadow-inner"
+                   style={{ background: `linear-gradient(135deg, ${C.goldBright}, ${C.gold})` }}>
+                <ShieldCheck size={20} className="text-white drop-shadow-md" strokeWidth={2.5} />
               </div>
-            ))}
+              <div className="flex flex-col items-start">
+                <span className="font-black text-lg leading-none"
+                      style={{
+                        background: `linear-gradient(135deg, ${C.goldDeep}, ${C.gold})`,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                      }}>
+                  100% Secure
+                </span>
+                <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mt-1">
+                  Insured Gold Vault
+                </span>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </motion.div>

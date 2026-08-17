@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 import { Crown, Sparkles, ChevronLeft, ChevronRight, X, BadgeCheck, Percent, Coins, Lock } from "lucide-react";
 import Image from "next/image";
+import { useLenis } from "lenis/react";
 
 interface JewelleryItem {
   id: number;
@@ -132,12 +133,14 @@ function CarouselSlider({
   subtitle,
   isMobile,
   onViewPiece,
+  isModalOpen,
 }: {
   collections: JewelleryItem[];
   title: string;
   subtitle: string;
   isMobile: boolean;
   onViewPiece: (item: JewelleryItem) => void;
+  isModalOpen: boolean;
 }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -153,10 +156,10 @@ function CarouselSlider({
   const next = useCallback(() => setActive((a) => (a + 1) % N), [N]);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || isModalOpen) return;
     const id = setInterval(next, AUTO_INTERVAL);
     return () => clearInterval(id);
-  }, [paused, next]);
+  }, [paused, isModalOpen, next]);
 
   return (
     <div className="mb-24">
@@ -323,6 +326,21 @@ function CarouselSlider({
 export function JewelleryCloud() {
   const [isMobile, setIsMobile] = useState(false);
   const [selectedPiece, setSelectedPiece] = useState<JewelleryItem | null>(null);
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (selectedPiece !== null) {
+      document.body.style.overflow = "hidden";
+      lenis?.stop();
+    } else {
+      document.body.style.overflow = "";
+      lenis?.start();
+    }
+    return () => {
+      document.body.style.overflow = "";
+      lenis?.start();
+    };
+  }, [selectedPiece, lenis]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -386,6 +404,7 @@ export function JewelleryCloud() {
           subtitle="Exquisitely crafted for weddings and significant life milestones."
           isMobile={isMobile}
           onViewPiece={setSelectedPiece}
+          isModalOpen={selectedPiece !== null}
         />
       </div>
 
@@ -396,6 +415,7 @@ export function JewelleryCloud() {
           subtitle="Refined jewellery for every moment."
           isMobile={isMobile}
           onViewPiece={setSelectedPiece}
+          isModalOpen={selectedPiece !== null}
         />
       </div>
 

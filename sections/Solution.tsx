@@ -49,10 +49,10 @@ export function Solution() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-slate-200 bg-white shadow-sm"
+            className="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full border border-slate-200 bg-white shadow-sm"
           >
-            <ShieldCheck className="w-4 h-4 text-amber-500" />
-            <span className="text-xs font-bold text-slate-700 tracking-widest uppercase">The Solution</span>
+            <ShieldCheck className="w-5 h-5 text-amber-500" />
+            <span className="text-sm md:text-base font-bold text-slate-700 tracking-widest uppercase">The Solution</span>
           </motion.div>
           
           <motion.h2 

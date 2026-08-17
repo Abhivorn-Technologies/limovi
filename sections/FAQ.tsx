@@ -13,12 +13,12 @@ const faqs = [
   {
     question: "How is digital gold stored and secured?",
     icon: ShieldCheck,
-    answer: "Every gram of digital gold is backed by 24K 99.99% pure physical gold, stored in highly secure, fully insured, SEBI-regulated vaults in partnership with leading banks."
+    answer: "Every gram of digital gold is backed by 24K 99.99% pure physical gold, stored in highly secure, fully insured, SEBI-regulated vaults in partnership with Agumont gold."
   },
   {
     question: "Can I convert my digital gold to physical jewellery?",
     icon: Gem,
-    answer: "Yes! You can redeem your gold balance for physical coins, bars, or jewellery anytime. We offer zero making charges on select partner jeweller networks."
+    answer: "Yes! You can redeem your gold balance for physical coins, bars, or jewellery anytime."
   },
   {
     question: "How does the Instant Loan process work?",
@@ -28,7 +28,7 @@ const faqs = [
   {
     question: "What is the Jewellery Cloud?",
     icon: Crown,
-    answer: "The Jewellery Cloud is a subscription or credit-based service where you can use your gold holdings as a deposit to rent luxury jewellery for special occasions, without paying the full capital cost."
+    answer: "The Jewellery Cloud is a subscription or credit-based service where you can use your gold balance as value to experience luxury jewellery."
   },
   {
     question: "Are there any hidden charges?",

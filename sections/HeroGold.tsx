@@ -54,12 +54,8 @@ const CARD_POS = [
   { bottom: "22%", right: "3%"  },
 ];
 
-// ─── Trust metrics ────────────────────────────────────────────────────────────
-const METRICS = [
-  { value: "₹500Cr+", label: "Gold Managed",    grad: `linear-gradient(135deg,${C.goldBright},${C.gold})` },
-  { value: "50K+",    label: "Customers",        grad: `linear-gradient(135deg,${C.primary},${C.secondary})` },
-  { value: "100%",    label: "Insured & Secure", grad: `linear-gradient(135deg,${C.primary},${C.secondary})` },
-];
+
+
 
 // ─── Floating particle (DOM) ──────────────────────────────────────────────────
 function Particle({ x, y, size, delay, color }: { x: string; y: string; size: number; delay: number; color: string }) {
@@ -541,36 +537,37 @@ export function HeroGold() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-stretch gap-3 flex-wrap justify-center lg:justify-start mb-5"
+              className="flex justify-center lg:justify-start mb-6"
             >
-              {METRICS.map((m) => (
-                <motion.div
-                  key={m.value}
-                  whileHover={{ y: -2 }}
-                  className="flex flex-col items-center lg:items-start px-5 py-3 rounded-2xl"
-                  style={{
-                    background: "rgba(255,255,255,0.82)",
-                    border: "1px solid rgba(0,92,185,0.1)",
-                    backdropFilter: "blur(12px)",
-                    boxShadow: "0 3px 14px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.9)",
-                    minWidth: 100,
-                    transition: "transform 0.2s ease",
-                  }}>
-                  <div className="font-black mb-0.5"
-                    style={{
-                      fontSize: "1.25rem",
-                      background: m.grad,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}>
-                    {m.value}
-                  </div>
-                  <div className="text-[10px] font-semibold tracking-wide" style={{ color: C.textFaint }}>
-                    {m.label}
-                  </div>
-                </motion.div>
-              ))}
+              <motion.div
+                whileHover={{ y: -2, scale: 1.02 }}
+                className="flex items-center gap-3 px-5 py-3 rounded-full cursor-default"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7))",
+                  border: "1px solid rgba(212,175,55,0.3)",
+                  backdropFilter: "blur(12px)",
+                  boxShadow: "0 8px 24px rgba(212,175,55,0.12), inset 0 1px 0 rgba(255,255,255,1)",
+                }}
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-full shadow-inner"
+                     style={{ background: `linear-gradient(135deg, ${C.goldBright}, ${C.gold})` }}>
+                  <ShieldCheck size={20} className="text-white drop-shadow-md" strokeWidth={2.5} />
+                </div>
+                <div className="flex flex-col items-start">
+                  <span className="font-black text-lg leading-none"
+                        style={{
+                          background: `linear-gradient(135deg, ${C.goldDeep}, ${C.gold})`,
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          backgroundClip: "text",
+                        }}>
+                    100% Secure
+                  </span>
+                  <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase mt-1">
+                    Insured Gold Vault
+                  </span>
+                </div>
+              </motion.div>
             </motion.div>
 
             {/* Compliance */}

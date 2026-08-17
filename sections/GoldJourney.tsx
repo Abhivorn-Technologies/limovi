@@ -108,7 +108,7 @@ const existingSteps = [
     desc: "Go for a gold loan. Limited loan value.",
     icon: <HandCoins className="w-5.5 h-5.5 text-[#334155]" />,
     rightTag: {
-      icon: <Percent className="w-5 h-5 text-[#334155]" />,
+      icon: <Frown className="w-5 h-5 text-[#334155]" />,
       text: "Interest & fees. Financial stress.",
     },
   },
@@ -139,44 +139,11 @@ const existingSteps = [
     icon: <Gift className="w-5.5 h-5.5 text-[#334155]" />,
     rightTag: {
       icon: <Frown className="w-5 h-5 text-[#334155]" />,
-      text: "Gifting old jewellery to next generation.",
+      text: "Outdated designs. High remaking costs.",
     },
   },
 ];
 
-// Center Column: Glass Card Advantage Rows
-const glassCardRows = [
-  {
-    icon: <BlueGoldBalanceIcon className="w-5 h-5" />,
-    title: "Lower Cost",
-    desc: "Save on making charges every time.",
-  },
-  {
-    icon: <ShieldCheck className="w-5 h-5 text-[#005CB9]" />,
-    title: "Active Asset",
-    desc: "Your gold earns, supports & grows.",
-  },
-  {
-    icon: <Zap className="w-5 h-5 text-[#005CB9]" />,
-    title: "Instant Access",
-    desc: "Liquidity anytime, without selling.",
-  },
-  {
-    icon: <HandCoins className="w-5 h-5 text-[#005CB9]" />,
-    title: "Wealth Growth",
-    desc: "Invest, grow & beat inflation.",
-  },
-  {
-    icon: <Gift className="w-5 h-5 text-[#005CB9]" />,
-    title: "Gifting Gold Ecosystem",
-    desc: "Gifting a luxury memory to next generation.",
-  },
-  {
-    icon: <Gem className="w-5 h-5 text-[#005CB9]" />,
-    title: "Experience Unlimited Jewellery",
-    desc: "Wear premium designer jewellery anytime.",
-  },
-];
 
 // Right Column: 7 Milestones Circular Loop Positions
 const circularMilestones = [
@@ -184,57 +151,57 @@ const circularMilestones = [
     step: "1",
     title: "INVEST IN GOLD",
     desc: "Build your 24K gold balance at best value with zero wastage.",
-    icon: <BlueGoldBalanceIcon className="w-4.5 h-4.5" />,
-    iconPos: { left: "50%", top: "27%" },
-    textPosClass: "bottom-full mb-3 left-1/2 -translate-x-1/2 text-center w-36",
+    icon: <BlueGoldBalanceIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />,
+    iconPos: { left: '50%', top: '10%' },
+    textPosClass: "bottom-full mb-1.5 sm:mb-3 left-1/2 -translate-x-1/2 text-center w-24 sm:w-36",
   },
   {
     step: "2",
     title: "UNLOCK ECOSYSTEM",
     desc: "Your gold balance unlocks lifetime membership benefits.",
-    icon: <KeyRound className="w-4.5 h-4.5 text-[#005CB9]" />,
-    iconPos: { left: "67%", top: "35.6%" },
-    textPosClass: "left-full ml-3 top-1/2 -translate-y-1/2 text-left w-28",
+    icon: <KeyRound className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#005CB9]" />,
+    iconPos: { left: '68.8%', top: '30%' },
+    textPosClass: "left-full ml-1.5 sm:ml-3 top-1/2 -translate-y-1/2 text-left w-20 sm:w-28",
   },
   {
     step: "3",
     title: "EXPERIENCE LUXURY",
     desc: "Wear premium jewellery anytime without paying making charges again.",
-    icon: <Gem className="w-4.5 h-4.5 text-[#005CB9]" />,
-    iconPos: { left: "71%", top: "50%" },
-    textPosClass: "left-full ml-3 top-1/2 -translate-y-1/2 text-left w-28",
+    icon: <Gem className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#005CB9]" />,
+    iconPos: { left: '69.6%', top: '66.9%' },
+    textPosClass: "left-full ml-1.5 sm:ml-3 top-1/2 -translate-y-1/2 text-left w-20 sm:w-28",
   },
   {
     step: "4",
-    title: "INSTANT LIQUIDITY",
+    title: "LIQUIDITY / LOANS",
     desc: "Withdraw cash instantly against your gold balance at prevailing prices.",
-    icon: <RupeeCoinIcon className="w-4.5 h-4.5" />,
-    iconPos: { left: "64%", top: "66%" },
-    textPosClass: "top-full mt-3 left-1/2 -translate-x-1/2 text-center w-32",
+    icon: <RupeeCoinIcon className="w-4 h-4 sm:w-4.5 sm:h-4.5" />,
+    iconPos: { left: '50%', top: '90%' },
+    textPosClass: "top-full mt-1.5 sm:mt-3 left-1/2 -translate-x-1/2 text-center w-24 sm:w-32",
   },
   {
     step: "5",
     title: "GROW YOUR WEALTH",
-    desc: "Your gold grows in value and beats inflation over time.",
-    icon: <HandCoins className="w-4.5 h-4.5 text-[#005CB9]" />,
-    iconPos: { left: "36%", top: "66%" },
-    textPosClass: "top-full mt-3 left-1/2 -translate-x-1/2 text-center w-32",
+    desc: "Your gold grows in value and beats inflation over time + earn everytime with others experience on your jewellery.",
+    icon: <HandCoins className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#005CB9]" />,
+    iconPos: { left: '30.4%', top: '66.9%' },
+    textPosClass: "right-full mr-1.5 sm:mr-3 top-1/2 -translate-y-1/2 text-right w-20 sm:w-32",
   },
   {
     step: "6",
     title: "GIFT & SHARE GOLD ECOSYSTEM",
     desc: "Gifting a luxury memory to next generation.",
-    icon: <Gift className="w-4.5 h-4.5 text-[#005CB9]" />,
-    iconPos: { left: "29%", top: "50%" },
-    textPosClass: "right-full mr-3 top-1/2 -translate-y-1/2 text-right w-36",
+    icon: <Gift className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#005CB9]" />,
+    iconPos: { left: '29.1%', top: '39.6%' },
+    textPosClass: "right-full mr-1.5 sm:mr-3 top-1/2 -translate-y-1/2 text-right w-20 sm:w-36",
   },
   {
     step: "7",
     title: "EXIT ON YOUR TERMS",
-    desc: "Redeem as 24K gold or get money equivalent as per policy.",
-    icon: <DoorOpen className="w-4.5 h-4.5 text-[#005CB9]" />,
-    iconPos: { left: "33%", top: "35.6%" },
-    textPosClass: "right-full mr-3 top-1/2 -translate-y-1/2 text-right w-28",
+    desc: "Redeem as 24K gold or get money equivalent as per policy or exit with jewellery selected.",
+    icon: <DoorOpen className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#005CB9]" />,
+    iconPos: { left: '36.1%', top: '19.4%' },
+    textPosClass: "right-full mr-1.5 sm:mr-3 top-1/2 -translate-y-1/2 text-right w-20 sm:w-28",
   },
 ];
 
@@ -243,7 +210,7 @@ export function GoldJourney() {
   return (
     <section className="relative w-full bg-[#F8FAFC] text-[#0A1929] py-12 sm:py-16 px-3 sm:px-6 lg:px-8 overflow-hidden select-none font-sans border-t border-slate-200">
       <div className="max-w-[1600px] mx-auto">
-        
+
         {/* ─── 1. TOP HEADER ─── */}
         <div className="text-center mb-8 sm:mb-10">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#0A1929]">
@@ -254,32 +221,25 @@ export function GoldJourney() {
           </p>
         </div>
 
-        {/* ─── 2. SUB-HEADERS BAR ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center mb-8 px-1">
-          
+        {/* ─── 2. SUB-HEADERS BAR (DESKTOP ONLY) ─── */}
+        <div className="hidden lg:grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center mb-8 px-1">
+
           {/* Left Subheader */}
-          <div className="lg:col-span-5 flex flex-col items-center text-center">
-            <div className="bg-[#0A1929] text-white font-bold text-xs sm:text-sm uppercase tracking-widest px-6 sm:px-8 py-2.5 rounded-full shadow-sm">
+          <div className="lg:col-span-6 flex flex-col items-center text-center">
+            <div className="bg-[#0A1929] text-white font-bold text-sm sm:text-base md:text-lg uppercase tracking-widest px-6 sm:px-8 py-2.5 rounded-full shadow-sm">
               THE EXISTING GOLD JOURNEY
             </div>
-            <span className="text-xs font-semibold text-slate-500 mt-1">
+            <span className="text-sm sm:text-base font-semibold text-slate-500 mt-1">
               Traditional. Costly. Limited.
             </span>
           </div>
 
-          {/* Center VS Circle */}
-          <div className="lg:col-span-2 flex justify-center py-1 lg:py-0">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#005CB9] text-white font-extrabold text-xs sm:text-sm flex items-center justify-center shadow-md border-2 border-white">
-              VS
-            </div>
-          </div>
-
           {/* Right Subheader */}
-          <div className="lg:col-span-5 flex flex-col items-center text-center">
-            <div className="bg-[#005CB9] text-white font-bold text-xs sm:text-sm uppercase tracking-widest px-6 sm:px-8 py-2.5 rounded-full shadow-sm">
-              LIMOVI – THE GOLD ECONOMY
+          <div className="lg:col-span-6 flex flex-col items-center text-center">
+            <div className="bg-[#005CB9] text-white font-bold text-sm sm:text-base md:text-lg uppercase tracking-widest px-6 sm:px-8 py-2.5 rounded-full shadow-sm">
+              LIMOVI – THE GOLD ECOSYSTEM
             </div>
-            <span className="text-xs font-semibold text-slate-500 mt-1">
+            <span className="text-sm sm:text-base font-semibold text-slate-500 mt-1">
               Smart. Integrated. Limitless.
             </span>
           </div>
@@ -287,15 +247,25 @@ export function GoldJourney() {
 
         {/* ─── 3. MAIN 3-COLUMN LAYOUT ─── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-10">
-          
+
           {/* ───────────────────────────────────────────────────────────────── */}
           {/* LEFT COLUMN: DASHED S-CURVE TIMELINE WITH RESPONSIVE FLEX & ZERO TRUNCATION */}
           {/* ───────────────────────────────────────────────────────────────── */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-4 relative">
-            
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-4 relative">
+
+            {/* MOBILE ONLY HEADER */}
+            <div className="lg:hidden flex flex-col items-center text-center mb-2 mt-4">
+              <div className="bg-[#0A1929] text-white font-bold text-sm sm:text-base md:text-lg uppercase tracking-widest px-6 sm:px-8 py-2.5 rounded-full shadow-sm">
+                THE EXISTING GOLD JOURNEY
+              </div>
+              <span className="text-sm sm:text-base font-semibold text-slate-500 mt-1">
+                Traditional. Costly. Limited.
+              </span>
+            </div>
+
             {/* Timeline Steps Container */}
             <div className="relative space-y-3.5 pl-1 sm:pl-2">
-              
+
               {/* DEEP S-CURVE DASHED LINE BENDING OUTWARD IN THE MIDDLE */}
               <svg
                 className="absolute left-[12px] sm:left-[14px] top-5 bottom-5 w-20 sm:w-24 h-[88%] pointer-events-none z-0 overflow-visible"
@@ -345,7 +315,7 @@ export function GoldJourney() {
 
                   {/* Main White Card */}
                   <div className="flex-1 bg-white border border-slate-200/90 rounded-2xl p-2.5 sm:p-3 shadow-xs flex items-center justify-between gap-1.5 sm:gap-2 hover:shadow-md transition-shadow z-10 min-w-0">
-                    
+
                     {/* Left Icon & Text Details */}
                     <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                       {/* Outline Icon Circle */}
@@ -418,46 +388,30 @@ export function GoldJourney() {
           </div>
 
           {/* ───────────────────────────────────────────────────────────────── */}
-          {/* CENTER COLUMN: FLOATING ADVANTAGE GLASS CARD */}
-          {/* ───────────────────────────────────────────────────────────────── */}
-          <div className="lg:col-span-2 flex flex-col justify-start">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4 }}
-              viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-md border-2 border-dashed border-[#005CB9]/30 rounded-3xl p-3 sm:p-4 shadow-lg grid grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-3.5"
-            >
-              {glassCardRows.map((row, idx) => (
-                <div key={idx} className="text-center flex flex-col items-center group py-0.5">
-                  <div className="w-8.5 h-8.5 sm:w-9.5 sm:h-9.5 rounded-2xl bg-[#EBF5FF] border border-[#005CB9]/20 flex items-center justify-center mb-1 group-hover:bg-[#D6E8FF] group-hover:border-[#005CB9] transition-all duration-300">
-                    {row.icon}
-                  </div>
-                  <h4 className="text-[11px] sm:text-xs font-bold text-[#0A1929] leading-tight">
-                    {row.title}
-                  </h4>
-                  <p className="text-[9px] sm:text-[9.5px] text-slate-500 font-normal leading-tight mt-0.5 px-0.5">
-                    {row.desc}
-                  </p>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* ───────────────────────────────────────────────────────────────── */}
           {/* RIGHT COLUMN: LIMOVI GOLD ECONOMY CIRCULAR MILESTONE LOOP */}
           {/* ───────────────────────────────────────────────────────────────── */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
-            
-            {/* Main Circular Milestone Graphic Container with FLUID Scaling Across Screen Orientations */}
-            <div className="relative w-full flex-1 min-h-[360px] xs:min-h-[420px] sm:min-h-[460px] bg-white border border-slate-200/90 rounded-3xl p-1.5 sm:p-5 shadow-xs flex items-center justify-center overflow-hidden">
-              
-              {/* Fluid Responsive Inner Wrapper: Eliminates all clipping in Portrait, Landscape & Tablet modes */}
-              <div className="relative w-[500px] h-[500px] scale-[0.55] xs:scale-[0.68] sm:scale-[0.75] md:scale-[0.72] lg:scale-[0.8] xl:scale-[0.9] 2xl:scale-100 origin-center flex items-center justify-center shrink-0">
-                
-                {/* SVG CIRCULAR LOOP CONNECTING ARROWS */}
+          <div className="lg:col-span-6 flex flex-col h-full">
+
+            {/* MOBILE ONLY HEADER */}
+            <div className="lg:hidden flex flex-col items-center text-center mb-6 mt-12">
+              <div className="bg-[#005CB9] text-white font-bold text-sm sm:text-base md:text-lg uppercase tracking-widest px-6 sm:px-8 py-2.5 rounded-full shadow-sm">
+                LIMOVI – THE GOLD ECOSYSTEM
+              </div>
+              <span className="text-sm sm:text-base font-semibold text-slate-500 mt-1">
+                Smart. Integrated. Limitless.
+              </span>
+            </div>
+
+            {/* Main Circular Milestone Graphic Container */}
+            <div className="relative w-full h-full min-h-[500px] lg:min-h-0 bg-white border border-slate-200/90 rounded-3xl shadow-xs">
+
+              {/* Fluid Responsive Inner Wrapper */}
+              <div className="absolute inset-4 sm:inset-16 md:inset-20 lg:inset-16">
+
+                {/* SVG ELLIPTICAL LOOP CONNECTING ARROWS */}
                 <svg
-                  viewBox="0 0 500 500"
+                  viewBox="0 0 600 700"
+                  preserveAspectRatio="none"
                   fill="none"
                   className="absolute inset-0 w-full h-full pointer-events-none z-0"
                 >
@@ -475,35 +429,38 @@ export function GoldJourney() {
                     </marker>
                   </defs>
 
-                  {/* Circle Guide Path */}
-                  <circle
-                    cx="250"
-                    cy="250"
-                    r="115"
+                  {/* Ellipse Guide Path */}
+                  <ellipse
+                    cx="300"
+                    cy="350"
+                    rx="130"
+                    ry="280"
                     stroke="#2B7FE8"
                     strokeWidth="2"
                     strokeDasharray="6 6"
                     opacity="0.35"
+                    fill="none"
                   />
 
                   {/* Arcs */}
-                  <path d="M 274 137 A 115 115 0 0 1 323 161" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 345 190 A 115 115 0 0 1 360 230" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 360 270 A 115 115 0 0 1 340 312" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 306 350 A 115 115 0 0 1 194 350" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 158 319 A 115 115 0 0 1 137 274" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 137 226 A 115 115 0 0 1 158 181" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
-                  <path d="M 194 150 A 115 115 0 0 1 226 137" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 324.8 75.2 A 130 280 0 0 1 405.6 186.6" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 418.5 234.8 A 130 280 0 0 1 422.6 443.4" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 412.0 492.2 A 130 280 0 0 1 324.8 624.8" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 275.2 624.8 A 130 280 0 0 1 188.0 492.2" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 177.4 443.4 A 130 280 0 0 1 171.9 302.6" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 178.0 253.1 A 130 280 0 0 1 205.0 158.9" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+                  <path d="M 229.1 115.3 A 130 280 0 0 1 275.2 75.2" stroke="#005CB9" strokeWidth="2.5" fill="none" markerEnd="url(#blueArrow)" />
+
                 </svg>
 
                 {/* CENTER LIMOVI MEDALLION */}
-                <div className="absolute z-10 w-32 h-32 rounded-full bg-white border-2 border-dashed border-[#005CB9]/40 shadow-md flex flex-col items-center justify-center p-2 text-center">
-                  <InfinityIcon className="w-6 h-6 text-[#005CB9] mb-0.5" />
+                <div className="absolute z-10 w-32 h-32 rounded-full bg-white border-2 border-dashed border-[#005CB9]/40 shadow-md flex flex-col items-center justify-center p-2 text-center"
+                     style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}>
                   <span className="text-xs font-black tracking-widest text-[#0A1929] leading-none block">
                     LIMOVI
                   </span>
                   <span className="text-[7.5px] font-bold tracking-wider text-[#005CB9] uppercase block mb-1">
-                    THE GOLD ECONOMY
+                    THE GOLD ECOSYSTEM
                   </span>
                   <p className="text-[8px] font-medium leading-tight text-slate-500 max-w-[90px]">
                     Invest Once. <br />
@@ -531,10 +488,10 @@ export function GoldJourney() {
 
                     {/* DIRECTIONALLY POSITIONED TEXT BOX */}
                     <div className={`absolute z-30 pointer-events-none ${m.textPosClass}`}>
-                      <h4 className="text-[9px] font-extrabold text-[#0A1929] uppercase leading-tight">
+                      <h4 className="text-[7.5px] sm:text-[9px] font-extrabold text-[#0A1929] uppercase leading-tight">
                         {m.title}
                       </h4>
-                      <p className="text-[7.5px] text-slate-500 leading-snug mt-0.5 font-medium">
+                      <p className="text-[6.5px] sm:text-[7.5px] text-slate-500 leading-snug mt-0.5 font-medium">
                         {m.desc}
                       </p>
                     </div>
@@ -574,7 +531,7 @@ export function GoldJourney() {
 
         {/* ─── 4. BOTTOM COMPARISON STRIP (4 COMPARISON CARDS) ─── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-8">
-          
+
           {/* Card 1: COST vs ZERO WASTAGE */}
           <div className="bg-white border border-slate-200/90 rounded-2xl p-3.5 sm:p-4 shadow-xs flex items-center justify-between gap-2">
             <div className="flex items-center gap-2 min-w-0">
@@ -691,6 +648,36 @@ export function GoldJourney() {
               </span>
               <p className="text-[10.5px] sm:text-[11px] font-semibold text-[#0A1929] leading-tight">
                 Experience more, enjoy always
+              </p>
+            </div>
+          </div>
+
+          {/* Card 5: ONE vs UNLIMITED */}
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-xl bg-[#EBF5FF] flex items-center justify-center shrink-0">
+                <Lock className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#005CB9]" />
+              </div>
+              <div className="min-w-0">
+                <span className="text-[9px] sm:text-[10px] font-bold text-slate-400 block uppercase">
+                  ONE
+                </span>
+                <p className="text-[10.5px] sm:text-[11px] font-semibold text-[#0A1929] leading-tight">
+                  Restricted to a single piece
+                </p>
+              </div>
+            </div>
+
+            <div className="w-5.5 h-5.5 sm:w-6 sm:h-6 rounded-full bg-[#005CB9] text-white flex items-center justify-center shrink-0">
+              <InfinityIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+            </div>
+
+            <div className="min-w-0 text-right">
+              <span className="text-[9px] sm:text-[10px] font-bold text-[#005CB9] block uppercase">
+                UNLIMITED
+              </span>
+              <p className="text-[10.5px] sm:text-[11px] font-semibold text-[#0A1929] leading-tight">
+                Access the entire Jewellery Cloud
               </p>
             </div>
           </div>

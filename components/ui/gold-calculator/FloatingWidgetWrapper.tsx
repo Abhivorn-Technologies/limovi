@@ -73,12 +73,8 @@ export function FloatingWidgetWrapper() {
         {minimized && (
           <motion.button
             key="fab"
-            drag={!isMobile}
-            dragConstraints={!isMobile ? constraintsRef : undefined}
-            dragElastic={0.1}
-            dragMomentum={false}
             initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            animate={{ scale: 1, opacity: 1, x: 0, y: 0 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 340, damping: 24 }}
             onClick={open}

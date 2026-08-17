@@ -253,52 +253,51 @@ export function GoldBalanceCalculator({
         data-lenis-prevent="true"
       >
 
+        {/* ── LIVE PRICE BANNER ─── */}
+        <div
+          className="rounded-xl px-4 py-2.5 flex items-center justify-between shadow-sm"
+          style={{
+            background: 'linear-gradient(135deg,rgba(212,175,55,0.12),rgba(212,175,55,0.05))',
+            border: '1px solid rgba(212,175,55,0.3)',
+          }}
+        >
+          <div className="flex flex-col items-start">
+            <div className="flex items-center gap-1.5 mb-0.5">
+              <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style={{ background: '#22c55e' }} />
+              <span className="text-[9px] font-black uppercase tracking-widest" style={{ color: '#22c55e' }}>
+                {livePrice?.isLive ? 'LIVE' : 'DEMO'}
+              </span>
+            </div>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-[#92692a]">
+              24K Gold Price
+            </p>
+          </div>
+          <div className="text-right flex flex-col justify-center">
+            {priceLoading ? (
+              <Skeleton className="h-5 w-20 ml-auto" />
+            ) : (
+              <p className="text-[15px] font-black text-[#7A5E00] leading-none">
+                ₹{new Intl.NumberFormat('en-IN').format(livePrice?.price ?? 14400)}
+              </p>
+            )}
+            <p className="text-[9px] mt-1 text-[#92692a]/70 font-medium">per gram</p>
+          </div>
+        </div>
+
         {/* ── GOLD PRICE, GRAMS & INVESTMENT REQUIRED ─── */}
-        <div className="grid grid-cols-[1fr_auto_auto] gap-2 items-start bg-slate-50/70 p-2.5 rounded-2xl border border-slate-200/70">
+        <div className="bg-slate-50/70 p-3.5 rounded-2xl border border-slate-200/70">
           {/* LEFT: Grams Slider */}
           <div className="min-w-0">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-700">
                 Gold Balance (Grams)
               </span>
-              <span className="text-[9px] font-bold text-brand-primary">
+              <span className="text-[10px] font-bold text-brand-primary">
                 Min. Investment: ₹{new Intl.NumberFormat('en-IN').format(enrolledGrams * (livePrice?.price ?? 14400))}
               </span>
             </div>
 
             <GramsSlider value={enrolledGrams} onChange={setEnrolledGrams} />
-          </div>
-
-          {/* DIVIDER */}
-          <div className="w-px self-stretch mt-5 bg-slate-200" />
-
-          {/* RIGHT: Live Price */}
-          <div className="flex-shrink-0 flex flex-col items-center justify-center min-w-[90px]">
-            <div
-              className="rounded-xl px-2.5 py-2 text-center"
-              style={{
-                background: 'linear-gradient(135deg,rgba(212,175,55,0.12),rgba(212,175,55,0.05))',
-                border: '1px solid rgba(212,175,55,0.3)',
-              }}
-            >
-              <div className="flex items-center gap-1 justify-center mb-0.5">
-                <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style={{ background: '#22c55e' }} />
-                <span className="text-[8px] font-black uppercase tracking-widest" style={{ color: '#22c55e' }}>
-                  {livePrice?.isLive ? 'LIVE' : 'DEMO'}
-                </span>
-              </div>
-              <p className="text-[8px] font-semibold uppercase tracking-wider text-[#92692a]">
-                24K Gold Price
-              </p>
-              {priceLoading ? (
-                <Skeleton className="h-5 w-16 mt-1 mx-auto" />
-              ) : (
-                <p className="text-sm font-black mt-0.5 text-[#7A5E00]">
-                  ₹{new Intl.NumberFormat('en-IN').format(livePrice?.price ?? 14400)}
-                </p>
-              )}
-              <p className="text-[8px] mt-0.5 text-slate-400">per gram</p>
-            </div>
           </div>
         </div>
 

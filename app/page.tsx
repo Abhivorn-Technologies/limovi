@@ -17,7 +17,6 @@ import { Security } from "@/sections/Security";
 
 
 import { FAQ } from "@/sections/FAQ";
-import { FinalCTA } from "@/sections/FinalCTA";
 
 export default function Home() {
   return (
@@ -38,7 +37,7 @@ export default function Home() {
 
       <Security />
       <FAQ />
-      <FinalCTA />
+
 
       <Footer />
       <EarlyAccessModal />

@@ -110,9 +110,10 @@ export function Security() {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
              <div className="absolute inset-0 rounded-full bg-brand-primary/5 animate-ping" style={{ animationDuration: '3s' }} />
-             <div className="text-center">
-                <div className="font-black text-2xl text-brand-primary tracking-[0.18em] pl-[0.18em]">LIMOVI</div>
-                <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">Core Engine</div>
+             <div className="text-center flex flex-col items-center justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/browser-logo.png" alt="LIMOVI Logo" className="w-32 h-32 object-contain scale-125 -translate-y-3" />
+                <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest -mt-10 z-10 relative">Core Engine</div>
              </div>
           </motion.div>
 

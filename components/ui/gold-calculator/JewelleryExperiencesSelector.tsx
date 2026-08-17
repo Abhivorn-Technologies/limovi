@@ -21,7 +21,7 @@ export function JewelleryExperiencesSelector({
   return (
     <div className="space-y-2 rounded-2xl p-2.5" style={{ background: 'rgba(11,98,214,0.03)', border: '1px solid rgba(11,98,214,0.08)' }}>
       <div className="flex items-center justify-between">
-        <p className="text-[9px] font-black uppercase tracking-wider text-slate-400">
+        <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-700">
           Jewellery Experiences Per Year
         </p>
       </div>

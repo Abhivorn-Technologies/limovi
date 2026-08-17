@@ -23,10 +23,15 @@ export function Problem() {
       <div className="container mx-auto px-6 relative z-10">
         
         <motion.div style={{ y, opacity }} className="text-center mb-16 md:mb-24">
-          <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full border border-slate-200 bg-white shadow-sm">
-            <AlertCircle className="w-4 h-4 text-amber-500" />
-            <span className="text-xs font-bold text-slate-700 tracking-widest uppercase">The Problem</span>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 mb-6 px-5 py-2 rounded-full border border-slate-200 bg-white shadow-sm"
+          >
+            <AlertCircle className="w-5 h-5 text-amber-500" />
+            <span className="text-sm md:text-base font-bold text-slate-700 tracking-widest uppercase">The Problem</span>
+          </motion.div>
           <h2 className="text-4xl md:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
             The Gold Ownership Gap
           </h2>
@@ -41,12 +46,12 @@ export function Problem() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-16 md:mb-24 w-full max-w-5xl mx-auto"
+          className="mb-16 md:mb-24 w-full max-w-7xl mx-auto px-4 md:px-6"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative items-stretch">
             
             {/* Digital Gold Card */}
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 hover:shadow-[0_10px_30px_rgba(10,37,64,0.08)] transition-all relative flex flex-col justify-between">
+            <div className="bg-white rounded-3xl p-8 sm:p-10 md:p-12 shadow-sm border border-slate-200 hover:shadow-[0_10px_30px_rgba(10,37,64,0.08)] transition-all relative flex flex-col justify-between min-h-[450px]">
               <div>
                 <div className="flex items-center gap-4 mb-6 pb-6 border-b border-slate-100">
                   <div className="w-14 h-14 rounded-[18px] overflow-hidden shadow-sm flex-shrink-0 border border-amber-200/60 relative bg-[#FFFBEA]">
@@ -88,7 +93,7 @@ export function Problem() {
             </div>
 
             {/* Physical Jewellery Card */}
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200 hover:shadow-[0_10px_30px_rgba(10,37,64,0.08)] transition-all relative flex flex-col justify-between">
+            <div className="bg-white rounded-3xl p-8 sm:p-10 md:p-12 shadow-sm border border-slate-200 hover:shadow-[0_10px_30px_rgba(10,37,64,0.08)] transition-all relative flex flex-col justify-between min-h-[450px]">
               <div>
                 <div className="flex items-center gap-4 mb-6 pb-6 border-b border-slate-100">
                   <div className="w-14 h-14 rounded-[18px] overflow-hidden shadow-sm flex-shrink-0 border border-amber-200/60 relative bg-[#FFFBEA]">

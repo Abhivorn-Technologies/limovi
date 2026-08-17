@@ -140,9 +140,9 @@ export function Dashboard() {
         
         {/* Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-6">
-            <Lightbulb className="w-4 h-4 text-brand-gold" />
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-600">The Solution</span>
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-6">
+            <Lightbulb className="w-5 h-5 text-brand-gold" />
+            <span className="text-sm md:text-base font-bold uppercase tracking-widest text-slate-600">The Solution</span>
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-brand-primary mb-6 tracking-tight">
             Your Gold. One Connected Ecosystem.
@@ -261,10 +261,10 @@ export function Dashboard() {
                  boxShadow: hoveredStrategy !== null ? "0 0 30px rgba(212, 175, 55, 0.5)" : "0 10px 15px -3px rgba(0, 0, 0, 0.1)" 
                }}
                transition={{ duration: 0.5, type: "spring", bounce: 0.4, delay: 0.6 }}
-               className={`w-28 h-28 rounded-full bg-white flex flex-col items-center justify-center border-[3px] z-10 relative transition-colors ${hoveredStrategy !== null ? 'border-[#F4C430]/40' : 'border-slate-100'}`}
+               className={`w-48 h-48 sm:w-56 sm:h-56 rounded-full bg-white flex flex-col items-center justify-center border-[4px] z-10 relative transition-colors shadow-lg ${hoveredStrategy !== null ? 'border-[#F4C430]/40' : 'border-slate-100'}`}
              >
-               <span className="text-[9px] font-black uppercase text-slate-400 tracking-widest mb-1">Central</span>
-               <span className="text-xs font-bold text-brand-gold uppercase tracking-wider text-center">Gold<br/>Balance</span>
+               <span className="text-xs sm:text-sm font-black uppercase text-slate-400 tracking-widest mb-1.5">Central</span>
+               <span className="text-lg sm:text-xl font-bold text-brand-gold uppercase tracking-wider text-center leading-tight">Gold<br/>Balance</span>
              </motion.div>
           </div>
 

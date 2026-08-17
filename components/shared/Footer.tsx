@@ -116,26 +116,6 @@ export function Footer() {
         {/* Bottom Copyright Strip */}
         <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4 text-sm font-medium text-slate-500">
           <p>© {new Date().getFullYear()} LIMOVI. All rights reserved.</p>
-          <p>
-            Developed by{" "}
-            <a
-              href="https://www.abhivorn.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold transition-colors text-[#0A2540] hover:text-[#005CB9]"
-            >
-              Abhivorn Technologies Pvt Ltd
-            </a>{" "}
-            &amp;{" "}
-            <a
-              href="https://www.digilevelup.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold transition-colors text-[#0A2540] hover:text-[#005CB9]"
-            >
-              Digilevelup
-            </a>
-          </p>
         </div>
 
       </div>

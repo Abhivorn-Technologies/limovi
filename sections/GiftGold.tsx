@@ -10,7 +10,7 @@ export function GiftGold() {
     <section id="gift-gold" className="py-16 md:py-32 bg-slate-50 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -20,10 +20,10 @@ export function GiftGold() {
           >
             {/* Interactive Premium Gift Card */}
             <div className="relative w-full max-w-md mx-auto aspect-[1.6/1] rounded-2xl bg-gradient-to-br from-[#0B1A2C] via-[#0A2540] to-[#051120] p-8 shadow-[0_30px_60px_rgba(10,37,64,0.4)] border border-[#D4AF37]/30 overflow-hidden group cursor-pointer">
-              
+
               {/* Subtle metallic texture/noise */}
               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-overlay" />
-              
+
               {/* Animated luxury glow */}
               <div className="absolute -top-20 -right-20 w-64 h-64 bg-brand-gold/20 rounded-full blur-[60px] group-hover:bg-brand-gold/30 transition-colors duration-700" />
               <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-[#00D4FF]/10 rounded-full blur-[50px] group-hover:scale-150 transition-transform duration-1000" />
@@ -36,8 +36,8 @@ export function GiftGold() {
                 <div className="flex justify-between items-start">
                   <div className="flex items-center gap-3">
                     <div className="w-11 h-11 rounded-full bg-gradient-to-br from-brand-gold to-[#B8860B] flex items-center justify-center shadow-[0_4px_15px_rgba(212,175,55,0.4)] border-2 border-white overflow-hidden">
-                      <div 
-                        className="w-7 h-7 bg-white shrink-0" 
+                      <div
+                        className="w-7 h-7 bg-white shrink-0"
                         style={{
                           maskImage: "url(/images/gifting-eco.png)",
                           WebkitMaskImage: "url(/images/gifting-eco.png)",
@@ -56,13 +56,13 @@ export function GiftGold() {
                   </div>
                   <Sparkles className="text-brand-gold w-6 h-6 animate-pulse" />
                 </div>
-                
+
                 {/* Body / Value */}
                 <div>
                   <p className="text-slate-400 text-xs mb-1 uppercase tracking-[0.3em] font-medium">Gold Balance</p>
                   <div className="flex items-baseline gap-2 mb-2">
                     <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-300">
-                      10.00g
+                      50.00g
                     </span>
                     <span className="text-brand-gold font-bold text-lg tracking-wide">24K</span>
                   </div>
@@ -73,12 +73,12 @@ export function GiftGold() {
                 </div>
               </div>
             </div>
-            
+
             {/* Particle Explosion decorative */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
-                <div className="absolute top-[20%] left-[10%] w-2 h-2 bg-brand-gold rounded-full shadow-[0_0_10px_#FFD700] animate-ping" />
-                <div className="absolute top-[80%] left-[80%] w-3 h-3 bg-brand-accent rounded-full shadow-[0_0_10px_#00D4FF] animate-pulse" />
-                <div className="absolute top-[10%] left-[90%] w-1.5 h-1.5 bg-brand-secondary rounded-full shadow-[0_0_10px_#0066FF] animate-ping" style={{ animationDelay: "1s" }} />
+              <div className="absolute top-[20%] left-[10%] w-2 h-2 bg-brand-gold rounded-full shadow-[0_0_10px_#FFD700] animate-ping" />
+              <div className="absolute top-[80%] left-[80%] w-3 h-3 bg-brand-accent rounded-full shadow-[0_0_10px_#00D4FF] animate-pulse" />
+              <div className="absolute top-[10%] left-[90%] w-1.5 h-1.5 bg-brand-secondary rounded-full shadow-[0_0_10px_#0066FF] animate-ping" style={{ animationDelay: "1s" }} />
             </div>
           </motion.div>
 
@@ -90,8 +90,8 @@ export function GiftGold() {
             className="order-1 lg:order-2"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div 
-                className="w-8 h-8 bg-brand-secondary shrink-0" 
+              <div
+                className="w-8 h-8 bg-brand-secondary shrink-0"
                 style={{
                   maskImage: "url(/images/gifting-eco.png)",
                   WebkitMaskImage: "url(/images/gifting-eco.png)",
@@ -111,7 +111,7 @@ export function GiftGold() {
             <p className="text-sm md:text-base lg:text-lg text-slate-600 mb-8 font-medium leading-relaxed">
               Transform gifting into something more enduring. Give your loved ones access to a connected gold ecosystem designed to bring together value, curated jewellery experiences and greater flexibility—creating possibilities that extend well beyond the occasion.
             </p>
-            
+
             <ul className="space-y-4 mb-10">
               <li className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-brand-gold shadow-sm mt-2 flex-shrink-0" />

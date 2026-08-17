@@ -69,7 +69,7 @@ const PLANS: Plan[] = [
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 0.9% of selected jewellery value per-experience.</li>
                 <li>Service Charges: ₹1,099 per-experience.</li>
-                <li>Value Unlock: Save 14% on remodelling charges per-experience.</li>
+                <li>Value Unlock: Save 14% on making charges per-experience.</li>
               </ul>
             </div>
             <div>
@@ -77,7 +77,7 @@ const PLANS: Plan[] = [
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
                 <li>Service Charges: ₹1,499 per-experience.</li>
-                <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
+                <li>Value Unlock: Save 7% on making charges per-experience.</li>
               </ul>
             </div>
           </div>
@@ -87,15 +87,15 @@ const PLANS: Plan[] = [
       { 
         label: "Instant Loans", 
         desc: (
-          <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
+          <ol className="list-[upper-alpha] list-outside ml-4 mt-2 space-y-2.5 text-xs font-bold text-slate-800">
             <li>
-              <div className="text-slate-600 mt-0.5">Maximum loan eligibility (75% LTV)</div>
+              <div className="text-slate-600 mt-0.5 font-normal">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
               <div className="font-bold text-slate-800">Gold Loan + Luxury Jewellery Cloud</div>
-              <div className="text-slate-600 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
+              <div className="text-slate-600 mt-0.5 font-normal">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
-          </ul>
+          </ol>
         ), 
         eligible: true 
       },
@@ -159,7 +159,7 @@ const PLANS: Plan[] = [
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: Zero for first two experiences every year (0.5% of selected jewellery value from 3rd experience).</li>
                 <li>Service Charges: ₹1,499 per-experience.</li>
-                <li>Value Unlock: Save 28% on remodelling charges per-experience.</li>
+                <li>Value Unlock: Save 14% on making charges per-experience.</li>
               </ul>
             </div>
             <div>
@@ -167,7 +167,7 @@ const PLANS: Plan[] = [
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
                 <li>Service Charges: ₹1,499 per-experience.</li>
-                <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
+                <li>Value Unlock: Save 7% on making charges per-experience.</li>
               </ul>
             </div>
           </div>
@@ -177,15 +177,15 @@ const PLANS: Plan[] = [
       { 
         label: "Instant Loans", 
         desc: (
-          <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
+          <ol className="list-[upper-alpha] list-outside ml-4 mt-2 space-y-2.5 text-xs font-bold text-slate-800">
             <li>
-              <div className="text-slate-600 mt-0.5">Maximum loan eligibility (75% LTV)</div>
+              <div className="text-slate-600 mt-0.5 font-normal">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
               <div className="font-bold text-slate-800">Gold Loan + Luxury Jewellery Cloud</div>
-              <div className="text-slate-600 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
+              <div className="text-slate-600 mt-0.5 font-normal">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
-          </ul>
+          </ol>
         ), 
         eligible: true 
       },
@@ -248,7 +248,7 @@ const PLANS: Plan[] = [
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 0.9% of selected jewellery value per-experience.</li>
                 <li>Service Charges: ₹1,099 per-experience.</li>
-                <li>Value Unlock: Save 14% on remodelling charges per-experience.</li>
+                <li>Value Unlock: Save 14% on making charges per-experience.</li>
               </ul>
             </div>
             <div>
@@ -256,7 +256,7 @@ const PLANS: Plan[] = [
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
                 <li>Service Charges: ₹1,499 per-experience.</li>
-                <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
+                <li>Value Unlock: Save 7% on making charges per-experience.</li>
               </ul>
             </div>
           </div>
@@ -266,15 +266,15 @@ const PLANS: Plan[] = [
       { 
         label: "Instant Loans", 
         desc: (
-          <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
+          <ol className="list-[upper-alpha] list-outside ml-4 mt-2 space-y-2.5 text-xs font-bold text-slate-800">
             <li>
-              <div className="text-slate-600 mt-0.5">Maximum loan eligibility (75% LTV)</div>
+              <div className="text-slate-600 mt-0.5 font-normal">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
               <div className="font-bold text-slate-800">Gold Loan + Luxury Jewellery Cloud</div>
-              <div className="text-slate-600 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
+              <div className="text-slate-600 mt-0.5 font-normal">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
-          </ul>
+          </ol>
         ), 
         eligible: true 
       },
@@ -337,7 +337,7 @@ const PLANS: Plan[] = [
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 0.9% of selected jewellery value per-experience.</li>
                 <li>Service Charges: ₹1,099 per-experience.</li>
-                <li>Value Unlock: Save 14% on remodelling charges per-experience.</li>
+                <li>Value Unlock: Save 14% on making charges per-experience.</li>
               </ul>
             </div>
             <div>
@@ -345,7 +345,7 @@ const PLANS: Plan[] = [
               <ul className="list-disc list-outside ml-4 mt-1 space-y-0.5 text-slate-600">
                 <li>Experience Charges: 1.1% of selected jewellery value per-month.</li>
                 <li>Service Charges: ₹1,499 per-experience.</li>
-                <li>Value Unlock: Save 7% on remodelling charges per-experience.</li>
+                <li>Value Unlock: Save 7% on making charges per-experience.</li>
               </ul>
             </div>
           </div>
@@ -355,15 +355,15 @@ const PLANS: Plan[] = [
       { 
         label: "Instant Loans", 
         desc: (
-          <ul className="list-disc list-outside ml-4 mt-2 space-y-2.5 text-xs">
+          <ol className="list-[upper-alpha] list-outside ml-4 mt-2 space-y-2.5 text-xs font-bold text-slate-800">
             <li>
-              <div className="text-slate-600 mt-0.5">Maximum loan eligibility (75% LTV)</div>
+              <div className="text-slate-600 mt-0.5 font-normal">Maximum loan eligibility (75% LTV)</div>
             </li>
             <li>
               <div className="font-bold text-slate-800">Gold Loan + Luxury Jewellery Cloud</div>
-              <div className="text-slate-600 mt-0.5">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
+              <div className="text-slate-600 mt-0.5 font-normal">= Gold loan of &lt;50% of gold balance value + luxury jewellery experience worth 25% of gold balance value.</div>
             </li>
-          </ul>
+          </ol>
         ), 
         eligible: true 
       },
@@ -384,11 +384,28 @@ const PLANS: Plan[] = [
   },
 ];
 
+import { useLenis } from "lenis/react";
+
 export function AccessStrategies() {
   const [activePlan, setActivePlan] = useState<number | null>(null);
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (activePlan !== null) {
+      document.body.style.overflow = "hidden";
+      lenis?.stop();
+    } else {
+      document.body.style.overflow = "";
+      lenis?.start();
+    }
+    return () => {
+      document.body.style.overflow = "";
+      lenis?.start();
+    };
+  }, [activePlan, lenis]);
 
   return (
-    <section id="access-strategies" className="bg-gradient-to-b from-[#F2F6FB] via-[#EBF2FA] to-[#F8FAFC] relative overflow-hidden py-24 lg:py-32 border-t border-b border-slate-200/80">
+    <section id="access-strategies" className="bg-gradient-to-b from-[#F2F6FB] via-[#EBF2FA] to-[#F8FAFC] relative z-40 overflow-hidden py-24 lg:py-32 border-t border-b border-slate-200/80">
       {/* Soft Ambient Radial Luxury Glows */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#D4AF37]/15 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-[#005CB9]/12 rounded-full blur-[160px] pointer-events-none" />
@@ -400,7 +417,7 @@ export function AccessStrategies() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="text-[10px] font-black uppercase tracking-[0.3em] text-[#005CB9] mb-4"
+              className="text-sm md:text-base font-black uppercase tracking-[0.3em] text-[#005CB9] mb-4"
             >
               ACCESS STRATEGIES
             </motion.p>
@@ -444,20 +461,20 @@ export function AccessStrategies() {
                 )}
 
                 <div className="p-4 flex-1 flex flex-col">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  <div className="relative mb-3 flex flex-col items-center text-center">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mb-2"
                       style={{ background: "rgba(0,92,185,0.1)", border: "1.5px solid rgba(0,92,185,0.25)" }}>
-                      <Icon size={15} style={{ color: "#005CB9" }} />
+                      <Icon size={18} style={{ color: "#005CB9" }} />
                     </div>
                     {p.highlight && (
-                      <span className="text-[8px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#F0D574] text-slate-900 shadow-xs border border-[#D4AF37]/30">
+                      <span className="absolute top-0 right-0 text-[8px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#F0D574] text-slate-900 shadow-xs border border-[#D4AF37]/30">
                         Best Value
                       </span>
                     )}
                   </div>
 
-                  <h3 className="font-black text-[#0A1929] text-sm mb-0.5 leading-tight">{p.name}</h3>
-                  <p className="text-slate-500 text-[10px] leading-snug mb-3 font-medium">{p.shortDesc}</p>
+                  <h3 className="font-black text-[#0A1929] text-sm mb-0.5 leading-tight text-center">{p.name}</h3>
+                  <p className="text-slate-500 text-[10px] leading-snug mb-3 font-medium text-center">{p.shortDesc}</p>
 
                   <div className="mb-3 p-2.5 rounded-xl bg-slate-50/90 border border-slate-200/90 space-y-2 flex-1">
                     <div>
