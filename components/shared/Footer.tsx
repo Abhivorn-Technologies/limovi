@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 
 const footerLinks = {
@@ -9,15 +10,15 @@ const footerLinks = {
     { label: "About Us", href: "/about" },
     { label: "Careers", href: "/careers" },
     { label: "Press", href: "/press" },
-    { label: "Contact", href: "/contact" },
+    { label: "Get Early Access", isModal: true, href: "" },
   ],
   products: [
-    { label: "Gold Balance", href: "/products/balance" },
-    { label: "Luxury Jewellery Cloud", href: "/products/jewellery" },
-    { label: "Instant Loans", href: "/products/loans" },
-    { label: "Instant Liquidity", href: "/products/liquidity" },
-    { label: "Yield Generation", href: "/products/yield" },
-    { label: "Gift Gold Ecosystem", href: "/products/gift" },
+    { label: "Gold Balance", href: "#platform" },
+    { label: "Luxury Jewellery Cloud", href: "#jewellery-experience" },
+    { label: "Instant Loans", href: "#loans" },
+    { label: "Instant Liquidity", href: "#liquidity" },
+    { label: "Wealth Generation", href: "#wealth" },
+    { label: "Gift Gold Ecosystem", href: "#gift-gold" },
   ],
   compliance: [
     { label: "SEBI Info", href: "/compliance/sebi" },
@@ -28,6 +29,29 @@ const footerLinks = {
 };
 
 export function Footer() {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      if (pathname !== "/") {
+        router.push(`/${href}`);
+        return;
+      }
+      const targetId = href.replace("#", "");
+      if (targetId === "") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const element = document.getElementById(targetId);
+        if (element) {
+          const y = element.getBoundingClientRect().top + window.scrollY - 90;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }
+    }
+  };
+
   return (
     <footer className="bg-slate-50 pt-12 lg:pt-20 pb-12 border-t border-slate-200">
       <div className="container mx-auto px-6">
@@ -38,13 +62,22 @@ export function Footer() {
           {/* Brand Info & Tagline Column (4 Cols) */}
           <div className="lg:col-span-4">
             <Link href="/" className="inline-block mb-4 lg:mb-6">
-              <Image
-                src="/Limovi-1.png"
-                alt="LIMOVI"
-                width={871}
-                height={237}
-                style={{ width: "135px", height: "auto", objectFit: "contain" }}
-              />
+              <div className="flex items-center gap-1.5">
+                <Image
+                  src="/logo-icon.png"
+                  alt="LIMOVI Icon"
+                  width={254}
+                  height={237}
+                  className="h-[36px] w-auto object-contain"
+                />
+                <Image
+                  src="/logo-text.png"
+                  alt="LIMOVI Text"
+                  width={569}
+                  height={236}
+                  className="h-[50px] w-auto object-contain -mt-1.5"
+                />
+              </div>
             </Link>
             <p className="text-slate-600 mb-6 max-w-sm font-medium text-sm lg:text-base leading-relaxed">
               India&apos;s first 360° Gold Asset Ecosystem. Convert your gold into liquidity, luxury experiences, and wealth.
@@ -73,9 +106,18 @@ export function Footer() {
             <ul className="space-y-3.5">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-slate-600 font-medium hover:text-[#005CB9] transition-colors text-sm whitespace-nowrap">
-                    {link.label}
-                  </Link>
+                  {link.isModal ? (
+                    <button 
+                      onClick={() => window.dispatchEvent(new CustomEvent("open-early-access-modal"))} 
+                      className="text-slate-600 font-medium hover:text-[#005CB9] transition-colors text-sm whitespace-nowrap text-left cursor-pointer"
+                    >
+                      {link.label}
+                    </button>
+                  ) : (
+                    <Link href={link.href} className="text-slate-600 font-medium hover:text-[#005CB9] transition-colors text-sm whitespace-nowrap">
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -87,7 +129,11 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.products.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-slate-600 font-medium hover:text-[#005CB9] transition-colors flex items-center gap-2 group whitespace-nowrap text-sm">
+                  <Link 
+                    href={pathname !== "/" && link.href.startsWith("#") ? `/${link.href}` : link.href} 
+                    onClick={(e) => handleScroll(e, link.href)}
+                    className="text-slate-600 font-medium hover:text-[#005CB9] transition-colors flex items-center gap-2 group whitespace-nowrap text-sm"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0 group-hover:bg-[#005CB9]" />
                     <span className="whitespace-nowrap">{link.label}</span>
                     <ArrowUpRight className="w-3.5 h-3.5 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all shrink-0 text-[#005CB9]" />

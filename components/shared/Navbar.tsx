@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight, User, LogOut, Shield } from "lucide-react";
 
@@ -80,9 +81,18 @@ export function Navbar() {
   };
 
 
+  const pathname = usePathname();
+  const router = useRouter();
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith("#")) {
       e.preventDefault();
+      if (pathname !== "/") {
+        router.push(`/${href}`);
+        setIsMobileMenuOpen(false);
+        setActiveDropdown(null);
+        return;
+      }
       const targetId = href.replace("#", "");
       if (targetId === "") {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -124,16 +134,24 @@ export function Navbar() {
           {/* ── Logo ── */}
           <Link href="/" onClick={(e) => handleNavClick(e, "#")} className="relative z-[999] flex items-center group">
             <div
-              className="transition-opacity duration-300 group-hover:opacity-80"
-              style={{ display: "flex", alignItems: "center", height: "90px", overflow: "hidden" }}
+              className="transition-opacity duration-300 group-hover:opacity-80 flex items-center gap-1.5"
+              style={{ height: "90px" }}
             >
               <Image
-                src="/Limovi-1.png"
-                alt="LIMOVI"
-                width={871}
+                src="/logo-icon.png"
+                alt="LIMOVI Icon"
+                width={254}
                 height={237}
                 priority
-                style={{ objectFit: "contain", width: "135px", height: "auto" }}
+                className="h-[36px] w-auto object-contain"
+              />
+              <Image
+                src="/logo-text.png"
+                alt="LIMOVI Text"
+                width={569}
+                height={236}
+                priority
+                className="h-[50px] w-auto object-contain -mt-1.5"
               />
             </div>
           </Link>
@@ -149,7 +167,7 @@ export function Navbar() {
               >
                 {link.isDropdown ? (
                   <a
-                    href={link.href}
+                    href={pathname !== "/" && link.href.startsWith("#") ? `/${link.href}` : link.href}
                     onClick={(e) => {
                       if (link.href) handleNavClickWithActive(e, link.href, link.name);
                     }}
@@ -163,7 +181,7 @@ export function Navbar() {
                   </a>
                 ) : (
                   <a
-                    href={link.href}
+                    href={pathname !== "/" && link.href?.startsWith("#") ? `/${link.href}` : link.href}
                     onClick={(e) => handleNavClickWithActive(e, link.href as string, link.name)}
                     className="text-sm font-semibold transition-colors duration-200 relative group cursor-pointer"
                     style={{ color: activeLink === link.name ? PRIMARY : currentTextColor }}
@@ -188,7 +206,7 @@ export function Navbar() {
                         {link.subLinks?.map((subLink) => (
                           <a
                             key={subLink.name}
-                            href={subLink.href}
+                            href={pathname !== "/" && subLink.href.startsWith("#") ? `/${subLink.href}` : subLink.href}
                             onClick={(e) => handleNavClick(e, subLink.href)}
                             className="relative block px-4 py-2.5 text-sm font-semibold text-slate-600 hover:text-brand-primary hover:bg-slate-50 rounded-lg transition-colors whitespace-nowrap"
                           >
@@ -203,9 +221,9 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* ── Desktop Actions & User Profile ── */}
-          <div className="hidden xl:flex items-center gap-4 relative">
-            {/* User Profile Icon / Button */}
+          {/* ── Actions & Mobile Toggle ── */}
+          <div className="flex items-center gap-2 sm:gap-3 xl:gap-4 relative">
+            {/* User Profile Icon / Button (VISIBLE EVERYWHERE) */}
             <div className="relative">
               <button
                 onClick={() => {
@@ -215,19 +233,16 @@ export function Navbar() {
                     const webappUrl = process.env.NEXT_PUBLIC_WEBAPP_URL;
                     window.location.href = `${webappUrl}/login`;
                   }
-
-
                 }}
-                className="flex items-center gap-2 p-2 rounded-full border border-slate-200 hover:border-[#005CB9] bg-white text-slate-700 hover:text-[#005CB9] transition-all cursor-pointer shadow-sm hover:shadow-md"
+                className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 hover:border-[#005CB9] bg-white text-slate-700 hover:text-[#005CB9] transition-all cursor-pointer shadow-sm hover:shadow-md"
                 title={user ? user.fullName : "Create Account / Login"}
               >
-                <div className="w-8 h-8 rounded-full bg-[#005CB9] text-white flex items-center justify-center font-bold text-sm">
-                  {user ? user.fullName.charAt(0).toUpperCase() : <User size={18} />}
-                </div>
-                {user && (
-                  <span className="text-xs font-bold max-w-[100px] truncate pr-1">
-                    {user.fullName.split(" ")[0]}
+                {user ? (
+                  <span className="w-full h-full flex items-center justify-center rounded-full bg-[#005CB9] text-white font-bold text-sm">
+                    {user.fullName.charAt(0).toUpperCase()}
                   </span>
+                ) : (
+                  <User size={18} />
                 )}
               </button>
 
@@ -269,41 +284,41 @@ export function Navbar() {
               </AnimatePresence>
             </div>
 
+            {/* Get Early Access (HIDDEN ON MOBILE) */}
             <motion.button
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => {
                 window.dispatchEvent(new CustomEvent("open-early-access-modal"));
               }}
-              className="cursor-pointer px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all relative z-[999] whitespace-nowrap"
+              className="hidden xl:flex cursor-pointer px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all relative z-[999] whitespace-nowrap"
               style={{
                 background: `linear-gradient(135deg, ${PRIMARY}, ${SECONDARY})`,
                 boxShadow: `0 4px 18px rgba(0,92,185,0.45), 0 1px 4px rgba(43,127,232,0.3)`,
               }}>
               Get Early Access
             </motion.button>
-          </div>
-
-          {/* ── Mobile Toggle ── */}
-          <button
-            className="xl:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all relative z-[999]"
-            style={{ 
-              background: isMobileMenuOpen ? PRIMARY : "white",
-              border: isMobileMenuOpen ? "none" : "1px solid rgba(0,0,0,0.08)",
-              color: isMobileMenuOpen ? "white" : PRIMARY,
-              boxShadow: isMobileMenuOpen ? `0 4px 12px ${PRIMARY}50` : "0 2px 8px rgba(0,0,0,0.04)"
-            }}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <motion.div
-              initial={false}
-              animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
-              transition={{ duration: 0.2 }}
-              className="flex items-center justify-center"
+            {/* ── Mobile Toggle ── */}
+            <button
+              className="xl:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all relative z-[999]"
+              style={{ 
+                background: isMobileMenuOpen ? PRIMARY : "white",
+                border: isMobileMenuOpen ? "none" : "1px solid rgba(0,0,0,0.08)",
+                color: isMobileMenuOpen ? "white" : PRIMARY,
+                boxShadow: isMobileMenuOpen ? `0 4px 12px ${PRIMARY}50` : "0 2px 8px rgba(0,0,0,0.04)"
+              }}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </motion.div>
-          </button>
+              <motion.div
+                initial={false}
+                animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center justify-center"
+              >
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              </motion.div>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -324,43 +339,7 @@ export function Navbar() {
               data-lenis-prevent="true"
             >
               <div className="flex flex-col divide-y divide-slate-100 border-t border-slate-100 mt-4">
-                {/* Mobile User Profile Section */}
-                <div className="py-3 px-2">
-                  {user ? (
-                    <div className="flex items-center justify-between bg-slate-50 p-3 rounded-2xl border border-slate-100">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-[#005CB9] text-white flex items-center justify-center font-bold">
-                          {user.fullName.charAt(0).toUpperCase()}
-                        </div>
-                        <div>
-                          <p className="font-bold text-slate-900 text-sm">{user.fullName}</p>
-                          <p className="text-xs text-slate-500">{user.email}</p>
-                        </div>
-                      </div>
-                      <Link
-                        href="/admin"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="px-3 py-1.5 bg-[#005CB9] text-white text-xs font-bold rounded-xl"
-                      >
-                        Admin
-                      </Link>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        const webappUrl = process.env.NEXT_PUBLIC_WEBAPP_URL;
-                        window.location.href = `${webappUrl}/login`;
-                      }}
-
-
-                      className="w-full flex items-center justify-center gap-2 py-3 bg-blue-50 text-[#005CB9] font-bold text-sm rounded-2xl border border-blue-100"
-                    >
-                      <User size={18} />
-                      <span>Create Account / Login</span>
-                    </button>
-                  )}
-                </div>
+                {/* Mobile Menu Links */}
 
                 {navLinks.map((link, i) => (
                   <motion.div key={link.name}

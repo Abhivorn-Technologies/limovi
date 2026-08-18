@@ -28,7 +28,7 @@ const faqs = [
   {
     question: "What is the Jewellery Cloud?",
     icon: Crown,
-    answer: "The Jewellery Cloud is a subscription or credit-based service where you can use your gold balance as value to experience luxury jewellery."
+    answer: "The Jewellery Cloud is a subscription or credit-based service where you can use your gold balance as value to experience luxury jewellery for special occassions without paying the full capital cost."
   },
   {
     question: "Are there any hidden charges?",
