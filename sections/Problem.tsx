@@ -59,6 +59,7 @@ export function Problem() {
                       src="/images/digital_gold_app_icon.png"
                       alt="Digital Gold Icon"
                       fill
+                      sizes="56px"
                       className="object-cover"
                     />
                   </div>
@@ -101,6 +102,7 @@ export function Problem() {
                       src="/images/jewellry.png"
                       alt="Physical Jewellery Icon"
                       fill
+                      sizes="56px"
                       className="object-cover"
                     />
                   </div>

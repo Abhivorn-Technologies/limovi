@@ -5,6 +5,7 @@ import { SmoothScrollProvider } from "@/components/shared/SmoothScrollProvider";
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import { FloatingWidgetWrapper } from "@/components/ui/gold-calculator";
 import { DoodleIconBackground } from "@/components/shared/DoodleIconBackground";
+import { EarlyAccessModal } from "@/components/shared/EarlyAccessModal";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -83,6 +84,7 @@ export default function RootLayout({
           {children}
           <ScrollToTop />
           <FloatingWidgetWrapper />
+          <EarlyAccessModal />
         </SmoothScrollProvider>
       </body>
     </html>
