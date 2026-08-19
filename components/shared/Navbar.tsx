@@ -129,7 +129,7 @@ export function Navbar() {
           boxShadow: isScrolled ? "0 1px 20px rgba(0,0,0,0.06)" : "none",
         }}
       >
-        <div className="container mx-auto px-6 flex items-center justify-between h-full">
+        <div className="w-full mx-auto px-4 lg:px-2 xl:container xl:px-6 flex items-center justify-between h-full">
 
           {/* ── Logo ── */}
           <Link href="/" onClick={(e) => handleNavClick(e, "#")} className="relative z-[999] flex items-center group">
@@ -157,7 +157,7 @@ export function Navbar() {
           </Link>
 
           {/* ── Desktop Nav ── */}
-          <nav className="hidden xl:flex items-center gap-4 xl:gap-8 relative z-[999] h-full">
+          <nav className="hidden lg:flex items-center gap-3 lg:gap-3 xl:gap-8 relative z-[999] h-full">
             {navLinks.map((link) => (
               <div 
                 key={link.name} 
@@ -171,7 +171,7 @@ export function Navbar() {
                     onClick={(e) => {
                       if (link.href) handleNavClickWithActive(e, link.href, link.name);
                     }}
-                    className="text-sm font-semibold transition-colors duration-200 cursor-pointer flex items-center gap-1"
+                    className="text-[12px] lg:text-[12px] xl:text-sm font-semibold transition-colors duration-200 cursor-pointer flex items-center gap-1"
                     style={{ color: activeLink === link.name ? PRIMARY : currentTextColor }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = currentHoverColor)}
                     onMouseLeave={(e) => (e.currentTarget.style.color = activeLink === link.name ? PRIMARY : currentTextColor)}
@@ -183,7 +183,7 @@ export function Navbar() {
                   <a
                     href={pathname !== "/" && link.href?.startsWith("#") ? `/${link.href}` : link.href}
                     onClick={(e) => handleNavClickWithActive(e, link.href as string, link.name)}
-                    className="text-sm font-semibold transition-colors duration-200 relative group cursor-pointer"
+                    className="text-[12px] lg:text-[12px] xl:text-sm font-semibold transition-colors duration-200 relative group cursor-pointer"
                     style={{ color: activeLink === link.name ? PRIMARY : currentTextColor }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = currentHoverColor)}
                     onMouseLeave={(e) => (e.currentTarget.style.color = activeLink === link.name ? PRIMARY : currentTextColor)}
@@ -222,7 +222,7 @@ export function Navbar() {
           </nav>
 
           {/* ── Actions & Mobile Toggle ── */}
-          <div className="flex items-center gap-2 sm:gap-3 xl:gap-4 relative">
+          <div className="flex items-center gap-3 lg:gap-3 xl:gap-4 relative">
             {/* User Profile Icon / Button (VISIBLE EVERYWHERE) */}
             <div className="relative">
               <button
@@ -231,7 +231,12 @@ export function Navbar() {
                     setIsProfileMenuOpen(!isProfileMenuOpen);
                   } else {
                     const webappUrl = process.env.NEXT_PUBLIC_WEBAPP_URL;
-                    window.location.href = `${webappUrl}/login`;
+                    if (webappUrl && webappUrl !== "undefined") {
+                      window.location.href = `${webappUrl}/login`;
+                    } else {
+                      // Fallback to the local /login page if no webapp URL is set
+                      window.location.href = "/login";
+                    }
                   }
                 }}
                 className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 hover:border-[#005CB9] bg-white text-slate-700 hover:text-[#005CB9] transition-all cursor-pointer shadow-sm hover:shadow-md"
@@ -291,7 +296,7 @@ export function Navbar() {
               onClick={() => {
                 window.dispatchEvent(new CustomEvent("open-early-access-modal"));
               }}
-              className="hidden xl:flex cursor-pointer px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all relative z-[999] whitespace-nowrap"
+              className="hidden lg:flex cursor-pointer px-3 lg:px-3 xl:px-6 py-1.5 xl:py-2.5 rounded-full text-[11px] xl:text-sm font-bold text-white transition-all relative z-[999] whitespace-nowrap"
               style={{
                 background: `linear-gradient(135deg, ${PRIMARY}, ${SECONDARY})`,
                 boxShadow: `0 4px 18px rgba(0,92,185,0.45), 0 1px 4px rgba(43,127,232,0.3)`,
@@ -300,7 +305,7 @@ export function Navbar() {
             </motion.button>
             {/* ── Mobile Toggle ── */}
             <button
-              className="xl:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all relative z-[999]"
+              className="lg:hidden flex items-center justify-center w-10 h-10 rounded-full transition-all relative z-[999]"
               style={{ 
                 background: isMobileMenuOpen ? PRIMARY : "white",
                 border: isMobileMenuOpen ? "none" : "1px solid rgba(0,0,0,0.08)",
@@ -330,7 +335,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ type: "spring", damping: 26, stiffness: 220 }}
-            className="fixed inset-0 z-40 flex flex-col pt-24 px-8 pb-4 xl:hidden"
+            className="fixed inset-0 z-40 flex flex-col pt-24 px-8 pb-4 lg:hidden"
             style={{ background: "#ffffff", borderBottom: `1px solid ${NAV_BORDER}` }}
           >
             <nav 

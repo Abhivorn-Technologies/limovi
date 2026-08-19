@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export default function LoginPage() {
   useEffect(() => {
     const webappUrl = process.env.NEXT_PUBLIC_WEBAPP_URL;
-    if (webappUrl) {
+    if (webappUrl && webappUrl !== "undefined") {
       window.location.href = `${webappUrl}/login`;
     }
   }, []);

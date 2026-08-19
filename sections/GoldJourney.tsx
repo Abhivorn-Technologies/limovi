@@ -251,7 +251,7 @@ export function GoldJourney() {
           {/* ───────────────────────────────────────────────────────────────── */}
           {/* LEFT COLUMN: DASHED S-CURVE TIMELINE WITH RESPONSIVE FLEX & ZERO TRUNCATION */}
           {/* ───────────────────────────────────────────────────────────────── */}
-          <div className="lg:col-span-6 flex flex-col justify-between space-y-4 relative">
+          <div className="lg:col-span-6 flex flex-col justify-between gap-6 sm:gap-8 relative">
 
             {/* MOBILE ONLY HEADER */}
             <div className="lg:hidden flex flex-col items-center text-center mb-2 mt-4">
@@ -390,7 +390,7 @@ export function GoldJourney() {
           {/* ───────────────────────────────────────────────────────────────── */}
           {/* RIGHT COLUMN: LIMOVI GOLD ECONOMY CIRCULAR MILESTONE LOOP */}
           {/* ───────────────────────────────────────────────────────────────── */}
-          <div className="lg:col-span-6 flex flex-col h-full">
+          <div className="lg:col-span-6 flex flex-col h-full gap-6 sm:gap-8">
 
             {/* MOBILE ONLY HEADER */}
             <div className="lg:hidden flex flex-col items-center text-center mb-6 mt-12">
@@ -530,7 +530,7 @@ export function GoldJourney() {
         </div>
 
         {/* ─── 4. BOTTOM COMPARISON STRIP (4 COMPARISON CARDS) ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-16 lg:mt-20">
 
           {/* Card 1: COST vs ZERO WASTAGE */}
           <div className="bg-white border border-slate-200/90 rounded-2xl p-3.5 sm:p-4 shadow-xs flex items-center justify-between gap-2">
