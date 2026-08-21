@@ -185,7 +185,7 @@ const circularMilestones = [
     desc: "Your gold grows in value and beats inflation over time + earn everytime with others experience on your jewellery.",
     icon: <HandCoins className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#005CB9]" />,
     iconPos: { left: '30.4%', top: '66.9%' },
-    textPosClass: "right-full mr-1.5 sm:mr-3 top-1/2 -translate-y-1/2 text-right w-20 sm:w-32",
+    textPosClass: "right-full mr-1.5 sm:mr-3 top-0 translate-y-1 text-right w-20 sm:w-32",
   },
   {
     step: "6",
@@ -201,7 +201,7 @@ const circularMilestones = [
     desc: "Redeem as 24K gold or get money equivalent as per policy or exit with jewellery selected.",
     icon: <DoorOpen className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#005CB9]" />,
     iconPos: { left: '36.1%', top: '19.4%' },
-    textPosClass: "right-full mr-1.5 sm:mr-3 top-1/2 -translate-y-1/2 text-right w-20 sm:w-28",
+    textPosClass: "right-full mr-1.5 sm:mr-3 bottom-1/2 translate-y-3 text-right w-20 sm:w-28",
   },
 ];
 
@@ -403,7 +403,7 @@ export function GoldJourney() {
             </div>
 
             {/* Main Circular Milestone Graphic Container */}
-            <div className="relative w-full h-full min-h-[500px] lg:min-h-0 bg-white border border-slate-200/90 rounded-3xl shadow-xs">
+            <div className="relative w-full h-full min-h-[500px] lg:min-h-0 bg-white border border-slate-200/90 rounded-3xl shadow-xs mb-28 sm:mb-20 lg:mb-16">
 
               {/* Fluid Responsive Inner Wrapper */}
               <div className="absolute inset-4 sm:inset-16 md:inset-20 lg:inset-16">
@@ -488,10 +488,10 @@ export function GoldJourney() {
 
                     {/* DIRECTIONALLY POSITIONED TEXT BOX */}
                     <div className={`absolute z-30 pointer-events-none ${m.textPosClass}`}>
-                      <h4 className="text-[7.5px] sm:text-[9px] font-extrabold text-[#0A1929] uppercase leading-tight">
+                      <h4 className="text-[11px] sm:text-[13px] font-extrabold text-[#0A1929] uppercase leading-tight">
                         {m.title}
                       </h4>
-                      <p className="text-[6.5px] sm:text-[7.5px] text-slate-500 leading-snug mt-0.5 font-medium">
+                      <p className="text-[11px] sm:text-[12.5px] text-slate-500 leading-snug mt-0.5 font-medium">
                         {m.desc}
                       </p>
                     </div>
