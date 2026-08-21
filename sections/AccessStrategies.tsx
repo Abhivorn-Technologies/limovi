@@ -392,8 +392,18 @@ export function AccessStrategies() {
 
   useEffect(() => {
     if (activePlan !== null) {
-      document.body.style.overflow = "hidden";
-      lenis?.stop();
+      if (typeof window !== "undefined" && window.innerWidth < 768) {
+        document.body.style.overflow = "hidden";
+        lenis?.stop();
+      } else {
+        // On desktop, scroll the panel into view smoothly
+        setTimeout(() => {
+          const panel = document.getElementById("desktop-plan-details");
+          if (panel) {
+            panel.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
+      }
     } else {
       document.body.style.overflow = "";
       lenis?.start();
@@ -522,6 +532,7 @@ export function AccessStrategies() {
         <AnimatePresence>
           {activePlan !== null && (
             <motion.div
+              id="desktop-plan-details"
               key={"desktop-panel-" + activePlan}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
